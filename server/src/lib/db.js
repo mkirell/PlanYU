@@ -8,6 +8,7 @@ export async function connectDB() {
       autoCreate: true,
     });
   } catch (err) {
+    console.error("MongoDB connection failed:", err.message);
     process.exit(1);
   }
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { Container, Row, Col, Button, Spinner, Alert } from "react-bootstrap";
-import { Tasks } from "./api";
+import { Tasks } from "./apis/tasks.api";
 import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
 import Modal from "./components/Modal";

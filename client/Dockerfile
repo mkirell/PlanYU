@@ -2,12 +2,13 @@ FROM node:20
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY package*.json .
 
 RUN npm install
 
-COPY . .
+COPY public ./public
+COPY src ./src
 
-EXPOSE 5000
+EXPOSE 3000
 
 CMD ["npm", "start"]
