@@ -71,7 +71,7 @@ This will create a virtual environment and install all required dependencies for
 
 - **Backend:** Node.js, Express.js  
 - **Database:** MySQL  
-- **Frontend:** React, Redux, Bootstrap  
+- **Frontend:** React, Redux  
 - **Deployment:** Docker, Docker Compose  
 
 Both local and Docker approaches use the same codebase and dependencies.
