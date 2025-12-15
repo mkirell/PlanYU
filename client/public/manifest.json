@@ -1,7 +1,7 @@
 {
   "short_name": "P",
   "name": "PlanYU",
-  "description": "A Task and Project Management Application",
+  "description": "A Collaborative Platform for Efficient Project Management",
   "start_url": "/",
   "display": "standalone",
   "theme_color": "#000000",
