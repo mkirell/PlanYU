@@ -1,6 +1,6 @@
 # PlanYU
 
-A Task and Project Management Application
+A Collaborative Platform for Efficient Project Management
 
 ---
 
