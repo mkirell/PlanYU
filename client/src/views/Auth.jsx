@@ -1,0 +1,192 @@
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { loginUser, registerUser } from "../redux/slices/usersSlice";
+import { createProfile } from "../redux/slices/profilesSlice";
+
+const getRandomAvatar = () => {
+  const seed = Math.random().toString(36).substring(2, 12);
+  return `https://robohash.org/${seed}?set=set4&size=100x100`;
+};
+
+export default function Auth({ onLogin }) {
+  const dispatch = useDispatch();
+  const {
+    data,
+    status,
+    error: reduxError,
+  } = useSelector((state) => state.users);
+
+  const [mode, setMode] = useState("login");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [avatarUrl, setAvatarUrl] = useState("");
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (data?.user_id) {
+      localStorage.setItem("currentUserId", data.user_id);
+      onLogin(data.user_id);
+    }
+  }, [data, onLogin]);
+
+  const resetFields = () => {
+    setEmail("");
+    setPassword("");
+    setPasswordConfirm("");
+    setFullName("");
+    setAvatarUrl("");
+    setError("");
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    if (!email.trim() || !password.trim()) {
+      setError("Please enter both email and password.");
+      return;
+    }
+
+    try {
+      await dispatch(loginUser({ email, password })).unwrap();
+    } catch {
+      setError("Invalid email or password.");
+    }
+  };
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+
+    if (!email || !password || !passwordConfirm || !fullName) {
+      setError("Please fill all required fields.");
+      return;
+    }
+
+    if (password !== passwordConfirm) {
+      setError("Passwords do not match.");
+      return;
+    }
+
+    try {
+      const userData = await dispatch(
+        registerUser({ email, password })
+      ).unwrap();
+
+      await dispatch(
+        createProfile({
+          user_id: userData.user_id,
+          full_name: fullName,
+          avatar_url: avatarUrl || getRandomAvatar(),
+        })
+      ).unwrap();
+    } catch {
+      setError("Registration failed.");
+    }
+  };
+
+  return (
+    <div className="login-overlay">
+      <div className="login-card">
+        <h1 className="login-title">PlanYU</h1>
+        <p className="login-subtitle">
+          {mode === "login" ? "Login to continue" : "Register a new account"}
+        </p>
+
+        <form
+          className="login-form"
+          onSubmit={mode === "login" ? handleLogin : handleRegister}
+        >
+          {mode === "register" && (
+            <label>
+              Full Name
+              <input
+                type="text"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                required
+              />
+            </label>
+          )}
+
+          <label>
+            Email
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </label>
+
+          <label>
+            Password
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </label>
+
+          {mode === "register" && (
+            <label>
+              Confirm Password
+              <input
+                type="password"
+                value={passwordConfirm}
+                onChange={(e) => setPasswordConfirm(e.target.value)}
+                required
+              />
+            </label>
+          )}
+
+          <button
+            type="submit"
+            className="btn primary"
+            disabled={status === "loading"}
+          >
+            {mode === "login" ? "Login" : "Register"}
+          </button>
+        </form>
+
+        {(error || reduxError) && (
+          <div className="login-error">{error || reduxError}</div>
+        )}
+
+        <div className="auth-switch">
+          {mode === "login" ? (
+            <p>
+              Don't have an account?{" "}
+              <button
+                type="button"
+                className="btn-link"
+                onClick={() => {
+                  setMode("register");
+                  resetFields();
+                  setAvatarUrl(getRandomAvatar());
+                }}
+              >
+                Register
+              </button>
+            </p>
+          ) : (
+            <p>
+              Already have an account?{" "}
+              <button
+                type="button"
+                className="btn-link"
+                onClick={() => {
+                  setMode("login");
+                  resetFields();
+                }}
+              >
+                Login
+              </button>
+            </p>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}

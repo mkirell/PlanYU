@@ -1,19 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/PlanYU.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="web site for planning tasks"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/PlanYU.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>PlanYU</title>
+        <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" href="/icons/icon-256.png" type="image/png" />
   </head>
   <body>
     <div id="root"></div>
+    <script type="module" src="../src/main.jsx"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/service-worker.js")
+            .then((registration) => {
+              console.log("Service Worker registered:", registration);
+            })
+            .catch((error) => {
+              console.log("Service Worker registration failed:", error);
+            });
+        });
+      }
+    </script>
   </body>
 </html>
