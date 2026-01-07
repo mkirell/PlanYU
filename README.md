@@ -83,7 +83,7 @@ Both local and Docker approaches use the same codebase and dependencies.
 ### Local Execution
 
 1. Start the application: make start  
-2. Open your web browser and go to <http://localhost:5173>  
+2. Open your web browser and go to <http://localhost:3000>  
 3. Stop the application: make stop  
 
 > Notes:  
@@ -95,7 +95,7 @@ Both local and Docker approaches use the same codebase and dependencies.
 
 1. Make sure **Docker Desktop** is running.  
 2. Start the containers: docker-compose up  
-3. Open your web browser and go to <http://localhost:5173>  
+3. Open your web browser and go to <http://localhost:3000>  
 4. Stop the containers: docker-compose down  
 
 > Notes:  
