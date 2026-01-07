@@ -23,23 +23,33 @@ app.use(helmet());
 app.use(cors(corsOptions));
 app.use(json());
 
-app.use("/api/users", limiter);
+// app.use("/api/auth", limiter);
 app.use("/api", routes);
 app.get("/health", (req, res) => res.json({ status: "ok" }));
 
 async function start() {
-  try {
-    await createDB();
-    await sequelize.authenticate();
-    await sequelize.sync({ alter: true });
-    app.listen(process.env.EXPRESS_API_PORT, () =>
-      console.log(
-        `✅ Server started listening on port ${process.env.EXPRESS_API_PORT}`
-      )
-    );
-  } catch (err) {
-    console.error("❌ Failed to start server:", err);
-    process.exit(1);
+  const maxAttempts = 10;
+  const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      await createDB();
+      await sequelize.authenticate();
+      await sequelize.sync();
+      app.listen(process.env.SERVER_PORT, process.env.SERVER_HOST, () =>
+        console.log(
+          `✅ Server started listening on port ${process.env.SERVER_PORT}`
+        )
+      );
+      return;
+    } catch (err) {
+      console.error(`Attempt ${attempt} failed to start server:`, err.message || err);
+      if (attempt === maxAttempts) {
+        console.error("❌ Failed to start server after retries:", err);
+        process.exit(1);
+      }
+      await delay(3000);
+    }
   }
 }
 

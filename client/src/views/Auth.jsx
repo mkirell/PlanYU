@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { loginUser, registerUser } from "../redux/slices/usersSlice";
-import { createProfile } from "../redux/slices/profilesSlice";
+import { loginUser, registerUser } from "../redux/slices/authSlice";
+import { createProfile } from "../redux/slices/profileSlice";
 
 const getRandomAvatar = () => {
   const seed = Math.random().toString(36).substring(2, 12);
@@ -10,11 +10,9 @@ const getRandomAvatar = () => {
 
 export default function Auth({ onLogin }) {
   const dispatch = useDispatch();
-  const {
-    data,
-    status,
-    error: reduxError,
-  } = useSelector((state) => state.users);
+  const { data, status, error: reduxError } = useSelector(
+    (state) => state.auth
+  );
 
   const [mode, setMode] = useState("login");
   const [email, setEmail] = useState("");

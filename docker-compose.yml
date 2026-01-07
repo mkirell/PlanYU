@@ -4,12 +4,10 @@ services:
     container_name: mysql
     restart: always
     ports:
-      - "3306:3306"
+      - "3307:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-      MYSQL_USER: ${DB_USERNAME}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
-      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
     volumes:
       - mysql_data:/var/lib/mysql
 
@@ -33,14 +31,15 @@ services:
     container_name: client
     restart: always
     ports:
-      - "5173:5173"
+      - "3000:3000"
+    env_file:
+      - ./client/.env
     environment:
       - CHOKIDAR_USEPOLLING=true
     depends_on:
       - server
     volumes:
       - ./client/src:/app/src
-      - ./client/public:/app/public
 
 volumes:
   mysql_data:

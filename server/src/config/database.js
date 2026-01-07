@@ -2,19 +2,19 @@ import "dotenv/config";
 import { Sequelize } from "sequelize";
 
 const createSequelizeInstance = (dbName) =>
-  new Sequelize(dbName, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    dialect: process.env.DB_DIALECT,
+  new Sequelize(dbName, process.env.MYSQL_USERNAME, process.env.MYSQL_PASSWORD, {
+    host: process.env.MYSQL_HOST,
+    port: process.env.MYSQL_PORT,
+    dialect: process.env.MYSQL_DIALECT,
     logging: false,
   });
 
-const sequelize = createSequelizeInstance(process.env.DB_NAME);
+const sequelize = createSequelizeInstance(process.env.MYSQL_DATABASE);
 
 export async function createDB() {
   const tempSequelize = createSequelizeInstance("");
   await tempSequelize.query(
-    `CREATE DATABASE IF NOT EXISTS \`${process.env.DB_NAME}\`;`
+    `CREATE DATABASE IF NOT EXISTS \`${process.env.MYSQL_DATABASE}\`;`
   );
   await tempSequelize.close();
 }

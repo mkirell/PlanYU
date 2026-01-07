@@ -9,20 +9,21 @@ import {
   createProject,
   updateProject,
   deleteProject,
-} from "../redux/slices/projectsSlice";
+} from "../redux/slices/projectSlice";
 import {
   fetchTasks,
   createTask,
   updateTask,
   deleteTask,
-} from "../redux/slices/tasksSlice";
-import { fetchUsers, logoutUser } from "../redux/slices/usersSlice";
-import { fetchProfiles } from "../redux/slices/profilesSlice";
+} from "../redux/slices/taskSlice";
+import { fetchUsers } from "../redux/slices/userSlice";
+import { logoutUser } from "../redux/slices/authSlice";
+import { fetchProfiles } from "../redux/slices/profileSlice";
 import {
   fetchUserProjects,
   createUserProject,
   deleteUserProject,
-} from "../redux/slices/userProjectsSlice";
+} from "../redux/slices/userProjectSlice";
 
 export default function Board({ currentUserId, onLogout }) {
   const dispatch = useDispatch();

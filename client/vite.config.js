@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
@@ -10,7 +11,7 @@ export default defineConfig({
       includeAssets: ["icons/*"],
       manifest: false,
       injectManifest: {
-        swSrc: "public/service-worker.js",
+        swSrc: "/service-worker.js",
         globPatterns: ["**/*.{js,css,html,png,svg}"],
       },
       workbox: {
@@ -31,9 +32,11 @@ export default defineConfig({
     }),
   ],
   server: {
+    host: process.env.CLIENT_HOST,
+    port: process.env.CLIENT_PORT,
     proxy: {
       "/api": {
-        target: "http://localhost:5000",
+        target: process.env.PROXY_TARGET,
         changeOrigin: true,
         secure: false,
       },

@@ -2,26 +2,21 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const registerUser = createAsyncThunk(
-  "users/registerUser",
+  "auth/registerUser",
   async (user) => {
-    const res = await axios.post("/api/users/register", user);
+    const res = await axios.post("/api/auth/register", user);
     return res.data.data;
   }
 );
 
-export const loginUser = createAsyncThunk("users/loginUser", async (user) => {
-  const res = await axios.post("/api/users/login", user);
+export const loginUser = createAsyncThunk("auth/loginUser", async (user) => {
+  const res = await axios.post("/api/auth/login", user);
   return res.data.data;
 });
 
-export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
-  const res = await axios.get("/api/users");
-  return res.data.data;
-});
-
-const usersSlice = createSlice({
-  name: "users",
-  initialState: { data: null, list: [], status: "idle", error: null },
+const authSlice = createSlice({
+  name: "auth",
+  initialState: { data: null, status: "idle", error: null },
   reducers: {
     logoutUser(state) {
       state.data = null;
@@ -52,21 +47,9 @@ const usersSlice = createSlice({
       .addCase(loginUser.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
-      })
-      .addCase(fetchUsers.pending, (state) => {
-        state.status = "loading";
-        state.error = null;
-      })
-      .addCase(fetchUsers.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.list = action.payload;
-      })
-      .addCase(fetchUsers.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.error.message;
       });
   },
 });
 
-export const { logoutUser } = usersSlice.actions;
-export default usersSlice.reducer;
+export const { logoutUser } = authSlice.actions;
+export default authSlice.reducer;

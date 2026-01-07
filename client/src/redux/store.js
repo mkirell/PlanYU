@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import usersReducer from "./slices/usersSlice";
-import profilesReducer from "./slices/profilesSlice";
-import projectsReducer from "./slices/projectsSlice";
-import tasksReducer from "./slices/tasksSlice";
-import userProjectsReducer from "./slices/userProjectsSlice";
+import authReducer from "./slices/authSlice";
+import usersReducer from "./slices/userSlice";
+import profilesReducer from "./slices/profileSlice";
+import projectsReducer from "./slices/projectSlice";
+import tasksReducer from "./slices/taskSlice";
+import userProjectsReducer from "./slices/userProjectSlice";
 
 export const store = configureStore({
   reducer: {
+    auth: authReducer,
     users: usersReducer,
     profiles: profilesReducer,
     projects: projectsReducer,
