@@ -10,9 +10,11 @@ const getRandomAvatar = () => {
 
 export default function Auth({ onLogin }) {
   const dispatch = useDispatch();
-  const { data, status, error: reduxError } = useSelector(
-    (state) => state.auth
-  );
+  const {
+    data,
+    status,
+    error: reduxError,
+  } = useSelector((state) => state.auth);
 
   const [mode, setMode] = useState("login");
   const [email, setEmail] = useState("");
@@ -46,11 +48,8 @@ export default function Auth({ onLogin }) {
       return;
     }
 
-    try {
-      await dispatch(loginUser({ email, password })).unwrap();
-    } catch {
-      setError("Invalid email or password.");
-    }
+    setError("");
+    dispatch(loginUser({ email, password }));
   };
 
   const handleRegister = async (e) => {
@@ -66,20 +65,17 @@ export default function Auth({ onLogin }) {
       return;
     }
 
-    try {
-      const userData = await dispatch(
-        registerUser({ email, password })
-      ).unwrap();
-
+    setError("");
+    const action = await dispatch(registerUser({ email, password }));
+    if (action.type.endsWith("fulfilled")) {
+      const userData = action.payload;
       await dispatch(
         createProfile({
           user_id: userData.user_id,
           full_name: fullName,
           avatar_url: avatarUrl || getRandomAvatar(),
         })
-      ).unwrap();
-    } catch {
-      setError("Registration failed.");
+      );
     }
   };
 
@@ -148,8 +144,8 @@ export default function Auth({ onLogin }) {
           </button>
         </form>
 
-        {(error || reduxError) && (
-          <div className="login-error">{error || reduxError}</div>
+        {status === "failed" && (reduxError || error) && (
+          <div className="login-error">{reduxError || error}</div>
         )}
 
         <div className="auth-switch">

@@ -1,9 +1,10 @@
-import { Profile } from "../models/index.js";
+import ProfileService from "../services/profileService.js";
+import { AppError } from "../errors/index.js";
 
 async function getAllProfiles(req, res) {
   try {
-    const profiles = await Profile.findAll({ order: [["profile_id", "ASC"]] });
-    res.status(200).json({ data: profiles });
+    const profiles = await ProfileService.list();
+    res.status(200).json(profiles);
   } catch (err) {
     console.error("Error fetching profiles:", err);
     res.status(500).json({ error: "Internal server error" });
@@ -16,23 +17,27 @@ async function getProfileById(req, res) {
     return res.status(400).json({ warning: "Invalid profile ID" });
 
   try {
-    const profile = await Profile.findByPk(id);
-    if (!profile) return res.status(404).json({ warning: "Profile not found" });
-    res.status(200).json({ data: profile });
+    const profile = await ProfileService.get(id);
+    res.status(200).json(profile);
   } catch (err) {
+    if (err instanceof AppError)
+      return res
+        .status(err.status)
+        .json({ warning: err.message, details: err.details });
     console.error("Error fetching profile:", err);
     res.status(500).json({ error: "Internal server error" });
   }
 }
 
 async function createProfile(req, res) {
-  const { user_id, full_name, avatar_url } = req.body;
-  if (!user_id) return res.status(400).json({ warning: "User ID required" });
-
   try {
-    const profile = await Profile.create(req.body);
-    res.status(201).json({ data: profile });
+    const created = await ProfileService.create(req.body);
+    res.status(201).json(created);
   } catch (err) {
+    if (err instanceof AppError)
+      return res
+        .status(err.status)
+        .json({ warning: err.message, details: err.details });
     console.error("Error creating profile:", err);
     res.status(500).json({ error: err.message });
   }
@@ -44,12 +49,13 @@ async function updateProfile(req, res) {
     return res.status(400).json({ warning: "Invalid profile ID" });
 
   try {
-    const profile = await Profile.findByPk(id);
-    if (!profile) return res.status(404).json({ warning: "Profile not found" });
-
-    const updated = await profile.update(req.body);
-    res.status(200).json({ data: updated });
+    const updated = await ProfileService.update(id, req.body);
+    res.status(200).json(updated);
   } catch (err) {
+    if (err instanceof AppError)
+      return res
+        .status(err.status)
+        .json({ warning: err.message, details: err.details });
     console.error("Error updating profile:", err);
     res.status(500).json({ error: err.message });
   }
@@ -61,12 +67,13 @@ async function deleteProfile(req, res) {
     return res.status(400).json({ warning: "Invalid profile ID" });
 
   try {
-    const profile = await Profile.findByPk(id);
-    if (!profile) return res.status(404).json({ warning: "Profile not found" });
-
-    await profile.destroy();
-    res.status(200).json({ message: `Profile ${id} deleted` });
+    const deleted = await ProfileService.delete(id);
+    res.status(200).json(deleted);
   } catch (err) {
+    if (err instanceof AppError)
+      return res
+        .status(err.status)
+        .json({ warning: err.message, details: err.details });
     console.error("Error deleting profile:", err);
     res.status(500).json({ error: "Internal server error" });
   }

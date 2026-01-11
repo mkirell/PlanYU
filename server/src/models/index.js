@@ -3,6 +3,7 @@ import Profile from "./Profile.js";
 import Project from "./Project.js";
 import Task from "./Task.js";
 import UserProject from "./UserProject.js";
+import UserTask from "./UserTask.js";
 
 // 1:1 → User ↔ Profile
 User.hasOne(Profile, { foreignKey: "user_id" });
@@ -24,10 +25,23 @@ Project.belongsToMany(User, {
   otherKey: "user_id",
 });
 
+// N:N → User ↔ Task via UserTask
+User.belongsToMany(Task, {
+  through: UserTask,
+  foreignKey: "user_id",
+  otherKey: "task_id",
+});
+Task.belongsToMany(User, {
+  through: UserTask,
+  foreignKey: "task_id",
+  otherKey: "user_id",
+});
+
 export {
   User,
   Profile,
   Project,
   Task,
   UserProject,
+  UserTask,
 };

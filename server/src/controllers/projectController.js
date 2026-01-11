@@ -1,9 +1,10 @@
-import { Project } from "../models/index.js";
+import ProjectService from "../services/projectService.js";
+import { AppError } from "../errors/index.js";
 
 async function getAllProjects(req, res) {
   try {
-    const projects = await Project.findAll({ order: [["project_id", "ASC"]] });
-    res.status(200).json({ data: projects });
+    const projects = await ProjectService.list();
+    res.status(200).json(projects);
   } catch (err) {
     console.error("Error fetching projects:", err);
     res.status(500).json({ error: "Internal server error" });
@@ -16,23 +17,27 @@ async function getProjectById(req, res) {
     return res.status(400).json({ warning: "Invalid project ID" });
 
   try {
-    const project = await Project.findByPk(id);
-    if (!project) return res.status(404).json({ warning: "Project not found" });
-    res.status(200).json({ data: project });
+    const project = await ProjectService.get(id);
+    res.status(200).json(project);
   } catch (err) {
+    if (err instanceof AppError)
+      return res
+        .status(err.status)
+        .json({ warning: err.message, details: err.details });
     console.error("Error fetching project:", err);
     res.status(500).json({ error: "Internal server error" });
   }
 }
 
 async function createProject(req, res) {
-  const { name } = req.body;
-  if (!name) return res.status(400).json({ warning: "Project name required" });
-
   try {
-    const project = await Project.create(req.body);
-    res.status(201).json({ data: project });
+    const created = await ProjectService.create(req.body);
+    res.status(201).json(created);
   } catch (err) {
+    if (err instanceof AppError)
+      return res
+        .status(err.status)
+        .json({ warning: err.message, details: err.details });
     console.error("Error creating project:", err);
     res.status(500).json({ error: err.message });
   }
@@ -44,12 +49,13 @@ async function updateProject(req, res) {
     return res.status(400).json({ warning: "Invalid project ID" });
 
   try {
-    const project = await Project.findByPk(id);
-    if (!project) return res.status(404).json({ warning: "Project not found" });
-
-    const updated = await project.update(req.body);
-    res.status(200).json({ data: updated });
+    const updated = await ProjectService.update(id, req.body);
+    res.status(200).json(updated);
   } catch (err) {
+    if (err instanceof AppError)
+      return res
+        .status(err.status)
+        .json({ warning: err.message, details: err.details });
     console.error("Error updating project:", err);
     res.status(500).json({ error: err.message });
   }
@@ -61,12 +67,13 @@ async function deleteProject(req, res) {
     return res.status(400).json({ warning: "Invalid project ID" });
 
   try {
-    const project = await Project.findByPk(id);
-    if (!project) return res.status(404).json({ warning: "Project not found" });
-
-    await project.destroy();
-    res.status(200).json({ message: `Project ${id} deleted` });
+    const deleted = await ProjectService.delete(id);
+    res.status(200).json(deleted);
   } catch (err) {
+    if (err instanceof AppError)
+      return res
+        .status(err.status)
+        .json({ warning: err.message, details: err.details });
     console.error("Error deleting project:", err);
     res.status(500).json({ error: "Internal server error" });
   }

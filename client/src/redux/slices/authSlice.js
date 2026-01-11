@@ -3,16 +3,29 @@ import axios from "axios";
 
 export const registerUser = createAsyncThunk(
   "auth/registerUser",
-  async (user) => {
-    const res = await axios.post("/api/auth/register", user);
-    return res.data.data;
+  async (user, { rejectWithValue }) => {
+    try {
+      const res = await axios.post("/api/auth/register", user);
+      return res.data;
+    } catch (err) {
+      return rejectWithValue(
+        err.response?.data?.warning || "Registration failed."
+      );
+    }
   }
 );
 
-export const loginUser = createAsyncThunk("auth/loginUser", async (user) => {
-  const res = await axios.post("/api/auth/login", user);
-  return res.data.data;
-});
+export const loginUser = createAsyncThunk(
+  "auth/loginUser",
+  async (user, { rejectWithValue }) => {
+    try {
+      const res = await axios.post("/api/auth/login", user);
+      return res.data;
+    } catch (err) {
+      return rejectWithValue(err.response?.data?.warning || "Login failed.");
+    }
+  }
+);
 
 const authSlice = createSlice({
   name: "auth",
@@ -34,7 +47,7 @@ const authSlice = createSlice({
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.error.message;
+        state.error = action.payload;
       })
       .addCase(loginUser.pending, (state) => {
         state.status = "loading";
@@ -46,7 +59,7 @@ const authSlice = createSlice({
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.error.message;
+        state.error = action.payload;
       });
   },
 });

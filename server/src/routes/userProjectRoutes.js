@@ -1,7 +1,7 @@
 import { Router } from "express";
 import {
   getAllUserProjects,
-  getUserProject,
+  getUserProjectByIds,
   createUserProject,
   updateUserProject,
   deleteUserProject,
@@ -10,7 +10,7 @@ import {
 const router = Router();
 
 router.get("/", getAllUserProjects);
-router.get("/:user_id/:project_id", getUserProject);
+router.get("/:user_id/:project_id", getUserProjectByIds);
 router.post("/", createUserProject);
 router.patch("/:user_id/:project_id", updateUserProject);
 router.delete("/:user_id/:project_id", deleteUserProject);

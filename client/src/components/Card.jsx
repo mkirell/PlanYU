@@ -1,16 +1,28 @@
 import { useState } from "react";
 
-export default function Card({ task, onUpdate, onDelete, onDragStart, readOnly, canChangeStatus }) {
+export default function Card({
+  task,
+  onUpdate,
+  onDelete,
+  onDragStart,
+  readOnly,
+  canChangeStatus,
+}) {
   const [expanded, setExpanded] = useState(false);
   const difficulties = ["EASY", "MEDIUM", "HARD"];
-  const statusButtonClasses = { TODO: "btn-todo", DOING: "btn-doing", DONE: "btn-done" };
+  const statusButtonClasses = {
+    TODO: "btn-todo",
+    DOING: "btn-doing",
+    DONE: "btn-done",
+  };
 
   const handleChange = (field, value) => {
     if (!canChangeStatus) return;
     if (field === "status") onUpdate(task.task_id, { status: value });
   };
 
-  const capitalize = (str) => str ? str[0].toUpperCase() + str.slice(1).toLowerCase() : "";
+  const capitalize = (str) =>
+    str ? str[0].toUpperCase() + str.slice(1).toLowerCase() : "";
 
   const getRemainingShort = (dueDate) => {
     if (!dueDate) return "";
@@ -51,7 +63,11 @@ export default function Card({ task, onUpdate, onDelete, onDragStart, readOnly, 
           value={task.title || ""}
           placeholder="Title"
           disabled={readOnly || !expanded}
-          onChange={(e) => !readOnly && expanded && onUpdate(task.task_id, { title: e.target.value })}
+          onChange={(e) =>
+            !readOnly &&
+            expanded &&
+            onUpdate(task.task_id, { title: e.target.value })
+          }
         />
         {task.due_date && (
           <div className={`chip due ${getRemainingClass(task.due_date)}`}>
@@ -67,7 +83,10 @@ export default function Card({ task, onUpdate, onDelete, onDragStart, readOnly, 
             <textarea
               value={task.description || ""}
               disabled={readOnly}
-              onChange={(e) => !readOnly && onUpdate(task.task_id, { description: e.target.value })}
+              onChange={(e) =>
+                !readOnly &&
+                onUpdate(task.task_id, { description: e.target.value })
+              }
             />
           </label>
           <label>
@@ -75,10 +94,15 @@ export default function Card({ task, onUpdate, onDelete, onDragStart, readOnly, 
             <select
               value={task.difficulty || "MEDIUM"}
               disabled={readOnly}
-              onChange={(e) => !readOnly && onUpdate(task.task_id, { difficulty: e.target.value })}
+              onChange={(e) =>
+                !readOnly &&
+                onUpdate(task.task_id, { difficulty: e.target.value })
+              }
             >
               {difficulties.map((d) => (
-                <option key={d} value={d}>{capitalize(d)}</option>
+                <option key={d} value={d}>
+                  {capitalize(d)}
+                </option>
               ))}
             </select>
           </label>
@@ -88,7 +112,12 @@ export default function Card({ task, onUpdate, onDelete, onDragStart, readOnly, 
               type="date"
               value={task.due_date ? task.due_date.slice(0, 10) : ""}
               disabled={readOnly}
-              onChange={(e) => !readOnly && onUpdate(task.task_id, { due_date: new Date(e.target.value).toISOString() })}
+              onChange={(e) =>
+                !readOnly &&
+                onUpdate(task.task_id, {
+                  due_date: new Date(e.target.value).toISOString(),
+                })
+              }
             />
           </label>
         </div>
@@ -98,7 +127,9 @@ export default function Card({ task, onUpdate, onDelete, onDragStart, readOnly, 
         {["TODO", "DOING", "DONE"].map((status) => (
           <button
             key={status}
-            className={`btn tiny ${statusButtonClasses[status]} ${task.status === status ? "active" : ""}`}
+            className={`btn tiny ${statusButtonClasses[status]} ${
+              task.status === status ? "active" : ""
+            }`}
             onClick={() => handleChange("status", status)}
             disabled={!canChangeStatus}
           >
@@ -106,11 +137,24 @@ export default function Card({ task, onUpdate, onDelete, onDragStart, readOnly, 
           </button>
         ))}
         <div className="spacer" />
-        {!readOnly && <button className="btn danger tiny" onClick={() => onDelete(task.task_id)}>x</button>}
+        {!readOnly && (
+          <button
+            className="btn danger tiny"
+            onClick={() => onDelete(task.task_id)}
+          >
+            x
+          </button>
+        )}
       </div>
 
       <button className="btn small" onClick={() => setExpanded(!expanded)}>
-        {readOnly ? (expanded ? "Collapse" : "Details") : (expanded ? "Save" : "Edit")}
+        {readOnly
+          ? expanded
+            ? "Collapse"
+            : "Details"
+          : expanded
+          ? "Save"
+          : "Edit"}
       </button>
     </article>
   );

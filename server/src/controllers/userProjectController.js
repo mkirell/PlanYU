@@ -1,39 +1,48 @@
-import { UserProject } from "../models/index.js";
+import UserProjectService from "../services/userProjectService.js";
+import { AppError } from "../errors/index.js";
 
 async function getAllUserProjects(req, res) {
   try {
-    const ups = await UserProject.findAll({ order: [["user_id", "ASC"]] });
-    res.status(200).json({ data: ups });
+    const ups = await UserProjectService.list();
+    res.status(200).json(ups);
   } catch (err) {
     console.error("Error fetching user-projects:", err);
     res.status(500).json({ error: "Internal server error" });
   }
 }
 
-async function getUserProject(req, res) {
+async function getUserProjectByIds(req, res) {
   const { user_id, project_id } = req.params;
-  if (!user_id || isNaN(parseInt(user_id)) || !project_id || isNaN(parseInt(project_id)))
+  if (
+    !user_id ||
+    isNaN(parseInt(user_id)) ||
+    !project_id ||
+    isNaN(parseInt(project_id))
+  )
     return res.status(400).json({ warning: "Invalid IDs" });
 
   try {
-    const up = await UserProject.findOne({ where: { user_id, project_id } });
-    if (!up) return res.status(404).json({ warning: "UserProject not found" });
-    res.status(200).json({ data: up });
+    const up = await UserProjectService.get(user_id, project_id);
+    res.status(200).json(up);
   } catch (err) {
+    if (err instanceof AppError)
+      return res
+        .status(err.status)
+        .json({ warning: err.message, details: err.details });
     console.error("Error fetching user-project:", err);
     res.status(500).json({ error: "Internal server error" });
   }
 }
 
 async function createUserProject(req, res) {
-  const { user_id, project_id, role } = req.body;
-  if (!user_id || !project_id)
-    return res.status(400).json({ warning: "User ID and Project ID required" });
-
   try {
-    const up = await UserProject.create(req.body);
-    res.status(201).json({ data: up });
+    const up = await UserProjectService.create(req.body);
+    res.status(201).json(up);
   } catch (err) {
+    if (err instanceof AppError)
+      return res
+        .status(err.status)
+        .json({ warning: err.message, details: err.details });
     console.error("Error creating user-project:", err);
     res.status(500).json({ error: err.message });
   }
@@ -41,16 +50,26 @@ async function createUserProject(req, res) {
 
 async function updateUserProject(req, res) {
   const { user_id, project_id } = req.params;
-  if (!user_id || !project_id)
+  if (
+    !user_id ||
+    isNaN(parseInt(user_id)) ||
+    !project_id ||
+    isNaN(parseInt(project_id))
+  )
     return res.status(400).json({ warning: "Invalid IDs" });
 
   try {
-    const up = await UserProject.findOne({ where: { user_id, project_id } });
-    if (!up) return res.status(404).json({ warning: "UserProject not found" });
-
-    const updated = await up.update(req.body);
-    res.status(200).json({ data: updated });
+    const updated = await UserProjectService.update(
+      user_id,
+      project_id,
+      req.body
+    );
+    res.status(200).json(updated);
   } catch (err) {
+    if (err instanceof AppError)
+      return res
+        .status(err.status)
+        .json({ warning: err.message, details: err.details });
     console.error("Error updating user-project:", err);
     res.status(500).json({ error: err.message });
   }
@@ -58,16 +77,22 @@ async function updateUserProject(req, res) {
 
 async function deleteUserProject(req, res) {
   const { user_id, project_id } = req.params;
-  if (!user_id || !project_id)
+  if (
+    !user_id ||
+    isNaN(parseInt(user_id)) ||
+    !project_id ||
+    isNaN(parseInt(project_id))
+  )
     return res.status(400).json({ warning: "Invalid IDs" });
 
   try {
-    const up = await UserProject.findOne({ where: { user_id, project_id } });
-    if (!up) return res.status(404).json({ warning: "UserProject not found" });
-
-    await up.destroy();
-    res.status(200).json({ message: `User ${user_id} removed from Project ${project_id}` });
+    const deleted = await UserProjectService.delete(user_id, project_id);
+    res.status(200).json(deleted);
   } catch (err) {
+    if (err instanceof AppError)
+      return res
+        .status(err.status)
+        .json({ warning: err.message, details: err.details });
     console.error("Error deleting user-project:", err);
     res.status(500).json({ error: "Internal server error" });
   }
@@ -75,7 +100,7 @@ async function deleteUserProject(req, res) {
 
 export {
   getAllUserProjects,
-  getUserProject,
+  getUserProjectByIds,
   createUserProject,
   updateUserProject,
   deleteUserProject,
