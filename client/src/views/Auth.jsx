@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { loginUser, registerUser } from "../redux/slices/authSlice";
+import { loginUser, registerUser, clearError } from "../redux/slices/authSlice";
 import { createProfile } from "../redux/slices/profileSlice";
 
 const getRandomAvatar = () => {
@@ -10,11 +10,7 @@ const getRandomAvatar = () => {
 
 export default function Auth({ onLogin }) {
   const dispatch = useDispatch();
-  const {
-    data,
-    status,
-    error: reduxError,
-  } = useSelector((state) => state.auth);
+  const { data, status, error } = useSelector((state) => state.auth);
 
   const [mode, setMode] = useState("login");
   const [email, setEmail] = useState("");
@@ -22,7 +18,7 @@ export default function Auth({ onLogin }) {
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [fullName, setFullName] = useState("");
   const [avatarUrl, setAvatarUrl] = useState("");
-  const [error, setError] = useState("");
+  const [alert, setAlert] = useState("");
 
   useEffect(() => {
     if (data?.user_id) {
@@ -31,49 +27,45 @@ export default function Auth({ onLogin }) {
     }
   }, [data, onLogin]);
 
-  const resetFields = () => {
-    setEmail("");
-    setPassword("");
-    setPasswordConfirm("");
-    setFullName("");
-    setAvatarUrl("");
-    setError("");
-  };
-
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    if (!email.trim() || !password.trim()) {
-      setError("Please enter both email and password.");
+    if (!email || !password) {
+      setAlert("Email and password are required");
       return;
     }
 
-    setError("");
-    dispatch(loginUser({ email, password }));
+    setAlert("");
+    await dispatch(loginUser({ email: email, password: password }));
   };
 
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    if (!email || !password || !passwordConfirm || !fullName) {
-      setError("Please fill all required fields.");
+    if (!fullName || !email || !password || !passwordConfirm) {
+      setAlert("All fields are required");
       return;
     }
 
     if (password !== passwordConfirm) {
-      setError("Passwords do not match.");
+      setAlert("Passwords must match");
       return;
     }
 
-    setError("");
-    const action = await dispatch(registerUser({ email, password }));
+    setAlert("");
+    const action = await dispatch(
+      registerUser({
+        email: email,
+        password: password,
+      })
+    );
     if (action.type.endsWith("fulfilled")) {
       const userData = action.payload;
       await dispatch(
         createProfile({
           user_id: userData.user_id,
           full_name: fullName,
-          avatar_url: avatarUrl || getRandomAvatar(),
+          avatar_url: avatarUrl,
         })
       );
     }
@@ -144,8 +136,10 @@ export default function Auth({ onLogin }) {
           </button>
         </form>
 
-        {status === "failed" && (reduxError || error) && (
-          <div className="login-error">{reduxError || error}</div>
+        {(alert || error) && (
+          <div className={alert ? "login-warning" : "login-error"}>
+            {alert || error}
+          </div>
         )}
 
         <div className="auth-switch">
@@ -157,8 +151,9 @@ export default function Auth({ onLogin }) {
                 className="btn-link"
                 onClick={() => {
                   setMode("register");
-                  resetFields();
                   setAvatarUrl(getRandomAvatar());
+                  setAlert("");
+                  dispatch(clearError());
                 }}
               >
                 Register
@@ -172,7 +167,8 @@ export default function Auth({ onLogin }) {
                 className="btn-link"
                 onClick={() => {
                   setMode("login");
-                  resetFields();
+                  setAlert("");
+                  dispatch(clearError());
                 }}
               >
                 Login

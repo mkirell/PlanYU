@@ -8,7 +8,7 @@ export const fetchUsers = createAsyncThunk(
       const res = await axios.get("/api/users");
       return res.data;
     } catch (err) {
-      return rejectWithValue(err.response?.data?.warning || "Failed to fetch users.");
+      return rejectWithValue(err.response?.data?.error?.message || "Failed to fetch users");
     }
   }
 );
@@ -20,7 +20,7 @@ export const fetchUserById = createAsyncThunk(
       const res = await axios.get(`/api/users/${id}`);
       return res.data;
     } catch (err) {
-      return rejectWithValue(err.response?.data?.warning || "Failed to fetch user.");
+      return rejectWithValue(err.response?.data?.error?.message || "Failed to fetch user");
     }
   }
 );
@@ -32,7 +32,7 @@ export const createUser = createAsyncThunk(
       const res = await axios.post("/api/users", user);
       return res.data;
     } catch (err) {
-      return rejectWithValue(err.response?.data?.warning || "Failed to create user.");
+      return rejectWithValue(err.response?.data?.error?.message || "Failed to create user");
     }
   }
 );
@@ -44,7 +44,7 @@ export const updateUser = createAsyncThunk(
       const res = await axios.patch(`/api/users/${id}`, data);
       return res.data;
     } catch (err) {
-      return rejectWithValue(err.response?.data?.warning || "Failed to update user.");
+      return rejectWithValue(err.response?.data?.error?.message || "Failed to update user");
     }
   }
 );
@@ -56,7 +56,7 @@ export const deleteUser = createAsyncThunk(
       await axios.delete(`/api/users/${id}`);
       return id;
     } catch (err) {
-      return rejectWithValue(err.response?.data?.warning || "Failed to delete user.");
+      return rejectWithValue(err.response?.data?.error?.message || "Failed to delete user");
     }
   }
 );

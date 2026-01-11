@@ -1,82 +1,34 @@
 import UserService from "../services/userService.js";
-import { AppError } from "../errors/index.js";
+import { ValidationError, NotFoundError } from "../errors/errors.js";
 
-async function getAllUsers(req, res) {
-  try {
-    const users = await UserService.list();
-    res.status(200).json(users);
-  } catch (err) {
-    console.error("Error fetching users:", err);
-    res.status(500).json({ error: "Internal server error" });
-  }
+export async function getAllUsers(req, res) {
+  const users = await UserService.list();
+  res.status(200).json(users);
 }
 
-async function getUserById(req, res) {
+export async function getUserById(req, res) {
   const { id } = req.params;
-  if (!id || isNaN(parseInt(id)))
-    return res.status(400).json({ warning: "Invalid user ID" });
-
-  try {
-    const user = await UserService.get(id);
-    res.status(200).json(user);
-  } catch (err) {
-    if (err instanceof AppError)
-      return res
-        .status(err.status)
-        .json({ warning: err.message, details: err.details });
-    console.error("Error fetching user:", err);
-    res.status(500).json({ error: "Internal server error" });
-  }
+  if (!id || isNaN(parseInt(id))) throw new ValidationError("Invalid user ID");
+  const user = await UserService.get(id);
+  if (!user) throw new NotFoundError("User not found");
+  res.status(200).json(user);
 }
 
-async function createUser(req, res) {
-  try {
-    const created = await UserService.create(req.body);
-    res.status(201).json(created);
-  } catch (err) {
-    if (err instanceof AppError)
-      return res
-        .status(err.status)
-        .json({ warning: err.message, details: err.details });
-    console.error("Error creating user:", err);
-    res.status(500).json({ error: "Internal server error" });
-  }
+export async function createUser(req, res) {
+  const created = await UserService.create(req.body);
+  res.status(201).json(created);
 }
 
-async function updateUser(req, res) {
+export async function updateUser(req, res) {
   const { id } = req.params;
-  if (!id || isNaN(parseInt(id)))
-    return res.status(400).json({ warning: "Invalid user ID" });
-
-  try {
-    const updated = await UserService.update(id, req.body);
-    res.status(200).json(updated);
-  } catch (err) {
-    if (err instanceof AppError)
-      return res
-        .status(err.status)
-        .json({ warning: err.message, details: err.details });
-    console.error("Error updating user:", err);
-    res.status(500).json({ error: err.message });
-  }
+  if (!id || isNaN(parseInt(id))) throw new ValidationError("Invalid user ID");
+  const updated = await UserService.update(id, req.body);
+  res.status(200).json(updated);
 }
 
-async function deleteUser(req, res) {
+export async function deleteUser(req, res) {
   const { id } = req.params;
-  if (!id || isNaN(parseInt(id)))
-    return res.status(400).json({ warning: "Invalid user ID" });
-
-  try {
-    const deleted = await UserService.delete(id);
-    res.status(200).json(deleted);
-  } catch (err) {
-    if (err instanceof AppError)
-      return res
-        .status(err.status)
-        .json({ warning: err.message, details: err.details });
-    console.error("Error deleting user:", err);
-    res.status(500).json({ error: "Internal server error" });
-  }
+  if (!id || isNaN(parseInt(id))) throw new ValidationError("Invalid user ID");
+  const deleted = await UserService.delete(id);
+  res.status(200).json(deleted);
 }
-
-export { getAllUsers, getUserById, createUser, updateUser, deleteUser };

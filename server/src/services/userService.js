@@ -3,7 +3,7 @@ import {
   createUserSchema,
   updateUserSchema,
 } from "../validators/userValidator.js";
-import { ValidationError } from "../errors/index.js";
+import { ValidationError } from "../errors/errors.js";
 import bcrypt from "bcrypt";
 
 const UserService = {

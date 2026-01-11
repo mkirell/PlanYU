@@ -8,36 +8,39 @@ const STATIC_ASSETS = [
   "/manifest.json",
   "/icons/icon-256.png",
   "/icons/icon-512.png",
+  "/src/assets/img/bg-login.jfif",
 ];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches
-      .open(STATIC_CACHE)
-      .then((cache) => cache.addAll(STATIC_ASSETS))
-      .then(() => self.skipWaiting())
+    (async () => {
+      const cache = await caches.open(STATIC_CACHE);
+      await cache.addAll(STATIC_ASSETS);
+      await self.skipWaiting();
+    })()
   );
 });
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches
-      .keys()
-      .then((names) =>
-        Promise.all(
-          names.map((name) => {
-            if (name !== STATIC_CACHE && name !== API_CACHE)
-              return caches.delete(name);
-          })
+    (async () => {
+      const keys = await caches.keys();
+      await Promise.all(
+        keys.map((name) =>
+          name === STATIC_CACHE || name === API_CACHE
+            ? undefined
+            : caches.delete(name)
         )
-      )
-      .then(() => self.clients.claim())
+      );
+      await self.clients.claim();
+    })()
   );
 });
 
 self.addEventListener("fetch", (event) => {
   const { request } = event;
-  if (request.method !== "GET") return event.respondWith(fetch(request));
+
+  if (request.method !== "GET") return;
 
   const url = new URL(request.url);
 
@@ -46,12 +49,13 @@ self.addEventListener("fetch", (event) => {
       (async () => {
         try {
           const networkResp = await fetch(request);
-          if (networkResp && networkResp.ok) {
+          if (networkResp.ok) {
             const copy = networkResp.clone();
-            caches.open(API_CACHE).then((c) => c.put(request, copy));
+            const c = await caches.open(API_CACHE);
+            await c.put(request, copy);
           }
           return networkResp;
-        } catch (e) {
+        } catch {
           const cached = await caches.match(request);
           return (
             cached || new Response(null, { status: 503, statusText: "Offline" })
@@ -63,18 +67,20 @@ self.addEventListener("fetch", (event) => {
   }
 
   event.respondWith(
-    caches.match(request).then(
-      (cached) =>
-        cached ||
-        fetch(request)
-          .then((resp) => {
-            if (resp && resp.ok) {
-              const copy = resp.clone();
-              caches.open(STATIC_CACHE).then((c) => c.put(request, copy));
-            }
-            return resp;
-          })
-          .catch(() => caches.match("/index.html"))
-    )
+    (async () => {
+      const cached = await caches.match(request);
+      if (cached) return cached;
+      try {
+        const resp = await fetch(request);
+        if (resp && resp.ok) {
+          const copy = resp.clone();
+          const c = await caches.open(STATIC_CACHE);
+          await c.put(request, copy);
+        }
+        return resp;
+      } catch {
+        return caches.match("/index.html");
+      }
+    })()
   );
 });

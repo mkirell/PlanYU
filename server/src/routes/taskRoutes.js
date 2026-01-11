@@ -1,4 +1,5 @@
 import { Router } from "express";
+import asyncHandler from "../middleware/asyncHandler.js";
 import {
   getAllTasks,
   getTaskById,
@@ -9,10 +10,10 @@ import {
 
 const router = Router();
 
-router.get("/", getAllTasks);
-router.get("/:id", getTaskById);
-router.post("/", createTask);
-router.patch("/:id", updateTask);
-router.delete("/:id", deleteTask);
+router.get("/", asyncHandler(getAllTasks));
+router.get("/:id", asyncHandler(getTaskById));
+router.post("/", asyncHandler(createTask));
+router.patch("/:id", asyncHandler(updateTask));
+router.delete("/:id", asyncHandler(deleteTask));
 
 export default router;

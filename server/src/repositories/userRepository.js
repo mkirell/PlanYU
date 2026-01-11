@@ -1,5 +1,5 @@
 import { User } from "../models/index.js";
-import { NotFoundError, ConflictError } from "../errors/index.js";
+import { NotFoundError, ConflictError } from "../errors/errors.js";
 
 const UserRepository = {
   async findAll() {

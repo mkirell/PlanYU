@@ -9,7 +9,7 @@ export const fetchProjects = createAsyncThunk(
       return res.data;
     } catch (err) {
       return rejectWithValue(
-        err.response?.data?.warning || "Failed to fetch projects."
+        err.response?.data?.error?.message || "Failed to fetch projects"
       );
     }
   }
@@ -23,7 +23,7 @@ export const fetchProjectById = createAsyncThunk(
       return res.data;
     } catch (err) {
       return rejectWithValue(
-        err.response?.data?.warning || "Failed to fetch project."
+        err.response?.data?.error?.message || "Failed to fetch project"
       );
     }
   }
@@ -37,7 +37,7 @@ export const createProject = createAsyncThunk(
       return res.data;
     } catch (err) {
       return rejectWithValue(
-        err.response?.data?.warning || "Failed to create project."
+        err.response?.data?.error?.message || "Failed to create project"
       );
     }
   }
@@ -51,7 +51,7 @@ export const updateProject = createAsyncThunk(
       return res.data;
     } catch (err) {
       return rejectWithValue(
-        err.response?.data?.warning || "Failed to update project."
+        err.response?.data?.error?.message || "Failed to update project"
       );
     }
   }
@@ -65,7 +65,7 @@ export const deleteProject = createAsyncThunk(
       return id;
     } catch (err) {
       return rejectWithValue(
-        err.response?.data?.warning || "Failed to delete project."
+        err.response?.data?.error?.message || "Failed to delete project"
       );
     }
   }

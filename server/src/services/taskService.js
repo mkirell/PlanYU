@@ -4,7 +4,7 @@ import {
   createTaskSchema,
   updateTaskSchema,
 } from "../validators/taskValidator.js";
-import { ValidationError } from "../errors/index.js";
+import { ValidationError } from "../errors/errors.js";
 
 const TaskService = {
   async list() {

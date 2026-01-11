@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useReducer, useEffect, useState } from "react";
 
 export default function Form({
   isOpen,
@@ -7,53 +7,93 @@ export default function Form({
   users,
   existingMembers = [],
   project,
+  currentUserId,
 }) {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [emailInput, setEmailInput] = useState("");
-  const [members, setMembers] = useState([]);
-  const [invalid, setInvalid] = useState(false);
+  function formReducer(state, action) {
+    switch (action.type) {
+      case "reset":
+        return action.payload;
+      case "setField":
+        return { ...state, [action.field]: action.value };
+      case "addMember":
+        return { ...state, members: [...state.members, action.value] };
+      case "removeMember":
+        return {
+          ...state,
+          members: state.members.filter((x) => x !== action.value),
+        };
+      case "setInvalid":
+        return { ...state, invalid: action.value };
+      default:
+        return state;
+    }
+  }
+  const [formState, dispatchForm] = useReducer(formReducer, {
+    title: "",
+    description: "",
+    emailInput: "",
+    members: [],
+    invalid: false,
+  });
+  const { title, description, emailInput, members, invalid } = formState;
+  const [ownerSelf, setOwnerSelf] = useState(false);
 
   useEffect(() => {
     if (project) {
-      setTitle(project.name);
-      setDescription(project.description || "");
-      setMembers(existingMembers);
+      dispatchForm({
+        type: "reset",
+        payload: {
+          title: project.name ? project.name : "",
+          description: project.description ? project.description : "",
+          emailInput: "",
+          members: existingMembers,
+          invalid: false,
+        },
+      });
     } else {
-      setTitle("");
-      setDescription("");
-      setMembers([]);
+      dispatchForm({
+        type: "reset",
+        payload: {
+          title: "",
+          description: "",
+          emailInput: "",
+          members: [],
+          invalid: false,
+        },
+      });
     }
-    setEmailInput("");
-    setInvalid(false);
   }, [project, existingMembers]);
 
   if (!isOpen) return null;
 
   const addEmail = () => {
-    const email = emailInput.trim();
+    const email = emailInput;
     if (!email) return;
-
     const user = users.find((u) => u.email === email);
     if (!user) {
-      setInvalid(true);
-      setTimeout(() => setInvalid(false), 2500);
+      dispatchForm({ type: "setInvalid", value: true });
+      setTimeout(
+        () => dispatchForm({ type: "setInvalid", value: false }),
+        2500
+      );
+    } else if (user.user_id === currentUserId) {
+      setOwnerSelf(true);
+      setTimeout(() => setOwnerSelf(false), 2500);
     } else if (!members.includes(user.user_id)) {
-      setMembers((prev) => [...prev, user.user_id]);
+      dispatchForm({ type: "addMember", value: user.user_id });
     }
-
-    setEmailInput("");
+    dispatchForm({ type: "setField", field: "emailInput", value: "" });
   };
 
   const removeMember = (id) =>
-    setMembers((prev) => prev.filter((x) => x !== id));
+    dispatchForm({ type: "removeMember", value: id });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!title.trim()) return;
+    if (!title) return;
     onSubmit({
-      name: title.trim(),
-      description: description.trim(),
+      name: title,
+      description: description,
       members,
     });
     onClose();
@@ -69,7 +109,13 @@ export default function Form({
           type="text"
           placeholder="Project Title"
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e) =>
+            dispatchForm({
+              type: "setField",
+              field: "title",
+              value: e.target.value,
+            })
+          }
           required
         />
 
@@ -77,7 +123,13 @@ export default function Form({
         <textarea
           placeholder="Project Description"
           value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          onChange={(e) =>
+            dispatchForm({
+              type: "setField",
+              field: "description",
+              value: e.target.value,
+            })
+          }
         />
 
         <label>Add Members</label>
@@ -86,7 +138,13 @@ export default function Form({
             type="email"
             placeholder="Enter email and press Enter"
             value={emailInput}
-            onChange={(e) => setEmailInput(e.target.value)}
+            onChange={(e) =>
+              dispatchForm({
+                type: "setField",
+                field: "emailInput",
+                value: e.target.value,
+              })
+            }
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 e.preventDefault();
@@ -105,7 +163,10 @@ export default function Form({
             })}
           </div>
           {invalid && (
-            <div className="invalid">There’s no user with this email</div>
+            <div className="invalid">There is no user with this email</div>
+          )}
+          {ownerSelf && (
+            <div className="invalid">You are already the project owner</div>
           )}
         </div>
 

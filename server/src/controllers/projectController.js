@@ -1,88 +1,34 @@
 import ProjectService from "../services/projectService.js";
-import { AppError } from "../errors/index.js";
+import { ValidationError, NotFoundError } from "../errors/errors.js";
 
-async function getAllProjects(req, res) {
-  try {
-    const projects = await ProjectService.list();
-    res.status(200).json(projects);
-  } catch (err) {
-    console.error("Error fetching projects:", err);
-    res.status(500).json({ error: "Internal server error" });
-  }
+export async function getAllProjects(req, res) {
+  const projects = await ProjectService.list();
+  res.status(200).json(projects);
 }
 
-async function getProjectById(req, res) {
+export async function getProjectById(req, res) {
   const { id } = req.params;
-  if (!id || isNaN(parseInt(id)))
-    return res.status(400).json({ warning: "Invalid project ID" });
-
-  try {
-    const project = await ProjectService.get(id);
-    res.status(200).json(project);
-  } catch (err) {
-    if (err instanceof AppError)
-      return res
-        .status(err.status)
-        .json({ warning: err.message, details: err.details });
-    console.error("Error fetching project:", err);
-    res.status(500).json({ error: "Internal server error" });
-  }
+  if (!id || isNaN(parseInt(id))) throw new ValidationError("Invalid project ID");
+  const project = await ProjectService.get(id);
+  if (!project) throw new NotFoundError("Project not found");
+  res.status(200).json(project);
 }
 
-async function createProject(req, res) {
-  try {
-    const created = await ProjectService.create(req.body);
-    res.status(201).json(created);
-  } catch (err) {
-    if (err instanceof AppError)
-      return res
-        .status(err.status)
-        .json({ warning: err.message, details: err.details });
-    console.error("Error creating project:", err);
-    res.status(500).json({ error: err.message });
-  }
+export async function createProject(req, res) {
+  const created = await ProjectService.create(req.body);
+  res.status(201).json(created);
 }
 
-async function updateProject(req, res) {
+export async function updateProject(req, res) {
   const { id } = req.params;
-  if (!id || isNaN(parseInt(id)))
-    return res.status(400).json({ warning: "Invalid project ID" });
-
-  try {
-    const updated = await ProjectService.update(id, req.body);
-    res.status(200).json(updated);
-  } catch (err) {
-    if (err instanceof AppError)
-      return res
-        .status(err.status)
-        .json({ warning: err.message, details: err.details });
-    console.error("Error updating project:", err);
-    res.status(500).json({ error: err.message });
-  }
+  if (!id || isNaN(parseInt(id))) throw new ValidationError("Invalid project ID");
+  const updated = await ProjectService.update(id, req.body);
+  res.status(200).json(updated);
 }
 
-async function deleteProject(req, res) {
+export async function deleteProject(req, res) {
   const { id } = req.params;
-  if (!id || isNaN(parseInt(id)))
-    return res.status(400).json({ warning: "Invalid project ID" });
-
-  try {
-    const deleted = await ProjectService.delete(id);
-    res.status(200).json(deleted);
-  } catch (err) {
-    if (err instanceof AppError)
-      return res
-        .status(err.status)
-        .json({ warning: err.message, details: err.details });
-    console.error("Error deleting project:", err);
-    res.status(500).json({ error: "Internal server error" });
-  }
+  if (!id || isNaN(parseInt(id))) throw new ValidationError("Invalid project ID");
+  const deleted = await ProjectService.delete(id);
+  res.status(200).json(deleted);
 }
-
-export {
-  getAllProjects,
-  getProjectById,
-  createProject,
-  updateProject,
-  deleteProject,
-};

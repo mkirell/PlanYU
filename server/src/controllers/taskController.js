@@ -1,82 +1,34 @@
 import TaskService from "../services/taskService.js";
-import { AppError } from "../errors/index.js";
+import { ValidationError, NotFoundError } from "../errors/errors.js";
 
-async function getAllTasks(req, res) {
-  try {
-    const tasks = await TaskService.list();
-    res.status(200).json(tasks);
-  } catch (err) {
-    console.error("Error fetching tasks:", err);
-    res.status(500).json({ error: "Internal server error" });
-  }
+export async function getAllTasks(req, res) {
+  const tasks = await TaskService.list();
+  res.status(200).json(tasks);
 }
 
-async function getTaskById(req, res) {
+export async function getTaskById(req, res) {
   const { id } = req.params;
-  if (!id || isNaN(parseInt(id)))
-    return res.status(400).json({ warning: "Invalid task ID" });
-
-  try {
-    const task = await TaskService.get(id);
-    res.status(200).json(task);
-  } catch (err) {
-    if (err instanceof AppError)
-      return res
-        .status(err.status)
-        .json({ warning: err.message, details: err.details });
-    console.error("Error fetching task:", err);
-    res.status(500).json({ error: "Internal server error" });
-  }
+  if (!id || isNaN(parseInt(id))) throw new ValidationError("Invalid task ID");
+  const task = await TaskService.get(id);
+  if (!task) throw new NotFoundError("Task not found");
+  res.status(200).json(task);
 }
 
-async function createTask(req, res) {
-  try {
-    const created = await TaskService.create(req.body);
-    res.status(201).json(created);
-  } catch (err) {
-    if (err instanceof AppError)
-      return res
-        .status(err.status)
-        .json({ warning: err.message, details: err.details });
-    console.error("Error creating task:", err);
-    res.status(500).json({ error: err.message });
-  }
+export async function createTask(req, res) {
+  const created = await TaskService.create(req.body);
+  res.status(201).json(created);
 }
 
-async function updateTask(req, res) {
+export async function updateTask(req, res) {
   const { id } = req.params;
-  if (!id || isNaN(parseInt(id)))
-    return res.status(400).json({ warning: "Invalid task ID" });
-
-  try {
-    const updated = await TaskService.update(id, req.body);
-    res.status(200).json(updated);
-  } catch (err) {
-    if (err instanceof AppError)
-      return res
-        .status(err.status)
-        .json({ warning: err.message, details: err.details });
-    console.error("Error updating task:", err);
-    res.status(500).json({ error: err.message });
-  }
+  if (!id || isNaN(parseInt(id))) throw new ValidationError("Invalid task ID");
+  const updated = await TaskService.update(id, req.body);
+  res.status(200).json(updated);
 }
 
-async function deleteTask(req, res) {
+export async function deleteTask(req, res) {
   const { id } = req.params;
-  if (!id || isNaN(parseInt(id)))
-    return res.status(400).json({ warning: "Invalid task ID" });
-
-  try {
-    const deleted = await TaskService.delete(id);
-    res.status(200).json(deleted);
-  } catch (err) {
-    if (err instanceof AppError)
-      return res
-        .status(err.status)
-        .json({ warning: err.message, details: err.details });
-    console.error("Error deleting task:", err);
-    res.status(500).json({ error: "Internal server error" });
-  }
+  if (!id || isNaN(parseInt(id))) throw new ValidationError("Invalid task ID");
+  const deleted = await TaskService.delete(id);
+  res.status(200).json(deleted);
 }
-
-export { getAllTasks, getTaskById, createTask, updateTask, deleteTask };

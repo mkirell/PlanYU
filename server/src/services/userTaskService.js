@@ -1,3 +1,4 @@
+import UserTaskRepository from "../repositories/userTaskRepository.js";
 import UserRepository from "../repositories/userRepository.js";
 import TaskRepository from "../repositories/taskRepository.js";
 import UserProjectRepository from "../repositories/userProjectRepository.js";
@@ -5,7 +6,7 @@ import {
   createUserTaskSchema,
   updateUserTaskSchema,
 } from "../validators/userTaskValidator.js";
-import { ForbiddenError, ValidationError } from "../errors/index.js";
+import { ForbiddenError, ValidationError } from "../errors/errors.js";
 
 const UserTaskService = {
   async list() {
@@ -29,10 +30,20 @@ const UserTaskService = {
     await UserRepository.findById(user_id);
     const task = await TaskRepository.findById(task_id);
 
-    const membership = await UserProjectRepository.findByIds(user_id, task.project_id);
-    if (!membership || membership.role !== "MEMBER")
-      throw new ForbiddenError("User is not a member of the project");
+    const membership = await UserProjectRepository.findByIds(
+      user_id,
+      task.project_id
+    );
+    if (!membership)
+      throw new ForbiddenError("User does not belong to this project");
 
+    if (parsed.data.role) {
+      if (membership.role === "MEMBER")
+        return UserTaskRepository.create(parsed.data);
+      parsed.data.role = "REVIEWER";
+      return UserTaskRepository.create(parsed.data);
+    }
+    parsed.data.role = membership.role === "MEMBER" ? "ASSIGNEE" : "REVIEWER";
     return UserTaskRepository.create(parsed.data);
   },
 

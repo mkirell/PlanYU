@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function Card({
   task,
@@ -9,6 +9,17 @@ export default function Card({
   canChangeStatus,
 }) {
   const [expanded, setExpanded] = useState(false);
+  const [draftTitle, setDraftTitle] = useState(task.title || "");
+  const [draftDescription, setDraftDescription] = useState(
+    task.description || ""
+  );
+  const [draftDifficulty, setDraftDifficulty] = useState(
+    task.difficulty || "MEDIUM"
+  );
+  const [draftStatus, setDraftStatus] = useState(task.status || "TODO");
+  const [draftDueDate, setDraftDueDate] = useState(
+    task.due_date ? task.due_date.slice(0, 10) : ""
+  );
   const difficulties = ["EASY", "MEDIUM", "HARD"];
   const statusButtonClasses = {
     TODO: "btn-todo",
@@ -16,10 +27,33 @@ export default function Card({
     DONE: "btn-done",
   };
 
-  const handleChange = (field, value) => {
-    if (!canChangeStatus) return;
-    if (field === "status") onUpdate(task.task_id, { status: value });
-  };
+  const prevTaskIdRef = useRef(task.task_id);
+
+  useEffect(() => {
+    const shouldReset = prevTaskIdRef.current !== task.task_id || !expanded;
+    if (!shouldReset) return undefined;
+    let cancelled = false;
+    Promise.resolve().then(() => {
+      if (cancelled) return;
+      setDraftTitle(task.title || "");
+      setDraftDescription(task.description || "");
+      setDraftDifficulty(task.difficulty || "MEDIUM");
+      setDraftStatus(task.status || "TODO");
+      setDraftDueDate(task.due_date ? task.due_date.slice(0, 10) : "");
+      prevTaskIdRef.current = task.task_id;
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [
+    task.task_id,
+    task.title,
+    task.description,
+    task.difficulty,
+    task.status,
+    task.due_date,
+    expanded,
+  ]);
 
   const capitalize = (str) =>
     str ? str[0].toUpperCase() + str.slice(1).toLowerCase() : "";
@@ -60,14 +94,10 @@ export default function Card({
       <div className="card-top">
         <input
           className="card-title-input"
-          value={task.title || ""}
+          value={expanded ? draftTitle : task.title || ""}
           placeholder="Title"
           disabled={readOnly || !expanded}
-          onChange={(e) =>
-            !readOnly &&
-            expanded &&
-            onUpdate(task.task_id, { title: e.target.value })
-          }
+          onChange={(e) => !readOnly && expanded && setDraftTitle(e.target.value)}
         />
         {task.due_date && (
           <div className={`chip due ${getRemainingClass(task.due_date)}`}>
@@ -81,23 +111,17 @@ export default function Card({
           <label>
             Description
             <textarea
-              value={task.description || ""}
+              value={expanded ? draftDescription : task.description || ""}
               disabled={readOnly}
-              onChange={(e) =>
-                !readOnly &&
-                onUpdate(task.task_id, { description: e.target.value })
-              }
+              onChange={(e) => !readOnly && setDraftDescription(e.target.value)}
             />
           </label>
           <label>
             Difficulty
             <select
-              value={task.difficulty || "MEDIUM"}
+              value={expanded ? draftDifficulty : task.difficulty || "MEDIUM"}
               disabled={readOnly}
-              onChange={(e) =>
-                !readOnly &&
-                onUpdate(task.task_id, { difficulty: e.target.value })
-              }
+              onChange={(e) => !readOnly && setDraftDifficulty(e.target.value)}
             >
               {difficulties.map((d) => (
                 <option key={d} value={d}>
@@ -110,14 +134,15 @@ export default function Card({
             Due Date
             <input
               type="date"
-              value={task.due_date ? task.due_date.slice(0, 10) : ""}
-              disabled={readOnly}
-              onChange={(e) =>
-                !readOnly &&
-                onUpdate(task.task_id, {
-                  due_date: new Date(e.target.value).toISOString(),
-                })
+              value={
+                expanded
+                  ? draftDueDate
+                  : task.due_date
+                  ? task.due_date.slice(0, 10)
+                  : ""
               }
+              disabled={readOnly}
+              onChange={(e) => !readOnly && setDraftDueDate(e.target.value)}
             />
           </label>
         </div>
@@ -128,9 +153,13 @@ export default function Card({
           <button
             key={status}
             className={`btn tiny ${statusButtonClasses[status]} ${
-              task.status === status ? "active" : ""
+              (expanded ? draftStatus : task.status) === status ? "active" : ""
             }`}
-            onClick={() => handleChange("status", status)}
+            onClick={() => {
+              if (readOnly || !canChangeStatus) return;
+              setDraftStatus(status);
+              onUpdate(task.task_id, { status });
+            }}
             disabled={!canChangeStatus}
           >
             {status}
@@ -147,7 +176,29 @@ export default function Card({
         )}
       </div>
 
-      <button className="btn small" onClick={() => setExpanded(!expanded)}>
+      <button
+        className="btn small"
+        onClick={() => {
+          if (readOnly) return setExpanded((s) => !s);
+          if (!expanded) return setExpanded(true);
+          const patch = {};
+          if (draftTitle !== task.title) patch.title = draftTitle;
+          if (draftDescription !== task.description)
+            patch.description = draftDescription;
+          if (draftDifficulty !== task.difficulty)
+            patch.difficulty = draftDifficulty;
+          if (draftStatus !== task.status) patch.status = draftStatus;
+          const iso = draftDueDate
+            ? new Date(draftDueDate).toISOString()
+            : null;
+          const currentIso = task.due_date
+            ? new Date(task.due_date).toISOString()
+            : null;
+          if (iso !== currentIso) patch.due_date = iso;
+          if (Object.keys(patch).length) onUpdate(task.task_id, patch);
+          setExpanded(false);
+        }}
+      >
         {readOnly
           ? expanded
             ? "Collapse"

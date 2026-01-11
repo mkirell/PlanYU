@@ -4,17 +4,24 @@ import sequelize from "../config/database.js";
 const Task = sequelize.define(
   "Task",
   {
-    task_id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    project_id: { type: DataTypes.INTEGER, allowNull: false },
+    task_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    project_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     title: { type: DataTypes.STRING, allowNull: false },
     description: { type: DataTypes.TEXT },
-    status: { 
-      type: DataTypes.ENUM("TODO", "DOING", "DONE"), 
-      defaultValue: "TODO" 
+    status: {
+      type: DataTypes.ENUM("TODO", "DOING", "DONE"),
+      defaultValue: "TODO",
     },
-    difficulty: { 
-      type: DataTypes.ENUM("EASY", "MEDIUM", "HARD"), 
-      defaultValue: "MEDIUM" 
+    difficulty: {
+      type: DataTypes.ENUM("EASY", "MEDIUM", "HARD"),
+      defaultValue: "MEDIUM",
     },
     due_date: { type: DataTypes.DATE },
   },

@@ -9,7 +9,11 @@ const Profile = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
-    user_id: { type: DataTypes.INTEGER, allowNull: false, unique: true },
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      unique: true,
+    },
     full_name: { type: DataTypes.STRING },
     avatar_url: { type: DataTypes.STRING },
   },

@@ -9,7 +9,7 @@ export const fetchTasks = createAsyncThunk(
       return res.data;
     } catch (err) {
       return rejectWithValue(
-        err.response?.data?.warning || "Failed to fetch tasks."
+        err.response?.data?.error?.message || "Failed to fetch tasks"
       );
     }
   }
@@ -23,7 +23,7 @@ export const fetchTaskById = createAsyncThunk(
       return res.data;
     } catch (err) {
       return rejectWithValue(
-        err.response?.data?.warning || "Failed to fetch task."
+        err.response?.data?.error?.message || "Failed to fetch task"
       );
     }
   }
@@ -37,7 +37,7 @@ export const createTask = createAsyncThunk(
       return res.data;
     } catch (err) {
       return rejectWithValue(
-        err.response?.data?.warning || "Failed to create task."
+        err.response?.data?.error?.message || "Failed to create task"
       );
     }
   }
@@ -51,7 +51,7 @@ export const updateTask = createAsyncThunk(
       return res.data;
     } catch (err) {
       return rejectWithValue(
-        err.response?.data?.warning || "Failed to update task."
+        err.response?.data?.error?.message || "Failed to update task"
       );
     }
   }
@@ -65,7 +65,7 @@ export const deleteTask = createAsyncThunk(
       return id;
     } catch (err) {
       return rejectWithValue(
-        err.response?.data?.warning || "Failed to delete task."
+        err.response?.data?.error?.message || "Failed to delete task"
       );
     }
   }

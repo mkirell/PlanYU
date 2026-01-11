@@ -9,7 +9,7 @@ export const fetchProfiles = createAsyncThunk(
       return res.data;
     } catch (err) {
       return rejectWithValue(
-        err.response?.data?.warning || "Failed to fetch profiles."
+        err.response?.data?.error?.message || "Failed to fetch profiles"
       );
     }
   }
@@ -23,7 +23,7 @@ export const fetchProfileById = createAsyncThunk(
       return res.data;
     } catch (err) {
       return rejectWithValue(
-        err.response?.data?.warning || "Failed to fetch profile."
+        err.response?.data?.error?.message || "Failed to fetch profile"
       );
     }
   }
@@ -37,7 +37,7 @@ export const createProfile = createAsyncThunk(
       return res.data;
     } catch (err) {
       return rejectWithValue(
-        err.response?.data?.warning || "Failed to create profile."
+        err.response?.data?.error?.message || "Failed to create profile"
       );
     }
   }
@@ -51,7 +51,7 @@ export const updateProfile = createAsyncThunk(
       return res.data;
     } catch (err) {
       return rejectWithValue(
-        err.response?.data?.warning || "Failed to update profile."
+        err.response?.data?.error?.message || "Failed to update profile"
       );
     }
   }
@@ -65,7 +65,7 @@ export const deleteProfile = createAsyncThunk(
       return id;
     } catch (err) {
       return rejectWithValue(
-        err.response?.data?.warning || "Failed to delete profile."
+        err.response?.data?.error?.message || "Failed to delete profile"
       );
     }
   }

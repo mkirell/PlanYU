@@ -5,7 +5,7 @@ import {
   createUserProjectSchema,
   updateUserProjectSchema,
 } from "../validators/userProjectValidator.js";
-import { ValidationError } from "../errors/index.js";
+import { ValidationError } from "../errors/errors.js";
 
 const UserProjectService = {
   async list() {

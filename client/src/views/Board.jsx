@@ -76,7 +76,6 @@ export default function Board({ currentUserId, onLogout }) {
   );
 
   useEffect(() => {
-    setLoading(true);
     Promise.all([
       dispatch(fetchProjects()),
       dispatch(fetchTasks()),
@@ -89,9 +88,12 @@ export default function Board({ currentUserId, onLogout }) {
   useEffect(() => {
     if (!loading) {
       if (!selectedProjectId && visibleProjects.length > 0) {
-        setSelectedProjectId(visibleProjects[0].project_id);
+        setTimeout(() =>
+          setSelectedProjectId(visibleProjects[0].project_id),
+          0
+        );
       } else if (visibleProjects.length === 0) {
-        setModalOpen(true);
+        setTimeout(() => setModalOpen(true), 0);
       }
     }
   }, [loading, visibleProjects, selectedProjectId]);
@@ -135,11 +137,11 @@ export default function Board({ currentUserId, onLogout }) {
     difficulty = "MEDIUM",
     due_date = null,
   }) => {
-    if (currentUserRole !== "OWNER" || !title?.trim()) return;
+    if (currentUserRole !== "OWNER" || !title) return;
     dispatch(
       createTask({
         project_id: selectedProjectId,
-        title: title.trim(),
+        title,
         description,
         status: "TODO",
         difficulty,
@@ -302,7 +304,8 @@ export default function Board({ currentUserId, onLogout }) {
           isOpen={modalOpen}
           onClose={() => setModalOpen(false)}
           onSubmit={handleProjectSubmit}
-          users={users.filter((u) => u.user_id !== currentUserId)}
+          users={users}
+          currentUserId={currentUserId}
           existingMembers={
             editingProject ? projectMembers.map((m) => m.user_id) : []
           }

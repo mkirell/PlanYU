@@ -1,5 +1,5 @@
 import { Profile } from "../models/index.js";
-import { NotFoundError } from "../errors/index.js";
+import { NotFoundError } from "../errors/errors.js";
 
 const ProfileRepository = {
   async findAll() {

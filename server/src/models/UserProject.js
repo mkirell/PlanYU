@@ -4,8 +4,14 @@ import sequelize from "../config/database.js";
 const UserProject = sequelize.define(
   "UserProject",
   {
-    user_id: { type: DataTypes.INTEGER, primaryKey: true },
-    project_id: { type: DataTypes.INTEGER, primaryKey: true },
+    user_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+    },
+    project_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+    },
     role: {
       type: DataTypes.ENUM("OWNER", "MEMBER"),
       defaultValue: "MEMBER",

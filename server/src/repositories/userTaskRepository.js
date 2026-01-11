@@ -1,5 +1,5 @@
 import { UserTask } from "../models/index.js";
-import { NotFoundError, ConflictError } from "../errors/index.js";
+import { NotFoundError } from "../errors/errors.js";
 
 const UserTaskRepository = {
   async findAll() {

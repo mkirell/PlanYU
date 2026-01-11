@@ -9,7 +9,7 @@ export const registerUser = createAsyncThunk(
       return res.data;
     } catch (err) {
       return rejectWithValue(
-        err.response?.data?.warning || "Registration failed."
+        err.response?.data?.error?.message || "Registration failed"
       );
     }
   }
@@ -22,7 +22,7 @@ export const loginUser = createAsyncThunk(
       const res = await axios.post("/api/auth/login", user);
       return res.data;
     } catch (err) {
-      return rejectWithValue(err.response?.data?.warning || "Login failed.");
+      return rejectWithValue(err.response?.data?.error?.message || "Login failed");
     }
   }
 );
@@ -33,6 +33,9 @@ const authSlice = createSlice({
   reducers: {
     logoutUser(state) {
       state.data = null;
+    },
+    clearError(state) {
+      state.error = null;
     },
   },
   extraReducers: (builder) => {
@@ -64,5 +67,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { logoutUser } = authSlice.actions;
+export const { logoutUser, clearError } = authSlice.actions;
 export default authSlice.reducer;

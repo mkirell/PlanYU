@@ -4,8 +4,19 @@ import sequelize from "../config/database.js";
 const UserTask = sequelize.define(
   "UserTask",
   {
-    user_id: { type: DataTypes.INTEGER, primaryKey: true },
-    task_id: { type: DataTypes.INTEGER, primaryKey: true },
+    user_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+    },
+    task_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+    },
+    role: {
+      type: DataTypes.ENUM("ASSIGNEE", "REVIEWER"),
+      allowNull: false,
+      defaultValue: "ASSIGNEE",
+    },
   },
   {
     tableName: "User_Task",

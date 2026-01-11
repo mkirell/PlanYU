@@ -3,7 +3,7 @@ import {
   createProjectSchema,
   updateProjectSchema,
 } from "../validators/projectValidator.js";
-import { ValidationError } from "../errors/index.js";
+import { ValidationError } from "../errors/errors.js";
 
 const ProjectService = {
   async list() {

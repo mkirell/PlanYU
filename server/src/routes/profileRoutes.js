@@ -1,4 +1,5 @@
 import { Router } from "express";
+import asyncHandler from "../middleware/asyncHandler.js";
 import {
   getAllProfiles,
   getProfileById,
@@ -9,10 +10,10 @@ import {
 
 const router = Router();
 
-router.get("/", getAllProfiles);
-router.get("/:id", getProfileById);
-router.post("/", createProfile);
-router.patch("/:id", updateProfile);
-router.delete("/:id", deleteProfile);
+router.get("/", asyncHandler(getAllProfiles));
+router.get("/:id", asyncHandler(getProfileById));
+router.post("/", asyncHandler(createProfile));
+router.patch("/:id", asyncHandler(updateProfile));
+router.delete("/:id", asyncHandler(deleteProfile));
 
 export default router;

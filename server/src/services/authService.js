@@ -1,6 +1,6 @@
 import UserRepository from "../repositories/userRepository.js";
 import { registerSchema, loginSchema } from "../validators/authValidator.js";
-import { ValidationError, NotFoundError } from "../errors/index.js";
+import { ValidationError, NotFoundError } from "../errors/errors.js";
 import bcrypt from "bcrypt";
 
 const AuthService = {
@@ -28,10 +28,10 @@ const AuthService = {
 
     const { email, password } = parsed.data;
     const user = await UserRepository.findByEmail(email);
-    if (!user) throw new NotFoundError("Invalid credentials");
+    if (!user) throw new NotFoundError("User not found");
 
     const ok = await bcrypt.compare(password, user.password_hash);
-    if (!ok) throw new NotFoundError("Invalid credentials");
+    if (!ok) throw new ValidationError("Invalid credentials");
 
     return user;
   },
