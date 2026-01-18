@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../../shared/config/database.js";
+import sequelize from "../../shared/db/database.js";
 
 const User = sequelize.define(
   "User",
@@ -11,13 +11,23 @@ const User = sequelize.define(
     },
     email: { type: DataTypes.STRING, allowNull: false, unique: true },
     password_hash: { type: DataTypes.STRING, allowNull: false },
+    role: {
+      type: DataTypes.ENUM("ADMIN", "GUEST"),
+      allowNull: false,
+      defaultValue: "GUEST",
+    },
+    token_version: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0,
+    },
   },
   {
     tableName: "User",
     timestamps: true,
     createdAt: "created_at",
     updatedAt: "updated_at",
-  }
+  },
 );
 
 export default User;

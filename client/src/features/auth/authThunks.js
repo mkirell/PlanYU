@@ -9,10 +9,10 @@ export const registerUser = createAsyncThunk(
       return res.data;
     } catch (err) {
       return rejectWithValue(
-        err.response?.data?.error?.message || "Registration failed"
+        err.response?.data?.error?.message || "Registration failed",
       );
     }
-  }
+  },
 );
 
 export const loginUser = createAsyncThunk(
@@ -20,11 +20,50 @@ export const loginUser = createAsyncThunk(
   async (user, { rejectWithValue }) => {
     try {
       const res = await axios.post("/api/auth/login", user);
-      return res.data;
+      const data = res.data;
+      if (data?.accessToken) {
+        axios.defaults.headers.common["Authorization"] =
+          `Bearer ${data.accessToken}`;
+      }
+      return data;
     } catch (err) {
       return rejectWithValue(
-        err.response?.data?.error?.message || "Login failed"
+        err.response?.data?.error?.message || "Login failed",
       );
     }
-  }
+  },
+);
+
+export const refreshUser = createAsyncThunk(
+  "auth/refreshUser",
+  async (_, { rejectWithValue }) => {
+    try {
+      const res = await axios.post("/api/auth/refresh", null);
+      const data = res.data;
+      if (data?.accessToken) {
+        axios.defaults.headers.common["Authorization"] =
+          `Bearer ${data.accessToken}`;
+      }
+      return data;
+    } catch (err) {
+      return rejectWithValue(
+        err.response?.data?.error?.message || "Refresh failed",
+      );
+    }
+  },
+);
+
+export const logoutUser = createAsyncThunk(
+  "auth/logoutUser",
+  async (_, { rejectWithValue }) => {
+    try {
+      await axios.post("/api/auth/logout", null);
+      delete axios.defaults.headers.common["Authorization"];
+      return true;
+    } catch (err) {
+      return rejectWithValue(
+        err.response?.data?.error?.message || "Logout failed",
+      );
+    }
+  },
 );

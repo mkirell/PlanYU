@@ -6,7 +6,7 @@ import {
   createUserSchema,
   updateUserSchema,
 } from "../validators/userValidator.js";
-import { ValidationError } from "../../shared/utils/errors.js";
+import { ValidationError, NotFoundError } from "../../shared/utils/errors.js";
 import ProjectRepository from "../../infrastructure/repositories/projectRepository.js";
 
 const UserService = {

@@ -1,21 +1,17 @@
-import React, { useState, Suspense } from "react";
+import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import routes from "./pages/routes.js";
 import "./assets/styles/main.css";
-import Notification from "./components/Notification/Notification.jsx";
+import Notif from "./components/Notif/Notif.jsx";
+import { logoutUser } from "./features/auth/authThunks";
 
 export default function App() {
-  const storedUserId = Number(localStorage.getItem("currentUserId"));
-  const [currentUserId, setCurrentUserId] = useState(storedUserId || null);
+  const dispatch = useDispatch();
+  const currentUserId = useSelector((s) => s.auth.data?.user?.user_id ?? null);
 
-  const handleLogin = (userId) => {
-    localStorage.setItem("currentUserId", String(userId));
-    setCurrentUserId(userId);
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem("currentUserId");
-    setCurrentUserId(null);
+  const handleLogout = async () => {
+    dispatch(logoutUser());
   };
 
   return (
@@ -26,7 +22,7 @@ export default function App() {
       }}
     >
       <Suspense fallback={<div>Loading...</div>}>
-        <Notification />
+        <Notif />
         <Routes>
           {routes.map((r) => {
             const Component = React.lazy(r.component);
@@ -36,7 +32,7 @@ export default function App() {
               element = currentUserId ? (
                 <Navigate to="/board" replace />
               ) : (
-                <Component onLogin={handleLogin} />
+                <Component />
               );
             } else {
               element = currentUserId ? (

@@ -18,7 +18,6 @@ import {
 } from "../../features/tasks/taskThunks";
 import { fetchUserTasks } from "../../features/userTasks/userTaskThunks";
 import { fetchUsers } from "../../features/users/userThunks";
-import { logoutUser } from "../../features/auth/authSlice";
 import {
   fetchProfiles,
   updateProfile,
@@ -314,7 +313,6 @@ export default function Board({ currentUserId, onLogout }) {
         <Profile
           profile={profiles.find((p) => p.user_id === currentUserId)}
           onClick={() => {
-            dispatch(logoutUser());
             onLogout();
           }}
           onUpdate={(profile_id, full_name) =>

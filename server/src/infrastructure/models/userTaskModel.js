@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../../shared/config/database.js";
+import sequelize from "../../shared/db/database.js";
 
 const UserTask = sequelize.define(
   "UserTask",
@@ -14,8 +14,8 @@ const UserTask = sequelize.define(
     },
     role: {
       type: DataTypes.ENUM("ASSIGNEE", "REVIEWER"),
-      allowNull: false,
       defaultValue: "ASSIGNEE",
+      allowNull: false,
     },
   },
   {
@@ -23,7 +23,7 @@ const UserTask = sequelize.define(
     timestamps: true,
     createdAt: "created_at",
     updatedAt: "updated_at",
-  }
+  },
 );
 
 export default UserTask;

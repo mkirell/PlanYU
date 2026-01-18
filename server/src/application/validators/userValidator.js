@@ -6,6 +6,7 @@ export const createUserSchema = z.object({
     z.string().email(),
   ),
   password: z.string().min(6),
+  role: z.enum(["ADMIN", "GUEST"]).optional(),
 });
 
 export const updateUserSchema = z
@@ -17,6 +18,7 @@ export const updateUserSchema = z
       )
       .optional(),
     password: z.string().min(6).optional(),
+    role: z.enum(["ADMIN", "GUEST"]).optional(),
   })
   .refine((obj) => Object.keys(obj).length > 0);
 

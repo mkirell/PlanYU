@@ -1,5 +1,3 @@
-const SKIP_CALLERS = ["httpLogger.js"];
-const MINIMAL = process.env.LOG_MINIMAL === "true";
 const COLORS = { info: "\u001b[32m", warn: "\u001b[33m", error: "\u001b[31m" };
 
 const normalizeIp = (ip) =>
@@ -15,29 +13,6 @@ const extractStatus = (meta, msg) =>
     msg?.match(/status=(\d{3})/)?.[1] ||
       msg?.match(/"status"\s*:\s*(\d{3})/)?.[1],
   );
-
-const parseStack = (stack) => {
-  if (!stack) return;
-
-  for (const line of stack.split("\n").slice(1)) {
-    const t = line.trim();
-    if (!t || t.includes("(internal") || t.includes("node:internal")) continue;
-
-    const match =
-      t.match(/\((.*):(\d+):\d+\)$/) || t.match(/at (.*):(\d+):\d+$/);
-    if (!match) continue;
-
-    const file = match[1];
-    if (file.startsWith("node:") || file.includes("node_modules")) continue;
-
-    const base = file.split("/").pop();
-    if (SKIP_CALLERS.some((c) => base.endsWith(c))) continue;
-
-    return { base, lineNo: match[2], file };
-  }
-};
-
-const getCaller = () => parseStack(new Error().stack);
 
 const formatEntry = (level, msg, meta) => {
   const status = extractStatus(
@@ -74,19 +49,8 @@ const formatEntry = (level, msg, meta) => {
 
 const write = (level, msg, meta) => {
   try {
-    const caller = msg instanceof Error ? parseStack(msg.stack) : getCaller();
     const status = extractStatus(meta, msg);
-
     level = status >= 400 ? "error" : status >= 300 ? "warn" : "info";
-
-    if (
-      MINIMAL &&
-      level !== "error" &&
-      caller?.base &&
-      SKIP_CALLERS.some((c) => caller.base.endsWith(c))
-    )
-      return;
-
     const line = formatEntry(level, msg, meta);
 
     const colored = `${COLORS[level] || COLORS.info}${line}\u001b[0m`;

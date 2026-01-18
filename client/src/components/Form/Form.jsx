@@ -98,12 +98,10 @@ export default function Form({
   };
 
   const removeMember = (id) => {
-    // if this is a newly added pending member, remove from pendingAdd
     if (pendingAddMembers.includes(id)) {
       setPendingAddMembers((prev) => prev.filter((x) => x !== id));
       return;
     }
-    // toggle pending remove for existing members
     setPendingRemoveMembers((prev) =>
       prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id],
     );
@@ -112,7 +110,6 @@ export default function Form({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!title) return;
-    // compute final members: remove pending removals, add pending additions
     const finalMembers = Array.from(
       new Set([
         ...members.filter((id) => !pendingRemoveMembers.includes(id)),

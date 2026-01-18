@@ -1,4 +1,3 @@
-import "dotenv/config";
 import { Sequelize } from "sequelize";
 
 export async function createDB() {

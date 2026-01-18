@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from "react";
-import "./Notification.css";
+import "./Notif.css";
 import { useSelector } from "react-redux";
 
-function NotificationItem({ id, type, message, onClose }) {
+function Push({ id, type, message, onClose }) {
   useEffect(() => {
     const t = setTimeout(() => onClose(id), 4000);
     return () => clearTimeout(t);
@@ -22,7 +22,7 @@ function NotificationItem({ id, type, message, onClose }) {
   );
 }
 
-export default function Notification() {
+export default function Notif() {
   const [items, setItems] = useState([]);
   const remove = (id) => setItems((s) => s.filter((it) => it.id !== id));
 
@@ -90,7 +90,7 @@ export default function Notification() {
   return (
     <div className="pyu-notification-root" role="status" aria-live="polite">
       {items.map((it) => (
-        <NotificationItem key={it.id} {...it} onClose={remove} />
+        <Push key={it.id} {...it} onClose={remove} />
       ))}
     </div>
   );

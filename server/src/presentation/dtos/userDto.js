@@ -3,6 +3,7 @@ export class CreateUserDto {
     this.email = email;
     this.password = password;
     this.username = username;
+    this.role = undefined;
   }
 }
 
@@ -11,7 +12,16 @@ export class UpdateUserDto {
     this.email = email;
     this.password = password;
     this.username = username;
+    this.role = undefined;
   }
 }
 
-export default { CreateUserDto, UpdateUserDto };
+export class UserResponseDto {
+  constructor(user = {}) {
+    const source = user && user.dataValues ? user.dataValues : user;
+    const { password_hash, token_version, ...safeUser } = source;
+    Object.assign(this, safeUser);
+  }
+}
+
+export default { CreateUserDto, UpdateUserDto, UserResponseDto };

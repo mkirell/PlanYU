@@ -3,10 +3,7 @@ import UserRepository from "../../infrastructure/repositories/userRepository.js"
 import ProjectRepository from "../../infrastructure/repositories/projectRepository.js";
 import TaskRepository from "../../infrastructure/repositories/taskRepository.js";
 import UserTaskRepository from "../../infrastructure/repositories/userTaskRepository.js";
-import {
-  NotFoundError,
-  ValidationError,
-} from "../../shared/utils/errors.js";
+import { ValidationError, NotFoundError } from "../../shared/utils/errors.js";
 import UserProjectEntity from "../../domain/entities/userProjectEntity.js";
 import {
   createUserProjectSchema,
@@ -59,9 +56,7 @@ const UserProjectService = {
     for (const t of projectTasks) {
       try {
         await UserTaskRepository.delete(Number(user_id), Number(t.task_id));
-      } catch (err) {
-        if (!(err instanceof NotFoundError)) throw err;
-      }
+      } catch (err) {}
     }
     return deleted;
   },

@@ -10,7 +10,7 @@ const getRandomAvatar = () => {
   return `https://robohash.org/${seed}?set=set4&size=100x100`;
 };
 
-export default function Auth({ onLogin }) {
+export default function Auth() {
   const dispatch = useDispatch();
   const { data, status, error } = useSelector((state) => state.auth);
 
@@ -22,12 +22,7 @@ export default function Auth({ onLogin }) {
   const [avatarUrl, setAvatarUrl] = useState("");
   const [alert, setAlert] = useState("");
 
-  useEffect(() => {
-    if (data?.user_id) {
-      localStorage.setItem("currentUserId", data.user_id);
-      onLogin(data.user_id);
-    }
-  }, [data, onLogin]);
+  useEffect(() => {}, [data]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -56,20 +51,28 @@ export default function Auth({ onLogin }) {
 
     setAlert("");
     const action = await dispatch(
-      registerUser({
-        email: email,
-        password: password,
-      })
+      registerUser({ email: email, password: password }),
     );
     if (action.type.endsWith("fulfilled")) {
-      const userData = action.payload;
-      await dispatch(
-        createProfile({
-          user_id: userData.user_id,
-          full_name: fullName,
-          avatar_url: avatarUrl,
-        })
+      const loginAction = await dispatch(
+        loginUser({ email: email, password: password }),
       );
+      if (loginAction.type.endsWith("fulfilled")) {
+        const userData = loginAction.payload;
+        const user_id =
+          userData?.user?.user_id ?? userData?.user_id ?? userData?.user?.id;
+        if (user_id) {
+          await dispatch(
+            createProfile({
+              user_id,
+              full_name: fullName,
+              avatar_url: avatarUrl,
+            }),
+          );
+        }
+      } else {
+        setAlert("Registration succeeded but auto-login failed");
+      }
     }
   };
 

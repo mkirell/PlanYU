@@ -39,12 +39,6 @@ class UnauthorizedError extends BaseError {
   }
 }
 
-class TooManyRequestsError extends BaseError {
-  constructor(message = "Too many requests") {
-    super(message, "TOO_MANY_REQUESTS", 429);
-  }
-}
-
 export {
   BaseError,
   ValidationError,
@@ -52,5 +46,4 @@ export {
   ForbiddenError,
   NotFoundError,
   ConflictError,
-  TooManyRequestsError,
 };

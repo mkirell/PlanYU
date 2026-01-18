@@ -4,8 +4,7 @@ export const createTaskSchema = z.object({
   project_id: z.number().int().positive(),
   title: z.preprocess((val) => {
     if (typeof val !== "string") return val;
-    const t = val.trim();
-    return t ? t.charAt(0).toUpperCase() + t.slice(1) : t;
+    return val.trim().replace(/\b\w/g, (c) => c.toUpperCase());
   }, z.string().min(1)),
   description: z.preprocess(
     (val) => (typeof val === "string" ? val.trim() : val),
@@ -31,8 +30,7 @@ export const updateTaskSchema = z
     title: z
       .preprocess((val) => {
         if (typeof val !== "string") return val;
-        const t = val.trim();
-        return t ? t.charAt(0).toUpperCase() + t.slice(1) : t;
+        return val.trim().replace(/\b\w/g, (c) => c.toUpperCase());
       }, z.string().min(1))
       .optional(),
     description: z.preprocess(

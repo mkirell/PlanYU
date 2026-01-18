@@ -1,13 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { registerUser, loginUser } from "./authThunks";
+import { registerUser, loginUser, refreshUser, logoutUser } from "./authThunks";
 
 const authSlice = createSlice({
   name: "auth",
   initialState: { data: null, status: "idle", error: null },
   reducers: {
-    logoutUser(state) {
-      state.data = null;
-    },
     clearError(state) {
       state.error = null;
     },
@@ -37,9 +34,25 @@ const authSlice = createSlice({
       .addCase(loginUser.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
+      })
+      .addCase(refreshUser.pending, (state) => {
+        state.error = null;
+      })
+      .addCase(refreshUser.fulfilled, (state, action) => {
+        state.data = action.payload;
+      })
+      .addCase(refreshUser.rejected, (state) => {
+        state.data = null;
+        state.status = "idle";
+        state.error = null;
+      })
+      .addCase(logoutUser.fulfilled, (state) => {
+        state.data = null;
+        state.status = "idle";
+        state.error = null;
       });
   },
 });
 
-export const { logoutUser, clearError } = authSlice.actions;
+export const { clearError } = authSlice.actions;
 export default authSlice.reducer;
