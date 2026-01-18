@@ -1,11 +1,3 @@
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
-
-const logDir = path.resolve(process.cwd(), "server", "logs");
-if (!fs.existsSync(logDir)) fs.mkdirSync(logDir, { recursive: true });
-
-const CURRENT_FILE = path.basename(fileURLToPath(import.meta.url));
 const SKIP_CALLERS = ["httpLogger.js"];
 const MINIMAL = process.env.LOG_MINIMAL === "true";
 const COLORS = { info: "\u001b[32m", warn: "\u001b[33m", error: "\u001b[31m" };
@@ -38,13 +30,10 @@ const parseStack = (stack) => {
     const file = match[1];
     if (file.startsWith("node:") || file.includes("node_modules")) continue;
 
-    const base = path.basename(file);
-    if (base === CURRENT_FILE) continue;
-
-    const caller = { base, lineNo: match[2], file };
-
+    const base = file.split("/").pop();
     if (SKIP_CALLERS.some((c) => base.endsWith(c))) continue;
-    return caller;
+
+    return { base, lineNo: match[2], file };
   }
 };
 
@@ -99,11 +88,6 @@ const write = (level, msg, meta) => {
       return;
 
     const line = formatEntry(level, msg, meta);
-    fs.appendFile(
-      path.join(logDir, "combined.log"),
-      line + "\n",
-      (e) => e && console.error("Logger failed:", e),
-    );
 
     const colored = `${COLORS[level] || COLORS.info}${line}\u001b[0m`;
     level === "error"
