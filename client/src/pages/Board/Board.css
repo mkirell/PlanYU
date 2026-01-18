@@ -1,5 +1,5 @@
 .board {
-  width: min(1180px, calc(100% - 1rem));
+  width: var(--board-width);
   margin: 2.25rem auto;
   padding: 1.25rem;
   background: var(--card);
@@ -684,9 +684,6 @@
 }
 
 @media (min-width: 1200px) and (max-width: 1399.98px) {
-  .board {
-    max-width: 1200px;
-  }
   .board-header {
     flex-direction: row;
     align-items: flex-start;
@@ -721,7 +718,7 @@
 
 @media (min-width: 1400px) {
   .board {
-    max-width: 1400px;
+    min-width: var(--board-width);
   }
   .board-header {
     flex-direction: row;

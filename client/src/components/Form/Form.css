@@ -21,7 +21,7 @@
   box-shadow: var(--shadow-2);
 }
 .board-add input[name="title"] {
-  flex: 1 1 260px;
+  flex: 1 1 230px;
   height: 38px;
 }
 .board-add input[name="description"] {
@@ -29,7 +29,7 @@
   height: 38px;
 }
 .board-add select[name="difficulty"] {
-  width: 130px;
+  width: 160px;
 }
 .board-add button[type="submit"] {
   padding: 0.5rem 0.75rem;
