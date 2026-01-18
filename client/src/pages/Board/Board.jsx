@@ -143,7 +143,13 @@ export default function Board({ currentUserId, onLogout }) {
     [selectedProjectId, userProjectRoles],
   );
 
-  const projectRoleClass = currentUserRole === "OWNER" ? "owner" : "member";
+  const isCreatingFirstProject = useMemo(
+    () => modalOpen && !editingProject && visibleProjects.length === 0,
+    [modalOpen, editingProject, visibleProjects],
+  );
+
+  const projectRoleClass =
+    isCreatingFirstProject || currentUserRole === "OWNER" ? "owner" : "member";
 
   const handleUpdateTask = (task_id, patch) =>
     dispatch(updateTask({ id: task_id, data: patch }));
@@ -266,27 +272,30 @@ export default function Board({ currentUserId, onLogout }) {
         });
       });
     } else {
-      dispatch(createProject({ name, description })).then((res) => {
+      dispatch(createProject({ name, description })).then(async (res) => {
         const project_id = res.payload.project_id;
-        dispatch(
+        const ownerPromise = dispatch(
           createUserProject({
             user_id: currentUserId,
             project_id,
             role: "OWNER",
           }),
         );
-        members.forEach((user_id) =>
+        const memberPromises = members.map((user_id) =>
           dispatch(createUserProject({ user_id, project_id, role: "MEMBER" })),
         );
-        Promise.all([
+
+        await Promise.all([ownerPromise, ...memberPromises]);
+
+        await Promise.all([
           dispatch(fetchProjects()),
           dispatch(fetchUserProjects()),
           dispatch(fetchTasks()),
           dispatch(fetchUserTasks()),
-        ]).then(() => {
-          setSelectedProjectId(project_id);
-          setModalOpen(false);
-        });
+        ]);
+
+        setSelectedProjectId(project_id);
+        setModalOpen(false);
       });
     }
   };

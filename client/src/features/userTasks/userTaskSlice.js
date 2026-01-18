@@ -9,13 +9,14 @@ import {
 
 const userTasksSlice = createSlice({
   name: "userTasks",
-  initialState: { list: [], status: "idle", error: null },
+  initialState: { list: [], status: "idle", error: null, message: null },
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchUserTasks.pending, (state) => {
         state.status = "loading";
         state.error = null;
+        state.message = null;
       })
       .addCase(fetchUserTasks.fulfilled, (state, action) => {
         state.status = "succeeded";
@@ -45,18 +46,22 @@ const userTasksSlice = createSlice({
       .addCase(createUserTask.pending, (state) => {
         state.status = "loading";
         state.error = null;
+        state.message = null;
       })
       .addCase(createUserTask.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.list.push(action.payload);
+        state.message = action.payload?.message || "User assigned to task";
       })
       .addCase(createUserTask.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
+        state.message = action.payload || "Failed to assign user to task";
       })
       .addCase(updateUserTask.pending, (state) => {
         state.status = "loading";
         state.error = null;
+        state.message = null;
       })
       .addCase(updateUserTask.fulfilled, (state, action) => {
         state.status = "succeeded";
@@ -66,14 +71,17 @@ const userTasksSlice = createSlice({
             ut.task_id === action.payload.task_id
         );
         if (index !== -1) state.list[index] = action.payload;
+        state.message = action.payload?.message || "User task updated";
       })
       .addCase(updateUserTask.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
+        state.message = action.payload || "Failed to update user task";
       })
       .addCase(deleteUserTask.pending, (state) => {
         state.status = "loading";
         state.error = null;
+        state.message = null;
       })
       .addCase(deleteUserTask.fulfilled, (state, action) => {
         state.status = "succeeded";
@@ -84,10 +92,12 @@ const userTasksSlice = createSlice({
               ut.task_id === action.payload.task_id
             )
         );
+        state.message = "User removed from task";
       })
       .addCase(deleteUserTask.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
+        state.message = action.payload || "Failed to remove user from task";
       });
   },
 });

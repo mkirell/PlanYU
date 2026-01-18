@@ -2,6 +2,7 @@ import React, { useState, Suspense } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import routes from "./pages/routes.js";
 import "./assets/styles/main.css";
+import Notification from "./components/Notification/Notification.jsx";
 
 export default function App() {
   const storedUserId = Number(localStorage.getItem("currentUserId"));
@@ -25,6 +26,7 @@ export default function App() {
       }}
     >
       <Suspense fallback={<div>Loading...</div>}>
+        <Notification />
         <Routes>
           {routes.map((r) => {
             const Component = React.lazy(r.component);

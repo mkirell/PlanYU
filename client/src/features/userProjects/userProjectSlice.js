@@ -9,13 +9,14 @@ import {
 
 const userProjectsSlice = createSlice({
   name: "userProjects",
-  initialState: { list: [], status: "idle", error: null },
+  initialState: { list: [], status: "idle", error: null, message: null },
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchUserProjects.pending, (state) => {
         state.status = "loading";
         state.error = null;
+        state.message = null;
       })
       .addCase(fetchUserProjects.fulfilled, (state, action) => {
         state.status = "succeeded";
@@ -45,18 +46,22 @@ const userProjectsSlice = createSlice({
       .addCase(createUserProject.pending, (state) => {
         state.status = "loading";
         state.error = null;
+        state.message = null;
       })
       .addCase(createUserProject.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.list.push(action.payload);
+        state.message = action.payload?.message || "User assigned to project";
       })
       .addCase(createUserProject.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
+        state.message = action.payload || "Failed to assign user to project";
       })
       .addCase(updateUserProject.pending, (state) => {
         state.status = "loading";
         state.error = null;
+        state.message = null;
       })
       .addCase(updateUserProject.fulfilled, (state, action) => {
         state.status = "succeeded";
@@ -66,14 +71,17 @@ const userProjectsSlice = createSlice({
             up.project_id === action.payload.project_id
         );
         if (index !== -1) state.list[index] = action.payload;
+        state.message = action.payload?.message || "User project updated";
       })
       .addCase(updateUserProject.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
+        state.message = action.payload || "Failed to update user project";
       })
       .addCase(deleteUserProject.pending, (state) => {
         state.status = "loading";
         state.error = null;
+        state.message = null;
       })
       .addCase(deleteUserProject.fulfilled, (state, action) => {
         state.status = "succeeded";
@@ -84,10 +92,12 @@ const userProjectsSlice = createSlice({
               up.project_id === action.payload.project_id
             )
         );
+        state.message = "User removed from project";
       })
       .addCase(deleteUserProject.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
+        state.message = action.payload || "Failed to remove user from project";
       });
   },
 });
