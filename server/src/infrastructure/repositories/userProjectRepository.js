@@ -6,6 +6,12 @@ const UserProjectRepository = {
     return UserProject.findAll({ order: [["user_id", "ASC"]] });
   },
 
+  async findByOwnerId(user_id) {
+    return UserProject.findAll({
+      where: { user_id, role: "OWNER" },
+    });
+  },
+  
   async findByIds(user_id, project_id) {
     const up = await UserProject.findOne({ where: { user_id, project_id } });
     if (!up) throw new NotFoundError("UserProject not found");

@@ -1,4 +1,5 @@
 import UserRepository from "../../infrastructure/repositories/userRepository.js";
+import UserProjectRepository from "../../infrastructure/repositories/userProjectRepository.js";
 import bcrypt from "bcrypt";
 import UserEntity from "../../domain/entities/userEntity.js";
 import {
@@ -6,6 +7,7 @@ import {
   updateUserSchema,
 } from "../validators/userValidator.js";
 import { ValidationError } from "../../shared/utils/errors.js";
+import ProjectRepository from "../../infrastructure/repositories/projectRepository.js";
 
 const UserService = {
   async list() {
@@ -39,6 +41,13 @@ const UserService = {
   },
 
   async delete(id) {
+    const projects = await UserProjectRepository.findByOwnerId(id);
+    const projectIds = projects.map((r) => r.project_id);
+    if (projectIds && projectIds.length > 0) {
+      for (const pid of projectIds) {
+        await ProjectRepository.delete(pid);
+      }
+    }
     return UserRepository.delete(id);
   },
 };
