@@ -8,7 +8,7 @@ const STATIC_ASSETS = [
   "/manifest.json",
   "/icons/icon-256.png",
   "/icons/icon-512.png",
-  "/src/assets/img/bg-login.jfif",
+  "/src/assets/imgs/bg-login.jpg",
 ];
 
 self.addEventListener("install", (event) => {

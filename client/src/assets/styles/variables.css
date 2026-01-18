@@ -1,0 +1,54 @@
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/Inter/static/Inter_18pt-Regular.ttf")
+    format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto/static/Roboto-Regular.ttf")
+    format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-sans: "Inter", "Roboto", Arial, sans-serif;
+  --font-heading: "Roboto", "Inter", Arial, sans-serif;
+  --bg-login: url("../imgs/bg-login.jpg");
+
+  --bg: #f0f3f7;
+  --card: #fdfdfd;
+  --radius: 0.75rem;
+  --shadow-1: 0 0.5rem 2rem rgba(12, 20, 40, 0.06);
+  --shadow-2: 0 0.5rem 1.5rem rgba(12, 20, 40, 0.05);
+
+  --status-owner-board: #2196f3;
+  --status-member-board: #4caf50;
+
+  --status-owner: #f0f8ff;
+  --status-member: #f0fdf0;
+
+  --status-todo: #ffe3e3;
+  --status-doing: #fff4e5;
+  --status-done: #e6f7ea;
+
+  --status-todo-text: #d04545;
+  --status-doing-text: #b06b00;
+  --status-done-text: #1b8a3e;
+
+  --accent: #1967d2;
+  --accent-soft: #2b86ff;
+  --dark: #5a5a5a;
+  --muted: #6c7580;
+  --warning: #b06b00;
+
+  --danger: #d04545;
+  --danger-bg: rgba(208, 69, 69, 0.06);
+  --danger-bg-hover: rgba(208, 69, 69, 0.1);
+  --danger-shadow: rgba(208, 69, 69, 0.25);
+}

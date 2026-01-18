@@ -1,0 +1,110 @@
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+.avatar-wrapper {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+.logout-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+.avatar-wrapper:hover .logout-overlay {
+  opacity: 1;
+}
+.profile-avatar {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 1rem;
+  object-fit: cover;
+  box-shadow: var(--shadow-2);
+}
+.profile-info {
+  display: flex;
+  flex-direction: column;
+}
+.profile-name {
+  font-weight: 600;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.profile-edit-btn {
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 0.12rem 0.25rem;
+  border-radius: 0.35rem;
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 1.25rem;
+  line-height: 1;
+  transition:
+    background 0.12s ease,
+    color 0.12s ease,
+    transform 0.12s ease;
+  transform: scaleX(-1);
+}
+.profile-edit-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--dark);
+  transform: scaleX(-1) translateY(-1px);
+}
+.profile-edit-btn:focus {
+  outline: 2px solid rgba(25, 103, 210, 0.18);
+  outline-offset: 2px;
+}
+.profile-id {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+@media (max-width: 575.98px) {
+  .profile-card {
+    gap: 0.5rem;
+  }
+  .profile-avatar {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+  .profile-name {
+    font-size: 0.95rem;
+  }
+  .profile-edit-btn {
+    font-size: 1rem;
+    padding: 0.08rem 0.2rem;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .profile-avatar {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .profile-avatar {
+    width: 3.25rem;
+    height: 3.25rem;
+  }
+}

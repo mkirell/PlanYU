@@ -3,10 +3,11 @@ import express, { json } from "express";
 import cors from "cors";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
-import { createDB } from "./config/create-db.js";
-import sequelize from "./config/database.js";
-import routes from "./routes/index.js";
-import errorHandler from "./middleware/errorHandler.js";
+import routes from "./presentation/routers/index.js";
+import sequelize from "./shared/config/database.js";
+import { createDB } from "./shared/config/create-db.js";
+import errorHandler from "./presentation/middleware/errorHandler.js";
+import httpLogger from "./presentation/middleware/httpLogger.js";
 
 const app = express();
 
@@ -24,6 +25,7 @@ const limiter = rateLimit({
 app.use(helmet());
 app.use(cors(corsOptions));
 app.use(json());
+app.use(httpLogger);
 
 // app.use("/api/auth", limiter);
 app.use("/api", routes);
@@ -38,20 +40,19 @@ async function start() {
     try {
       await createDB();
       await sequelize.authenticate();
-      await sequelize.sync({ alter: true });
+      await sequelize.sync();
       app.listen(process.env.SERVER_PORT, process.env.SERVER_HOST, () =>
         console.log(
-          `✅ Server started listening on port ${process.env.SERVER_PORT}`
-        )
+          `✅ Server started listening on port ${process.env.SERVER_PORT}`,
+        ),
       );
       return;
     } catch (err) {
-      console.error(
-        `Attempt ${attempt} failed to start server:`,
-        err.message || err
-      );
+      console.error(`Attempt ${attempt} failed to start server:`, {
+        message: err.message || err,
+      });
       if (attempt === maxAttempts) {
-        console.error("❌ Failed to start server after retries:", err);
+        console.error("❌ Failed to start server after retries:", { err });
         process.exit(1);
       }
       await delay(3000);

@@ -1,0 +1,1450 @@
+{"timestamp":"2026-01-18T01:18:50.048Z","level":"info","pid":2144,"caller":"file:\\D:\\Makiz-GZ\\Code\\GitHub\\PlanYU\\server\\src\\shared\\logger.js:33","message":"✅ Server started listening on port 5000"}
+{"timestamp":"2026-01-18T01:20:02.644Z","level":"info","pid":16236,"caller":"file:\\D:\\Makiz-GZ\\Code\\GitHub\\PlanYU\\server\\src\\shared\\logger.js:33","message":"✅ Server started listening on port 5000"}
+{"timestamp":"2026-01-18T01:20:15.111Z","level":"info","pid":16520,"caller":"file:\\D:\\Makiz-GZ\\Code\\GitHub\\PlanYU\\server\\src\\shared\\logger.js:30","message":"✅ Server started listening on port 5000"}
+{"timestamp":"2026-01-18T01:20:22.437Z","level":"info","pid":5948,"caller":"file:\\D:\\Makiz-GZ\\Code\\GitHub\\PlanYU\\server\\src\\shared\\logger.js:31","message":"✅ Server started listening on port 5000"}
+{"timestamp":"2026-01-18T01:20:44.450Z","level":"info","pid":7444,"caller":"file:\\D:\\Makiz-GZ\\Code\\GitHub\\PlanYU\\server\\src\\shared\\utils\\logger.js:31","message":"✅ Server started listening on port 5000"}
+{"timestamp":"2026-01-18T01:23:29.398Z","level":"info","pid":11048,"caller":"file:\\D:\\Makiz-GZ\\Code\\GitHub\\PlanYU\\server\\src\\shared\\utils\\logger.js:31","message":"✅ Server started listening on port 5000"}
+{"timestamp":"2026-01-18T01:23:50.515Z","level":"info","pid":1868,"caller":"file:\\D:\\Makiz-GZ\\Code\\GitHub\\PlanYU\\server\\src\\shared\\utils\\logger.js:31","message":"✅ Server started listening on port 5000"}
+2026-01-18T01:25:06.274Z info pid=12436 file:\D:\Makiz-GZ\Code\GitHub\PlanYU\server\src\shared\utils\logger.js:29 ✅ Server started listening on port 5000
+2026-01-18T01:26:15.954Z info file=logger.js:28 message=✅ Server started listening on port 5000
+2026-01-18T01:27:10.103Z | INFO | file=logger.js:28 | message=✅ Server started listening on port 5000
+2026-01-18T01:27:48.422Z │ INFO │ logger.js:28 │ ✅ Server started listening on port 5000
+2026-01-18T01:28:13.368Z │ INFO │ logger.js:28 │ ✅ Server started listening on port 5000
+2026-01-18T01:28:37.092Z │ INFO │ logger.js:28 │ ✅ Server started listening on port 5000
+2026-01-18T01:28:57.088Z │ INFO │ logger.js:28 │ ✅ Server started listening on port 5000
+2026-01-18T01:29:26.087Z │ INFO │ logger.js:28 │ ✅ Server started listening on port 5000
+2026-01-18T01:29:36.992Z │ INFO │ logger.js:28 │ ✅ Server started listening on port 5000
+2026-01-18T01:30:08.502Z │ INFO │ logger.js:28 │ ✅ Server started listening on port 5000
+2026-01-18T01:30:24.708Z │ INFO │ logger.js:28 │ ✅ Server started listening on port 5000
+2026-01-18T01:30:31.738Z │ INFO │ logger.js:28 │ ✅ Server started listening on port 5000
+2026-01-18T01:30:48.413Z │ INFO │ logger.js:28 │ ✅ Server started listening on port 5000
+2026-01-18T01:31:04.448Z │ INFO │ logger.js:28 │ Server started listening on port 5000
+2026-01-18T01:31:07.179Z │ INFO │ logger.js:28 │ Server started listening on port 5000
+2026-01-18T01:31:18.755Z │ INFO │ logger.js:28 │ Server started listening on port 5000
+2026-01-18T01:31:29.305Z │ INFO │ logger.js:28 │ Incoming request meta={"method":"POST","url":"/api/auth/login","ip":"::1"}
+2026-01-18T01:31:29.368Z │ INFO │ logger.js:28 │ Request completed meta={"method":"POST","url":"/api/auth/login","status":200,"durationMs":63}
+2026-01-18T01:31:29.416Z │ INFO │ logger.js:28 │ Incoming request meta={"method":"GET","url":"/api/projects","ip":"::1"}
+2026-01-18T01:31:29.423Z │ INFO │ logger.js:28 │ Incoming request meta={"method":"GET","url":"/api/tasks","ip":"::1"}
+2026-01-18T01:31:29.429Z │ INFO │ logger.js:28 │ Incoming request meta={"method":"GET","url":"/api/user-tasks","ip":"::1"}
+2026-01-18T01:31:29.435Z │ INFO │ logger.js:28 │ Request completed meta={"method":"GET","url":"/api/projects","status":304,"durationMs":19}
+2026-01-18T01:31:29.440Z │ INFO │ logger.js:28 │ Request completed meta={"method":"GET","url":"/api/tasks","status":304,"durationMs":17}
+2026-01-18T01:31:29.445Z │ INFO │ logger.js:28 │ Request completed meta={"method":"GET","url":"/api/user-tasks","status":304,"durationMs":16}
+2026-01-18T01:31:29.722Z │ INFO │ logger.js:28 │ Incoming request meta={"method":"GET","url":"/api/users","ip":"::1"}
+2026-01-18T01:31:29.725Z │ INFO │ logger.js:28 │ Incoming request meta={"method":"GET","url":"/api/user-projects","ip":"::1"}
+2026-01-18T01:31:29.723Z │ INFO │ logger.js:28 │ Incoming request meta={"method":"GET","url":"/api/profiles","ip":"::1"}
+2026-01-18T01:31:29.727Z │ INFO │ logger.js:28 │ Request completed meta={"method":"GET","url":"/api/users","status":304,"durationMs":5}
+2026-01-18T01:31:29.729Z │ INFO │ logger.js:28 │ Request completed meta={"method":"GET","url":"/api/profiles","status":304,"durationMs":6}
+2026-01-18T01:31:29.732Z │ INFO │ logger.js:28 │ Request completed meta={"method":"GET","url":"/api/user-projects","status":304,"durationMs":7}
+2026-01-18T01:31:29.753Z │ INFO │ logger.js:28 │ Incoming request meta={"method":"GET","url":"/api/projects","ip":"::1"}
+2026-01-18T01:31:29.755Z │ INFO │ logger.js:28 │ Incoming request meta={"method":"GET","url":"/api/tasks","ip":"::1"}
+2026-01-18T01:31:29.757Z │ INFO │ logger.js:28 │ Request completed meta={"method":"GET","url":"/api/projects","status":304,"durationMs":4}
+2026-01-18T01:31:29.759Z │ INFO │ logger.js:28 │ Request completed meta={"method":"GET","url":"/api/tasks","status":304,"durationMs":4}
+2026-01-18T01:31:29.761Z │ INFO │ logger.js:28 │ Incoming request meta={"method":"GET","url":"/api/user-tasks","ip":"::1"}
+2026-01-18T01:31:29.764Z │ INFO │ logger.js:28 │ Request completed meta={"method":"GET","url":"/api/user-tasks","status":304,"durationMs":3}
+2026-01-18T01:31:30.050Z │ INFO │ logger.js:28 │ Incoming request meta={"method":"GET","url":"/api/users","ip":"::1"}
+2026-01-18T01:31:30.052Z │ INFO │ logger.js:28 │ Incoming request meta={"method":"GET","url":"/api/profiles","ip":"::1"}
+2026-01-18T01:31:30.053Z │ INFO │ logger.js:28 │ Incoming request meta={"method":"GET","url":"/api/user-projects","ip":"::1"}
+2026-01-18T01:31:30.055Z │ INFO │ logger.js:28 │ Request completed meta={"method":"GET","url":"/api/users","status":304,"durationMs":5}
+2026-01-18T01:31:30.057Z │ INFO │ logger.js:28 │ Request completed meta={"method":"GET","url":"/api/profiles","status":304,"durationMs":5}
+2026-01-18T01:31:30.060Z │ INFO │ logger.js:28 │ Request completed meta={"method":"GET","url":"/api/user-projects","status":304,"durationMs":7}
+2026-01-18T01:32:44.287Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:32:48.651Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:32:50.054Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:32:50.048Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:32:50.056Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:32:50.064Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=16
+2026-01-18T01:32:50.072Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=16
+2026-01-18T01:32:50.067Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304 durationMs=13
+2026-01-18T01:32:50.353Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:32:50.355Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:32:50.357Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:32:50.360Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=7
+2026-01-18T01:32:50.363Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=8
+2026-01-18T01:32:50.366Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=9
+2026-01-18T01:32:50.370Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:32:50.373Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=3
+2026-01-18T01:32:50.377Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:32:50.378Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:32:50.381Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304 durationMs=4
+2026-01-18T01:32:50.384Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=6
+2026-01-18T01:32:50.680Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:32:50.682Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:32:50.683Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:32:50.686Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=6
+2026-01-18T01:32:50.689Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=7
+2026-01-18T01:32:50.691Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=8
+2026-01-18T01:32:53.147Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:33:03.308Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:33:03.323Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:33:03.337Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=29
+2026-01-18T01:33:03.341Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304 durationMs=18
+2026-01-18T01:33:03.614Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:33:03.618Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:33:03.616Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:33:03.621Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:33:03.626Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=12
+2026-01-18T01:33:03.629Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=13
+2026-01-18T01:33:03.632Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=14
+2026-01-18T01:33:03.635Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=14
+2026-01-18T01:33:03.645Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:33:03.648Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=3
+2026-01-18T01:33:03.653Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:33:03.657Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304 durationMs=4
+2026-01-18T01:33:03.941Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:33:03.943Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:33:03.945Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:33:03.948Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=7
+2026-01-18T01:33:03.949Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:33:03.953Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=10
+2026-01-18T01:33:03.954Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=9
+2026-01-18T01:33:03.957Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=8
+2026-01-18T01:33:08.698Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:33:08.696Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:33:08.707Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=11
+2026-01-18T01:33:08.710Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304 durationMs=12
+2026-01-18T01:33:09.009Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:33:09.018Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:33:09.013Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:33:09.011Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:33:09.022Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=13
+2026-01-18T01:33:09.023Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=12
+2026-01-18T01:33:09.025Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=12
+2026-01-18T01:33:09.027Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=9
+2026-01-18T01:33:09.031Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:33:09.029Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:33:09.033Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=4
+2026-01-18T01:33:09.036Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304 durationMs=5
+2026-01-18T01:33:09.334Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:33:09.338Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:33:09.336Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:33:09.337Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:33:09.341Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=7
+2026-01-18T01:33:09.342Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=6
+2026-01-18T01:33:09.343Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=6
+2026-01-18T01:33:09.345Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=7
+2026-01-18T01:35:04.050Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:35:08.743Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:35:08.748Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:35:08.750Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:35:08.752Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:35:08.754Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:35:08.755Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:35:08.761Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=200 durationMs=19
+2026-01-18T01:35:08.767Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=200 durationMs=19
+2026-01-18T01:35:08.777Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=200 durationMs=23
+2026-01-18T01:35:08.771Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=200 durationMs=21
+2026-01-18T01:35:08.779Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=200 durationMs=24
+2026-01-18T01:35:08.774Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=200 durationMs=22
+2026-01-18T01:35:09.083Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:35:09.085Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:35:09.087Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:35:09.084Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:35:09.086Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:35:09.089Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=6
+2026-01-18T01:35:09.089Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304 durationMs=5
+2026-01-18T01:35:09.091Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=5
+2026-01-18T01:35:09.090Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=5
+2026-01-18T01:35:09.093Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=6
+2026-01-18T01:35:09.093Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:35:09.096Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=3
+2026-01-18T01:35:23.104Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:35:25.797Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:35:25.801Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:35:25.805Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=8
+2026-01-18T01:35:25.808Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304 durationMs=7
+2026-01-18T01:35:26.096Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:35:26.099Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:35:26.097Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:35:26.100Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:35:26.104Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=8
+2026-01-18T01:35:26.118Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=21
+2026-01-18T01:35:26.120Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=21
+2026-01-18T01:35:26.127Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=27
+2026-01-18T01:35:26.130Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:35:26.132Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:35:26.136Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304 durationMs=4
+2026-01-18T01:35:26.135Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=5
+2026-01-18T01:35:26.422Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:35:26.425Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=3
+2026-01-18T01:35:26.430Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:35:26.432Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:35:26.433Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=3
+2026-01-18T01:35:26.434Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=2
+2026-01-18T01:35:26.436Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:35:26.438Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=3
+2026-01-18T01:35:31.255Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:35:31.257Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:35:31.259Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=4
+2026-01-18T01:35:31.260Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304 durationMs=3
+2026-01-18T01:35:31.564Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:35:31.563Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:35:31.565Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:35:31.565Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:35:31.568Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=5
+2026-01-18T01:35:31.569Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=5
+2026-01-18T01:35:31.570Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=5
+2026-01-18T01:35:31.573Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=8
+2026-01-18T01:35:31.576Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:35:31.574Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:35:31.577Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=3
+2026-01-18T01:35:31.579Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304 durationMs=3
+2026-01-18T01:35:31.888Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:35:31.889Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:35:31.890Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:35:31.890Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:35:31.891Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=3
+2026-01-18T01:35:31.892Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=3
+2026-01-18T01:35:31.892Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=2
+2026-01-18T01:35:31.894Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=4
+2026-01-18T01:35:40.225Z │ INFO │ httpLogger.js:5 │ Incoming request method=PATCH url=/api/tasks/6 ip=::1
+2026-01-18T01:35:40.249Z │ INFO │ httpLogger.js:12 │ Request completed method=PATCH url=/api/tasks/6 status=200 durationMs=24
+2026-01-18T01:35:42.034Z │ INFO │ httpLogger.js:5 │ Incoming request method=PATCH url=/api/tasks/6 ip=::1
+2026-01-18T01:35:42.052Z │ INFO │ httpLogger.js:12 │ Request completed method=PATCH url=/api/tasks/6 status=200 durationMs=18
+2026-01-18T01:36:36.453Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:36:45.990Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:36:51.038Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:36:51.044Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:36:51.051Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=13
+2026-01-18T01:36:51.055Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=200 durationMs=12
+2026-01-18T01:36:51.341Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:36:51.343Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:36:51.346Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:36:51.347Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:36:51.352Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=11
+2026-01-18T01:36:51.355Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=9
+2026-01-18T01:36:51.358Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=11
+2026-01-18T01:36:51.362Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=19
+2026-01-18T01:36:51.365Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:36:51.371Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=6
+2026-01-18T01:36:51.368Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:36:51.374Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304 durationMs=6
+2026-01-18T01:36:51.665Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:36:51.667Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:36:51.668Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:36:51.671Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=6
+2026-01-18T01:36:51.675Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=8
+2026-01-18T01:36:51.679Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:36:51.678Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=10
+2026-01-18T01:36:51.681Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=2
+2026-01-18T01:37:29.705Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:37:33.836Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:37:33.843Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:37:33.849Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=13
+2026-01-18T01:37:33.853Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304 durationMs=10
+2026-01-18T01:37:34.139Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:37:34.141Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:37:34.142Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:37:34.143Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:37:34.147Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=8
+2026-01-18T01:37:34.149Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=8
+2026-01-18T01:37:34.153Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=11
+2026-01-18T01:37:34.156Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=13
+2026-01-18T01:37:34.160Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:37:34.163Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:37:34.165Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=5
+2026-01-18T01:37:34.168Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304 durationMs=4
+2026-01-18T01:37:34.467Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:37:34.468Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:37:34.469Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:37:34.464Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:37:34.471Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=7
+2026-01-18T01:37:34.473Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=6
+2026-01-18T01:37:34.475Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=7
+2026-01-18T01:37:34.477Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=8
+2026-01-18T01:37:56.955Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:38:00.377Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:38:09.760Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:38:13.050Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:38:13.054Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:38:13.061Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=12
+2026-01-18T01:38:13.064Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304 durationMs=10
+2026-01-18T01:38:13.352Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:38:13.354Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:38:13.356Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:38:13.357Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:38:13.361Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=9
+2026-01-18T01:38:13.364Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=10
+2026-01-18T01:38:13.369Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=12
+2026-01-18T01:38:13.367Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=11
+2026-01-18T01:38:13.372Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:38:13.374Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:38:13.377Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=5
+2026-01-18T01:38:13.381Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304 durationMs=7
+2026-01-18T01:38:13.680Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:38:13.682Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:38:13.686Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:38:13.685Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:38:13.688Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=8
+2026-01-18T01:38:13.690Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=8
+2026-01-18T01:38:13.693Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=9
+2026-01-18T01:38:13.695Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=9
+2026-01-18T01:38:47.871Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:38:51.463Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:38:51.470Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:38:51.479Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=17
+2026-01-18T01:38:51.484Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304 durationMs=14
+2026-01-18T01:38:51.766Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:38:51.768Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:38:51.771Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:38:51.773Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:38:51.780Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=12
+2026-01-18T01:38:51.777Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=11
+2026-01-18T01:38:51.784Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=13
+2026-01-18T01:38:51.787Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=14
+2026-01-18T01:38:51.791Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:38:51.794Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:38:51.798Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=8
+2026-01-18T01:38:51.800Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304 durationMs=6
+2026-01-18T01:38:52.087Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:38:52.089Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:38:52.093Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=4
+2026-01-18T01:38:52.091Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=4
+2026-01-18T01:38:52.097Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:38:52.099Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:38:52.103Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=6
+2026-01-18T01:38:52.105Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=6
+2026-01-18T01:38:58.147Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:39:05.497Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:39:05.504Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:39:05.511Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=14
+2026-01-18T01:39:05.520Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304 durationMs=16
+2026-01-18T01:39:05.801Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:39:05.803Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:39:05.806Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:39:05.808Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:39:05.824Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=23
+2026-01-18T01:39:05.827Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=24
+2026-01-18T01:39:05.830Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=25
+2026-01-18T01:39:05.834Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=25
+2026-01-18T01:39:05.838Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:39:05.840Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:39:05.845Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=8
+2026-01-18T01:39:05.848Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304 durationMs=8
+2026-01-18T01:39:06.145Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:39:06.147Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:39:06.146Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:39:06.143Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:39:06.150Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=7
+2026-01-18T01:39:06.152Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=7
+2026-01-18T01:39:06.153Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=7
+2026-01-18T01:39:06.157Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=9
+2026-01-18T01:40:25.902Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:40:29.687Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:40:46.433Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:40:52.358Z │ INFO │ httpLogger.js:5 │ Incoming request method=POST url=/api/auth/login ip=::1
+2026-01-18T01:40:52.419Z │ INFO │ httpLogger.js:12 │ Request completed method=POST url=/api/auth/login status=200 durationMs=60
+2026-01-18T01:40:52.626Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:40:52.630Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:40:52.633Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:40:52.636Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:40:52.639Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=13
+2026-01-18T01:40:52.640Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:40:52.643Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304 durationMs=13
+2026-01-18T01:40:52.645Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=12
+2026-01-18T01:40:52.649Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=9
+2026-01-18T01:40:52.647Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=11
+2026-01-18T01:40:52.934Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:40:52.936Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=3
+2026-01-18T01:40:52.950Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:40:52.952Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:40:52.954Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:40:52.958Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304 durationMs=6
+2026-01-18T01:40:52.957Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=7
+2026-01-18T01:40:52.961Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=7
+2026-01-18T01:40:52.966Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:40:52.964Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:40:52.968Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=4
+2026-01-18T01:40:52.970Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=5
+2026-01-18T01:40:53.246Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:40:53.249Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=2
+2026-01-18T01:42:46.826Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:43:25.133Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:43:31.189Z │ INFO │ httpLogger.js:5 │ Incoming request method=POST url=/api/auth/login ip=::1
+2026-01-18T01:43:31.249Z │ INFO │ httpLogger.js:12 │ Request completed method=POST url=/api/auth/login status=200 durationMs=60
+2026-01-18T01:43:31.440Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:43:31.444Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:43:31.446Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:43:31.448Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:43:31.464Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:43:31.467Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=27
+2026-01-18T01:43:31.469Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304 durationMs=26
+2026-01-18T01:43:31.473Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=27
+2026-01-18T01:43:31.477Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=13
+2026-01-18T01:43:31.475Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=27
+2026-01-18T01:43:31.750Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:43:31.753Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=3
+2026-01-18T01:43:31.786Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:43:31.784Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:43:31.789Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:43:31.782Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:43:31.795Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304 durationMs=11
+2026-01-18T01:43:31.798Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=12
+2026-01-18T01:43:31.793Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=10
+2026-01-18T01:43:31.801Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=12
+2026-01-18T01:43:31.803Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:43:31.805Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=3
+2026-01-18T01:43:32.062Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:43:32.065Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=3
+2026-01-18T01:44:11.639Z │ INFO │ httpLogger.js:12 │ Request completed method=POST url=/api/users status=400 durationMs=3
+2026-01-18T01:44:11.636Z │ INFO │ httpLogger.js:5 │ Incoming request method=POST url=/api/users ip=::1
+2026-01-18T01:45:14.584Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:45:21.130Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:45:21.136Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:45:21.140Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:45:21.149Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=19
+2026-01-18T01:45:21.153Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304 durationMs=17
+2026-01-18T01:45:21.157Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=17
+2026-01-18T01:45:21.438Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:45:21.440Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:45:21.445Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:45:21.450Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=12
+2026-01-18T01:45:21.453Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=13
+2026-01-18T01:45:21.456Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=11
+2026-01-18T01:45:21.457Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:45:21.460Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:45:21.462Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=5
+2026-01-18T01:45:21.464Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304 durationMs=4
+2026-01-18T01:45:21.466Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:45:21.470Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=4
+2026-01-18T01:45:21.764Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:45:21.766Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:45:21.769Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:45:21.775Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=11
+2026-01-18T01:45:21.777Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=11
+2026-01-18T01:45:21.779Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=11
+2026-01-18T01:45:28.173Z │ INFO │ httpLogger.js:5 │ Incoming request method=POST url=/api/users ip=::1
+2026-01-18T01:45:28.177Z │ ERROR │ httpLogger.js:12 │ Request completed method=POST url=/api/users status=400 durationMs=4
+2026-01-18T01:46:40.178Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:46:47.319Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:46:55.749Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:46:57.180Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:47:34.577Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:47:37.860Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:47:50.911Z │ INFO │ httpLogger.js:5 │ Incoming request method=POST url=/api/users ip=::1
+2026-01-18T01:47:50.918Z │ ERROR │ httpLogger.js:12 │ Request completed method=POST url=/api/users status=400 durationMs=8
+2026-01-18T01:47:57.960Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:47:57.965Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:47:57.974Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=15
+2026-01-18T01:47:57.976Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304 durationMs=11
+2026-01-18T01:47:58.273Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:47:58.272Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:47:58.280Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:47:58.286Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=14
+2026-01-18T01:47:58.288Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=15
+2026-01-18T01:47:58.289Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:47:58.292Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=12
+2026-01-18T01:47:58.295Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=6
+2026-01-18T01:47:58.296Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:47:58.298Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:47:58.300Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=4
+2026-01-18T01:47:58.302Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304 durationMs=4
+2026-01-18T01:47:58.594Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:47:58.595Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:47:58.598Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=4
+2026-01-18T01:47:58.602Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=7
+2026-01-18T01:47:58.605Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:47:58.607Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:47:58.610Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=6
+2026-01-18T01:47:58.612Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=6
+2026-01-18T01:48:27.896Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:48:32.165Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:48:36.154Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:48:52.262Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:48:52.281Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:48:52.286Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:48:52.293Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=200
+2026-01-18T01:48:52.296Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=200
+2026-01-18T01:48:52.571Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:48:52.574Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:48:52.573Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:48:52.576Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:48:52.579Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=200
+2026-01-18T01:48:52.581Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=200
+2026-01-18T01:48:52.585Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=200
+2026-01-18T01:48:52.588Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=200
+2026-01-18T01:48:52.599Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:48:52.602Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304
+2026-01-18T01:48:52.605Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:48:52.608Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304
+2026-01-18T01:48:52.899Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:48:52.900Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:48:52.901Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:48:52.903Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304
+2026-01-18T01:48:52.903Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:48:52.907Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304
+2026-01-18T01:48:52.909Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304
+2026-01-18T01:48:52.911Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304
+2026-01-18T01:49:25.457Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:50:10.669Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:50:13.053Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:50:13.057Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:50:13.066Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304 durationMs=9
+2026-01-18T01:50:13.064Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=11
+2026-01-18T01:50:13.352Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:50:13.354Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:50:13.353Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:50:13.356Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:50:13.359Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=7
+2026-01-18T01:50:13.362Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=9
+2026-01-18T01:50:13.366Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=11
+2026-01-18T01:50:13.368Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=12
+2026-01-18T01:50:13.372Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:50:13.375Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=3
+2026-01-18T01:50:13.381Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:50:13.385Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304 durationMs=4
+2026-01-18T01:50:13.676Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:50:13.678Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:50:13.687Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:50:13.679Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:50:13.689Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=13
+2026-01-18T01:50:13.694Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=15
+2026-01-18T01:50:13.691Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=13
+2026-01-18T01:50:13.696Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=9
+2026-01-18T01:51:15.647Z │ INFO │ server.js:46 │ Server started listening on port 5000
+
+2026-01-18T01:51:22.989Z │ INFO │ server.js:46 │ Server started listening on port 5000
+
+2026-01-18T01:51:26.276Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+
+2026-01-18T01:51:26.285Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+
+2026-01-18T01:51:26.292Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=17
+
+2026-01-18T01:51:26.297Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304 durationMs=12
+
+2026-01-18T01:51:26.580Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+
+2026-01-18T01:51:26.594Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+
+2026-01-18T01:51:26.584Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+
+2026-01-18T01:51:26.597Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+
+2026-01-18T01:51:26.601Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=21
+
+2026-01-18T01:51:26.604Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=20
+
+2026-01-18T01:51:26.611Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=17
+
+2026-01-18T01:51:26.614Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=17
+
+2026-01-18T01:51:26.618Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+
+2026-01-18T01:51:26.621Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+
+2026-01-18T01:51:26.630Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304 durationMs=10
+
+2026-01-18T01:51:26.627Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=9
+
+2026-01-18T01:51:26.924Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+
+2026-01-18T01:51:26.935Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+
+2026-01-18T01:51:26.940Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+
+2026-01-18T01:51:26.921Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+
+2026-01-18T01:51:26.943Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=22
+
+2026-01-18T01:51:26.947Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=22
+
+2026-01-18T01:51:26.953Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=18
+
+2026-01-18T01:51:26.956Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=16
+
+2026-01-18T01:51:32.803Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:51:53.594Z │ INFO │ server.js:46 │ Server started listening on port 5000
+
+2026-01-18T01:51:55.297Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+
+2026-01-18T01:51:55.303Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+
+2026-01-18T01:51:55.309Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=12
+
+2026-01-18T01:51:55.312Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304 durationMs=9
+
+2026-01-18T01:51:55.593Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+
+2026-01-18T01:51:55.597Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+
+2026-01-18T01:51:55.596Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+
+2026-01-18T01:51:55.599Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+
+2026-01-18T01:51:55.607Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=15
+
+2026-01-18T01:51:55.610Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=14
+
+2026-01-18T01:51:55.617Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=18
+
+2026-01-18T01:51:55.613Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=16
+
+2026-01-18T01:51:55.622Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+
+2026-01-18T01:51:55.627Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+
+2026-01-18T01:51:55.631Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304 durationMs=9
+
+2026-01-18T01:51:55.637Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304 durationMs=11
+
+2026-01-18T01:51:55.914Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+
+2026-01-18T01:51:55.919Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304 durationMs=5
+
+2026-01-18T01:51:55.927Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+
+2026-01-18T01:51:55.933Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+
+2026-01-18T01:51:55.931Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+
+2026-01-18T01:51:55.936Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304 durationMs=9
+
+2026-01-18T01:51:55.939Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304 durationMs=8
+
+2026-01-18T01:51:55.943Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304 durationMs=10
+
+2026-01-18T01:52:06.800Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:52:54.774Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:53:02.910Z │ INFO │ httpLogger.js:5 │ Incoming request method=POST url=/api/auth/login ip=::1
+2026-01-18T01:53:02.970Z │ INFO │ httpLogger.js:12 │ Request completed method=POST url=/api/auth/login status=200
+2026-01-18T01:53:03.004Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:53:03.011Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=200
+2026-01-18T01:53:03.316Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:53:03.318Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:53:03.320Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:53:03.322Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:53:03.323Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:53:03.330Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=200
+2026-01-18T01:53:03.333Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=200
+2026-01-18T01:53:03.336Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=200
+2026-01-18T01:53:03.339Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=200
+2026-01-18T01:53:03.342Z │ INFO │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=200
+2026-01-18T01:53:03.344Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:53:03.348Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/projects status=304
+2026-01-18T01:53:03.639Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:53:03.641Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:53:03.643Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/tasks status=304
+2026-01-18T01:53:03.645Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/user-tasks status=304
+2026-01-18T01:53:03.649Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:53:03.655Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:53:03.652Z │ INFO │ httpLogger.js:5 │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:53:03.658Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/user-projects status=304
+2026-01-18T01:53:03.664Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/users status=304
+2026-01-18T01:53:03.666Z │ WARN │ httpLogger.js:12 │ Request completed method=GET url=/api/profiles status=304
+2026-01-18T01:53:39.632Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:54:37.442Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:55:13.941Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:55:16.626Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:55:22.428Z │ INFO │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:55:22.433Z │ INFO │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:55:22.439Z │ WARN │ node:events:520 │ Request completed method=GET url=/api/projects status=304
+2026-01-18T01:55:22.443Z │ WARN │ node:events:520 │ Request completed method=GET url=/api/tasks status=304
+2026-01-18T01:55:22.741Z │ INFO │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:55:22.745Z │ INFO │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:55:22.743Z │ INFO │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:55:22.752Z │ INFO │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:55:22.757Z │ WARN │ node:events:520 │ Request completed method=GET url=/api/user-tasks status=304
+2026-01-18T01:55:22.764Z │ WARN │ node:events:520 │ Request completed method=GET url=/api/user-projects status=304
+2026-01-18T01:55:22.759Z │ WARN │ node:events:520 │ Request completed method=GET url=/api/users status=304
+2026-01-18T01:55:22.763Z │ WARN │ node:events:520 │ Request completed method=GET url=/api/profiles status=304
+2026-01-18T01:55:22.767Z │ INFO │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:55:22.765Z │ INFO │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:55:22.770Z │ WARN │ node:events:520 │ Request completed method=GET url=/api/projects status=304
+2026-01-18T01:55:22.771Z │ WARN │ node:events:520 │ Request completed method=GET url=/api/tasks status=304
+2026-01-18T01:55:23.065Z │ INFO │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:55:23.068Z │ INFO │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:55:23.075Z │ WARN │ node:events:520 │ Request completed method=GET url=/api/user-tasks status=304
+2026-01-18T01:55:23.082Z │ WARN │ node:events:520 │ Request completed method=GET url=/api/users status=304
+2026-01-18T01:55:23.084Z │ INFO │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:55:23.086Z │ INFO │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:55:23.089Z │ WARN │ node:events:520 │ Request completed method=GET url=/api/profiles status=304
+2026-01-18T01:55:23.091Z │ WARN │ node:events:520 │ Request completed method=GET url=/api/user-projects status=304
+2026-01-18T01:56:10.727Z │ INFO │ Incoming request method=POST url=/api/users ip=::1
+2026-01-18T01:56:10.732Z │ ERROR │ node:events:520 │ Request completed method=POST url=/api/users status=400
+2026-01-18T01:56:17.105Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:56:24.192Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:56:27.720Z │ INFO │ httpLogger.js:5 │ Incoming request method=POST url=/api/users ip=::1
+2026-01-18T01:56:27.727Z │ ERROR │ httpLogger.js:12 │ Request completed method=POST url=/api/users status=400
+2026-01-18T01:56:51.114Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:56:56.699Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:56:59.048Z │ INFO │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:56:59.052Z │ INFO │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:56:59.061Z │ WARN │ node:events:520 │ Request completed method=GET url=/api/tasks status=304
+2026-01-18T01:56:59.059Z │ WARN │ node:events:520 │ Request completed method=GET url=/api/projects status=304
+2026-01-18T01:56:59.357Z │ INFO │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:56:59.360Z │ INFO │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:56:59.359Z │ INFO │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:56:59.362Z │ INFO │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:56:59.367Z │ WARN │ node:events:520 │ Request completed method=GET url=/api/user-tasks status=304
+2026-01-18T01:56:59.370Z │ WARN │ node:events:520 │ Request completed method=GET url=/api/profiles status=304
+2026-01-18T01:56:59.374Z │ WARN │ node:events:520 │ Request completed method=GET url=/api/user-projects status=304
+2026-01-18T01:56:59.378Z │ WARN │ node:events:520 │ Request completed method=GET url=/api/users status=304
+2026-01-18T01:56:59.381Z │ INFO │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:56:59.384Z │ INFO │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:56:59.388Z │ WARN │ node:events:520 │ Request completed method=GET url=/api/projects status=304
+2026-01-18T01:56:59.390Z │ WARN │ node:events:520 │ Request completed method=GET url=/api/tasks status=304
+2026-01-18T01:56:59.678Z │ INFO │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:56:59.681Z │ INFO │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:56:59.690Z │ WARN │ node:events:520 │ Request completed method=GET url=/api/user-tasks status=304
+2026-01-18T01:56:59.692Z │ WARN │ node:events:520 │ Request completed method=GET url=/api/profiles status=304
+2026-01-18T01:56:59.694Z │ INFO │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:56:59.696Z │ INFO │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:56:59.699Z │ WARN │ node:events:520 │ Request completed method=GET url=/api/user-projects status=304
+2026-01-18T01:56:59.700Z │ WARN │ node:events:520 │ Request completed method=GET url=/api/users status=304
+2026-01-18T01:57:17.293Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:57:20.758Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:57:23.259Z │ INFO │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:57:23.267Z │ INFO │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:57:23.274Z │ WARN │ Request completed method=GET url=/api/projects status=304
+2026-01-18T01:57:23.279Z │ WARN │ Request completed method=GET url=/api/tasks status=304
+2026-01-18T01:57:23.560Z │ INFO │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:57:23.562Z │ INFO │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:57:23.567Z │ INFO │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:57:23.569Z │ INFO │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:57:23.573Z │ WARN │ Request completed method=GET url=/api/user-tasks status=304
+2026-01-18T01:57:23.578Z │ WARN │ Request completed method=GET url=/api/user-projects status=304
+2026-01-18T01:57:23.575Z │ WARN │ Request completed method=GET url=/api/profiles status=304
+2026-01-18T01:57:23.581Z │ WARN │ Request completed method=GET url=/api/users status=304
+2026-01-18T01:57:23.584Z │ INFO │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:57:23.587Z │ WARN │ Request completed method=GET url=/api/projects status=304
+2026-01-18T01:57:23.588Z │ INFO │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:57:23.597Z │ WARN │ Request completed method=GET url=/api/tasks status=304
+2026-01-18T01:57:23.888Z │ INFO │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:57:23.891Z │ INFO │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:57:23.900Z │ INFO │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:57:23.890Z │ INFO │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:57:23.903Z │ WARN │ Request completed method=GET url=/api/user-projects status=304
+2026-01-18T01:57:23.906Z │ WARN │ Request completed method=GET url=/api/users status=304
+2026-01-18T01:57:23.908Z │ WARN │ Request completed method=GET url=/api/user-tasks status=304
+2026-01-18T01:57:23.910Z │ WARN │ Request completed method=GET url=/api/profiles status=304
+2026-01-18T01:58:07.666Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:58:12.242Z │ INFO │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:58:12.247Z │ INFO │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:58:12.254Z │ WARN │ Request completed method=GET url=/api/projects status=304
+2026-01-18T01:58:12.257Z │ WARN │ Request completed method=GET url=/api/tasks status=304
+2026-01-18T01:58:12.542Z │ INFO │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:58:12.545Z │ INFO │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:58:12.544Z │ INFO │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:58:12.547Z │ INFO │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:58:12.554Z │ WARN │ Request completed method=GET url=/api/users status=304
+2026-01-18T01:58:12.551Z │ WARN │ Request completed method=GET url=/api/user-tasks status=304
+2026-01-18T01:58:12.557Z │ WARN │ Request completed method=GET url=/api/profiles status=304
+2026-01-18T01:58:12.559Z │ WARN │ Request completed method=GET url=/api/user-projects status=304
+2026-01-18T01:58:12.563Z │ INFO │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T01:58:12.564Z │ INFO │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T01:58:12.566Z │ WARN │ Request completed method=GET url=/api/projects status=304
+2026-01-18T01:58:12.568Z │ WARN │ Request completed method=GET url=/api/tasks status=304
+2026-01-18T01:58:12.869Z │ INFO │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T01:58:12.872Z │ INFO │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T01:58:12.873Z │ INFO │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T01:58:12.871Z │ INFO │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T01:58:12.875Z │ WARN │ Request completed method=GET url=/api/user-tasks status=304
+2026-01-18T01:58:12.879Z │ WARN │ Request completed method=GET url=/api/users status=304
+2026-01-18T01:58:12.890Z │ WARN │ Request completed method=GET url=/api/profiles status=304
+2026-01-18T01:58:12.892Z │ WARN │ Request completed method=GET url=/api/user-projects status=304
+2026-01-18T01:58:18.345Z │ INFO │ Incoming request method=POST url=/api/users ip=::1
+2026-01-18T01:58:18.349Z │ ERROR │ Request completed method=POST url=/api/users status=400
+2026-01-18T01:59:02.305Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:59:05.641Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T01:59:10.353Z │ INFO │ httpLogger.js:5 (presentation) │ Incoming request method=POST url=/api/users ip=::1
+2026-01-18T01:59:10.361Z │ ERROR │ httpLogger.js:12 (presentation) │ Request completed method=POST url=/api/users status=400
+2026-01-18T02:00:35.180Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T02:00:37.985Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T02:00:47.047Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T02:01:00.682Z │ INFO │ httpLogger.js:5 (presentation) │ Incoming request method=POST url=/api/users ip=::1
+2026-01-18T02:01:00.687Z │ ERROR │ errorHandler.js:16 (presentation) │ Request error method=POST url=/api/users status=400 err={"name":"ValidationError","code":"VALIDATION_ERROR","status":400,"details":[{"validation":"email","code":"invalid_string","message":"Invalid email","path":["email"]}]}
+2026-01-18T02:01:00.691Z │ ERROR │ httpLogger.js:12 (presentation) │ Request completed method=POST url=/api/users status=400
+2026-01-18T02:02:03.420Z │ INFO │ server.js:46 │ Server started listening on port 5000
+2026-01-18T02:02:09.326Z │ INFO │ httpLogger.js:5 (presentation) │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T02:02:09.333Z │ INFO │ httpLogger.js:5 (presentation) │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T02:02:09.340Z │ WARN │ httpLogger.js:12 (presentation) │ Request completed method=GET url=/api/projects status=304
+2026-01-18T02:02:09.343Z │ WARN │ httpLogger.js:12 (presentation) │ Request completed method=GET url=/api/tasks status=304
+2026-01-18T02:02:09.630Z │ INFO │ httpLogger.js:5 (presentation) │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T02:02:09.632Z │ INFO │ httpLogger.js:5 (presentation) │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T02:02:09.634Z │ INFO │ httpLogger.js:5 (presentation) │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T02:02:09.638Z │ INFO │ httpLogger.js:5 (presentation) │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T02:02:09.642Z │ WARN │ httpLogger.js:12 (presentation) │ Request completed method=GET url=/api/profiles status=304
+2026-01-18T02:02:09.645Z │ WARN │ httpLogger.js:12 (presentation) │ Request completed method=GET url=/api/user-tasks status=304
+2026-01-18T02:02:09.648Z │ WARN │ httpLogger.js:12 (presentation) │ Request completed method=GET url=/api/users status=304
+2026-01-18T02:02:09.651Z │ WARN │ httpLogger.js:12 (presentation) │ Request completed method=GET url=/api/user-projects status=304
+2026-01-18T02:02:09.653Z │ INFO │ httpLogger.js:5 (presentation) │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T02:02:09.656Z │ INFO │ httpLogger.js:5 (presentation) │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T02:02:09.660Z │ WARN │ httpLogger.js:12 (presentation) │ Request completed method=GET url=/api/projects status=304
+2026-01-18T02:02:09.662Z │ WARN │ httpLogger.js:12 (presentation) │ Request completed method=GET url=/api/tasks status=304
+2026-01-18T02:02:09.958Z │ INFO │ httpLogger.js:5 (presentation) │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T02:02:09.959Z │ INFO │ httpLogger.js:5 (presentation) │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T02:02:09.961Z │ INFO │ httpLogger.js:5 (presentation) │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T02:02:09.964Z │ WARN │ httpLogger.js:12 (presentation) │ Request completed method=GET url=/api/profiles status=304
+2026-01-18T02:02:09.966Z │ WARN │ httpLogger.js:12 (presentation) │ Request completed method=GET url=/api/user-tasks status=304
+2026-01-18T02:02:09.967Z │ INFO │ httpLogger.js:5 (presentation) │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T02:02:09.973Z │ WARN │ httpLogger.js:12 (presentation) │ Request completed method=GET url=/api/users status=304
+2026-01-18T02:02:09.975Z │ WARN │ httpLogger.js:12 (presentation) │ Request completed method=GET url=/api/user-projects status=304
+2026-01-18T02:02:16.329Z │ INFO │ httpLogger.js:5 (presentation) │ Incoming request method=POST url=/api/users ip=::1
+2026-01-18T02:02:16.334Z │ ERROR │ VALIDATION_ERROR (presentation) │ Request error method=POST url=/api/users status=400 err={"name":"ValidationError","code":"VALIDATION_ERROR","status":400,"details":[{"validation":"email","code":"invalid_string","message":"Invalid email","path":["email"]}]}
+2026-01-18T02:02:16.336Z │ ERROR │ httpLogger.js:12 (presentation) │ Request completed method=POST url=/api/users status=400
+2026-01-18T02:04:47.228Z │ INFO │ Server started listening on port 5000
+2026-01-18T02:05:17.430Z │ INFO │ Server started listening on port 5000
+2026-01-18T02:05:21.079Z │ INFO │ Incoming request
+2026-01-18T02:05:21.139Z │ INFO │ Request completed
+2026-01-18T02:05:21.350Z │ INFO │ Incoming request
+2026-01-18T02:05:21.354Z │ INFO │ Incoming request
+2026-01-18T02:05:21.356Z │ INFO │ Incoming request
+2026-01-18T02:05:21.358Z │ INFO │ Incoming request
+2026-01-18T02:05:21.360Z │ INFO │ Incoming request
+2026-01-18T02:05:21.364Z │ WARN │ Request completed
+2026-01-18T02:05:21.369Z │ WARN │ Request completed
+2026-01-18T02:05:21.373Z │ WARN │ Request completed
+2026-01-18T02:05:21.366Z │ WARN │ Request completed
+2026-01-18T02:05:21.371Z │ WARN │ Request completed
+2026-01-18T02:05:21.666Z │ INFO │ Incoming request
+2026-01-18T02:05:21.669Z │ WARN │ Request completed
+2026-01-18T02:05:21.678Z │ INFO │ Incoming request
+2026-01-18T02:05:21.680Z │ INFO │ Incoming request
+2026-01-18T02:05:21.682Z │ INFO │ Incoming request
+2026-01-18T02:05:21.685Z │ WARN │ Request completed
+2026-01-18T02:05:21.686Z │ INFO │ Incoming request
+2026-01-18T02:05:21.688Z │ INFO │ Incoming request
+2026-01-18T02:05:21.691Z │ WARN │ Request completed
+2026-01-18T02:05:21.695Z │ WARN │ Request completed
+2026-01-18T02:05:21.700Z │ WARN │ Request completed
+2026-01-18T02:05:21.693Z │ WARN │ Request completed
+2026-01-18T02:05:21.991Z │ INFO │ Incoming request
+2026-01-18T02:05:21.994Z │ WARN │ Request completed
+2026-01-18T02:05:39.149Z │ ERROR │ VALIDATION_ERROR │ Request error
+2026-01-18T02:05:39.147Z │ INFO │ Incoming request
+2026-01-18T02:05:39.152Z │ ERROR │ Request completed
+2026-01-18T02:06:31.967Z │ INFO │ Server started listening on port 5000
+2026-01-18T02:06:40.075Z │ INFO │ Server started listening on port 5000
+2026-01-18T02:06:44.900Z │ INFO │ Incoming request
+2026-01-18T02:06:44.905Z │ ERROR │ VALIDATION_ERROR │ Request error
+2026-01-18T02:06:44.919Z │ ERROR │ Request completed
+2026-01-18T02:07:00.814Z │ INFO │ Incoming request
+2026-01-18T02:07:00.820Z │ INFO │ Incoming request
+2026-01-18T02:07:00.825Z │ INFO │ Incoming request
+2026-01-18T02:07:00.827Z │ INFO │ Incoming request
+2026-01-18T02:07:00.832Z │ INFO │ Incoming request
+2026-01-18T02:07:00.835Z │ INFO │ Incoming request
+2026-01-18T02:07:00.847Z │ WARN │ Request completed
+2026-01-18T02:07:00.854Z │ WARN │ Request completed
+2026-01-18T02:07:00.867Z │ WARN │ Request completed
+2026-01-18T02:07:00.858Z │ WARN │ Request completed
+2026-01-18T02:07:00.850Z │ WARN │ Request completed
+2026-01-18T02:07:00.863Z │ WARN │ Request completed
+2026-01-18T02:07:01.163Z │ INFO │ Incoming request
+2026-01-18T02:07:01.165Z │ INFO │ Incoming request
+2026-01-18T02:07:01.167Z │ INFO │ Incoming request
+2026-01-18T02:07:01.174Z │ INFO │ Incoming request
+2026-01-18T02:07:01.176Z │ WARN │ Request completed
+2026-01-18T02:07:01.179Z │ WARN │ Request completed
+2026-01-18T02:07:01.183Z │ INFO │ Incoming request
+2026-01-18T02:07:01.182Z │ WARN │ Request completed
+2026-01-18T02:07:01.187Z │ WARN │ Request completed
+2026-01-18T02:07:01.189Z │ INFO │ Incoming request
+2026-01-18T02:07:01.196Z │ WARN │ Request completed
+2026-01-18T02:07:01.200Z │ WARN │ Request completed
+2026-01-18T02:07:31.013Z │ INFO │ Server started listening on port 5000
+2026-01-18T02:07:34.536Z │ INFO │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T02:07:34.544Z │ INFO │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T02:07:34.550Z │ WARN │ Request completed method=GET url=/api/projects status=304
+2026-01-18T02:07:34.556Z │ WARN │ Request completed method=GET url=/api/tasks status=304
+2026-01-18T02:07:34.838Z │ INFO │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T02:07:34.840Z │ INFO │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T02:07:34.842Z │ INFO │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T02:07:34.848Z │ INFO │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T02:07:34.852Z │ WARN │ Request completed method=GET url=/api/profiles status=304
+2026-01-18T02:07:34.858Z │ WARN │ Request completed method=GET url=/api/users status=304
+2026-01-18T02:07:34.856Z │ WARN │ Request completed method=GET url=/api/user-tasks status=304
+2026-01-18T02:07:34.860Z │ WARN │ Request completed method=GET url=/api/user-projects status=304
+2026-01-18T02:07:34.863Z │ INFO │ Incoming request method=GET url=/api/projects ip=::1
+2026-01-18T02:07:34.865Z │ INFO │ Incoming request method=GET url=/api/tasks ip=::1
+2026-01-18T02:07:34.867Z │ WARN │ Request completed method=GET url=/api/projects status=304
+2026-01-18T02:07:34.871Z │ WARN │ Request completed method=GET url=/api/tasks status=304
+2026-01-18T02:07:35.168Z │ INFO │ Incoming request method=GET url=/api/profiles ip=::1
+2026-01-18T02:07:35.171Z │ INFO │ Incoming request method=GET url=/api/user-projects ip=::1
+2026-01-18T02:07:35.175Z │ INFO │ Incoming request method=GET url=/api/users ip=::1
+2026-01-18T02:07:35.172Z │ INFO │ Incoming request method=GET url=/api/user-tasks ip=::1
+2026-01-18T02:07:35.177Z │ WARN │ Request completed method=GET url=/api/profiles status=304
+2026-01-18T02:07:35.179Z │ WARN │ Request completed method=GET url=/api/user-projects status=304
+2026-01-18T02:07:35.181Z │ WARN │ Request completed method=GET url=/api/user-tasks status=304
+2026-01-18T02:07:35.183Z │ WARN │ Request completed method=GET url=/api/users status=304
+2026-01-18T02:07:46.139Z │ INFO │ Incoming request method=POST url=/api/users ip=::1
+2026-01-18T02:07:46.142Z │ ERROR │ VALIDATION_ERROR │ Request error
+2026-01-18T02:07:46.143Z │ ERROR │ Request completed method=POST url=/api/users status=400
+2026-01-18T02:08:24.822Z │ INFO │ Server started listening on port 5000
+2026-01-18T02:08:29.326Z │ INFO │ Incoming request method=POST url=/api/users ip=::1
+2026-01-18T02:08:29.335Z │ ERROR │ Request completed method=POST url=/api/users status=400
+2026-01-18T02:08:29.330Z │ ERROR │ VALIDATION_ERROR │ POST /api/users method=POST url=/api/users status=400
+2026-01-18T02:10:19.460Z │ INFO │ request │ Server started listening on port 5000
+2026-01-18T02:10:21.684Z │ INFO │ request │ GET /api/projects method=GET url=/api/projects ip=::1
+2026-01-18T02:10:21.691Z │ INFO │ request │ GET /api/tasks method=GET url=/api/tasks ip=::1
+2026-01-18T02:10:21.699Z │ WARN │ 304 response │ GET /api/projects method=GET url=/api/projects status=304
+2026-01-18T02:10:21.705Z │ WARN │ 304 response │ GET /api/tasks method=GET url=/api/tasks status=304
+2026-01-18T02:10:21.987Z │ INFO │ request │ GET /api/users method=GET url=/api/users ip=::1
+2026-01-18T02:10:21.990Z │ INFO │ request │ GET /api/profiles method=GET url=/api/profiles ip=::1
+2026-01-18T02:10:21.998Z │ INFO │ request │ GET /api/user-tasks method=GET url=/api/user-tasks ip=::1
+2026-01-18T02:10:22.001Z │ WARN │ 304 response │ GET /api/users method=GET url=/api/users status=304
+2026-01-18T02:10:22.002Z │ INFO │ request │ GET /api/user-projects method=GET url=/api/user-projects ip=::1
+2026-01-18T02:10:22.006Z │ WARN │ 304 response │ GET /api/user-tasks method=GET url=/api/user-tasks status=304
+2026-01-18T02:10:22.009Z │ WARN │ 304 response │ GET /api/user-projects method=GET url=/api/user-projects status=304
+2026-01-18T02:10:22.012Z │ WARN │ 304 response │ GET /api/profiles method=GET url=/api/profiles status=304
+2026-01-18T02:10:22.015Z │ INFO │ request │ GET /api/projects method=GET url=/api/projects ip=::1
+2026-01-18T02:10:22.018Z │ INFO │ request │ GET /api/tasks method=GET url=/api/tasks ip=::1
+2026-01-18T02:10:22.022Z │ WARN │ 304 response │ GET /api/projects method=GET url=/api/projects status=304
+2026-01-18T02:10:22.024Z │ WARN │ 304 response │ GET /api/tasks method=GET url=/api/tasks status=304
+2026-01-18T02:10:22.310Z │ INFO │ request │ GET /api/users method=GET url=/api/users ip=::1
+2026-01-18T02:10:22.312Z │ WARN │ 304 response │ GET /api/users method=GET url=/api/users status=304
+2026-01-18T02:10:22.319Z │ INFO │ request │ GET /api/user-tasks method=GET url=/api/user-tasks ip=::1
+2026-01-18T02:10:22.324Z │ INFO │ request │ GET /api/profiles method=GET url=/api/profiles ip=::1
+2026-01-18T02:10:22.322Z │ INFO │ request │ GET /api/user-projects method=GET url=/api/user-projects ip=::1
+2026-01-18T02:10:22.327Z │ WARN │ 304 response │ GET /api/user-tasks method=GET url=/api/user-tasks status=304
+2026-01-18T02:10:22.329Z │ WARN │ 304 response │ GET /api/user-projects method=GET url=/api/user-projects status=304
+2026-01-18T02:10:22.331Z │ WARN │ 304 response │ GET /api/profiles method=GET url=/api/profiles status=304
+2026-01-18T02:10:42.931Z │ INFO │ request │ Server started listening on port 5000
+2026-01-18T02:11:08.912Z │ INFO │ request │ Server started listening on port 5000
+2026-01-18T02:11:42.129Z │ INFO │ REQUEST │ Server started listening on port 5000
+2026-01-18T02:11:45.556Z │ INFO │ REQUEST │ Server started listening on port 5000
+2026-01-18T02:11:48.802Z │ INFO │ REQUEST │ GET /api/projects method=GET url=/api/projects ip=::1
+2026-01-18T02:11:48.809Z │ INFO │ REQUEST │ GET /api/tasks method=GET url=/api/tasks ip=::1
+2026-01-18T02:11:48.815Z │ WARN │ 304 │ RESPONSE │ GET /api/projects method=GET url=/api/projects status=304
+2026-01-18T02:11:48.819Z │ WARN │ 304 │ RESPONSE │ GET /api/tasks method=GET url=/api/tasks status=304
+2026-01-18T02:11:49.107Z │ INFO │ REQUEST │ GET /api/user-tasks method=GET url=/api/user-tasks ip=::1
+2026-01-18T02:11:49.109Z │ INFO │ REQUEST │ GET /api/users method=GET url=/api/users ip=::1
+2026-01-18T02:11:49.111Z │ INFO │ REQUEST │ GET /api/profiles method=GET url=/api/profiles ip=::1
+2026-01-18T02:11:49.113Z │ INFO │ REQUEST │ GET /api/user-projects method=GET url=/api/user-projects ip=::1
+2026-01-18T02:11:49.122Z │ WARN │ 304 │ RESPONSE │ GET /api/users method=GET url=/api/users status=304
+2026-01-18T02:11:49.117Z │ WARN │ 304 │ RESPONSE │ GET /api/user-tasks method=GET url=/api/user-tasks status=304
+2026-01-18T02:11:49.129Z │ WARN │ 304 │ RESPONSE │ GET /api/user-projects method=GET url=/api/user-projects status=304
+2026-01-18T02:11:49.126Z │ WARN │ 304 │ RESPONSE │ GET /api/profiles method=GET url=/api/profiles status=304
+2026-01-18T02:11:49.133Z │ INFO │ REQUEST │ GET /api/projects method=GET url=/api/projects ip=::1
+2026-01-18T02:11:49.135Z │ INFO │ REQUEST │ GET /api/tasks method=GET url=/api/tasks ip=::1
+2026-01-18T02:11:49.139Z │ WARN │ 304 │ RESPONSE │ GET /api/projects method=GET url=/api/projects status=304
+2026-01-18T02:11:49.141Z │ WARN │ 304 │ RESPONSE │ GET /api/tasks method=GET url=/api/tasks status=304
+2026-01-18T02:11:49.435Z │ INFO │ REQUEST │ GET /api/user-tasks method=GET url=/api/user-tasks ip=::1
+2026-01-18T02:11:49.437Z │ INFO │ REQUEST │ GET /api/users method=GET url=/api/users ip=::1
+2026-01-18T02:11:49.438Z │ INFO │ REQUEST │ GET /api/profiles method=GET url=/api/profiles ip=::1
+2026-01-18T02:11:49.443Z │ WARN │ 304 │ RESPONSE │ GET /api/user-tasks method=GET url=/api/user-tasks status=304
+2026-01-18T02:11:49.448Z │ WARN │ 304 │ RESPONSE │ GET /api/users method=GET url=/api/users status=304
+2026-01-18T02:11:49.452Z │ WARN │ 304 │ RESPONSE │ GET /api/profiles method=GET url=/api/profiles status=304
+2026-01-18T02:11:49.454Z │ INFO │ REQUEST │ GET /api/user-projects method=GET url=/api/user-projects ip=::1
+2026-01-18T02:11:49.457Z │ WARN │ 304 │ RESPONSE │ GET /api/user-projects method=GET url=/api/user-projects status=304
+2026-01-18T02:13:04.842Z │ INFO │ REQUEST │ - │ -
+2026-01-18T02:13:26.879Z │ INFO │ REQUEST │ Server started listening on port 5000
+2026-01-18T02:13:39.066Z │ INFO │ REQUEST │ Server started listening on port 5000
+2026-01-18T02:13:42.266Z │ INFO │ REQUEST │ GET /api/projects
+2026-01-18T02:13:42.273Z │ INFO │ REQUEST │ GET /api/tasks
+2026-01-18T02:13:42.280Z │ WARN │ RESPONSE │ GET /api/projects │ 304
+2026-01-18T02:13:42.284Z │ WARN │ RESPONSE │ GET /api/tasks │ 304
+2026-01-18T02:13:42.572Z │ INFO │ REQUEST │ GET /api/user-tasks
+2026-01-18T02:13:42.574Z │ INFO │ REQUEST │ GET /api/users
+2026-01-18T02:13:42.584Z │ INFO │ REQUEST │ GET /api/profiles
+2026-01-18T02:13:42.586Z │ INFO │ REQUEST │ GET /api/user-projects
+2026-01-18T02:13:42.590Z │ WARN │ RESPONSE │ GET /api/user-tasks │ 304
+2026-01-18T02:13:42.592Z │ WARN │ RESPONSE │ GET /api/users │ 304
+2026-01-18T02:13:42.594Z │ WARN │ RESPONSE │ GET /api/profiles │ 304
+2026-01-18T02:13:42.596Z │ WARN │ RESPONSE │ GET /api/user-projects │ 304
+2026-01-18T02:13:42.600Z │ INFO │ REQUEST │ GET /api/projects
+2026-01-18T02:13:42.602Z │ INFO │ REQUEST │ GET /api/tasks
+2026-01-18T02:13:42.606Z │ WARN │ RESPONSE │ GET /api/projects │ 304
+2026-01-18T02:13:42.608Z │ WARN │ RESPONSE │ GET /api/tasks │ 304
+2026-01-18T02:13:42.912Z │ INFO │ REQUEST │ GET /api/profiles
+2026-01-18T02:13:42.914Z │ INFO │ REQUEST │ GET /api/user-tasks
+2026-01-18T02:13:42.921Z │ INFO │ REQUEST │ GET /api/users
+2026-01-18T02:13:42.923Z │ INFO │ REQUEST │ GET /api/user-projects
+2026-01-18T02:13:42.925Z │ WARN │ RESPONSE │ GET /api/profiles │ 304
+2026-01-18T02:13:42.926Z │ WARN │ RESPONSE │ GET /api/user-tasks │ 304
+2026-01-18T02:13:42.927Z │ WARN │ RESPONSE │ GET /api/users │ 304
+2026-01-18T02:13:42.928Z │ WARN │ RESPONSE │ GET /api/user-projects │ 304
+2026-01-18T02:13:56.408Z │ INFO │ REQUEST │ POST /api/users
+2026-01-18T02:13:56.411Z │ ERROR │ RESPONSE │ POST /api/users │ 400
+2026-01-18T02:13:56.413Z │ ERROR │ RESPONSE │ POST /api/users │ 400
+2026-01-18T02:14:36.209Z │ INFO │ REQUEST │ Server started listening on port 5000
+2026-01-18T02:14:42.200Z │ INFO │ REQUEST │ Server started listening on port 5000
+2026-01-18T02:14:45.043Z │ INFO │ REQUEST │ GET /api/projects
+2026-01-18T02:14:45.052Z │ INFO │ REQUEST │ GET /api/tasks
+2026-01-18T02:14:45.065Z │ WARN │ RESPONSE │ GET /api/projects │ 304
+2026-01-18T02:14:45.069Z │ WARN │ RESPONSE │ GET /api/tasks │ 304
+2026-01-18T02:14:45.340Z │ INFO │ REQUEST │ GET /api/user-tasks
+2026-01-18T02:14:45.343Z │ INFO │ REQUEST │ GET /api/users
+2026-01-18T02:14:45.346Z │ INFO │ REQUEST │ GET /api/profiles
+2026-01-18T02:14:45.350Z │ INFO │ REQUEST │ GET /api/user-projects
+2026-01-18T02:14:45.354Z │ WARN │ RESPONSE │ GET /api/user-tasks │ 304
+2026-01-18T02:14:45.358Z │ WARN │ RESPONSE │ GET /api/profiles │ 304
+2026-01-18T02:14:45.361Z │ WARN │ RESPONSE │ GET /api/user-projects │ 304
+2026-01-18T02:14:45.356Z │ WARN │ RESPONSE │ GET /api/users │ 304
+2026-01-18T02:14:45.375Z │ INFO │ REQUEST │ GET /api/projects
+2026-01-18T02:14:45.377Z │ INFO │ REQUEST │ GET /api/tasks
+2026-01-18T02:14:45.379Z │ WARN │ RESPONSE │ GET /api/projects │ 304
+2026-01-18T02:14:45.382Z │ WARN │ RESPONSE │ GET /api/tasks │ 304
+2026-01-18T02:14:45.663Z │ INFO │ REQUEST │ GET /api/users
+2026-01-18T02:14:45.664Z │ INFO │ REQUEST │ GET /api/profiles
+2026-01-18T02:14:45.667Z │ INFO │ REQUEST │ GET /api/user-tasks
+2026-01-18T02:14:45.673Z │ WARN │ RESPONSE │ GET /api/users │ 304
+2026-01-18T02:14:45.678Z │ WARN │ RESPONSE │ GET /api/profiles │ 304
+2026-01-18T02:14:45.682Z │ WARN │ RESPONSE │ GET /api/user-tasks │ 304
+2026-01-18T02:14:45.684Z │ INFO │ REQUEST │ GET /api/user-projects
+2026-01-18T02:14:45.687Z │ WARN │ RESPONSE │ GET /api/user-projects │ 304
+2026-01-18T02:15:09.504Z │ INFO │ REQUEST │ Server started listening on port 5000
+2026-01-18T02:15:12.337Z │ INFO │ REQUEST │ GET /api/projects Incoming request params={} query={} ip=::1
+2026-01-18T02:15:12.343Z │ INFO │ REQUEST │ GET /api/tasks Incoming request params={} query={} ip=::1
+2026-01-18T02:15:12.351Z │ WARN │ RESPONSE │ GET /api/projects Request completed params={} query={} status=304 │ 304
+2026-01-18T02:15:12.355Z │ WARN │ RESPONSE │ GET /api/tasks Request completed params={} query={} status=304 │ 304
+2026-01-18T02:15:12.639Z │ INFO │ REQUEST │ GET /api/user-tasks Incoming request params={} query={} ip=::1
+2026-01-18T02:15:12.641Z │ INFO │ REQUEST │ GET /api/users Incoming request params={} query={} ip=::1
+2026-01-18T02:15:12.646Z │ INFO │ REQUEST │ GET /api/user-projects Incoming request params={} query={} ip=::1
+2026-01-18T02:15:12.643Z │ INFO │ REQUEST │ GET /api/profiles Incoming request params={} query={} ip=::1
+2026-01-18T02:15:12.650Z │ WARN │ RESPONSE │ GET /api/user-tasks Request completed params={} query={} status=304 │ 304
+2026-01-18T02:15:12.655Z │ WARN │ RESPONSE │ GET /api/users Request completed params={} query={} status=304 │ 304
+2026-01-18T02:15:12.658Z │ WARN │ RESPONSE │ GET /api/profiles Request completed params={} query={} status=304 │ 304
+2026-01-18T02:15:12.661Z │ WARN │ RESPONSE │ GET /api/user-projects Request completed params={} query={} status=304 │ 304
+2026-01-18T02:15:12.667Z │ INFO │ REQUEST │ GET /api/tasks Incoming request params={} query={} ip=::1
+2026-01-18T02:15:12.665Z │ INFO │ REQUEST │ GET /api/projects Incoming request params={} query={} ip=::1
+2026-01-18T02:15:12.671Z │ WARN │ RESPONSE │ GET /api/projects Request completed params={} query={} status=304 │ 304
+2026-01-18T02:15:12.673Z │ WARN │ RESPONSE │ GET /api/tasks Request completed params={} query={} status=304 │ 304
+2026-01-18T02:15:12.964Z │ INFO │ REQUEST │ GET /api/user-tasks Incoming request params={} query={} ip=::1
+2026-01-18T02:15:12.966Z │ INFO │ REQUEST │ GET /api/users Incoming request params={} query={} ip=::1
+2026-01-18T02:15:12.968Z │ INFO │ REQUEST │ GET /api/profiles Incoming request params={} query={} ip=::1
+2026-01-18T02:15:12.971Z │ WARN │ RESPONSE │ GET /api/user-tasks Request completed params={} query={} status=304 │ 304
+2026-01-18T02:15:12.973Z │ WARN │ RESPONSE │ GET /api/users Request completed params={} query={} status=304 │ 304
+2026-01-18T02:15:12.975Z │ WARN │ RESPONSE │ GET /api/profiles Request completed params={} query={} status=304 │ 304
+2026-01-18T02:15:12.976Z │ INFO │ REQUEST │ GET /api/user-projects Incoming request params={} query={} ip=::1
+2026-01-18T02:15:12.981Z │ WARN │ RESPONSE │ GET /api/user-projects Request completed params={} query={} status=304 │ 304
+2026-01-18T02:17:14.687Z │ INFO │ REQUEST │ Server started listening on port 5000
+2026-01-18T02:17:17.814Z │ INFO │ REQUEST │ GET /api/projects params={} query={} ip=::1
+2026-01-18T02:17:17.820Z │ INFO │ REQUEST │ GET /api/tasks params={} query={} ip=::1
+2026-01-18T02:17:17.829Z │ WARN │ RESPONSE │ GET /api/projects │ 304
+2026-01-18T02:17:17.834Z │ WARN │ RESPONSE │ GET /api/tasks │ 304
+2026-01-18T02:17:18.115Z │ INFO │ REQUEST │ GET /api/user-tasks params={} query={} ip=::1
+2026-01-18T02:17:18.118Z │ INFO │ REQUEST │ GET /api/profiles params={} query={} ip=::1
+2026-01-18T02:17:18.117Z │ INFO │ REQUEST │ GET /api/users params={} query={} ip=::1
+2026-01-18T02:17:18.120Z │ INFO │ REQUEST │ GET /api/user-projects params={} query={} ip=::1
+2026-01-18T02:17:18.124Z │ WARN │ RESPONSE │ GET /api/user-tasks │ 304
+2026-01-18T02:17:18.126Z │ WARN │ RESPONSE │ GET /api/users │ 304
+2026-01-18T02:17:18.129Z │ WARN │ RESPONSE │ GET /api/profiles │ 304
+2026-01-18T02:17:18.132Z │ WARN │ RESPONSE │ GET /api/user-projects │ 304
+2026-01-18T02:17:18.136Z │ INFO │ REQUEST │ GET /api/projects params={} query={} ip=::1
+2026-01-18T02:17:18.139Z │ WARN │ RESPONSE │ GET /api/projects │ 304
+2026-01-18T02:17:18.143Z │ INFO │ REQUEST │ GET /api/tasks params={} query={} ip=::1
+2026-01-18T02:17:18.147Z │ WARN │ RESPONSE │ GET /api/tasks │ 304
+2026-01-18T02:17:18.442Z │ INFO │ REQUEST │ GET /api/user-tasks params={} query={} ip=::1
+2026-01-18T02:17:18.452Z │ INFO │ REQUEST │ GET /api/user-projects params={} query={} ip=::1
+2026-01-18T02:17:18.444Z │ INFO │ REQUEST │ GET /api/users params={} query={} ip=::1
+2026-01-18T02:17:18.445Z │ INFO │ REQUEST │ GET /api/profiles params={} query={} ip=::1
+2026-01-18T02:17:18.456Z │ WARN │ RESPONSE │ GET /api/users │ 304
+2026-01-18T02:17:18.454Z │ WARN │ RESPONSE │ GET /api/user-tasks │ 304
+2026-01-18T02:17:18.458Z │ WARN │ RESPONSE │ GET /api/profiles │ 304
+2026-01-18T02:17:18.462Z │ WARN │ RESPONSE │ GET /api/user-projects │ 304
+2026-01-18T02:17:29.766Z │ INFO │ REQUEST │ POST /api/users params={} query={} ip=::1
+2026-01-18T02:17:29.770Z │ ERROR │ RESPONSE │ POST /api/users │ 400
+2026-01-18T02:17:29.771Z │ ERROR │ RESPONSE │ POST /api/users │ 400
+2026-01-18T02:17:35.009Z │ INFO │ REQUEST │ POST /api/users params={} query={} ip=::1
+2026-01-18T02:17:35.011Z │ ERROR │ RESPONSE │ POST /api/users │ 400
+2026-01-18T02:17:35.013Z │ ERROR │ RESPONSE │ POST /api/users │ 400
+2026-01-18T02:18:42.702Z │ INFO │ REQUEST │ Server started listening on port 5000
+2026-01-18T02:18:46.843Z │ INFO │ REQUEST │ Server started listening on port 5000
+2026-01-18T02:18:56.377Z │ INFO │ REQUEST │ Server started listening on port 5000
+2026-01-18T02:18:57.968Z │ INFO │ REQUEST │ Server started listening on port 5000
+2026-01-18T02:18:59.122Z │ INFO │ REQUEST │ Server started listening on port 5000
+2026-01-18T02:19:19.187Z │ INFO │ REQUEST │ GET /api/projects params={} query={} ip=::1
+2026-01-18T02:19:19.194Z │ INFO │ REQUEST │ GET /api/tasks params={} query={} ip=::1
+2026-01-18T02:19:19.206Z │ WARN │ RESPONSE │ GET /api/projects │ 304
+2026-01-18T02:19:19.211Z │ WARN │ RESPONSE │ GET /api/tasks │ 304
+2026-01-18T02:19:19.490Z │ INFO │ REQUEST │ GET /api/user-tasks params={} query={} ip=::1
+2026-01-18T02:19:19.492Z │ INFO │ REQUEST │ GET /api/users params={} query={} ip=::1
+2026-01-18T02:19:19.502Z │ INFO │ REQUEST │ GET /api/profiles params={} query={} ip=::1
+2026-01-18T02:19:19.504Z │ INFO │ REQUEST │ GET /api/user-projects params={} query={} ip=::1
+2026-01-18T02:19:19.508Z │ WARN │ RESPONSE │ GET /api/user-tasks │ 304
+2026-01-18T02:19:19.511Z │ WARN │ RESPONSE │ GET /api/users │ 304
+2026-01-18T02:19:19.513Z │ WARN │ RESPONSE │ GET /api/profiles │ 304
+2026-01-18T02:19:19.515Z │ WARN │ RESPONSE │ GET /api/user-projects │ 304
+2026-01-18T02:19:19.518Z │ INFO │ REQUEST │ GET /api/projects params={} query={} ip=::1
+2026-01-18T02:19:19.520Z │ INFO │ REQUEST │ GET /api/tasks params={} query={} ip=::1
+2026-01-18T02:19:19.522Z │ WARN │ RESPONSE │ GET /api/projects │ 304
+2026-01-18T02:19:19.523Z │ WARN │ RESPONSE │ GET /api/tasks │ 304
+2026-01-18T02:19:19.815Z │ INFO │ REQUEST │ GET /api/user-tasks params={} query={} ip=::1
+2026-01-18T02:19:19.817Z │ INFO │ REQUEST │ GET /api/users params={} query={} ip=::1
+2026-01-18T02:19:19.819Z │ WARN │ RESPONSE │ GET /api/user-tasks │ 304
+2026-01-18T02:19:19.832Z │ INFO │ REQUEST │ GET /api/user-projects params={} query={} ip=::1
+2026-01-18T02:19:19.829Z │ INFO │ REQUEST │ GET /api/profiles params={} query={} ip=::1
+2026-01-18T02:19:19.827Z │ WARN │ RESPONSE │ GET /api/users │ 304
+2026-01-18T02:19:19.835Z │ WARN │ RESPONSE │ GET /api/profiles │ 304
+2026-01-18T02:19:19.837Z │ WARN │ RESPONSE │ GET /api/user-projects │ 304
+2026-01-18T02:19:30.274Z │ INFO │ REQUEST │ POST /api/users params={} query={} ip=::1
+2026-01-18T02:19:30.277Z │ ERROR │ RESPONSE │ POST /api/users │ 400
+2026-01-18T02:19:59.401Z │ INFO │ REQUEST │ Server started listening on port 5000
+2026-01-18T02:20:04.283Z │ INFO │ REQUEST │ POST /api/users params={} query={} ip=::1
+2026-01-18T02:20:04.287Z │ ERROR │ VALIDATION_ERROR │ RESPONSE │ POST /api/users │ 400
+2026-01-18T02:20:22.736Z │ INFO │ REQUEST │ Server started listening on port 5000
+2026-01-18T02:22:06.174Z │ INFO │ REQUEST │ Server started listening on port 5000
+2026-01-18T02:22:13.246Z │ INFO │ REQUEST │ Server started listening on port 5000
+2026-01-18T02:22:28.289Z │ - │ Server started listening on port 5000 │ - │ -
+2026-01-18T02:22:34.844Z │ - │ GET /api/projects │ - │ ::1 │ UA: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 OPR/125.0.0.0 │ req_id=896d085d-d2b3-41dc-9201-bc914b7b89b1
+2026-01-18T02:22:34.850Z │ - │ GET /api/tasks │ - │ ::1 │ UA: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 OPR/125.0.0.0 │ req_id=7e829a55-70f6-49b5-9172-72f3461cae9d
+2026-01-18T02:22:34.857Z │ 304 │ GET /api/projects │ 15ms │ ::1 │ UA: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 OPR/125.0.0.0 │ req_id=896d085d-d2b3-41dc-9201-bc914b7b89b1
+2026-01-18T02:22:34.862Z │ 304 │ GET /api/tasks │ 12ms │ ::1 │ UA: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 OPR/125.0.0.0 │ req_id=7e829a55-70f6-49b5-9172-72f3461cae9d
+2026-01-18T02:22:35.156Z │ - │ GET /api/user-tasks │ - │ ::1 │ UA: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 OPR/125.0.0.0 │ req_id=339646b8-7948-4750-8260-8650f28f32f9
+2026-01-18T02:22:35.159Z │ - │ GET /api/users │ - │ ::1 │ UA: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 OPR/125.0.0.0 │ req_id=cc887c9f-0540-46ec-9834-66e5a559b470
+2026-01-18T02:22:35.161Z │ - │ GET /api/profiles │ - │ ::1 │ UA: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 OPR/125.0.0.0 │ req_id=a0c6e1db-1daf-421e-b827-9d4461684280
+2026-01-18T02:22:35.162Z │ - │ GET /api/user-projects │ - │ ::1 │ UA: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 OPR/125.0.0.0 │ req_id=fe126ffc-7253-44f2-a15f-3dfcf75f6a39
+2026-01-18T02:22:35.166Z │ 304 │ GET /api/user-tasks │ 9ms │ ::1 │ UA: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 OPR/125.0.0.0 │ req_id=339646b8-7948-4750-8260-8650f28f32f9
+2026-01-18T02:22:35.168Z │ 304 │ GET /api/users │ 9ms │ ::1 │ UA: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 OPR/125.0.0.0 │ req_id=cc887c9f-0540-46ec-9834-66e5a559b470
+2026-01-18T02:22:35.171Z │ 304 │ GET /api/profiles │ 10ms │ ::1 │ UA: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 OPR/125.0.0.0 │ req_id=a0c6e1db-1daf-421e-b827-9d4461684280
+2026-01-18T02:22:35.173Z │ 304 │ GET /api/user-projects │ 11ms │ ::1 │ UA: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 OPR/125.0.0.0 │ req_id=fe126ffc-7253-44f2-a15f-3dfcf75f6a39
+2026-01-18T02:22:35.175Z │ - │ GET /api/projects │ - │ ::1 │ UA: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 OPR/125.0.0.0 │ req_id=49f51d5f-7e02-45e6-bcef-84320df9096d
+2026-01-18T02:22:35.177Z │ - │ GET /api/tasks │ - │ ::1 │ UA: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 OPR/125.0.0.0 │ req_id=511a4ff9-0071-4610-bfcf-d0d5181b07b9
+2026-01-18T02:22:35.179Z │ 304 │ GET /api/projects │ 4ms │ ::1 │ UA: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 OPR/125.0.0.0 │ req_id=49f51d5f-7e02-45e6-bcef-84320df9096d
+2026-01-18T02:22:35.181Z │ 304 │ GET /api/tasks │ 3ms │ ::1 │ UA: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 OPR/125.0.0.0 │ req_id=511a4ff9-0071-4610-bfcf-d0d5181b07b9
+2026-01-18T02:22:35.483Z │ - │ GET /api/profiles │ - │ ::1 │ UA: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 OPR/125.0.0.0 │ req_id=cee06a6e-c50a-481f-8864-5c5a1113827e
+2026-01-18T02:22:35.486Z │ - │ GET /api/user-tasks │ - │ ::1 │ UA: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 OPR/125.0.0.0 │ req_id=4e7f3d51-3378-4c1d-90c7-bf9cf1e179d7
+2026-01-18T02:22:35.488Z │ - │ GET /api/users │ - │ ::1 │ UA: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 OPR/125.0.0.0 │ req_id=71c93933-8825-4514-917a-64063dac7cf1
+2026-01-18T02:22:35.491Z │ - │ GET /api/user-projects │ - │ ::1 │ UA: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 OPR/125.0.0.0 │ req_id=9ef4753d-108c-457a-8970-ed188343f5d5
+2026-01-18T02:22:35.494Z │ 304 │ GET /api/profiles │ 10ms │ ::1 │ UA: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 OPR/125.0.0.0 │ req_id=cee06a6e-c50a-481f-8864-5c5a1113827e
+2026-01-18T02:22:35.495Z │ 304 │ GET /api/user-tasks │ 9ms │ ::1 │ UA: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 OPR/125.0.0.0 │ req_id=4e7f3d51-3378-4c1d-90c7-bf9cf1e179d7
+2026-01-18T02:22:35.497Z │ 304 │ GET /api/users │ 9ms │ ::1 │ UA: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 OPR/125.0.0.0 │ req_id=71c93933-8825-4514-917a-64063dac7cf1
+2026-01-18T02:22:35.499Z │ 304 │ GET /api/user-projects │ 8ms │ ::1 │ UA: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 OPR/125.0.0.0 │ req_id=9ef4753d-108c-457a-8970-ed188343f5d5
+2026-01-18T02:23:36.690Z │ - │ Server started listening on port 5000 │ - │ -
+2026-01-18T02:23:39.955Z │ - │ GET /api/projects │ - │ ::1 │ req_id=ca196707-dfd5-43ae-8c21-c4dc456ea412
+2026-01-18T02:23:39.962Z │ - │ GET /api/tasks │ - │ ::1 │ req_id=c55f31f1-629e-423e-8cff-16ec9f5331f0
+2026-01-18T02:23:39.973Z │ 304 │ GET /api/projects │ 18ms │ ::1 │ req_id=ca196707-dfd5-43ae-8c21-c4dc456ea412
+2026-01-18T02:23:39.981Z │ 304 │ GET /api/tasks │ 19ms │ ::1 │ req_id=c55f31f1-629e-423e-8cff-16ec9f5331f0
+2026-01-18T02:23:40.260Z │ - │ GET /api/user-projects │ - │ ::1 │ req_id=dbfb9a89-8b94-4b9b-980a-70ee3524c219
+2026-01-18T02:23:40.261Z │ - │ GET /api/user-tasks │ - │ ::1 │ req_id=4b2b3c85-8cb3-4778-8cd0-b3ef5849b82f
+2026-01-18T02:23:40.265Z │ - │ GET /api/users │ - │ ::1 │ req_id=c7bd8b38-e003-4ea7-b42d-c618a1c3816d
+2026-01-18T02:23:40.268Z │ - │ GET /api/profiles │ - │ ::1 │ req_id=4a710533-fe95-481a-95fc-f5cde11733e0
+2026-01-18T02:23:40.277Z │ 304 │ GET /api/user-projects │ 18ms │ ::1 │ req_id=dbfb9a89-8b94-4b9b-980a-70ee3524c219
+2026-01-18T02:23:40.280Z │ 304 │ GET /api/user-tasks │ 19ms │ ::1 │ req_id=4b2b3c85-8cb3-4778-8cd0-b3ef5849b82f
+2026-01-18T02:23:40.287Z │ 304 │ GET /api/profiles │ 18ms │ ::1 │ req_id=4a710533-fe95-481a-95fc-f5cde11733e0
+2026-01-18T02:23:40.283Z │ 304 │ GET /api/users │ 18ms │ ::1 │ req_id=c7bd8b38-e003-4ea7-b42d-c618a1c3816d
+2026-01-18T02:23:40.293Z │ - │ GET /api/tasks │ - │ ::1 │ req_id=e786a8e6-3757-4a3d-bc8b-3e7fac9aee09
+2026-01-18T02:23:40.290Z │ - │ GET /api/projects │ - │ ::1 │ req_id=8fe4fa61-6fb0-4b79-9e99-7fafd0367d13
+2026-01-18T02:23:40.296Z │ 304 │ GET /api/projects │ 6ms │ ::1 │ req_id=8fe4fa61-6fb0-4b79-9e99-7fafd0367d13
+2026-01-18T02:23:40.298Z │ 304 │ GET /api/tasks │ 5ms │ ::1 │ req_id=e786a8e6-3757-4a3d-bc8b-3e7fac9aee09
+2026-01-18T02:23:40.602Z │ - │ GET /api/user-projects │ - │ ::1 │ req_id=c97d3cd7-c469-4210-abf4-252eea18efba
+2026-01-18T02:23:40.600Z │ - │ GET /api/users │ - │ ::1 │ req_id=e463f536-a605-4f50-bb08-675588561b69
+2026-01-18T02:23:40.605Z │ - │ GET /api/user-tasks │ - │ ::1 │ req_id=2e3f6e56-fc36-49e2-83d7-85345496fa3a
+2026-01-18T02:23:40.615Z │ - │ GET /api/profiles │ - │ ::1 │ req_id=d64cc1d6-cef1-4676-aeb8-621c32fcf470
+2026-01-18T02:23:40.617Z │ 304 │ GET /api/users │ 17ms │ ::1 │ req_id=e463f536-a605-4f50-bb08-675588561b69
+2026-01-18T02:23:40.618Z │ 304 │ GET /api/user-projects │ 16ms │ ::1 │ req_id=c97d3cd7-c469-4210-abf4-252eea18efba
+2026-01-18T02:23:40.620Z │ 304 │ GET /api/user-tasks │ 15ms │ ::1 │ req_id=2e3f6e56-fc36-49e2-83d7-85345496fa3a
+2026-01-18T02:23:40.622Z │ 304 │ GET /api/profiles │ 8ms │ ::1 │ req_id=d64cc1d6-cef1-4676-aeb8-621c32fcf470
+2026-01-18T02:23:43.274Z │ - │ Server started listening on port 5000 │ - │ -
+2026-01-18T02:23:52.500Z │ - │ Server started listening on port 5000 │ - │ -
+2026-01-18T02:23:59.763Z │ - │ GET /api/projects │ - │ ::1 │ req_id=a9e7723c-8121-4b6a-8bf8-bee129275707
+2026-01-18T02:23:59.770Z │ - │ GET /api/tasks │ - │ ::1 │ req_id=4e72ddcd-2d53-4d1b-84ea-e8e8138132b0
+2026-01-18T02:23:59.777Z │ 304 │ GET /api/projects │ 15ms │ ::1 │ req_id=a9e7723c-8121-4b6a-8bf8-bee129275707
+2026-01-18T02:23:59.782Z │ 304 │ GET /api/tasks │ 12ms │ ::1 │ req_id=4e72ddcd-2d53-4d1b-84ea-e8e8138132b0
+2026-01-18T02:24:00.071Z │ - │ GET /api/profiles │ - │ ::1 │ req_id=84c1b55f-7b74-43b8-b866-228be5940f29
+2026-01-18T02:24:00.075Z │ - │ GET /api/user-projects │ - │ ::1 │ req_id=761b5c54-e58b-40cc-b66c-e8ff11cdad7a
+2026-01-18T02:24:00.079Z │ - │ GET /api/user-tasks │ - │ ::1 │ req_id=d3516f99-664c-49d5-93b6-e728cf9504c5
+2026-01-18T02:24:00.083Z │ - │ GET /api/users │ - │ ::1 │ req_id=9f517001-da7f-4bf4-8afd-d96fc720866b
+2026-01-18T02:24:00.091Z │ 304 │ GET /api/profiles │ 20ms │ ::1 │ req_id=84c1b55f-7b74-43b8-b866-228be5940f29
+2026-01-18T02:24:00.099Z │ 304 │ GET /api/users │ 16ms │ ::1 │ req_id=9f517001-da7f-4bf4-8afd-d96fc720866b
+2026-01-18T02:24:00.114Z │ 304 │ GET /api/user-projects │ 39ms │ ::1 │ req_id=761b5c54-e58b-40cc-b66c-e8ff11cdad7a
+2026-01-18T02:24:00.095Z │ 304 │ GET /api/user-tasks │ 15ms │ ::1 │ req_id=d3516f99-664c-49d5-93b6-e728cf9504c5
+2026-01-18T02:24:00.116Z │ - │ GET /api/projects │ - │ ::1 │ req_id=a63c7b7a-db00-42a3-a07e-321d7fc0a67b
+2026-01-18T02:24:00.120Z │ - │ GET /api/tasks │ - │ ::1 │ req_id=86cd205c-ed34-4342-a360-2aea6bf453e5
+2026-01-18T02:24:00.124Z │ 304 │ GET /api/projects │ 8ms │ ::1 │ req_id=a63c7b7a-db00-42a3-a07e-321d7fc0a67b
+2026-01-18T02:24:00.128Z │ 304 │ GET /api/tasks │ 8ms │ ::1 │ req_id=86cd205c-ed34-4342-a360-2aea6bf453e5
+2026-01-18T02:24:00.411Z │ - │ GET /api/profiles │ - │ ::1 │ req_id=efa02008-1266-47ec-90b3-816b17b49a45
+2026-01-18T02:24:00.412Z │ - │ GET /api/user-tasks │ - │ ::1 │ req_id=b777b987-2fa0-406a-be1a-72a0ce943720
+2026-01-18T02:24:00.415Z │ - │ GET /api/users │ - │ ::1 │ req_id=7847626c-125f-4350-80a1-a99afa11ed0b
+2026-01-18T02:24:00.418Z │ 304 │ GET /api/profiles │ 7ms │ ::1 │ req_id=efa02008-1266-47ec-90b3-816b17b49a45
+2026-01-18T02:24:00.420Z │ 304 │ GET /api/user-tasks │ 7ms │ ::1 │ req_id=b777b987-2fa0-406a-be1a-72a0ce943720
+2026-01-18T02:24:00.422Z │ 304 │ GET /api/users │ 7ms │ ::1 │ req_id=7847626c-125f-4350-80a1-a99afa11ed0b
+2026-01-18T02:24:00.425Z │ - │ GET /api/user-projects │ - │ ::1 │ req_id=d7d07fe0-9ed5-43d2-bacc-80d270eefe2e
+2026-01-18T02:24:00.430Z │ 304 │ GET /api/user-projects │ 4ms │ ::1 │ req_id=d7d07fe0-9ed5-43d2-bacc-80d270eefe2e
+2026-01-18T02:24:25.965Z │ - │ Server started listening on port 5000 │ - │ -
+2026-01-18T02:24:28.899Z │ - │ GET /api/projects │ - │ 127.0.0.1 │ req_id=2a8ea4b0-f762-4658-b46c-2d5a472b3605
+2026-01-18T02:24:28.909Z │ - │ GET /api/tasks │ - │ 127.0.0.1 │ req_id=ca7056d4-8435-45eb-ad70-6783bcebdf05
+2026-01-18T02:24:28.921Z │ 304 │ GET /api/projects │ 21ms │ 127.0.0.1 │ req_id=2a8ea4b0-f762-4658-b46c-2d5a472b3605
+2026-01-18T02:24:28.925Z │ 304 │ GET /api/tasks │ 16ms │ 127.0.0.1 │ req_id=ca7056d4-8435-45eb-ad70-6783bcebdf05
+2026-01-18T02:24:29.207Z │ - │ GET /api/users │ - │ 127.0.0.1 │ req_id=0f925f10-a119-4c94-b6a8-674a4e115454
+2026-01-18T02:24:29.219Z │ - │ GET /api/profiles │ - │ 127.0.0.1 │ req_id=14047e9d-94b3-4311-9fbf-90da6bef85b3
+2026-01-18T02:24:29.204Z │ - │ GET /api/user-tasks │ - │ 127.0.0.1 │ req_id=07870ce5-57e8-423a-b391-efc082f28d4a
+2026-01-18T02:24:29.222Z │ - │ GET /api/user-projects │ - │ 127.0.0.1 │ req_id=0e0c256c-6b33-4aec-83ce-4c1e1a8a3595
+2026-01-18T02:24:29.225Z │ 304 │ GET /api/user-tasks │ 21ms │ 127.0.0.1 │ req_id=07870ce5-57e8-423a-b391-efc082f28d4a
+2026-01-18T02:24:29.228Z │ 304 │ GET /api/users │ 21ms │ 127.0.0.1 │ req_id=0f925f10-a119-4c94-b6a8-674a4e115454
+2026-01-18T02:24:29.230Z │ 304 │ GET /api/profiles │ 12ms │ 127.0.0.1 │ req_id=14047e9d-94b3-4311-9fbf-90da6bef85b3
+2026-01-18T02:24:29.232Z │ 304 │ GET /api/user-projects │ 10ms │ 127.0.0.1 │ req_id=0e0c256c-6b33-4aec-83ce-4c1e1a8a3595
+2026-01-18T02:24:29.236Z │ - │ GET /api/projects │ - │ 127.0.0.1 │ req_id=ad3cd678-8ba8-48a1-bc8c-79f8ddebe7cc
+2026-01-18T02:24:29.237Z │ - │ GET /api/tasks │ - │ 127.0.0.1 │ req_id=2abf87f6-5991-45eb-a809-945e6d095502
+2026-01-18T02:24:29.240Z │ 304 │ GET /api/projects │ 4ms │ 127.0.0.1 │ req_id=ad3cd678-8ba8-48a1-bc8c-79f8ddebe7cc
+2026-01-18T02:24:29.243Z │ 304 │ GET /api/tasks │ 5ms │ 127.0.0.1 │ req_id=2abf87f6-5991-45eb-a809-945e6d095502
+2026-01-18T02:24:29.548Z │ - │ GET /api/profiles │ - │ 127.0.0.1 │ req_id=e99f35da-e682-404a-8a6d-353f4f120428
+2026-01-18T02:24:29.546Z │ - │ GET /api/users │ - │ 127.0.0.1 │ req_id=5732c641-fef8-45a2-afc6-4b8eaa7a8188
+2026-01-18T02:24:29.553Z │ - │ GET /api/user-tasks │ - │ 127.0.0.1 │ req_id=14484caf-5515-4e8c-9c10-d04df4a26351
+2026-01-18T02:24:29.557Z │ 304 │ GET /api/users │ 11ms │ 127.0.0.1 │ req_id=5732c641-fef8-45a2-afc6-4b8eaa7a8188
+2026-01-18T02:24:29.559Z │ - │ GET /api/user-projects │ - │ 127.0.0.1 │ req_id=6df02344-946c-44ca-a75f-5f0a677174da
+2026-01-18T02:24:29.561Z │ 304 │ GET /api/profiles │ 13ms │ 127.0.0.1 │ req_id=e99f35da-e682-404a-8a6d-353f4f120428
+2026-01-18T02:24:29.563Z │ 304 │ GET /api/user-tasks │ 10ms │ 127.0.0.1 │ req_id=14484caf-5515-4e8c-9c10-d04df4a26351
+2026-01-18T02:24:29.564Z │ 304 │ GET /api/user-projects │ 6ms │ 127.0.0.1 │ req_id=6df02344-946c-44ca-a75f-5f0a677174da
+2026-01-18T02:24:36.033Z │ - │ Server started listening on port 5000 │ - │ -
+2026-01-18T02:24:38.164Z │ - │ Server started listening on port 5000 │ - │ -
+2026-01-18T02:24:39.824Z │ - │ Server started listening on port 5000 │ - │ -
+2026-01-18T02:27:51.671Z │ - │ GET /api/projects │ - │ 127.0.0.1 │ req_id=ad8988ed-24c2-4043-a70d-f1ce8b356f10
+2026-01-18T02:27:51.678Z │ - │ GET /api/tasks │ - │ 127.0.0.1 │ req_id=b3e682c4-c5f0-4bbb-8ed4-af24673e53e6
+2026-01-18T02:27:51.694Z │ 304 │ GET /api/projects │ 24ms │ 127.0.0.1 │ req_id=ad8988ed-24c2-4043-a70d-f1ce8b356f10
+2026-01-18T02:27:51.698Z │ 304 │ GET /api/tasks │ 21ms │ 127.0.0.1 │ req_id=b3e682c4-c5f0-4bbb-8ed4-af24673e53e6
+2026-01-18T02:27:51.985Z │ - │ GET /api/users │ - │ 127.0.0.1 │ req_id=beaa45e3-f9fe-475c-ac2e-6ca26573f4b0
+2026-01-18T02:27:51.982Z │ - │ GET /api/user-tasks │ - │ 127.0.0.1 │ req_id=cddeaaf2-eeb8-43c0-97f5-a6d1a5076c15
+2026-01-18T02:27:51.986Z │ - │ GET /api/profiles │ - │ 127.0.0.1 │ req_id=1c87cc5e-ac2d-43c8-9300-c4d40661b5ba
+2026-01-18T02:27:51.991Z │ - │ GET /api/user-projects │ - │ 127.0.0.1 │ req_id=500e1e33-bddf-43d0-aae0-fbee122535f7
+2026-01-18T02:27:51.997Z │ 304 │ GET /api/user-tasks │ 15ms │ 127.0.0.1 │ req_id=cddeaaf2-eeb8-43c0-97f5-a6d1a5076c15
+2026-01-18T02:27:52.001Z │ 304 │ GET /api/users │ 16ms │ 127.0.0.1 │ req_id=beaa45e3-f9fe-475c-ac2e-6ca26573f4b0
+2026-01-18T02:27:52.004Z │ 304 │ GET /api/profiles │ 17ms │ 127.0.0.1 │ req_id=1c87cc5e-ac2d-43c8-9300-c4d40661b5ba
+2026-01-18T02:27:52.007Z │ 304 │ GET /api/user-projects │ 15ms │ 127.0.0.1 │ req_id=500e1e33-bddf-43d0-aae0-fbee122535f7
+2026-01-18T02:27:52.012Z │ - │ GET /api/projects │ - │ 127.0.0.1 │ req_id=ed5fa18e-21fd-4f3a-bbfa-48cfbfd03374
+2026-01-18T02:27:52.014Z │ - │ GET /api/tasks │ - │ 127.0.0.1 │ req_id=f9a73c0d-7e79-4931-a1be-4180bc85edbd
+2026-01-18T02:27:52.016Z │ 304 │ GET /api/projects │ 5ms │ 127.0.0.1 │ req_id=ed5fa18e-21fd-4f3a-bbfa-48cfbfd03374
+2026-01-18T02:27:52.018Z │ 304 │ GET /api/tasks │ 5ms │ 127.0.0.1 │ req_id=f9a73c0d-7e79-4931-a1be-4180bc85edbd
+2026-01-18T02:27:52.306Z │ - │ GET /api/user-tasks │ - │ 127.0.0.1 │ req_id=8761e051-b660-4118-923d-8fa2dc78fdef
+2026-01-18T02:27:52.309Z │ - │ GET /api/users │ - │ 127.0.0.1 │ req_id=d4a3475d-f671-4dd9-96c7-c9ced7fc65c5
+2026-01-18T02:27:52.311Z │ 304 │ GET /api/user-tasks │ 5ms │ 127.0.0.1 │ req_id=8761e051-b660-4118-923d-8fa2dc78fdef
+2026-01-18T02:27:52.313Z │ 304 │ GET /api/users │ 5ms │ 127.0.0.1 │ req_id=d4a3475d-f671-4dd9-96c7-c9ced7fc65c5
+2026-01-18T02:27:52.317Z │ - │ GET /api/profiles │ - │ 127.0.0.1 │ req_id=6f4d660d-411d-4b3d-83c3-f873895d3ead
+2026-01-18T02:27:52.319Z │ - │ GET /api/user-projects │ - │ 127.0.0.1 │ req_id=1f433ffe-4888-4283-9e36-97f145d38026
+2026-01-18T02:27:52.323Z │ 304 │ GET /api/profiles │ 7ms │ 127.0.0.1 │ req_id=6f4d660d-411d-4b3d-83c3-f873895d3ead
+2026-01-18T02:27:52.326Z │ 304 │ GET /api/user-projects │ 7ms │ 127.0.0.1 │ req_id=1f433ffe-4888-4283-9e36-97f145d38026
+2026-01-18T02:28:19.841Z │ - │ POST /api/users │ - │ 127.0.0.1 │ req_id=0c89bcee-edd9-47db-bbba-2aa6e5b0cddc
+2026-01-18T02:28:19.845Z │ 400 │ POST /api/users │ 3ms │ 127.0.0.1 │ req_id=0c89bcee-edd9-47db-bbba-2aa6e5b0cddc
+2026-01-18T02:31:52.248Z │ - │ GET /api/projects │ - │ 127.0.0.1 │ req_id=7a33dab4-7d22-4199-9a04-0b5ed4164d10
+2026-01-18T02:31:52.257Z │ - │ GET /api/tasks │ - │ 127.0.0.1 │ req_id=5b34c0da-3c05-4289-ac60-bbe42f027475
+2026-01-18T02:31:52.263Z │ 304 │ GET /api/projects │ 16ms │ 127.0.0.1 │ req_id=7a33dab4-7d22-4199-9a04-0b5ed4164d10
+2026-01-18T02:31:52.267Z │ 304 │ GET /api/tasks │ 11ms │ 127.0.0.1 │ req_id=5b34c0da-3c05-4289-ac60-bbe42f027475
+2026-01-18T02:31:52.551Z │ - │ GET /api/user-tasks │ - │ 127.0.0.1 │ req_id=8878d42d-9bcd-4c2b-b6c2-b4b993bc8d4f
+2026-01-18T02:31:52.555Z │ - │ GET /api/profiles │ - │ 127.0.0.1 │ req_id=443caca0-fbad-42da-989f-cc90bef5518b
+2026-01-18T02:31:52.553Z │ - │ GET /api/users │ - │ 127.0.0.1 │ req_id=d61a6143-c884-4a32-9661-8425d1fa8fc0
+2026-01-18T02:31:52.559Z │ - │ GET /api/user-projects │ - │ 127.0.0.1 │ req_id=1d5ea09e-35d2-4ca3-a7d4-001d0215b8d7
+2026-01-18T02:31:52.574Z │ 304 │ GET /api/user-tasks │ 22ms │ 127.0.0.1 │ req_id=8878d42d-9bcd-4c2b-b6c2-b4b993bc8d4f
+2026-01-18T02:31:52.576Z │ 304 │ GET /api/users │ 23ms │ 127.0.0.1 │ req_id=d61a6143-c884-4a32-9661-8425d1fa8fc0
+2026-01-18T02:31:52.580Z │ 304 │ GET /api/profiles │ 25ms │ 127.0.0.1 │ req_id=443caca0-fbad-42da-989f-cc90bef5518b
+2026-01-18T02:31:52.586Z │ 304 │ GET /api/user-projects │ 27ms │ 127.0.0.1 │ req_id=1d5ea09e-35d2-4ca3-a7d4-001d0215b8d7
+2026-01-18T02:31:52.590Z │ - │ GET /api/projects │ - │ 127.0.0.1 │ req_id=00babf89-3758-4613-b8e1-bbf1e301128d
+2026-01-18T02:31:52.591Z │ - │ GET /api/tasks │ - │ 127.0.0.1 │ req_id=dc0a72ba-d540-4f18-a6b6-85b73348b6aa
+2026-01-18T02:31:52.595Z │ 304 │ GET /api/projects │ 6ms │ 127.0.0.1 │ req_id=00babf89-3758-4613-b8e1-bbf1e301128d
+2026-01-18T02:31:52.597Z │ 304 │ GET /api/tasks │ 6ms │ 127.0.0.1 │ req_id=dc0a72ba-d540-4f18-a6b6-85b73348b6aa
+2026-01-18T02:31:52.889Z │ - │ GET /api/user-tasks │ - │ 127.0.0.1 │ req_id=470e6982-4627-436e-8f07-fb8127742911
+2026-01-18T02:31:52.897Z │ - │ GET /api/profiles │ - │ 127.0.0.1 │ req_id=2a730876-cd7b-493b-bddf-4a3fcb52dcd0
+2026-01-18T02:31:52.900Z │ 304 │ GET /api/user-tasks │ 11ms │ 127.0.0.1 │ req_id=470e6982-4627-436e-8f07-fb8127742911
+2026-01-18T02:31:52.891Z │ - │ GET /api/users │ - │ 127.0.0.1 │ req_id=4204ef2e-5f0e-4247-9c77-e3ea621ae69c
+2026-01-18T02:31:52.901Z │ 304 │ GET /api/users │ 10ms │ 127.0.0.1 │ req_id=4204ef2e-5f0e-4247-9c77-e3ea621ae69c
+2026-01-18T02:31:52.903Z │ 304 │ GET /api/profiles │ 7ms │ 127.0.0.1 │ req_id=2a730876-cd7b-493b-bddf-4a3fcb52dcd0
+2026-01-18T02:31:52.905Z │ - │ GET /api/user-projects │ - │ 127.0.0.1 │ req_id=f34487b2-b99c-4c8b-ad31-c8634030c474
+2026-01-18T02:31:52.909Z │ 304 │ GET /api/user-projects │ 3ms │ 127.0.0.1 │ req_id=f34487b2-b99c-4c8b-ad31-c8634030c474
+2026-01-18T02:33:46.663Z │ INFO │ - │ GET /api/projects │ - │ 127.0.0.1 │ user_id=- │ req_id=fcf4db5d-a77a-4638-8088-e57192864dfa
+2026-01-18T02:33:46.671Z │ INFO │ - │ GET /api/tasks │ - │ 127.0.0.1 │ user_id=- │ req_id=8e91c773-2d67-4070-a34d-4ebd3910165f
+2026-01-18T02:33:46.678Z │ INFO │ 304 │ GET /api/projects │ 16ms │ 127.0.0.1 │ user_id=- │ req_id=fcf4db5d-a77a-4638-8088-e57192864dfa
+2026-01-18T02:33:46.682Z │ INFO │ 304 │ GET /api/tasks │ 11ms │ 127.0.0.1 │ user_id=- │ req_id=8e91c773-2d67-4070-a34d-4ebd3910165f
+2026-01-18T02:33:46.969Z │ INFO │ - │ GET /api/user-projects │ - │ 127.0.0.1 │ user_id=- │ req_id=0b3520e3-6109-4b42-8f23-9040bc6ccdb2
+2026-01-18T02:33:46.978Z │ INFO │ - │ GET /api/user-tasks │ - │ 127.0.0.1 │ user_id=- │ req_id=2eba8234-f274-433c-a316-f64ea2ec722a
+2026-01-18T02:33:46.967Z │ INFO │ - │ GET /api/profiles │ - │ 127.0.0.1 │ user_id=- │ req_id=b8973350-d4bd-4424-a3ec-1604a635bb16
+2026-01-18T02:33:46.980Z │ INFO │ - │ GET /api/users │ - │ 127.0.0.1 │ user_id=- │ req_id=8c18f214-8b56-4172-90a2-4ae39c38a499
+2026-01-18T02:33:46.983Z │ INFO │ 304 │ GET /api/profiles │ 17ms │ 127.0.0.1 │ user_id=- │ req_id=b8973350-d4bd-4424-a3ec-1604a635bb16
+2026-01-18T02:33:46.985Z │ INFO │ 304 │ GET /api/user-tasks │ 7ms │ 127.0.0.1 │ user_id=- │ req_id=2eba8234-f274-433c-a316-f64ea2ec722a
+2026-01-18T02:33:46.988Z │ INFO │ 304 │ GET /api/users │ 8ms │ 127.0.0.1 │ user_id=- │ req_id=8c18f214-8b56-4172-90a2-4ae39c38a499
+2026-01-18T02:33:46.990Z │ INFO │ 304 │ GET /api/user-projects │ 21ms │ 127.0.0.1 │ user_id=- │ req_id=0b3520e3-6109-4b42-8f23-9040bc6ccdb2
+2026-01-18T02:33:46.995Z │ INFO │ - │ GET /api/tasks │ - │ 127.0.0.1 │ user_id=- │ req_id=4ff28262-53a8-408b-b3ed-b00a152cea07
+2026-01-18T02:33:46.993Z │ INFO │ - │ GET /api/projects │ - │ 127.0.0.1 │ user_id=- │ req_id=00fad029-bc15-47d5-a4c1-e4940b720269
+2026-01-18T02:33:46.997Z │ INFO │ 304 │ GET /api/projects │ 4ms │ 127.0.0.1 │ user_id=- │ req_id=00fad029-bc15-47d5-a4c1-e4940b720269
+2026-01-18T02:33:46.998Z │ INFO │ 304 │ GET /api/tasks │ 3ms │ 127.0.0.1 │ user_id=- │ req_id=4ff28262-53a8-408b-b3ed-b00a152cea07
+2026-01-18T02:33:47.291Z │ INFO │ - │ GET /api/profiles │ - │ 127.0.0.1 │ user_id=- │ req_id=21be1208-dc38-44ff-8a19-7bdaa0537fe6
+2026-01-18T02:33:47.294Z │ INFO │ - │ GET /api/user-tasks │ - │ 127.0.0.1 │ user_id=- │ req_id=65f742b7-f407-49e4-b071-2cf865e26bfb
+2026-01-18T02:33:47.298Z │ INFO │ 304 │ GET /api/profiles │ 6ms │ 127.0.0.1 │ user_id=- │ req_id=21be1208-dc38-44ff-8a19-7bdaa0537fe6
+2026-01-18T02:33:47.301Z │ INFO │ 304 │ GET /api/user-tasks │ 8ms │ 127.0.0.1 │ user_id=- │ req_id=65f742b7-f407-49e4-b071-2cf865e26bfb
+2026-01-18T02:33:47.304Z │ INFO │ - │ GET /api/users │ - │ 127.0.0.1 │ user_id=- │ req_id=36d9d11b-5be0-40ac-b149-7761e7a7ab98
+2026-01-18T02:33:47.308Z │ INFO │ - │ GET /api/user-projects │ - │ 127.0.0.1 │ user_id=- │ req_id=c4316029-41f2-4753-8577-220d1ebd25ab
+2026-01-18T02:33:47.311Z │ INFO │ 304 │ GET /api/users │ 7ms │ 127.0.0.1 │ user_id=- │ req_id=36d9d11b-5be0-40ac-b149-7761e7a7ab98
+2026-01-18T02:33:47.319Z │ INFO │ 304 │ GET /api/user-projects │ 11ms │ 127.0.0.1 │ user_id=- │ req_id=c4316029-41f2-4753-8577-220d1ebd25ab
+2026-01-18T02:36:07.630Z │ INFO │ - │ POST /api/auth/login │ - │ 127.0.0.1 │ user_id=- │ req_id=d8aabe1c-b23c-48a8-815c-9771b222abb2
+2026-01-18T02:36:07.692Z │ INFO │ 200 │ POST /api/auth/login │ 63ms │ 127.0.0.1 │ user_id=- │ req_id=d8aabe1c-b23c-48a8-815c-9771b222abb2
+2026-01-18T02:36:07.875Z │ INFO │ - │ GET /api/projects │ - │ 127.0.0.1 │ user_id=- │ req_id=a85eec50-b932-42cb-945a-dda7dc5b133a
+2026-01-18T02:36:07.879Z │ INFO │ - │ GET /api/tasks │ - │ 127.0.0.1 │ user_id=- │ req_id=947b7799-9a0a-41cc-bcdf-cb0fc69a6630
+2026-01-18T02:36:07.881Z │ INFO │ - │ GET /api/user-tasks │ - │ 127.0.0.1 │ user_id=- │ req_id=70b1fbd3-8e8d-4cc0-9a20-7b7420e2d719
+2026-01-18T02:36:07.883Z │ INFO │ - │ GET /api/users │ - │ 127.0.0.1 │ user_id=- │ req_id=dc99105d-5c0e-46e3-aa68-e134bdbf142a
+2026-01-18T02:36:07.885Z │ INFO │ - │ GET /api/profiles │ - │ 127.0.0.1 │ user_id=- │ req_id=b53edbcf-07f5-4fe3-b399-0a0387947ecc
+2026-01-18T02:36:07.901Z │ INFO │ 304 │ GET /api/projects │ 27ms │ 127.0.0.1 │ user_id=- │ req_id=a85eec50-b932-42cb-945a-dda7dc5b133a
+2026-01-18T02:36:07.912Z │ INFO │ 304 │ GET /api/profiles │ 27ms │ 127.0.0.1 │ user_id=- │ req_id=b53edbcf-07f5-4fe3-b399-0a0387947ecc
+2026-01-18T02:36:07.905Z │ INFO │ 304 │ GET /api/tasks │ 26ms │ 127.0.0.1 │ user_id=- │ req_id=947b7799-9a0a-41cc-bcdf-cb0fc69a6630
+2026-01-18T02:36:07.908Z │ INFO │ 304 │ GET /api/user-tasks │ 27ms │ 127.0.0.1 │ user_id=- │ req_id=70b1fbd3-8e8d-4cc0-9a20-7b7420e2d719
+2026-01-18T02:36:07.910Z │ INFO │ 304 │ GET /api/users │ 27ms │ 127.0.0.1 │ user_id=- │ req_id=dc99105d-5c0e-46e3-aa68-e134bdbf142a
+2026-01-18T02:36:08.186Z │ INFO │ - │ GET /api/user-projects │ - │ 127.0.0.1 │ user_id=- │ req_id=9b547a0a-38ff-4ab9-8408-04d8fc87d812
+2026-01-18T02:36:08.190Z │ INFO │ 304 │ GET /api/user-projects │ 4ms │ 127.0.0.1 │ user_id=- │ req_id=9b547a0a-38ff-4ab9-8408-04d8fc87d812
+2026-01-18T02:36:08.206Z │ INFO │ - │ GET /api/projects │ - │ 127.0.0.1 │ user_id=- │ req_id=431a9220-94cc-4d81-a747-51baa32e598d
+2026-01-18T02:36:08.209Z │ INFO │ 304 │ GET /api/projects │ 3ms │ 127.0.0.1 │ user_id=- │ req_id=431a9220-94cc-4d81-a747-51baa32e598d
+2026-01-18T02:36:08.218Z │ INFO │ - │ GET /api/user-tasks │ - │ 127.0.0.1 │ user_id=- │ req_id=91c756d3-a1e4-4bb4-b62e-5f7319124c22
+2026-01-18T02:36:08.216Z │ INFO │ - │ GET /api/tasks │ - │ 127.0.0.1 │ user_id=- │ req_id=9e73b57a-410e-43bc-b298-fd3e94f2d77d
+2026-01-18T02:36:08.224Z │ INFO │ - │ GET /api/profiles │ - │ 127.0.0.1 │ user_id=- │ req_id=822cf7d5-5b7f-4735-99d6-e439f44bdf63
+2026-01-18T02:36:08.221Z │ INFO │ - │ GET /api/users │ - │ 127.0.0.1 │ user_id=- │ req_id=5a35042a-b4c6-46c2-9b91-08feae0643e4
+2026-01-18T02:36:08.227Z │ INFO │ 304 │ GET /api/tasks │ 10ms │ 127.0.0.1 │ user_id=- │ req_id=9e73b57a-410e-43bc-b298-fd3e94f2d77d
+2026-01-18T02:36:08.229Z │ INFO │ 304 │ GET /api/user-tasks │ 11ms │ 127.0.0.1 │ user_id=- │ req_id=91c756d3-a1e4-4bb4-b62e-5f7319124c22
+2026-01-18T02:36:08.235Z │ INFO │ 304 │ GET /api/profiles │ 12ms │ 127.0.0.1 │ user_id=- │ req_id=822cf7d5-5b7f-4735-99d6-e439f44bdf63
+2026-01-18T02:36:08.231Z │ INFO │ 304 │ GET /api/users │ 10ms │ 127.0.0.1 │ user_id=- │ req_id=5a35042a-b4c6-46c2-9b91-08feae0643e4
+2026-01-18T02:36:08.497Z │ INFO │ - │ GET /api/user-projects │ - │ 127.0.0.1 │ user_id=- │ req_id=3410d8c5-83fd-4cf5-82be-4ae94dcc4a4d
+2026-01-18T02:36:08.500Z │ INFO │ 304 │ GET /api/user-projects │ 3ms │ 127.0.0.1 │ user_id=- │ req_id=3410d8c5-83fd-4cf5-82be-4ae94dcc4a4d
+2026-01-18T02:37:24.534Z │ INFO │ - │ GET /api/projects │ - │ 127.0.0.1 │ req_id=79f55301-03a2-4a3b-a13b-cc27ef06b5c8
+2026-01-18T02:37:24.541Z │ INFO │ - │ GET /api/tasks │ - │ 127.0.0.1 │ req_id=50329949-e1b4-42d8-b423-3843f898e8e3
+2026-01-18T02:37:24.544Z │ INFO │ - │ GET /api/user-tasks │ - │ 127.0.0.1 │ req_id=d00dc94b-8fea-4e42-999f-048e04d9c28a
+2026-01-18T02:37:24.546Z │ INFO │ - │ GET /api/users │ - │ 127.0.0.1 │ req_id=e59ea3ea-a5c9-43fd-9f44-c03de89e1db3
+2026-01-18T02:37:24.548Z │ INFO │ - │ GET /api/profiles │ - │ 127.0.0.1 │ req_id=bed5401a-3b33-41be-8d2a-988c526e5867
+2026-01-18T02:37:24.555Z │ INFO │ 200 │ GET /api/projects │ 23ms │ 127.0.0.1 │ req_id=79f55301-03a2-4a3b-a13b-cc27ef06b5c8
+2026-01-18T02:37:24.557Z │ INFO │ - │ GET /api/user-projects │ - │ 127.0.0.1 │ req_id=48b1652e-3a5b-42cb-90a5-8dee54c4122e
+2026-01-18T02:37:24.562Z │ INFO │ 200 │ GET /api/tasks │ 22ms │ 127.0.0.1 │ req_id=50329949-e1b4-42d8-b423-3843f898e8e3
+2026-01-18T02:37:24.578Z │ INFO │ 200 │ GET /api/profiles │ 31ms │ 127.0.0.1 │ req_id=bed5401a-3b33-41be-8d2a-988c526e5867
+2026-01-18T02:37:24.571Z │ INFO │ 200 │ GET /api/users │ 25ms │ 127.0.0.1 │ req_id=e59ea3ea-a5c9-43fd-9f44-c03de89e1db3
+2026-01-18T02:37:24.581Z │ INFO │ 200 │ GET /api/user-projects │ 24ms │ 127.0.0.1 │ req_id=48b1652e-3a5b-42cb-90a5-8dee54c4122e
+2026-01-18T02:37:24.565Z │ INFO │ 200 │ GET /api/user-tasks │ 22ms │ 127.0.0.1 │ req_id=d00dc94b-8fea-4e42-999f-048e04d9c28a
+2026-01-18T02:37:24.863Z │ INFO │ - │ GET /api/projects │ - │ 127.0.0.1 │ req_id=059fd85d-edc2-4d3a-b94e-2bccee7bef44
+2026-01-18T02:37:24.866Z │ INFO │ 304 │ GET /api/projects │ 3ms │ 127.0.0.1 │ req_id=059fd85d-edc2-4d3a-b94e-2bccee7bef44
+2026-01-18T02:37:24.875Z │ INFO │ - │ GET /api/user-tasks │ - │ 127.0.0.1 │ req_id=55c15e2a-30cc-4583-b247-d9e35144a00c
+2026-01-18T02:37:24.872Z │ INFO │ - │ GET /api/tasks │ - │ 127.0.0.1 │ req_id=d23b9b3b-0791-499a-9df6-64806a1f9292
+2026-01-18T02:37:24.878Z │ INFO │ 304 │ GET /api/tasks │ 6ms │ 127.0.0.1 │ req_id=d23b9b3b-0791-499a-9df6-64806a1f9292
+2026-01-18T02:37:24.880Z │ INFO │ 304 │ GET /api/user-tasks │ 5ms │ 127.0.0.1 │ req_id=55c15e2a-30cc-4583-b247-d9e35144a00c
+2026-01-18T02:37:24.882Z │ INFO │ - │ GET /api/users │ - │ 127.0.0.1 │ req_id=499e3691-4735-473d-90aa-e221b49eab5a
+2026-01-18T02:37:24.885Z │ INFO │ - │ GET /api/profiles │ - │ 127.0.0.1 │ req_id=94eec4c9-6516-46ff-a75a-ad1565a6344b
+2026-01-18T02:37:24.887Z │ INFO │ 304 │ GET /api/users │ 5ms │ 127.0.0.1 │ req_id=499e3691-4735-473d-90aa-e221b49eab5a
+2026-01-18T02:37:24.889Z │ INFO │ 304 │ GET /api/profiles │ 4ms │ 127.0.0.1 │ req_id=94eec4c9-6516-46ff-a75a-ad1565a6344b
+2026-01-18T02:37:24.891Z │ INFO │ - │ GET /api/user-projects │ - │ 127.0.0.1 │ req_id=3d9b6d67-a62e-4d7c-89e1-9280ac3e7131
+2026-01-18T02:37:24.895Z │ INFO │ 304 │ GET /api/user-projects │ 3ms │ 127.0.0.1 │ req_id=3d9b6d67-a62e-4d7c-89e1-9280ac3e7131
+2026-01-18T02:38:45.415Z │ INFO │ - │ GET /api/projects │ - │ 127.0.0.1 │ req_id=c2839cab-9461-428d-878f-7274ac341fdf
+2026-01-18T02:38:45.420Z │ INFO │ - │ GET /api/tasks │ - │ 127.0.0.1 │ req_id=30dec9df-6905-4ee3-9d13-0a2f88c949e9
+2026-01-18T02:38:45.433Z │ INFO │ 304 │ GET /api/projects │ 19ms │ 127.0.0.1 │ req_id=c2839cab-9461-428d-878f-7274ac341fdf
+2026-01-18T02:38:45.436Z │ INFO │ 304 │ GET /api/tasks │ 15ms │ 127.0.0.1 │ req_id=30dec9df-6905-4ee3-9d13-0a2f88c949e9
+2026-01-18T02:38:45.709Z │ INFO │ - │ GET /api/user-tasks │ - │ 127.0.0.1 │ req_id=b8223af9-1b74-4f58-b27e-ad553d55bdf9
+2026-01-18T02:38:45.710Z │ INFO │ - │ GET /api/users │ - │ 127.0.0.1 │ req_id=94282ed2-5c03-4077-bee3-be0a90697173
+2026-01-18T02:38:45.712Z │ INFO │ - │ GET /api/profiles │ - │ 127.0.0.1 │ req_id=ae0ec917-3eab-4a9c-baec-37feabcd08cd
+2026-01-18T02:38:45.713Z │ INFO │ - │ GET /api/user-projects │ - │ 127.0.0.1 │ req_id=0a8f7f98-fd43-4f75-8b8d-57bff97064ff
+2026-01-18T02:38:45.716Z │ INFO │ 304 │ GET /api/user-tasks │ 7ms │ 127.0.0.1 │ req_id=b8223af9-1b74-4f58-b27e-ad553d55bdf9
+2026-01-18T02:38:45.718Z │ INFO │ 304 │ GET /api/profiles │ 7ms │ 127.0.0.1 │ req_id=ae0ec917-3eab-4a9c-baec-37feabcd08cd
+2026-01-18T02:38:45.722Z │ INFO │ 304 │ GET /api/user-projects │ 9ms │ 127.0.0.1 │ req_id=0a8f7f98-fd43-4f75-8b8d-57bff97064ff
+2026-01-18T02:38:45.726Z │ INFO │ 304 │ GET /api/users │ 16ms │ 127.0.0.1 │ req_id=94282ed2-5c03-4077-bee3-be0a90697173
+2026-01-18T02:38:45.751Z │ INFO │ - │ GET /api/projects │ - │ 127.0.0.1 │ req_id=47bfe953-baf6-4bab-9a40-cce631ffd16c
+2026-01-18T02:38:45.753Z │ INFO │ - │ GET /api/tasks │ - │ 127.0.0.1 │ req_id=2ab6cf11-baf6-46ef-b7d4-2ff63319f68c
+2026-01-18T02:38:45.755Z │ INFO │ 304 │ GET /api/projects │ 5ms │ 127.0.0.1 │ req_id=47bfe953-baf6-4bab-9a40-cce631ffd16c
+2026-01-18T02:38:45.757Z │ INFO │ 304 │ GET /api/tasks │ 4ms │ 127.0.0.1 │ req_id=2ab6cf11-baf6-46ef-b7d4-2ff63319f68c
+2026-01-18T02:38:46.034Z │ INFO │ - │ GET /api/users │ - │ 127.0.0.1 │ req_id=fc7e1f04-c58b-49a9-8cb8-e46c3b08837e
+2026-01-18T02:38:46.035Z │ INFO │ - │ GET /api/user-tasks │ - │ 127.0.0.1 │ req_id=99e8aa33-cedd-4128-8185-dc2e9ebc2c6c
+2026-01-18T02:38:46.045Z │ INFO │ - │ GET /api/user-projects │ - │ 127.0.0.1 │ req_id=904e7a85-0c82-4e05-99ea-d7ac2b582da7
+2026-01-18T02:38:46.037Z │ INFO │ - │ GET /api/profiles │ - │ 127.0.0.1 │ req_id=f4221d8d-940f-4779-9185-1b3c094bc6d3
+2026-01-18T02:38:46.051Z │ INFO │ 304 │ GET /api/users │ 17ms │ 127.0.0.1 │ req_id=fc7e1f04-c58b-49a9-8cb8-e46c3b08837e
+2026-01-18T02:38:46.052Z │ INFO │ 304 │ GET /api/user-tasks │ 17ms │ 127.0.0.1 │ req_id=99e8aa33-cedd-4128-8185-dc2e9ebc2c6c
+2026-01-18T02:38:46.054Z │ INFO │ 304 │ GET /api/profiles │ 17ms │ 127.0.0.1 │ req_id=f4221d8d-940f-4779-9185-1b3c094bc6d3
+2026-01-18T02:38:46.057Z │ INFO │ 304 │ GET /api/user-projects │ 12ms │ 127.0.0.1 │ req_id=904e7a85-0c82-4e05-99ea-d7ac2b582da7
+2026-01-18T02:38:46.658Z │ INFO │ - │ GET /api/projects │ - │ 127.0.0.1 │ req_id=7aafd3e5-7d4c-47b8-88b8-c86e0514e137
+2026-01-18T02:38:46.660Z │ INFO │ - │ GET /api/tasks │ - │ 127.0.0.1 │ req_id=12c39e02-1d81-4818-8981-92de4e3f5689
+2026-01-18T02:38:46.663Z │ INFO │ 304 │ GET /api/projects │ 4ms │ 127.0.0.1 │ req_id=7aafd3e5-7d4c-47b8-88b8-c86e0514e137
+2026-01-18T02:38:46.665Z │ INFO │ 304 │ GET /api/tasks │ 5ms │ 127.0.0.1 │ req_id=12c39e02-1d81-4818-8981-92de4e3f5689
+2026-01-18T02:38:46.966Z │ INFO │ - │ GET /api/user-tasks │ - │ 127.0.0.1 │ req_id=977460de-d9cf-4dd1-a030-4b26a5f2fb5c
+2026-01-18T02:38:46.973Z │ INFO │ - │ GET /api/profiles │ - │ 127.0.0.1 │ req_id=a0889480-292a-4258-83b5-199b643fca76
+2026-01-18T02:38:46.974Z │ INFO │ - │ GET /api/user-projects │ - │ 127.0.0.1 │ req_id=1988df89-a192-4770-8208-194d2c6037f9
+2026-01-18T02:38:46.967Z │ INFO │ - │ GET /api/users │ - │ 127.0.0.1 │ req_id=5b76a45f-5ea9-4168-bf1a-3c78f2f9f5d3
+2026-01-18T02:38:46.978Z │ INFO │ 304 │ GET /api/user-tasks │ 13ms │ 127.0.0.1 │ req_id=977460de-d9cf-4dd1-a030-4b26a5f2fb5c
+2026-01-18T02:38:46.980Z │ INFO │ 304 │ GET /api/users │ 13ms │ 127.0.0.1 │ req_id=5b76a45f-5ea9-4168-bf1a-3c78f2f9f5d3
+2026-01-18T02:38:46.983Z │ INFO │ 304 │ GET /api/profiles │ 9ms │ 127.0.0.1 │ req_id=a0889480-292a-4258-83b5-199b643fca76
+2026-01-18T02:38:46.987Z │ INFO │ - │ GET /api/projects │ - │ 127.0.0.1 │ req_id=1b7c2115-ce0c-465f-907a-58d15e235d7c
+2026-01-18T02:38:46.985Z │ INFO │ 304 │ GET /api/user-projects │ 11ms │ 127.0.0.1 │ req_id=1988df89-a192-4770-8208-194d2c6037f9
+2026-01-18T02:38:46.988Z │ INFO │ - │ GET /api/tasks │ - │ 127.0.0.1 │ req_id=3567b337-76a0-4ed6-b56c-e4a49557403c
+2026-01-18T02:38:46.991Z │ INFO │ 304 │ GET /api/projects │ 5ms │ 127.0.0.1 │ req_id=1b7c2115-ce0c-465f-907a-58d15e235d7c
+2026-01-18T02:38:46.993Z │ INFO │ 304 │ GET /api/tasks │ 5ms │ 127.0.0.1 │ req_id=3567b337-76a0-4ed6-b56c-e4a49557403c
+2026-01-18T02:38:47.289Z │ INFO │ - │ GET /api/user-tasks │ - │ 127.0.0.1 │ req_id=3a5c3a80-8af6-4101-8c4a-c8bea397f699
+2026-01-18T02:38:47.290Z │ INFO │ - │ GET /api/users │ - │ 127.0.0.1 │ req_id=d3e35750-5a07-4f49-8460-e3c7a5e6ef5d
+2026-01-18T02:38:47.292Z │ INFO │ - │ GET /api/profiles │ - │ 127.0.0.1 │ req_id=a535dbac-c6bd-4f47-9671-ac971289d82d
+2026-01-18T02:38:47.297Z │ INFO │ 304 │ GET /api/user-tasks │ 8ms │ 127.0.0.1 │ req_id=3a5c3a80-8af6-4101-8c4a-c8bea397f699
+2026-01-18T02:38:47.298Z │ INFO │ 304 │ GET /api/users │ 8ms │ 127.0.0.1 │ req_id=d3e35750-5a07-4f49-8460-e3c7a5e6ef5d
+2026-01-18T02:38:47.300Z │ INFO │ 304 │ GET /api/profiles │ 8ms │ 127.0.0.1 │ req_id=a535dbac-c6bd-4f47-9671-ac971289d82d
+2026-01-18T02:38:47.306Z │ INFO │ - │ GET /api/user-projects │ - │ 127.0.0.1 │ req_id=caa611e3-3573-4d05-ac4a-715156a1050f
+2026-01-18T02:38:47.309Z │ INFO │ 304 │ GET /api/user-projects │ 7ms │ 127.0.0.1 │ req_id=caa611e3-3573-4d05-ac4a-715156a1050f
+2026-01-18T02:39:46.785Z │ INFO │ - │ POST /api/users │ - │ 127.0.0.1 │ req_id=bfd06fab-e82d-4976-b242-149f961468f7
+2026-01-18T02:39:46.788Z │ WARN │ 400 │ POST /api/users │ 4ms │ 127.0.0.1 │ req_id=bfd06fab-e82d-4976-b242-149f961468f7
+2026-01-18T02:40:47.594Z │ INFO │ - │ GET /api/projects │ - │ 127.0.0.1 │ req_id=33bf3b52-ac6b-44b4-ac43-3b04dc0d44de
+2026-01-18T02:40:47.604Z │ INFO │ - │ GET /api/tasks │ - │ 127.0.0.1 │ req_id=bfef7142-a399-45b2-96b3-d9fad188cf87
+2026-01-18T02:40:47.611Z │ WARN │ 304 │ GET /api/projects │ 17ms │ 127.0.0.1 │ req_id=33bf3b52-ac6b-44b4-ac43-3b04dc0d44de
+2026-01-18T02:40:47.614Z │ WARN │ 304 │ GET /api/tasks │ 11ms │ 127.0.0.1 │ req_id=bfef7142-a399-45b2-96b3-d9fad188cf87
+2026-01-18T02:40:47.894Z │ INFO │ - │ GET /api/user-tasks │ - │ 127.0.0.1 │ req_id=3ae4967c-917d-418d-b1d6-63e07a211c77
+2026-01-18T02:40:47.896Z │ INFO │ - │ GET /api/users │ - │ 127.0.0.1 │ req_id=be50df2b-d406-4671-a9ff-ebbd2f9436bd
+2026-01-18T02:40:47.897Z │ INFO │ - │ GET /api/profiles │ - │ 127.0.0.1 │ req_id=3e1391f7-b85d-469c-8712-ba9f44301eaa
+2026-01-18T02:40:47.899Z │ INFO │ - │ GET /api/user-projects │ - │ 127.0.0.1 │ req_id=5344c8e0-d845-4c8b-bdca-a8b771bbe66f
+2026-01-18T02:40:47.904Z │ WARN │ 304 │ GET /api/user-tasks │ 10ms │ 127.0.0.1 │ req_id=3ae4967c-917d-418d-b1d6-63e07a211c77
+2026-01-18T02:40:47.906Z │ WARN │ 304 │ GET /api/users │ 10ms │ 127.0.0.1 │ req_id=be50df2b-d406-4671-a9ff-ebbd2f9436bd
+2026-01-18T02:40:47.908Z │ WARN │ 304 │ GET /api/profiles │ 11ms │ 127.0.0.1 │ req_id=3e1391f7-b85d-469c-8712-ba9f44301eaa
+2026-01-18T02:40:47.910Z │ WARN │ 304 │ GET /api/user-projects │ 11ms │ 127.0.0.1 │ req_id=5344c8e0-d845-4c8b-bdca-a8b771bbe66f
+2026-01-18T02:40:47.923Z │ INFO │ - │ GET /api/projects │ - │ 127.0.0.1 │ req_id=11c55526-935b-40c1-baba-c015fa1e38bb
+2026-01-18T02:40:47.925Z │ INFO │ - │ GET /api/tasks │ - │ 127.0.0.1 │ req_id=db90a452-82f2-4b11-bca7-e90465ed3041
+2026-01-18T02:40:47.928Z │ WARN │ 304 │ GET /api/projects │ 5ms │ 127.0.0.1 │ req_id=11c55526-935b-40c1-baba-c015fa1e38bb
+2026-01-18T02:40:47.930Z │ WARN │ 304 │ GET /api/tasks │ 5ms │ 127.0.0.1 │ req_id=db90a452-82f2-4b11-bca7-e90465ed3041
+2026-01-18T02:40:48.218Z │ INFO │ - │ GET /api/profiles │ - │ 127.0.0.1 │ req_id=fc317f3f-65d8-4857-b9de-84cb5ba5daea
+2026-01-18T02:40:48.221Z │ INFO │ - │ GET /api/user-tasks │ - │ 127.0.0.1 │ req_id=059dfd72-af5b-44fc-96aa-90c144b9599c
+2026-01-18T02:40:48.223Z │ INFO │ - │ GET /api/users │ - │ 127.0.0.1 │ req_id=2a1172b1-6287-4300-94cc-670d41fd3503
+2026-01-18T02:40:48.226Z │ INFO │ - │ GET /api/user-projects │ - │ 127.0.0.1 │ req_id=79d944e6-0de9-46a8-96a1-4502133c458d
+2026-01-18T02:40:48.234Z │ WARN │ 304 │ GET /api/user-tasks │ 13ms │ 127.0.0.1 │ req_id=059dfd72-af5b-44fc-96aa-90c144b9599c
+2026-01-18T02:40:48.229Z │ WARN │ 304 │ GET /api/profiles │ 11ms │ 127.0.0.1 │ req_id=fc317f3f-65d8-4857-b9de-84cb5ba5daea
+2026-01-18T02:40:48.236Z │ WARN │ 304 │ GET /api/users │ 14ms │ 127.0.0.1 │ req_id=2a1172b1-6287-4300-94cc-670d41fd3503
+2026-01-18T02:40:48.238Z │ WARN │ 304 │ GET /api/user-projects │ 12ms │ 127.0.0.1 │ req_id=79d944e6-0de9-46a8-96a1-4502133c458d
+2026-01-18T02:40:56.468Z │ INFO │ - │ POST /api/users │ - │ 127.0.0.1 │ req_id=1c6138a9-9ea5-4365-8dcf-a053be2def2e
+2026-01-18T02:40:56.473Z │ ERROR │ 400 │ POST /api/users │ 4ms │ 127.0.0.1 │ req_id=1c6138a9-9ea5-4365-8dcf-a053be2def2e
+2026-01-18T02:42:17.380Z │ INFO │ - │ POST /api/users │ - │ 127.0.0.1 │ req_id=57ef229e-c412-4498-8c0d-f4c97992df05
+2026-01-18T02:42:17.382Z │ ERROR │ 400 │ POST /api/users │ 2ms │ 127.0.0.1 │ req_id=57ef229e-c412-4498-8c0d-f4c97992df05
+2026-01-18T02:42:46.744Z │ INFO │ - │ GET /api/users/a │ - │ 127.0.0.1 │ req_id=1a2d3366-ab31-418c-9ec4-94960be62f3c
+2026-01-18T02:42:46.747Z │ ERROR │ 400 │ GET /api/users/a │ 2ms │ 127.0.0.1 │ req_id=1a2d3366-ab31-418c-9ec4-94960be62f3c
+2026-01-18T02:43:30.670Z │ ERROR │ 400 │ POST /api/tasks │ 2ms │ 127.0.0.1 │ req_id=45d3b9c5-5702-49ec-9bb5-d9cc090b6475
+2026-01-18T02:43:30.668Z │ INFO │ - │ POST /api/tasks │ - │ 127.0.0.1 │ req_id=45d3b9c5-5702-49ec-9bb5-d9cc090b6475
+2026-01-18T02:55:12.684Z │ INFO │ - │ POST /api/auth/login │ - │ 127.0.0.1 │ req_id=20dea68e-2a08-42a3-ab9e-dc2c4268d7c4
+2026-01-18T02:55:12.748Z │ INFO │ 200 │ POST /api/auth/login │ 64ms │ 127.0.0.1 │ req_id=20dea68e-2a08-42a3-ab9e-dc2c4268d7c4
+2026-01-18T02:55:12.950Z │ INFO │ - │ GET /api/projects │ - │ 127.0.0.1 │ req_id=ffe9d71b-49af-4523-9a71-c9e6380b329b
+2026-01-18T02:55:12.956Z │ INFO │ - │ GET /api/tasks │ - │ 127.0.0.1 │ req_id=1a813811-e15e-4455-ad18-43a248ddbf06
+2026-01-18T02:55:12.958Z │ INFO │ - │ GET /api/user-tasks │ - │ 127.0.0.1 │ req_id=611710eb-9948-4557-91c8-176c1cdd7088
+2026-01-18T02:55:12.961Z │ INFO │ - │ GET /api/users │ - │ 127.0.0.1 │ req_id=a8c3e256-fb92-47a7-88ee-e1ed8f2ff943
+2026-01-18T02:55:12.963Z │ INFO │ - │ GET /api/profiles │ - │ 127.0.0.1 │ req_id=1f367feb-2957-4f9d-b6a3-874a13b8e5e7
+2026-01-18T02:55:12.968Z │ WARN │ 304 │ GET /api/projects │ 18ms │ 127.0.0.1 │ req_id=ffe9d71b-49af-4523-9a71-c9e6380b329b
+2026-01-18T02:55:12.975Z │ WARN │ 304 │ GET /api/user-tasks │ 17ms │ 127.0.0.1 │ req_id=611710eb-9948-4557-91c8-176c1cdd7088
+2026-01-18T02:55:12.977Z │ WARN │ 304 │ GET /api/users │ 16ms │ 127.0.0.1 │ req_id=a8c3e256-fb92-47a7-88ee-e1ed8f2ff943
+2026-01-18T02:55:12.972Z │ WARN │ 304 │ GET /api/tasks │ 16ms │ 127.0.0.1 │ req_id=1a813811-e15e-4455-ad18-43a248ddbf06
+2026-01-18T02:55:12.980Z │ WARN │ 304 │ GET /api/profiles │ 17ms │ 127.0.0.1 │ req_id=1f367feb-2957-4f9d-b6a3-874a13b8e5e7
+2026-01-18T02:55:13.266Z │ INFO │ - │ GET /api/user-projects │ - │ 127.0.0.1 │ req_id=e23e92d6-2429-4ba3-91ce-984dcea456a7
+2026-01-18T02:55:13.269Z │ WARN │ 304 │ GET /api/user-projects │ 3ms │ 127.0.0.1 │ req_id=e23e92d6-2429-4ba3-91ce-984dcea456a7
+2026-01-18T02:55:13.274Z │ INFO │ - │ GET /api/projects │ - │ 127.0.0.1 │ req_id=2089758b-b6d0-4ff0-a472-09d42d5fc7cb
+2026-01-18T02:55:13.277Z │ WARN │ 304 │ GET /api/projects │ 3ms │ 127.0.0.1 │ req_id=2089758b-b6d0-4ff0-a472-09d42d5fc7cb
+2026-01-18T02:55:13.283Z │ INFO │ - │ GET /api/tasks │ - │ 127.0.0.1 │ req_id=abbf3279-3733-4343-a3d5-2e250c9d5dcf
+2026-01-18T02:55:13.286Z │ INFO │ - │ GET /api/user-tasks │ - │ 127.0.0.1 │ req_id=04076c17-75cc-4aef-83b6-be827a912418
+2026-01-18T02:55:13.289Z │ INFO │ - │ GET /api/users │ - │ 127.0.0.1 │ req_id=28ae024c-be06-4b1b-8c23-1e429ad787f5
+2026-01-18T02:55:13.292Z │ WARN │ 304 │ GET /api/tasks │ 9ms │ 127.0.0.1 │ req_id=abbf3279-3733-4343-a3d5-2e250c9d5dcf
+2026-01-18T02:55:13.295Z │ WARN │ 304 │ GET /api/user-tasks │ 8ms │ 127.0.0.1 │ req_id=04076c17-75cc-4aef-83b6-be827a912418
+2026-01-18T02:55:13.296Z │ WARN │ 304 │ GET /api/users │ 7ms │ 127.0.0.1 │ req_id=28ae024c-be06-4b1b-8c23-1e429ad787f5
+2026-01-18T02:55:13.299Z │ INFO │ - │ GET /api/profiles │ - │ 127.0.0.1 │ req_id=38920874-02fc-4b6b-97c8-c0de2a1ac9d2
+2026-01-18T02:55:13.302Z │ WARN │ 304 │ GET /api/profiles │ 3ms │ 127.0.0.1 │ req_id=38920874-02fc-4b6b-97c8-c0de2a1ac9d2
+2026-01-18T02:55:13.576Z │ INFO │ - │ GET /api/user-projects │ - │ 127.0.0.1 │ req_id=9b7862cc-5b7d-44ae-a241-69317fd7056d
+2026-01-18T02:55:13.579Z │ WARN │ 304 │ GET /api/user-projects │ 3ms │ 127.0.0.1 │ req_id=9b7862cc-5b7d-44ae-a241-69317fd7056d
+2026-01-18T02:55:19.820Z │ ERROR │ 400 │ POST /api/auth/login │ 3ms │ 127.0.0.1 │ req_id=e146eff9-1413-45f4-9197-5a4008d4aa9b
+2026-01-18T02:55:19.817Z │ INFO │ - │ POST /api/auth/login │ - │ 127.0.0.1 │ req_id=e146eff9-1413-45f4-9197-5a4008d4aa9b
+2026-01-18T02:55:21.326Z │ INFO │ - │ POST /api/auth/login │ - │ 127.0.0.1 │ req_id=838b5447-4ffa-487e-b49a-704cc25d67b3
+2026-01-18T02:55:21.328Z │ ERROR │ 400 │ POST /api/auth/login │ 2ms │ 127.0.0.1 │ req_id=838b5447-4ffa-487e-b49a-704cc25d67b3
+2026-01-18T02:55:23.195Z │ INFO │ - │ POST /api/auth/login │ - │ 127.0.0.1 │ req_id=78b900c8-c9a1-43a0-8245-4fa1d5a152dc
+2026-01-18T02:55:23.249Z │ ERROR │ 400 │ POST /api/auth/login │ 54ms │ 127.0.0.1 │ req_id=78b900c8-c9a1-43a0-8245-4fa1d5a152dc
+2026-01-18T02:55:30.493Z │ INFO │ - │ POST /api/auth/login │ - │ 127.0.0.1 │ req_id=87b4c1b6-e4a2-4df3-b9c5-be28f2428821
+2026-01-18T02:55:30.496Z │ ERROR │ 404 │ POST /api/auth/login │ 3ms │ 127.0.0.1 │ req_id=87b4c1b6-e4a2-4df3-b9c5-be28f2428821
+2026-01-18T02:55:35.742Z │ INFO │ - │ POST /api/auth/login │ - │ 127.0.0.1 │ req_id=a4952150-8d96-42cb-a097-f13e36bb3844
+2026-01-18T02:55:35.796Z │ INFO │ 200 │ POST /api/auth/login │ 55ms │ 127.0.0.1 │ req_id=a4952150-8d96-42cb-a097-f13e36bb3844
+2026-01-18T02:55:35.996Z │ INFO │ - │ GET /api/projects │ - │ 127.0.0.1 │ req_id=a3e8220c-0542-4905-a96a-db2b55ff0303
+2026-01-18T02:55:35.998Z │ WARN │ 304 │ GET /api/projects │ 2ms │ 127.0.0.1 │ req_id=a3e8220c-0542-4905-a96a-db2b55ff0303
+2026-01-18T02:55:36.131Z │ INFO │ - │ GET /api/tasks │ - │ 127.0.0.1 │ req_id=3a8e1e4a-4b78-4154-9ac3-ab6d1941a939
+2026-01-18T02:55:36.134Z │ INFO │ - │ GET /api/user-projects │ - │ 127.0.0.1 │ req_id=7d3deeea-c977-475e-bfa2-be1f034d3840
+2026-01-18T02:55:36.141Z │ INFO │ - │ GET /api/user-tasks │ - │ 127.0.0.1 │ req_id=f9e33fdf-d39e-45dc-9799-2bb054d8e422
+2026-01-18T02:55:36.143Z │ INFO │ - │ GET /api/users │ - │ 127.0.0.1 │ req_id=a220b3af-988f-48f3-abd2-a1f1caffe2c9
+2026-01-18T02:55:36.144Z │ INFO │ - │ GET /api/profiles │ - │ 127.0.0.1 │ req_id=c0710212-ba2d-49b8-9e4e-70088a2676b0
+2026-01-18T02:55:36.148Z │ WARN │ 304 │ GET /api/tasks │ 16ms │ 127.0.0.1 │ req_id=3a8e1e4a-4b78-4154-9ac3-ab6d1941a939
+2026-01-18T02:55:36.150Z │ WARN │ 304 │ GET /api/user-projects │ 15ms │ 127.0.0.1 │ req_id=7d3deeea-c977-475e-bfa2-be1f034d3840
+2026-01-18T02:55:36.155Z │ WARN │ 304 │ GET /api/profiles │ 11ms │ 127.0.0.1 │ req_id=c0710212-ba2d-49b8-9e4e-70088a2676b0
+2026-01-18T02:55:36.153Z │ WARN │ 304 │ GET /api/users │ 10ms │ 127.0.0.1 │ req_id=a220b3af-988f-48f3-abd2-a1f1caffe2c9
+2026-01-18T02:55:36.151Z │ WARN │ 304 │ GET /api/user-tasks │ 10ms │ 127.0.0.1 │ req_id=f9e33fdf-d39e-45dc-9799-2bb054d8e422
+2026-01-18T02:55:36.317Z │ INFO │ - │ GET /api/projects │ - │ 127.0.0.1 │ req_id=5496d431-de4f-487f-84e6-a27def189b6a
+2026-01-18T02:55:36.321Z │ WARN │ 304 │ GET /api/projects │ 4ms │ 127.0.0.1 │ req_id=5496d431-de4f-487f-84e6-a27def189b6a
+2026-01-18T02:55:36.459Z │ INFO │ - │ GET /api/user-projects │ - │ 127.0.0.1 │ req_id=90c94b7c-f07e-4ede-a3b5-3643051f2194
+2026-01-18T02:55:36.457Z │ INFO │ - │ GET /api/tasks │ - │ 127.0.0.1 │ req_id=0d4b9fc9-1284-4e7c-a5ee-ebc8bdb57cbf
+2026-01-18T02:55:36.460Z │ INFO │ - │ GET /api/user-tasks │ - │ 127.0.0.1 │ req_id=2c23bd64-ef2a-4b1c-a862-15df4036ceaa
+2026-01-18T02:55:36.465Z │ WARN │ 304 │ GET /api/tasks │ 8ms │ 127.0.0.1 │ req_id=0d4b9fc9-1284-4e7c-a5ee-ebc8bdb57cbf
+2026-01-18T02:55:36.467Z │ WARN │ 304 │ GET /api/user-projects │ 9ms │ 127.0.0.1 │ req_id=90c94b7c-f07e-4ede-a3b5-3643051f2194
+2026-01-18T02:55:36.472Z │ WARN │ 304 │ GET /api/user-tasks │ 12ms │ 127.0.0.1 │ req_id=2c23bd64-ef2a-4b1c-a862-15df4036ceaa
+2026-01-18T02:55:36.478Z │ INFO │ - │ GET /api/users │ - │ 127.0.0.1 │ req_id=ae409962-3ee2-49fd-8028-4600540f1d51
+2026-01-18T02:55:36.480Z │ INFO │ - │ GET /api/profiles │ - │ 127.0.0.1 │ req_id=cafa2702-4943-4246-84ce-1ed84d2f0714
+2026-01-18T02:55:36.482Z │ WARN │ 304 │ GET /api/users │ 4ms │ 127.0.0.1 │ req_id=ae409962-3ee2-49fd-8028-4600540f1d51
+2026-01-18T02:55:36.484Z │ WARN │ 304 │ GET /api/profiles │ 4ms │ 127.0.0.1 │ req_id=cafa2702-4943-4246-84ce-1ed84d2f0714
+2026-01-18T02:55:45.722Z │ INFO │ - │ PATCH /api/tasks/5 │ - │ 127.0.0.1 │ req_id=b2e5bdf7-4547-461d-be46-5f958fd9b61f
+2026-01-18T02:55:45.747Z │ INFO │ 200 │ PATCH /api/tasks/5 │ 26ms │ 127.0.0.1 │ req_id=b2e5bdf7-4547-461d-be46-5f958fd9b61f

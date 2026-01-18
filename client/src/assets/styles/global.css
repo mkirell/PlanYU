@@ -1,0 +1,36 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: scroll;
+  height: 100%;
+}
+
+body,
+#root {
+  min-height: 100vh;
+  max-width: 100%;
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--dark);
+  display: flex;
+  flex-direction: column;
+}
+
+input,
+textarea,
+select,
+button {
+  font-family: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+}
