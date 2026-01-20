@@ -1,4 +1,4 @@
-export const routes = [
+export const GuestRoutes = [
   {
     path: "/board",
     name: "Board",
@@ -10,5 +10,3 @@ export const routes = [
     component: () => import("./Auth/Auth.jsx"),
   },
 ];
-
-export default routes;

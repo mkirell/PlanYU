@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import routes from "./pages/routes.js";
+import { GuestRoutes } from "./pages/routes.js";
 import "./assets/styles/main.css";
 import Notif from "./components/Notif/Notif.jsx";
 import { logoutUser } from "./features/auth/authThunks";
@@ -24,7 +24,7 @@ export default function App() {
       <Suspense fallback={<div>Loading...</div>}>
         <Notif />
         <Routes>
-          {routes.map((r) => {
+          {GuestRoutes.map((r) => {
             const Component = React.lazy(r.component);
 
             let element = null;
