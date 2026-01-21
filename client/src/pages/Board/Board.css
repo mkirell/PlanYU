@@ -8,6 +8,10 @@
   border: 0.05rem solid rgba(20, 30, 60, 0.03);
 }
 
+.board-add {
+  overflow: hidden;
+}
+
 .board.owner {
   border-top: 5px solid var(--status-owner-board);
 }

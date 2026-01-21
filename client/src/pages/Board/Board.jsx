@@ -448,7 +448,11 @@ export default function Board({ currentUserId, onLogout }) {
                   <option value="MEDIUM">Medium</option>
                   <option value="HIGH">High</option>
                 </select>
-                <input name="due_date" type="date" />
+                <input
+                  name="due_date"
+                  type="date"
+                  defaultValue={new Date().toISOString().slice(0, 10)}
+                />
                 <button type="submit">Add Task</button>
               </form>
             </section>
