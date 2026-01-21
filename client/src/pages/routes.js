@@ -1,4 +1,4 @@
-export const GuestRoutes = [
+export const OpenRoutes = [
   {
     path: "/board",
     name: "Board",

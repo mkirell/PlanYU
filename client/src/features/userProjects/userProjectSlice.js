@@ -20,7 +20,11 @@ const userProjectsSlice = createSlice({
       })
       .addCase(fetchUserProjects.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.list = action.payload;
+        const map = new Map();
+        (action.payload || []).forEach((up) => {
+          map.set(`${up.user_id}:${up.project_id}`, up);
+        });
+        state.list = Array.from(map.values());
       })
       .addCase(fetchUserProjects.rejected, (state, action) => {
         state.status = "failed";
@@ -50,7 +54,12 @@ const userProjectsSlice = createSlice({
       })
       .addCase(createUserProject.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.list.push(action.payload);
+        const key = `${action.payload.user_id}:${action.payload.project_id}`;
+        const index = state.list.findIndex(
+          (up) => `${up.user_id}:${up.project_id}` === key,
+        );
+        if (index === -1) state.list.push(action.payload);
+        else state.list[index] = action.payload;
         state.message = action.payload?.message || "User assigned to project";
       })
       .addCase(createUserProject.rejected, (state, action) => {

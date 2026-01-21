@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Card from "../../components/Card/Card.jsx";
 import Profile from "../../components/Profile/Profile.jsx";
@@ -46,6 +46,7 @@ export default function Board({ currentUserId, onLogout }) {
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [confirmMessage, setConfirmMessage] = useState("");
   const [confirmAction, setConfirmAction] = useState(() => {});
+  const didLoadRef = useRef(false);
 
   const STATUS = [
     { key: "TODO", label: "To Do", icon: "📝" },
@@ -83,6 +84,8 @@ export default function Board({ currentUserId, onLogout }) {
   );
 
   useEffect(() => {
+    if (didLoadRef.current) return;
+    didLoadRef.current = true;
     Promise.all([
       dispatch(fetchProjects()),
       dispatch(fetchTasks()),
@@ -178,8 +181,10 @@ export default function Board({ currentUserId, onLogout }) {
   };
 
   const handleDrop = (e, status) => {
-    const id = Number(e.dataTransfer.getData("text/plain"));
-    if (!id) return;
+    const raw = e.dataTransfer.getData("text/plain");
+    if (!raw) return;
+    const parsed = Number(raw);
+    const id = Number.isNaN(parsed) ? raw : parsed;
     handleUpdateTask(id, { status });
   };
 
@@ -205,13 +210,6 @@ export default function Board({ currentUserId, onLogout }) {
     if (!selectedProject || currentUserRole !== "OWNER") return;
     const deletedProjectId = selectedProject.project_id;
     dispatch(deleteProject(deletedProjectId));
-    userProjects
-      .filter((up) => up.project_id === deletedProjectId)
-      .forEach((up) =>
-        dispatch(
-          deleteUserProject({ user_id: up.user_id, project_id: up.project_id }),
-        ),
-      );
     const remainingProjects = visibleProjects.filter(
       (p) => p.project_id !== deletedProjectId,
     );
@@ -279,8 +277,12 @@ export default function Board({ currentUserId, onLogout }) {
         });
       });
     } else {
-      dispatch(createProject({ name, description })).then(async (res) => {
-        const project_id = res.payload.project_id;
+      dispatch(
+        createProject({ name, description, ownerUserId: currentUserId }),
+      ).then(async (res) => {
+        const created = res.payload;
+        if (!created?.project_id) return;
+        const project_id = created.project_id;
         const memberPromises = members.map((user_id) =>
           dispatch(createUserProject({ user_id, project_id, role: "MEMBER" })),
         );
@@ -329,7 +331,10 @@ export default function Board({ currentUserId, onLogout }) {
               setEditingProject(null);
               setModalOpen(true);
             } else {
-              setSelectedProjectId(Number(e.target.value));
+              const parsed = Number(e.target.value);
+              setSelectedProjectId(
+                Number.isNaN(parsed) ? e.target.value : parsed,
+              );
             }
           }}
         >

@@ -24,7 +24,7 @@ const corsOptions = {
 // Auth rate limit: 20 requests every 15 minutes
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 50, //20
+  max: 20,
   standardHeaders: true,
   legacyHeaders: false,
 });

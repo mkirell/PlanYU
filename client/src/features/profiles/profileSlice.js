@@ -20,7 +20,11 @@ const profilesSlice = createSlice({
       })
       .addCase(fetchProfiles.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.list = action.payload;
+        const map = new Map();
+        (action.payload || []).forEach((p) => {
+          map.set(p.profile_id, p);
+        });
+        state.list = Array.from(map.values());
       })
       .addCase(fetchProfiles.rejected, (state, action) => {
         state.status = "failed";
@@ -49,7 +53,11 @@ const profilesSlice = createSlice({
       })
       .addCase(createProfile.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.list.push(action.payload);
+        const index = state.list.findIndex(
+          (p) => p.profile_id === action.payload.profile_id,
+        );
+        if (index === -1) state.list.push(action.payload);
+        else state.list[index] = action.payload;
         state.message = action.payload?.message || "Profile created";
       })
       .addCase(createProfile.rejected, (state, action) => {

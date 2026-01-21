@@ -6,6 +6,8 @@ import {
   updateUserTask,
   deleteUserTask,
 } from "./userTaskThunks";
+import { deleteTask } from "../tasks/taskThunks";
+import { deleteUserProject } from "../userProjects/userProjectThunks";
 
 const userTasksSlice = createSlice({
   name: "userTasks",
@@ -20,7 +22,11 @@ const userTasksSlice = createSlice({
       })
       .addCase(fetchUserTasks.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.list = action.payload;
+        const map = new Map();
+        (action.payload || []).forEach((ut) => {
+          map.set(`${ut.user_id}:${ut.task_id}`, ut);
+        });
+        state.list = Array.from(map.values());
       })
       .addCase(fetchUserTasks.rejected, (state, action) => {
         state.status = "failed";
@@ -50,7 +56,12 @@ const userTasksSlice = createSlice({
       })
       .addCase(createUserTask.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.list.push(action.payload);
+        const key = `${action.payload.user_id}:${action.payload.task_id}`;
+        const index = state.list.findIndex(
+          (ut) => `${ut.user_id}:${ut.task_id}` === key,
+        );
+        if (index === -1) state.list.push(action.payload);
+        else state.list[index] = action.payload;
         state.message = action.payload?.message || "User assigned to task";
       })
       .addCase(createUserTask.rejected, (state, action) => {
@@ -98,6 +109,20 @@ const userTasksSlice = createSlice({
         state.status = "failed";
         state.error = action.payload;
         state.message = action.payload || "Failed to remove user from task";
+      })
+      .addCase(deleteTask.fulfilled, (state, action) => {
+        state.list = state.list.filter((ut) => ut.task_id !== action.payload);
+      })
+      .addCase(deleteUserProject.fulfilled, (state, action) => {
+        const removedIds = action.payload?.removedTaskIds || [];
+        if (removedIds.length === 0) return;
+        state.list = state.list.filter(
+          (ut) =>
+            !(
+              ut.user_id === action.payload.user_id &&
+              removedIds.includes(ut.task_id)
+            )
+        );
       });
   },
 });

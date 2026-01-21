@@ -17,7 +17,7 @@ self.addEventListener("install", (event) => {
       const cache = await caches.open(STATIC_CACHE);
       await cache.addAll(STATIC_ASSETS);
       await self.skipWaiting();
-    })()
+    })(),
   );
 });
 
@@ -29,11 +29,11 @@ self.addEventListener("activate", (event) => {
         keys.map((name) =>
           name === STATIC_CACHE || name === API_CACHE
             ? undefined
-            : caches.delete(name)
-        )
+            : caches.delete(name),
+        ),
       );
       await self.clients.claim();
-    })()
+    })(),
   );
 });
 
@@ -56,12 +56,9 @@ self.addEventListener("fetch", (event) => {
           }
           return networkResp;
         } catch {
-          const cached = await caches.match(request);
-          return (
-            cached || new Response(null, { status: 503, statusText: "Offline" })
-          );
+          return new Response(null, { status: 503, statusText: "Offline" });
         }
-      })()
+      })(),
     );
     return;
   }
@@ -81,6 +78,6 @@ self.addEventListener("fetch", (event) => {
       } catch {
         return caches.match("/index.html");
       }
-    })()
+    })(),
   );
 });

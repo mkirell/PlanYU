@@ -20,7 +20,11 @@ const tasksSlice = createSlice({
       })
       .addCase(fetchTasks.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.list = action.payload;
+        const map = new Map();
+        (action.payload || []).forEach((t) => {
+          map.set(t.task_id, t);
+        });
+        state.list = Array.from(map.values());
       })
       .addCase(fetchTasks.rejected, (state, action) => {
         state.status = "failed";
@@ -49,7 +53,11 @@ const tasksSlice = createSlice({
       })
       .addCase(createTask.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.list.push(action.payload);
+        const index = state.list.findIndex(
+          (t) => t.task_id === action.payload.task_id,
+        );
+        if (index === -1) state.list.push(action.payload);
+        else state.list[index] = action.payload;
         state.message = action.payload?.message || "Task created";
       })
       .addCase(createTask.rejected, (state, action) => {
