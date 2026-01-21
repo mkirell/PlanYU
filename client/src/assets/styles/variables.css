@@ -21,7 +21,7 @@
   --font-heading: "Roboto", "Inter", Arial, sans-serif;
 
   --bg-login: url("../imgs/bg-login.jpg");
-  --board-width: min(1300px, calc(100% - 1rem));
+  --board-width: min(1400px, calc(100% - 1rem));
 
   --bg: #f0f3f7;
   --card: #fdfdfd;
@@ -36,12 +36,24 @@
   --status-member: #f0fdf0;
 
   --status-todo: #ffe3e3;
-  --status-doing: #fff4e5;
-  --status-done: #e6f7ea;
-
   --status-todo-text: #d04545;
+  --status-todo-hover: rgba(208, 69, 69, 0.12);
+  --status-todo-shadow: rgba(208, 69, 69, 0.12);
+
+  --status-doing: #fff4e5;
   --status-doing-text: #b06b00;
+  --status-doing-hover: rgba(176, 107, 0, 0.12);
+  --status-doing-shadow: rgba(176, 107, 0, 0.12);
+
+  --status-review: rgba(111, 66, 193, 0.06);
+  --status-review-text: #6f42c1;
+  --status-review-hover: rgba(111, 66, 193, 0.12);
+  --status-review-shadow: rgba(111, 66, 193, 0.12);
+
+  --status-done: #e6f7ea;
   --status-done-text: #1b8a3e;
+  --status-done-hover: rgba(27, 138, 62, 0.12);
+  --status-done-shadow: rgba(27, 138, 62, 0.12);
 
   --accent: #1967d2;
   --accent-soft: #2b86ff;

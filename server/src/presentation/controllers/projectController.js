@@ -1,9 +1,6 @@
 import ProjectService from "../../application/services/projectService.js";
 import { CreateProjectDto, UpdateProjectDto } from "../dtos/projectDto.js";
-import {
-  ValidationError,
-  NotFoundError,
-} from "../../shared/utils/errors.js";
+import { ValidationError, NotFoundError } from "../../shared/utils/errors.js";
 
 export async function getAllProjects(req, res) {
   const projects = await ProjectService.list();
@@ -21,7 +18,7 @@ export async function getProjectById(req, res) {
 
 export async function createProject(req, res) {
   const dto = new CreateProjectDto(req.body);
-  const created = await ProjectService.create(dto);
+  const created = await ProjectService.create(dto, req.user);
   res.status(201).json(created);
 }
 

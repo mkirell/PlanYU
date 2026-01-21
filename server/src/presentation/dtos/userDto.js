@@ -1,18 +1,18 @@
 export class CreateUserDto {
-  constructor({ email, password, username } = {}) {
+  constructor({ email, password, username, role } = {}) {
     this.email = email;
     this.password = password;
     this.username = username;
-    this.role = undefined;
+    this.role = role;
   }
 }
 
 export class UpdateUserDto {
-  constructor({ email, password, username } = {}) {
+  constructor({ email, password, username, role } = {}) {
     this.email = email;
     this.password = password;
     this.username = username;
-    this.role = undefined;
+    this.role = role;
   }
 }
 

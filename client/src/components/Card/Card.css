@@ -239,7 +239,7 @@
     font-size: 1rem;
   }
   .card select,
-  select[name="difficulty"] {
+  select[name="priority"] {
     width: 100%;
     max-width: 100%;
     padding: 0.5rem 0.75rem;
@@ -265,7 +265,7 @@
     gap: 0.35rem;
   }
   .card select,
-  select[name="difficulty"] {
+  select[name="priority"] {
     width: 100%;
     max-width: 100%;
     padding: 0.5rem 0.75rem;
@@ -293,7 +293,7 @@
     gap: 0.4rem;
   }
   .card select,
-  select[name="difficulty"] {
+  select[name="priority"] {
     width: 100%;
     max-width: 100%;
     padding: 0.5rem 0.75rem;

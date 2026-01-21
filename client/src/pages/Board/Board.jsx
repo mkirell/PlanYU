@@ -48,9 +48,10 @@ export default function Board({ currentUserId, onLogout }) {
   const [confirmAction, setConfirmAction] = useState(() => {});
 
   const STATUS = [
-    { key: "TODO", label: "To Do" },
-    { key: "DOING", label: "In Progress" },
-    { key: "DONE", label: "Done" },
+    { key: "TODO", label: "To Do", icon: "📝" },
+    { key: "DOING", label: "In Progress", icon: "⚙️" },
+    { key: "REVIEW", label: "Review", icon: "🔍" },
+    { key: "DONE", label: "Done", icon: "✅" },
   ];
 
   const userProjectRoles = useMemo(
@@ -158,7 +159,7 @@ export default function Board({ currentUserId, onLogout }) {
   const handleCreateTask = ({
     title,
     description = "",
-    difficulty = "MEDIUM",
+    priority = "",
     due_date = null,
   }) => {
     if (currentUserRole !== "OWNER" || !title) return;
@@ -168,7 +169,7 @@ export default function Board({ currentUserId, onLogout }) {
         title,
         description,
         status: "TODO",
-        difficulty,
+        priority,
         due_date: due_date
           ? new Date(due_date).toISOString()
           : new Date().toISOString(),
@@ -234,57 +235,57 @@ export default function Board({ currentUserId, onLogout }) {
           data: { name, description },
         }),
       ).then(() => {
-        const existingMembers = userProjects.filter(
-          (up) =>
-            up.project_id === editingProject.project_id && up.role === "MEMBER",
-        );
-        existingMembers.forEach((up) => {
-          if (!members.includes(up.user_id)) {
-            dispatch(
-              deleteUserProject({
-                user_id: up.user_id,
-                project_id: editingProject.project_id,
-              }),
-            );
-          }
-        });
-        members.forEach((user_id) => {
-          if (!existingMembers.find((up) => up.user_id === user_id)) {
-            dispatch(
-              createUserProject({
-                user_id,
-                project_id: editingProject.project_id,
-                role: "MEMBER",
-              }),
-            );
-          }
-        });
-        Promise.all([
-          dispatch(fetchProjects()),
-          dispatch(fetchUserProjects()),
-          dispatch(fetchTasks()),
-          dispatch(fetchUserTasks()),
-        ]).then(() => {
-          setEditingProject(null);
-          setSelectedProjectId(editingProject.project_id);
-          setModalOpen(false);
+        dispatch(fetchUserProjects()).then((res) => {
+          const updatedUserProjects = res.payload || [];
+          const existingMembers = updatedUserProjects.filter(
+            (up) =>
+              up.project_id === editingProject.project_id &&
+              up.role === "MEMBER",
+          );
+
+          existingMembers.forEach((up) => {
+            if (!members.includes(up.user_id)) {
+              dispatch(
+                deleteUserProject({
+                  user_id: up.user_id,
+                  project_id: editingProject.project_id,
+                }),
+              );
+            }
+          });
+
+          members.forEach((user_id) => {
+            if (!existingMembers.find((up) => up.user_id === user_id)) {
+              dispatch(
+                createUserProject({
+                  user_id,
+                  project_id: editingProject.project_id,
+                  role: "MEMBER",
+                }),
+              );
+            }
+          });
+
+          Promise.all([
+            dispatch(fetchProjects()),
+            dispatch(fetchUserProjects()),
+            dispatch(fetchTasks()),
+            dispatch(fetchUserTasks()),
+          ]).then(() => {
+            setEditingProject(null);
+            setSelectedProjectId(editingProject.project_id);
+            setModalOpen(false);
+          });
         });
       });
     } else {
       dispatch(createProject({ name, description })).then(async (res) => {
         const project_id = res.payload.project_id;
-        const ownerPromise = dispatch(
-          createUserProject({
-            user_id: currentUserId,
-            project_id,
-            role: "OWNER",
-          }),
-        );
         const memberPromises = members.map((user_id) =>
           dispatch(createUserProject({ user_id, project_id, role: "MEMBER" })),
         );
 
-        await Promise.all([ownerPromise, ...memberPromises]);
+        if (memberPromises.length > 0) await Promise.all(memberPromises);
 
         await Promise.all([
           dispatch(fetchProjects()),
@@ -427,7 +428,7 @@ export default function Board({ currentUserId, onLogout }) {
                   handleCreateTask({
                     title: fd.get("title")?.toString() || "",
                     description: fd.get("description")?.toString() || "",
-                    difficulty: fd.get("difficulty")?.toString() || "MEDIUM",
+                    priority: fd.get("priority")?.toString() || "",
                     due_date: fd.get("due_date")?.toString() || null,
                   });
                   e.target.reset();
@@ -439,10 +440,13 @@ export default function Board({ currentUserId, onLogout }) {
                   name="description"
                   placeholder="Description"
                 />
-                <select name="difficulty" defaultValue="MEDIUM">
-                  <option value="EASY">Easy</option>
+                <select name="priority" defaultValue="" required>
+                  <option value="" disabled>
+                    Priority
+                  </option>
+                  <option value="LOW">Low</option>
                   <option value="MEDIUM">Medium</option>
-                  <option value="HARD">Hard</option>
+                  <option value="HIGH">High</option>
                 </select>
                 <input name="due_date" type="date" />
                 <button type="submit">Add Task</button>
@@ -459,7 +463,9 @@ export default function Board({ currentUserId, onLogout }) {
                   onDragOver={(e) => e.preventDefault()}
                   onDrop={(e) => handleDrop(e, s.key)}
                 >
-                  <h2>{s.label}</h2>
+                  <h2 className="status-icon-flex">
+                    {s.label} <span className="status-icon">{s.icon}</span>
+                  </h2>
                   <div className="list">
                     {projectTasks
                       .filter((t) => t.status === s.key)
@@ -480,7 +486,6 @@ export default function Board({ currentUserId, onLogout }) {
                           projectMembers={projectMembers}
                           profiles={profiles}
                           userTasks={userTasks}
-                          currentUserId={currentUserId}
                         />
                       ))}
                   </div>

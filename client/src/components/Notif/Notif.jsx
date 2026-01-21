@@ -49,7 +49,10 @@ export default function Notif() {
       const { message, type = "info", duration } = e.detail || {};
       if (!message) return;
       const id = Date.now() + Math.random();
-      setItems((s) => [...s, { id, message, type, duration }]);
+      setItems((s) => {
+        const arr = [...s, { id, message, type, duration }];
+        return arr.slice(-3);
+      });
       if (duration && duration > 0) {
         setTimeout(() => remove(id), duration);
       }
@@ -82,7 +85,14 @@ export default function Notif() {
     checkMessage("usertasks", usertasks);
 
     if (newNotifs.length) {
-      setTimeout(() => setItems((s) => [...s, ...newNotifs]), 0);
+      setTimeout(
+        () =>
+          setItems((s) => {
+            const arr = [...s, ...newNotifs];
+            return arr.slice(-3);
+          }),
+        0,
+      );
     }
   }, [users, profiles, projects, tasks, userProjects, usertasks]);
   if (!items.length) return null;

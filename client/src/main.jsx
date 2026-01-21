@@ -7,12 +7,16 @@ import App from "./App";
 import { refreshUser } from "./features/auth/authThunks";
 
 axios.defaults.withCredentials = true;
-store.dispatch(refreshUser()).catch(() => {});
 
-createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </StrictMode>,
-);
+store
+  .dispatch(refreshUser())
+  .catch(() => {})
+  .finally(() => {
+    createRoot(document.getElementById("root")).render(
+      <StrictMode>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </StrictMode>,
+    );
+  });

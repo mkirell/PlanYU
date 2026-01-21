@@ -1,4 +1,5 @@
 import ProjectRepository from "../../infrastructure/repositories/projectRepository.js";
+import UserProjectRepository from "../../infrastructure/repositories/userProjectRepository.js";
 import ProjectEntity from "../../domain/entities/projectEntity.js";
 import {
   createProjectSchema,
@@ -15,12 +16,20 @@ const ProjectService = {
     return ProjectRepository.findById(id);
   },
 
-  async create(payload) {
+  async create(payload, user) {
     const parsed = createProjectSchema.safeParse(payload);
     if (!parsed.success)
       throw new ValidationError("Invalid project data", parsed.error.errors);
     const entity = new ProjectEntity(parsed.data);
-    return ProjectRepository.create(entity.toCreateObject());
+    const created = await ProjectRepository.create(entity.toCreateObject());
+
+    await UserProjectRepository.create({
+      user_id: user.user_id,
+      project_id: created.project_id,
+      role: "OWNER",
+    });
+
+    return created;
   },
 
   async update(id, payload) {

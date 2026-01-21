@@ -38,7 +38,12 @@ const AuthService = {
   },
 
   async refresh(token) {
-    const payload = jwt.verify(token, process.env.JWT_SECRET);
+    let payload;
+    try {
+      payload = jwt.verify(token, process.env.JWT_SECRET);
+    } catch (err) {
+      throw new UnauthorizedError("Invalid refresh token");
+    }
     const user = await UserRepository.findById(payload.sub);
     if (!user) throw new NotFoundError("User not found");
     const tokenVersion = payload.tokenVersion ?? null;

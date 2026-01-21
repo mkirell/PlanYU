@@ -1,5 +1,6 @@
 import { Router } from "express";
 import asyncHandler from "../../presentation/middleware/asyncHandler.js";
+import authorize from "../middleware/authorize.js";
 import {
   register,
   login,
@@ -9,9 +10,9 @@ import {
 
 const router = Router();
 
-router.post("/register", asyncHandler(register));
-router.post("/login", asyncHandler(login));
-router.post("/refresh", asyncHandler(refresh));
-router.post("/logout", asyncHandler(logout));
+router.post("/register", authorize(), asyncHandler(register));
+router.post("/login", authorize(), asyncHandler(login));
+router.post("/refresh", authorize(), asyncHandler(refresh));
+router.post("/logout", authorize(), asyncHandler(logout));
 
 export default router;

@@ -1,9 +1,6 @@
 import TaskService from "../../application/services/taskService.js";
 import { CreateTaskDto, UpdateTaskDto } from "../dtos/taskDto.js";
-import {
-  ValidationError,
-  NotFoundError,
-} from "../../shared/utils/errors.js";
+import { ValidationError, NotFoundError } from "../../shared/utils/errors.js";
 
 export async function getAllTasks(req, res) {
   const tasks = await TaskService.list();
@@ -28,7 +25,7 @@ export async function updateTask(req, res) {
   const { id } = req.params;
   if (!id || isNaN(parseInt(id))) throw new ValidationError("Invalid task ID");
   const dto = new UpdateTaskDto(req.body);
-  const updated = await TaskService.update(id, dto);
+  const updated = await TaskService.update(id, dto, req.user);
   res.status(200).json(updated);
 }
 

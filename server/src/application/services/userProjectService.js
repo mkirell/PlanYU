@@ -3,7 +3,7 @@ import UserRepository from "../../infrastructure/repositories/userRepository.js"
 import ProjectRepository from "../../infrastructure/repositories/projectRepository.js";
 import TaskRepository from "../../infrastructure/repositories/taskRepository.js";
 import UserTaskRepository from "../../infrastructure/repositories/userTaskRepository.js";
-import { ValidationError, NotFoundError } from "../../shared/utils/errors.js";
+import { ValidationError } from "../../shared/utils/errors.js";
 import UserProjectEntity from "../../domain/entities/userProjectEntity.js";
 import {
   createUserProjectSchema,

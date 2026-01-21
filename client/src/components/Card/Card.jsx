@@ -17,26 +17,24 @@ export default function Card({
   projectMembers = [],
   profiles = [],
   userTasks = [],
-  currentUserId,
 }) {
   const [expanded, setExpanded] = useState(false);
   const [draftTitle, setDraftTitle] = useState(task.title || "");
   const [draftDescription, setDraftDescription] = useState(
     task.description || "",
   );
-  const [draftDifficulty, setDraftDifficulty] = useState(
-    task.difficulty || "MEDIUM",
-  );
+  const [draftPriority, setDraftPriority] = useState(task.priority || "MEDIUM");
   const [draftStatus, setDraftStatus] = useState(task.status || "TODO");
   const [draftDueDate, setDraftDueDate] = useState(
     task.due_date ? task.due_date.slice(0, 10) : "",
   );
-  const difficulties = ["EASY", "MEDIUM", "HARD"];
-  const statusButtonClasses = {
-    TODO: "btn-todo",
-    DOING: "btn-doing",
-    DONE: "btn-done",
-  };
+  const priorities = ["LOW", "MEDIUM", "HIGH"];
+  const STATUS = [
+    { key: "TODO", label: "btn-todo", display: "Todo" },
+    { key: "DOING", label: "btn-doing", display: "WIP" },
+    { key: "REVIEW", label: "btn-review", display: "QA" },
+    { key: "DONE", label: "btn-done", display: "Done" },
+  ];
 
   const prevTaskIdRef = useRef(task.task_id);
   const dispatch = useDispatch();
@@ -67,7 +65,7 @@ export default function Card({
       if (cancelled) return;
       setDraftTitle(task.title || "");
       setDraftDescription(task.description || "");
-      setDraftDifficulty(task.difficulty || "MEDIUM");
+      setDraftPriority(task.priority || "MEDIUM");
       setDraftStatus(task.status || "TODO");
       setDraftDueDate(task.due_date ? task.due_date.slice(0, 10) : "");
       prevTaskIdRef.current = task.task_id;
@@ -79,7 +77,7 @@ export default function Card({
     task.task_id,
     task.title,
     task.description,
-    task.difficulty,
+    task.priority,
     task.status,
     task.due_date,
     expanded,
@@ -160,13 +158,13 @@ export default function Card({
             />
           </label>
           <label>
-            Difficulty
+            Priority
             <select
-              value={expanded ? draftDifficulty : task.difficulty || "MEDIUM"}
+              value={expanded ? draftPriority : task.priority || "MEDIUM"}
               disabled={readOnly}
-              onChange={(e) => !readOnly && setDraftDifficulty(e.target.value)}
+              onChange={(e) => !readOnly && setDraftPriority(e.target.value)}
             >
-              {difficulties.map((d) => (
+              {priorities.map((d) => (
                 <option key={d} value={d}>
                   {capitalize(d)}
                 </option>
@@ -259,9 +257,7 @@ export default function Card({
                           (ut) =>
                             ut.task_id === task.task_id &&
                             ut.user_id === m.user_id,
-                        ) &&
-                        !pendingAddAssignees.includes(m.user_id) &&
-                        m.user_id !== currentUserId,
+                        ) && !pendingAddAssignees.includes(m.user_id),
                     )
                     .map((m) => (
                       <option key={m.user_id} value={m.user_id}>
@@ -334,22 +330,6 @@ export default function Card({
                   }}
                 >
                   <option value="">+ Add reviewer</option>
-                  {currentUserId &&
-                    !userTasks.find(
-                      (ut) =>
-                        ut.task_id === task.task_id &&
-                        ut.user_id === currentUserId,
-                    ) &&
-                    !pendingAddReviewers.includes(currentUserId) && (
-                      <option
-                        key={`me-r-${currentUserId}`}
-                        value={currentUserId}
-                      >
-                        {profiles.find((p) => p.user_id === currentUserId)
-                          ?.full_name || "Me"}{" "}
-                        (You)
-                      </option>
-                    )}
                   {projectMembers
                     .filter(
                       (m) =>
@@ -357,9 +337,7 @@ export default function Card({
                           (ut) =>
                             ut.task_id === task.task_id &&
                             ut.user_id === m.user_id,
-                        ) &&
-                        !pendingAddReviewers.includes(m.user_id) &&
-                        m.user_id !== currentUserId,
+                        ) && !pendingAddReviewers.includes(m.user_id),
                     )
                     .map((m) => (
                       <option key={m.user_id} value={m.user_id}>
@@ -374,20 +352,20 @@ export default function Card({
       )}
 
       <div className="card-actions">
-        {["TODO", "DOING", "DONE"].map((status) => (
+        {STATUS.filter(
+          (status) => (expanded ? draftStatus : task.status) !== status.key,
+        ).map((status) => (
           <button
-            key={status}
-            className={`btn tiny ${statusButtonClasses[status]} ${
-              (expanded ? draftStatus : task.status) === status ? "active" : ""
-            }`}
+            key={status.key}
+            className={`btn tiny ${status.label}`}
             onClick={() => {
               if (!canChangeStatus) return;
-              setDraftStatus(status);
-              onUpdate(task.task_id, { status });
+              setDraftStatus(status.key);
+              onUpdate(task.task_id, { status: status.key });
             }}
             disabled={!canChangeStatus}
           >
-            {status}
+            {status.display}
           </button>
         ))}
         <div className="spacer" />
@@ -455,8 +433,7 @@ export default function Card({
           if (draftTitle !== task.title) patch.title = draftTitle;
           if (draftDescription !== task.description)
             patch.description = draftDescription;
-          if (draftDifficulty !== task.difficulty)
-            patch.difficulty = draftDifficulty;
+          if (draftPriority !== task.priority) patch.priority = draftPriority;
           if (draftStatus !== task.status) patch.status = draftStatus;
           const iso = draftDueDate
             ? new Date(draftDueDate).toISOString()

@@ -51,11 +51,35 @@
   color: var(--status-todo-text);
   border-color: var(--status-todo);
 }
+.btn-todo:hover {
+  background: var(--status-todo-text);
+  color: var(--status-todo);
+  border-color: transparent;
+  box-shadow: 0 6px 18px var(--status-todo-shadow);
+}
 
 .btn-doing {
   background: var(--status-doing);
   color: var(--status-doing-text);
   border-color: var(--status-doing);
+}
+.btn-doing:hover {
+  background: var(--status-doing-text);
+  color: var(--status-doing);
+  border-color: transparent;
+  box-shadow: 0 6px 18px var(--status-doing-shadow);
+}
+
+.btn-review {
+  background: var(--status-review);
+  color: var(--status-review-text);
+  border-color: var(--status-review);
+}
+.btn-review:hover {
+  background: var(--status-review-text);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 6px 18px var(--status-review-shadow);
 }
 
 .btn-done {
@@ -63,21 +87,9 @@
   color: var(--status-done-text);
   border-color: var(--status-done);
 }
-
-.btn-todo.active {
-  background: var(--status-todo-text);
-  color: var(--status-todo);
-  border-color: var(--status-todo-text);
-}
-
-.btn-doing.active {
-  background: var(--status-doing-text);
-  color: var(--status-doing);
-  border-color: var(--status-doing-text);
-}
-
-.btn-done.active {
+.btn-done:hover {
   background: var(--status-done-text);
   color: var(--status-done);
-  border-color: var(--status-done-text);
+  border-color: transparent;
+  box-shadow: 0 6px 18px var(--status-done-shadow);
 }

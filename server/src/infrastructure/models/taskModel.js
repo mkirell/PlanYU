@@ -16,11 +16,11 @@ const Task = sequelize.define(
     title: { type: DataTypes.STRING, allowNull: false },
     description: { type: DataTypes.TEXT },
     status: {
-      type: DataTypes.ENUM("TODO", "DOING", "DONE"),
+      type: DataTypes.ENUM("TODO", "DOING", "REVIEW", "DONE"),
       defaultValue: "TODO",
     },
-    difficulty: {
-      type: DataTypes.ENUM("EASY", "MEDIUM", "HARD"),
+    priority: {
+      type: DataTypes.ENUM("LOW", "MEDIUM", "HIGH"),
       defaultValue: "MEDIUM",
     },
     due_date: { type: DataTypes.DATE },
@@ -30,7 +30,7 @@ const Task = sequelize.define(
     timestamps: true,
     createdAt: "created_at",
     updatedAt: "updated_at",
-  }
+  },
 );
 
 export default Task;

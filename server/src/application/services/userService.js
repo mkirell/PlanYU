@@ -6,7 +6,7 @@ import {
   createUserSchema,
   updateUserSchema,
 } from "../validators/userValidator.js";
-import { ValidationError, NotFoundError } from "../../shared/utils/errors.js";
+import { ValidationError } from "../../shared/utils/errors.js";
 import ProjectRepository from "../../infrastructure/repositories/projectRepository.js";
 
 const UserService = {
@@ -23,6 +23,8 @@ const UserService = {
     if (!parsed.success)
       throw new ValidationError("Invalid user data", parsed.error.errors);
     const entity = new UserEntity(parsed.data);
+    if (entity.role === "ADMIN")
+      throw new ValidationError("Cannot assign ADMIN role");
     if (entity.password !== undefined) {
       entity.password_hash = await bcrypt.hash(entity.password, 10);
     }
@@ -34,6 +36,8 @@ const UserService = {
     if (!parsed.success)
       throw new ValidationError("Invalid user data", parsed.error.errors);
     const entity = new UserEntity(parsed.data);
+    if (entity.role === "ADMIN")
+      throw new ValidationError("Cannot assign ADMIN role");
     if (entity.password !== undefined) {
       entity.password_hash = await bcrypt.hash(entity.password, 10);
     }

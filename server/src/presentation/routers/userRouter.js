@@ -11,10 +11,10 @@ import {
 
 const router = Router();
 
-router.get("/", asyncHandler(getAllUsers));
-router.get("/:id", authorize("ADMIN"), asyncHandler(getUserById));
+router.get("/", authorize(), asyncHandler(getAllUsers));
+router.get("/:id", authorize("ADMIN", "SELF"), asyncHandler(getUserById));
 router.post("/", authorize("ADMIN"), asyncHandler(createUser));
-router.patch("/:id", authorize("ADMIN"), asyncHandler(updateUser));
-router.delete("/:id", authorize("ADMIN"), asyncHandler(deleteUser));
+router.patch("/:id", authorize("ADMIN", "SELF"), asyncHandler(updateUser));
+router.delete("/:id", authorize("ADMIN", "SELF"), asyncHandler(deleteUser));
 
 export default router;

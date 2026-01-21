@@ -2,10 +2,7 @@ import UserTaskRepository from "../../infrastructure/repositories/userTaskReposi
 import UserRepository from "../../infrastructure/repositories/userRepository.js";
 import TaskRepository from "../../infrastructure/repositories/taskRepository.js";
 import UserProjectRepository from "../../infrastructure/repositories/userProjectRepository.js";
-import {
-  ForbiddenError,
-  ValidationError,
-} from "../../shared/utils/errors.js";
+import { ForbiddenError, ValidationError } from "../../shared/utils/errors.js";
 import UserTaskEntity from "../../domain/entities/userTaskEntity.js";
 import {
   createUserTaskSchema,
@@ -38,6 +35,9 @@ const UserTaskService = {
     if (!membership)
       throw new ForbiddenError("User does not belong to this project");
 
+    if (membership.role === "OWNER")
+      throw new ForbiddenError("Project owners cannot be assigned to tasks");
+
     const data = entity.toCreateObject();
     if (data.role) {
       if (membership.role === "MEMBER") return UserTaskRepository.create(data);
@@ -53,6 +53,17 @@ const UserTaskService = {
     if (!parsed.success)
       throw new ValidationError("Invalid user-task data", parsed.error.errors);
     const entity = new UserTaskEntity(parsed.data);
+
+    const task = await TaskRepository.findById(task_id);
+    const membership = await UserProjectRepository.findByIds(
+      user_id,
+      task.project_id,
+    ).catch(() => null);
+    if (!membership)
+      throw new ForbiddenError("User does not belong to this project");
+    if (membership.role === "OWNER")
+      throw new ForbiddenError("Project owners cannot be assigned to tasks");
+
     return UserTaskRepository.update(user_id, task_id, entity.toUpdateObject());
   },
 
