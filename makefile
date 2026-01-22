@@ -1,4 +1,4 @@
-.PHONY: env server client start stop
+.PHONY: env db server client start stop
 
 # --- Build Env ---
 env:
@@ -8,6 +8,22 @@ ifeq ($(OS),Windows_NT)
 else
 	cd server && npm install && cd ..
 	cd client && npm install && cd ..
+endif
+
+# --- Init DB ---
+db-init:
+ifeq ($(OS),Windows_NT)
+	cd server && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all && cd ..
+else
+	cd server && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all && cd ..
+endif
+
+# --- Rollback DB ---
+db-rollback:
+ifeq ($(OS),Windows_NT)
+	cd server && npx sequelize-cli db:seed:undo:all && npx sequelize-cli db:migrate:undo && cd ..
+else
+	cd server && npx sequelize-cli db:seed:undo:all && npx sequelize-cli db:migrate:undo && cd ..
 endif
 
 # --- Run Server ---
@@ -30,6 +46,7 @@ endif
 
 # --- Run Both ---
 start: 
+	$(MAKE) db-init
 	$(MAKE) server 
 	$(MAKE) client
 

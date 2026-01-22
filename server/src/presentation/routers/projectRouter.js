@@ -1,6 +1,6 @@
 import { Router } from "express";
 import asyncHandler from "../../presentation/middleware/asyncHandler.js";
-import authorize from "../middleware/authorize.js";
+import authorize from "../middleware/authorization.js";
 import {
   getAllProjects,
   getProjectById,

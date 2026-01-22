@@ -1,7 +1,6 @@
 @font-face {
   font-family: "Inter";
-  src: url("../fonts/Inter/static/Inter_18pt-Regular.ttf")
-    format("truetype");
+  src: url("../fonts/Inter_18pt-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -9,8 +8,7 @@
 
 @font-face {
   font-family: "Roboto";
-  src: url("../fonts/Roboto/static/Roboto-Regular.ttf")
-    format("truetype");
+  src: url("../fonts/Roboto-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;

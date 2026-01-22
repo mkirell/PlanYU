@@ -6,10 +6,8 @@ import rateLimit from "express-rate-limit";
 import cookieParser from "cookie-parser";
 import routes from "./presentation/routers/index.js";
 import authRoutes from "./presentation/routers/authRouter.js";
-import authenticate from "./presentation/middleware/authenticate.js";
+import authenticate from "./presentation/middleware/authentication.js";
 import sequelize from "./shared/db/database.js";
-import { createDB } from "./shared/db/create-db.js";
-import { createAD } from "./shared/db/create-ad.js";
 import errorHandler from "./presentation/middleware/errorHandler.js";
 import httpLogger from "./presentation/middleware/httpLogger.js";
 
@@ -54,10 +52,7 @@ async function start() {
 
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     try {
-      await createDB();
       await sequelize.authenticate();
-      await sequelize.sync({ alter: true });
-      await createAD();
       app.listen(process.env.SERVER_PORT, process.env.SERVER_HOST, () =>
         console.log(
           `✅ Server started listening on port ${process.env.SERVER_PORT}`,
