@@ -22,27 +22,27 @@ A Collaborative Platform for Efficient Project Management
 
 ### Concept
 
-PlanYU is a to-do list and project management application designed to help users efficiently organize tasks, projects, and profiles. It provides a clean and intuitive interface, real-time updates, and comprehensive task tracking features. Users can assign tasks to projects, manage multiple projects, and monitor their progress, all in one central platform.
+PlanYU is a collaborative project board for organizing projects, tasks, and team members in a single workspace. It delivers a focused Kanban-style interface with task statuses, priorities, and due dates, backed by secure authentication. Users can create projects, manage members, and track work across multiple projects with offline-ready support.
 
 ### Challenges
 
 Developing PlanYU involved addressing key challenges:
 
-- **Task and project organization:** Allowing users to efficiently manage multiple tasks across projects.  
-- **Real-time updates:** Ensuring changes are reflected immediately for a smooth user experience.  
-- **User management:** Supporting profiles and secure handling of multiple users and their projects.  
-- **Scalable backend:** Designing an API that efficiently handles database operations and concurrent requests.  
+- **Multi-project workflows:** Supporting Kanban-style task flow with priorities, due dates, and role-aware actions.  
+- **Offline-first usage:** Keeping data usable without connectivity and syncing safely when back online.  
+- **Secure access control:** Handling authentication, refresh sessions, and project membership permissions.  
+- **Consistent data handling:** Validating inputs and keeping client and server state aligned.  
 
 ### Solution
 
 PlanYU addresses these challenges through:
 
-- **RESTful API with Express.js:** Provides a structured backend for handling tasks, projects, and users.  
-- **MySQL Database:** Efficiently stores and queries user, project, and task information.  
-- **React Frontend:** Delivers a responsive and interactive interface with real-time updates.  
-- **Flexible Deployment:** Supports both local execution with `make` commands and Docker-based deployment for cross-platform consistency.  
+- **Express API with auth:** JWT-based access, refresh cookies, and role checks for project and task routes.  
+- **MySQL + Sequelize:** Structured models and migrations for users, profiles, projects, and tasks.  
+- **React + Redux Toolkit:** Kanban UI, drag-and-drop flow, and synced state management.  
+- **Offline/PWA support:** IndexedDB caching, queued mutations, and service-worker caching.  
 
-This approach transforms task management into a seamless, user-friendly experience with real-time project tracking.
+This approach transforms task management into a seamless, user-friendly experience with dependable collaboration.
 
 ---
 
@@ -69,9 +69,9 @@ This will create a virtual environment and install all required dependencies for
 
 ## Technologies Used
 
-- **Backend:** Node.js, Express.js  
-- **Database:** MySQL  
-- **Frontend:** React, Redux  
+- **Backend:** Node.js, Express.js, Sequelize, JWT, Zod, bcrypt, Helmet, rate limiting  
+- **Database:** MySQL (mysql2)  
+- **Frontend:** React, Redux Toolkit, React Router, Axios, Vite, PWA (service worker + IndexedDB)  
 - **Deployment:** Docker, Docker Compose  
 
 Both local and Docker approaches use the same codebase and dependencies.
