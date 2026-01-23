@@ -7,7 +7,7 @@ module.exports = {
     database: process.env.MYSQL_DATABASE,
     host: process.env.MYSQL_HOST,
     port: process.env.MYSQL_PORT,
-    dialect: process.env.MYSQL_DIALECT,
+    dialect: process.env.DB_DIALECT,
     logging: false,
   },
 };

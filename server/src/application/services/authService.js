@@ -6,7 +6,7 @@ import {
 } from "../../shared/utils/errors.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import signTokens from "../../shared/utils/tokens.js";
+import signTokens from "../../shared/config/tokens.js";
 import UserEntity from "../../domain/entities/userEntity.js";
 import { registerSchema, loginSchema } from "../validators/authValidator.js";
 
