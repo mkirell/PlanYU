@@ -70,7 +70,7 @@ This will create a virtual environment and install all required dependencies for
 ## Technologies Used
 
 - **Backend:** Node.js, Express.js, Sequelize, JWT, Zod, bcrypt, Helmet, rate limiting  
-- **Database:** MySQL (mysql2)  
+- **Database:** MySQL (mysql2), Sequelize ORM, Sequelize CLI (migrations & seeders)  
 - **Frontend:** React, Redux Toolkit, React Router, Axios, Vite, PWA (service worker + IndexedDB)  
 - **Deployment:** Docker, Docker Compose  
 
