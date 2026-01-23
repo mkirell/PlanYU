@@ -6,7 +6,7 @@ import {
 } from "../../shared/utils/errorHandler.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import signTokens from "../../shared/core/sessionStore.js";
+import signTokens from "../../shared/config/sessionStore.js";
 import UserEntity from "../../domain/entities/userEntity.js";
 import { EmailVO } from "../../domain/values/emailValue.js";
 import { PasswordVO } from "../../domain/values/passwordValue.js";
