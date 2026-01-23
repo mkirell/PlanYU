@@ -2,8 +2,8 @@ import UserRepository from "../../infrastructure/repositories/userRepository.js"
 import UserProjectRepository from "../../infrastructure/repositories/userProjectRepository.js";
 import bcrypt from "bcrypt";
 import UserEntity from "../../domain/entities/userEntity.js";
-import { EmailVO } from "../../domain/valueObjects/EmailVO.js";
-import { PasswordVO } from "../../domain/valueObjects/PasswordVO.js";
+import { EmailVO } from "../../domain/values/emailValue.js";
+import { PasswordVO } from "../../domain/values/passwordValue.js";
 import {
   createUserSchema,
   updateUserSchema,

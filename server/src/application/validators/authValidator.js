@@ -5,7 +5,7 @@ export const registerSchema = z.object({
     (val) => (typeof val === "string" ? val.trim() : val),
     z.string().email(),
   ),
-  password: z.string().min(6),
+  password: z.string().min(8),
 });
 
 export const loginSchema = z.object({
@@ -13,7 +13,7 @@ export const loginSchema = z.object({
     (val) => (typeof val === "string" ? val.trim() : val),
     z.string().email(),
   ),
-  password: z.string().min(6),
+  password: z.string().min(8),
 });
 
 export default { registerSchema, loginSchema };
