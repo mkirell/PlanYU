@@ -2,11 +2,13 @@ import UserRepository from "../../infrastructure/repositories/userRepository.js"
 import UserProjectRepository from "../../infrastructure/repositories/userProjectRepository.js";
 import bcrypt from "bcrypt";
 import UserEntity from "../../domain/entities/userEntity.js";
+import { EmailVO } from "../../domain/valueObjects/EmailVO.js";
+import { PasswordVO } from "../../domain/valueObjects/PasswordVO.js";
 import {
   createUserSchema,
   updateUserSchema,
 } from "../validators/userValidator.js";
-import { ValidationError } from "../../shared/utils/errors.js";
+import { ValidationError } from "../../shared/utils/errorHandler.js";
 import ProjectRepository from "../../infrastructure/repositories/projectRepository.js";
 
 const UserService = {
@@ -22,11 +24,15 @@ const UserService = {
     const parsed = createUserSchema.safeParse(payload);
     if (!parsed.success)
       throw new ValidationError("Invalid user data", parsed.error.errors);
-    const entity = new UserEntity(parsed.data);
+    const emailVO = new EmailVO(parsed.data.email);
+    const passwordVO = new PasswordVO(parsed.data.password);
+    const emailValue = emailVO.getValue();
+    const passwordValue = passwordVO.getValue();
+    const entity = new UserEntity({ ...parsed.data, email: emailValue });
     if (entity.role === "ADMIN")
       throw new ValidationError("Cannot assign ADMIN role");
-    if (entity.password !== undefined) {
-      entity.password_hash = await bcrypt.hash(entity.password, 10);
+    if (passwordValue !== undefined) {
+      entity.password_hash = await bcrypt.hash(passwordValue, 10);
     }
     return UserRepository.create(entity.toCreateObject());
   },
@@ -35,11 +41,15 @@ const UserService = {
     const parsed = updateUserSchema.safeParse(payload);
     if (!parsed.success)
       throw new ValidationError("Invalid user data", parsed.error.errors);
-    const entity = new UserEntity(parsed.data);
+    const emailVO = new EmailVO(parsed.data.email);
+    const passwordVO = new PasswordVO(parsed.data.password);
+    const emailValue = emailVO.getValue();
+    const passwordValue = passwordVO.getValue();
+    const entity = new UserEntity({ ...parsed.data, email: emailValue });
     if (entity.role === "ADMIN")
       throw new ValidationError("Cannot assign ADMIN role");
-    if (entity.password !== undefined) {
-      entity.password_hash = await bcrypt.hash(entity.password, 10);
+    if (passwordValue !== undefined) {
+      entity.password_hash = await bcrypt.hash(passwordValue, 10);
     }
     return UserRepository.update(id, entity.toUpdateObject());
   },

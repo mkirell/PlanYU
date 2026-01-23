@@ -124,6 +124,7 @@ export default function Card({
           className="card-title-input"
           value={expanded ? draftTitle : task.title || ""}
           placeholder="Title"
+          title={task.title || ""}
           disabled={readOnly || !expanded}
           onChange={(e) =>
             !readOnly && expanded && setDraftTitle(e.target.value)
@@ -153,6 +154,7 @@ export default function Card({
             Description
             <textarea
               value={expanded ? draftDescription : task.description || ""}
+              rows={4}
               disabled={readOnly}
               onChange={(e) => !readOnly && setDraftDescription(e.target.value)}
             />

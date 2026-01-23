@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { isOffline, isNetworkError } from "../../shared/network/offlineNetworkUtils";
-import { makeCompositeKey } from "../../shared/offline/offlineStoreHelpers";
+import { isOffline, isNetworkError } from "../../shared/network/connectivity";
+import { makeCompositeKey } from "../../shared/cache/offlineStore";
 import {
   listFromCache,
   getFromCache,
@@ -10,14 +10,14 @@ import {
   cacheOnlineList,
   cacheOnlineItem,
   deleteCachedItem,
-} from "../../shared/offline/apiOfflineHelpers";
+} from "../../shared/cache/offlineApi";
 import {
   listOnline,
   getOnline,
   createOnline,
   updateOnline,
   deleteOnline,
-} from "../../shared/network/apiOnlineHelpers";
+} from "../../shared/network/onlineApi";
 
 const STORE = "userProjects";
 

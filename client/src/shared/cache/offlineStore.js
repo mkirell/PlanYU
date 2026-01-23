@@ -5,7 +5,7 @@ import {
   upsertEntity,
   deleteEntity,
   enqueueOfflineRequest as enqueueIdbRequest,
-} from "./offlineDbService";
+} from "./idbService";
 
 export const LOCAL_ID_PREFIX = "local-";
 

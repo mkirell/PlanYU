@@ -3,11 +3,13 @@ import {
   ValidationError,
   NotFoundError,
   UnauthorizedError,
-} from "../../shared/utils/errors.js";
+} from "../../shared/utils/errorHandler.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import signTokens from "../../shared/config/tokens.js";
+import signTokens from "../../shared/core/sessionStore.js";
 import UserEntity from "../../domain/entities/userEntity.js";
+import { EmailVO } from "../../domain/valueObjects/EmailVO.js";
+import { PasswordVO } from "../../domain/valueObjects/PasswordVO.js";
 import { registerSchema, loginSchema } from "../validators/authValidator.js";
 
 const AuthService = {
@@ -18,9 +20,13 @@ const AuthService = {
         "Invalid registration data",
         parsed.error.errors,
       );
-    const entity = new UserEntity(parsed.data);
-    if (entity.password !== undefined)
-      entity.password_hash = await bcrypt.hash(entity.password, 10);
+    const emailVO = new EmailVO(parsed.data.email);
+    const passwordVO = new PasswordVO(parsed.data.password);
+    const emailValue = emailVO.getValue();
+    const passwordValue = passwordVO.getValue();
+    const entity = new UserEntity({ ...parsed.data, email: emailValue });
+    if (passwordValue !== undefined)
+      entity.password_hash = await bcrypt.hash(passwordValue, 10);
     return UserRepository.create(entity.toCreateObject());
   },
 
@@ -28,10 +34,13 @@ const AuthService = {
     const parsed = loginSchema.safeParse(payload);
     if (!parsed.success)
       throw new ValidationError("Invalid login data", parsed.error.errors);
-    const entity = new UserEntity(parsed.data);
-    const user = await UserRepository.findByEmail(entity.email);
+    const emailVO = new EmailVO(parsed.data.email);
+    const passwordVO = new PasswordVO(parsed.data.password);
+    const emailValue = emailVO.getValue();
+    const passwordValue = passwordVO.getValue();
+    const user = await UserRepository.findByEmail(emailValue);
     if (!user) throw new NotFoundError("User not found");
-    const ok = await bcrypt.compare(entity.password, user.password_hash);
+    const ok = await bcrypt.compare(passwordValue, user.password_hash);
     if (!ok) throw new ValidationError("Invalid credentials");
     const tokens = signTokens(user);
     return { ...tokens, user };

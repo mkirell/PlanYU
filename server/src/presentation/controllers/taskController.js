@@ -1,6 +1,6 @@
 import TaskService from "../../application/services/taskService.js";
 import { CreateTaskDto, UpdateTaskDto } from "../dtos/taskDto.js";
-import { ValidationError, NotFoundError } from "../../shared/utils/errors.js";
+import { ValidationError, NotFoundError } from "../../shared/utils/errorHandler.js";
 
 export async function getAllTasks(req, res) {
   const tasks = await TaskService.list();

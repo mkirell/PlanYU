@@ -6,8 +6,8 @@ import {
   getIdMapping,
   upsertEntity,
   deleteEntity,
-} from "../offline/offlineDbService";
-import { LOCAL_ID_PREFIX } from "../offline/offlineStoreHelpers";
+} from "../cache/idbService";
+import { LOCAL_ID_PREFIX } from "../cache/offlineStore";
 import { fetchProjects } from "../../features/projects/projectThunks";
 import { fetchTasks } from "../../features/tasks/taskThunks";
 import { fetchProfiles } from "../../features/profiles/profileThunks";

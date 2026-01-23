@@ -94,6 +94,7 @@ export default function Auth() {
               <input
                 type="text"
                 value={fullName}
+                placeholder="John Doe"
                 onChange={(e) => setFullName(e.target.value)}
                 required
               />
@@ -105,6 +106,7 @@ export default function Auth() {
             <input
               type="email"
               value={email}
+              placeholder="john.doe@planyu.com"
               onChange={(e) => setEmail(e.target.value)}
               required
             />
@@ -115,6 +117,7 @@ export default function Auth() {
             <input
               type="password"
               value={password}
+              placeholder="8+ chars, upper, lower, number"
               onChange={(e) => setPassword(e.target.value)}
               required
             />
@@ -126,6 +129,7 @@ export default function Auth() {
               <input
                 type="password"
                 value={passwordConfirm}
+                placeholder="Re-enter your password"
                 onChange={(e) => setPasswordConfirm(e.target.value)}
                 required
               />

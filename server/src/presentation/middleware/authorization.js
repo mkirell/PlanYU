@@ -1,4 +1,4 @@
-import { UnauthorizedError } from "../../shared/utils/errors.js";
+import { UnauthorizedError } from "../../shared/utils/errorHandler.js";
 import UserProjectRepository from "../../infrastructure/repositories/userProjectRepository.js";
 import TaskRepository from "../../infrastructure/repositories/taskRepository.js";
 import ProfileRepository from "../../infrastructure/repositories/profileRepository.js";

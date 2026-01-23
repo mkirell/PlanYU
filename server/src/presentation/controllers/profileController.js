@@ -3,7 +3,7 @@ import { CreateProfileDto, UpdateProfileDto } from "../dtos/profileDto.js";
 import {
   ValidationError,
   NotFoundError,
-} from "../../shared/utils/errors.js";
+} from "../../shared/utils/errorHandler.js";
 
 export async function getAllProfiles(req, res) {
   const profiles = await ProfileService.list();

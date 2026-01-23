@@ -5,8 +5,8 @@ import axios from "axios";
 import { store } from "./features/store";
 import App from "./App";
 import { refreshUser } from "./features/auth/authThunks";
-import { setupOfflineSync } from "./shared/network/offlineSyncService";
-import { loadAuthCache } from "./shared/offline/apiOfflineHelpers";
+import { setupOfflineSync } from "./shared/network/syncService";
+import { loadAuthCache } from "./shared/cache/offlineApi";
 
 axios.defaults.withCredentials = true;
 axios.defaults.timeout = 4000;

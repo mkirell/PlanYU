@@ -5,7 +5,7 @@ import {
   createProjectSchema,
   updateProjectSchema,
 } from "../validators/projectValidator.js";
-import { ValidationError } from "../../shared/utils/errors.js";
+import { ValidationError } from "../../shared/utils/errorHandler.js";
 
 const ProjectService = {
   async list() {

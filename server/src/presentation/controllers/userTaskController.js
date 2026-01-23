@@ -3,7 +3,7 @@ import { CreateUserTaskDto, UpdateUserTaskDto } from "../dtos/userTaskDto.js";
 import {
   ValidationError,
   NotFoundError,
-} from "../../shared/utils/errors.js";
+} from "../../shared/utils/errorHandler.js";
 
 export async function getAllUserTasks(req, res) {
   const uts = await UserTaskService.list();

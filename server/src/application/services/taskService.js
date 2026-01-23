@@ -10,7 +10,7 @@ import {
 import {
   ValidationError,
   UnauthorizedError,
-} from "../../shared/utils/errors.js";
+} from "../../shared/utils/errorHandler.js";
 
 const TaskService = {
   async list() {

@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
   isOffline,
   isNetworkError,
-} from "../../shared/network/offlineNetworkUtils";
+} from "../../shared/network/connectivity";
 import {
   listFromCache,
   getFromCache,
@@ -12,14 +12,14 @@ import {
   cacheOnlineList,
   cacheOnlineItem,
   deleteCachedItem,
-} from "../../shared/offline/apiOfflineHelpers";
+} from "../../shared/cache/offlineApi";
 import {
   listOnline,
   getOnline,
   createOnline,
   updateOnline,
   deleteOnline,
-} from "../../shared/network/apiOnlineHelpers";
+} from "../../shared/network/onlineApi";
 
 const STORE = "projects";
 const ID_FIELD = "project_id";

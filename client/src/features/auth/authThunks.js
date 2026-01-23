@@ -2,19 +2,19 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
   isOffline,
   isNetworkError,
-} from "../../shared/network/offlineNetworkUtils";
+} from "../../shared/network/connectivity";
 import {
   registerOnline,
   loginOnline,
   refreshOnline,
   logoutOnline,
-} from "../../shared/network/apiOnlineHelpers";
+} from "../../shared/network/onlineApi";
 import {
   setAuthHeader,
   saveAuthCache,
   clearAuthCache,
   loadAuthCache,
-} from "../../shared/offline/apiOfflineHelpers";
+} from "../../shared/cache/offlineApi";
 
 export const registerUser = createAsyncThunk(
   "auth/registerUser",

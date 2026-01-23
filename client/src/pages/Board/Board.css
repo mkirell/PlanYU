@@ -50,6 +50,9 @@
   border: 0.05rem solid #e0e6ef;
   font-weight: 600;
   background: transparent;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .columns {
@@ -185,7 +188,12 @@
   font-weight: 500;
 }
 .project-description span {
-  cursor: pointer;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .project-members {
   display: flex;

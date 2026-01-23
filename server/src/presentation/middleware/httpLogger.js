@@ -1,4 +1,4 @@
-import logger from "../../shared/utils/logger.js";
+import logger from "../../shared/utils/loggerService.js";
 import crypto from "crypto";
 
 export default function httpLogger(req, res, next) {

@@ -6,7 +6,7 @@ import {
 import {
   ValidationError,
   NotFoundError,
-} from "../../shared/utils/errors.js";
+} from "../../shared/utils/errorHandler.js";
 
 export async function getAllUserProjects(req, res) {
   const ups = await UserProjectService.list();

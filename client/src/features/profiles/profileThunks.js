@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { isOffline, isNetworkError } from "../../shared/network/offlineNetworkUtils";
+import { isOffline, isNetworkError } from "../../shared/network/connectivity";
 import {
   listFromCache,
   getFromCache,
@@ -9,14 +9,14 @@ import {
   cacheOnlineList,
   cacheOnlineItem,
   deleteCachedItem,
-} from "../../shared/offline/apiOfflineHelpers";
+} from "../../shared/cache/offlineApi";
 import {
   listOnline,
   getOnline,
   createOnline,
   updateOnline,
   deleteOnline,
-} from "../../shared/network/apiOnlineHelpers";
+} from "../../shared/network/onlineApi";
 
 const STORE = "profiles";
 const ID_FIELD = "profile_id";

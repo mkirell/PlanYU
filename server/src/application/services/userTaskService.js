@@ -2,7 +2,7 @@ import UserTaskRepository from "../../infrastructure/repositories/userTaskReposi
 import UserRepository from "../../infrastructure/repositories/userRepository.js";
 import TaskRepository from "../../infrastructure/repositories/taskRepository.js";
 import UserProjectRepository from "../../infrastructure/repositories/userProjectRepository.js";
-import { ForbiddenError, ValidationError } from "../../shared/utils/errors.js";
+import { ForbiddenError, ValidationError } from "../../shared/utils/errorHandler.js";
 import UserTaskEntity from "../../domain/entities/userTaskEntity.js";
 import {
   createUserTaskSchema,

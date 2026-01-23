@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../../shared/config/database.js";
+import sequelize from "../../shared/core/dbService.js";
 
 const UserTask = sequelize.define(
   "UserTask",

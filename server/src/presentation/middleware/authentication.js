@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { UnauthorizedError } from "../../shared/utils/errors.js";
+import { UnauthorizedError } from "../../shared/utils/errorHandler.js";
 import UserRepository from "../../infrastructure/repositories/userRepository.js";
 
 export default async function authenticate(req, res, next) {

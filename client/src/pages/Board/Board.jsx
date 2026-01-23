@@ -338,11 +338,17 @@ export default function Board({ currentUserId, onLogout }) {
             }
           }}
         >
-          {visibleProjects.map((p) => (
-            <option key={p.project_id} value={p.project_id}>
-              {p.name}
-            </option>
-          ))}
+          {visibleProjects.map((p) => {
+            const name = p.name || "";
+            const maxLen = 18;
+            const truncated =
+              name.length > maxLen ? `${name.slice(0, maxLen - 1)}…` : name;
+            return (
+              <option key={p.project_id} value={p.project_id} title={name}>
+                {truncated}
+              </option>
+            );
+          })}
           <option value="add">+ Add Project</option>
         </select>
       </header>

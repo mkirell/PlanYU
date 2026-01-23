@@ -5,7 +5,7 @@ import {
   createProfileSchema,
   updateProfileSchema,
 } from "../validators/profileValidator.js";
-import { ValidationError } from "../../shared/utils/errors.js";
+import { ValidationError } from "../../shared/utils/errorHandler.js";
 
 const ProfileService = {
   async list() {
