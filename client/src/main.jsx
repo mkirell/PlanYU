@@ -7,11 +7,13 @@ import App from "./App";
 import { refreshUser } from "./features/auth/authThunks";
 import { setupOfflineSync } from "./shared/network/syncService";
 import { loadAuthCache } from "./shared/cache/offlineApi";
+import { setupAuthInterceptor } from "./shared/network/authInterceptor";
 
 axios.defaults.withCredentials = true;
 axios.defaults.timeout = 4000;
 
 const startApp = () => {
+  setupAuthInterceptor(store);
   setupOfflineSync(store);
   createRoot(document.getElementById("root")).render(
     <StrictMode>

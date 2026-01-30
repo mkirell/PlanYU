@@ -106,6 +106,8 @@ const refreshAll = async (store) => {
 };
 
 const isConflict = (err) => err?.response?.status === 409;
+const isUnauthorized = (err) => err?.response?.status === 401;
+const isForbidden = (err) => err?.response?.status === 403;
 
 let syncInProgress = false;
 
@@ -114,6 +116,7 @@ const isAuthenticated = (store) => {
   const state = store.getState();
   return Boolean(state?.auth?.data?.user?.user_id);
 };
+
 
 export const syncOfflineQueue = async (store) => {
   if (typeof navigator !== "undefined" && !navigator.onLine) return;
@@ -196,6 +199,12 @@ export const syncOfflineQueue = async (store) => {
       } catch (err) {
         if (typeof navigator !== "undefined" && !navigator.onLine) {
           nextPending.push(item);
+          continue;
+        }
+
+        if ((isUnauthorized(err) || isForbidden(err)) && err?.config?.__isRetryRequest) {
+          await deleteOfflineQueueItem(item.id);
+          progressed = true;
           continue;
         }
 

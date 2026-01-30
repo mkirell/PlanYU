@@ -46,10 +46,19 @@ export default function authorize(...allowedRoles) {
         (req.query && (req.query.project_id || req.query.task_id));
 
       let projectId = candidateId;
-      try {
-        const task = await TaskRepository.findById(candidateId);
-        if (task && task.project_id) projectId = task.project_id;
-      } catch (e) {}
+      const baseUrl = typeof req.baseUrl === "string" ? req.baseUrl : "";
+      const isProjectScoped =
+        baseUrl.includes("/projects") || baseUrl.includes("/user-projects");
+      const isTaskCreate = baseUrl.includes("/tasks") && req.method === "POST";
+      const bodyHasProjectId = Boolean(req.body && req.body.project_id);
+      const bodyHasTaskId = Boolean(req.body && req.body.task_id);
+
+      if (!isProjectScoped && !isTaskCreate && !(bodyHasProjectId && !bodyHasTaskId)) {
+        try {
+          const task = await TaskRepository.findById(candidateId);
+          if (task && task.project_id) projectId = task.project_id;
+        } catch (e) {}
+      }
 
       try {
         const up = await UserProjectRepository.findByIds(
