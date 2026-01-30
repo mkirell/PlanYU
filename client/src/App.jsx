@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { OpenRoutes } from "./pages/routes.js";
+import Auth from "./pages/Auth/Auth.jsx";
 import "./assets/styles/main.css";
 import Notif from "./components/Notif/Notif.jsx";
 import { logoutUser } from "./features/auth/authThunks";
@@ -25,7 +26,7 @@ export default function App() {
         <Notif />
         <Routes>
           {OpenRoutes.map((r) => {
-            const Component = React.lazy(r.component);
+            const Component = r.name === "Auth" ? Auth : React.lazy(r.component);
 
             let element = null;
             if (r.name === "Auth") {
