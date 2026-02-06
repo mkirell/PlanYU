@@ -31,7 +31,6 @@
   margin: 0;
   color: var(--dark);
   font-size: 1.75rem;
-  letter-spacing: -0.05rem;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
