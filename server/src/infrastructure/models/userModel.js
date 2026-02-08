@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../../shared/config/dbService.js";
+import sequelize from "../../shared/common/dbService.js";
 
 const User = sequelize.define(
   "User",
@@ -20,6 +20,10 @@ const User = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 0,
+    },
+    verified_at: {
+      type: DataTypes.DATE,
+      allowNull: true,
     },
   },
   {

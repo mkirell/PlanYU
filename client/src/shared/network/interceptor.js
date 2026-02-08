@@ -10,7 +10,6 @@ const isAuthEndpoint = (config) =>
     config.url.includes(path),
   );
 
-
 export const setupAuthInterceptor = (store) => {
   if (!store?.dispatch) return () => {};
 

@@ -50,7 +50,9 @@ const formatEntry = (level, msg, meta) => {
 const write = (level, msg, meta) => {
   try {
     const status = extractStatus(meta, msg);
-    level = status >= 400 ? "error" : status >= 300 ? "warn" : "info";
+    if (Number.isFinite(status)) {
+      level = status >= 400 ? "error" : status >= 300 ? "warn" : "info";
+    }
     const line = formatEntry(level, msg, meta);
 
     const colored = `${COLORS[level] || COLORS.info}${line}\u001b[0m`;

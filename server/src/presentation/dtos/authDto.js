@@ -8,7 +8,11 @@ export class AuthRequestDto {
 export class AuthResponseDto {
   constructor(user = {}) {
     const source = user && user.dataValues ? user.dataValues : user;
-    const { password_hash, token_version, ...safeUser } = source;
+    const {
+      password_hash,
+      token_version,
+      ...safeUser
+    } = source;
     Object.assign(this, safeUser);
   }
 }

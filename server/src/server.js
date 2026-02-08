@@ -7,7 +7,7 @@ import cookieParser from "cookie-parser";
 import routes from "./presentation/routers/index.js";
 import authRoutes from "./presentation/routers/authRouter.js";
 import authenticate from "./presentation/middleware/authentication.js";
-import sequelize from "./shared/config/dbService.js";
+import sequelize from "./shared/common/dbService.js";
 import errorHandler from "./presentation/middleware/errorHandler.js";
 import httpLogger from "./presentation/middleware/httpLogger.js";
 
@@ -19,12 +19,13 @@ const corsOptions = {
   allowedHeaders: ["Content-Type", "Authorization"],
 };
 
-// Auth rate limit: 20 requests every 15 minutes
+// Auth rate limit: 50 requests every 15 minutes
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 20,
+  max: 50,
   standardHeaders: true,
   legacyHeaders: false,
+  message: { message: "Too many tries" },
 });
 
 // Auth rate API: 300 requests every 1 minute

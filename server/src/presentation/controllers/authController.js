@@ -1,26 +1,57 @@
 import AuthService from "../../application/services/authService.js";
+import { signTokens } from "../../shared/common/tokenService.js";
 import { AuthRequestDto, AuthResponseDto } from "../dtos/authDto.js";
+
+const SESSION_COOKIE_OPTIONS = {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === "production",
+  sameSite: "Strict",
+  path: "/api/auth",
+  maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+};
+
+const TRUST_COOKIE_OPTIONS = {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === "production",
+  sameSite: "Strict",
+  path: "/api/auth",
+  maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+};
+
+const setSessionCookie = (res, refreshToken) => {
+  res.cookie("session", refreshToken, SESSION_COOKIE_OPTIONS);
+};
+
+const setTrustCookie = (res, trustToken) => {
+  if (trustToken) res.cookie("trust", trustToken, TRUST_COOKIE_OPTIONS);
+};
 
 export async function register(req, res) {
   const dto = new AuthRequestDto(req.body);
-  const user = await AuthService.register(dto);
-  res.status(201).json(new AuthResponseDto(user));
+  const result = await AuthService.register(dto);
+  res.status(201).json({
+    message:
+      "Registration successful. Check your email to verify your account.",
+    emailSent: result.emailSent,
+    user: new AuthResponseDto(result.user),
+  });
 }
 
 export async function login(req, res) {
   const dto = new AuthRequestDto(req.body);
   const result = await AuthService.login(dto, {
+    trustToken: req.cookies?.trust,
     ip: req.ip,
     userAgent: req.get("user-agent"),
   });
-  const cookieOptions = {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "Lax",
-    path: "/api/auth",
-    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-  };
-  res.cookie("session", result.refreshToken, cookieOptions);
+  if (result.requiresTwoFactor) {
+    return res.status(200).json({
+      requiresTwoFactor: true,
+      challengeId: result.challengeId,
+      emailSent: result.emailSent,
+    });
+  }
+  setSessionCookie(res, result.refreshToken);
   res.status(200).json({
     accessToken: result.accessToken,
     user: new AuthResponseDto(result.user),
@@ -34,17 +65,40 @@ export async function refresh(req, res) {
     ip: req.ip,
     userAgent: req.get("user-agent"),
   });
-  const cookieOptions = {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "Lax",
-    path: "/api/auth",
-    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-  };
-  res.cookie("session", result.refreshToken, cookieOptions);
+  setSessionCookie(res, result.refreshToken);
   res.status(200).json({
     accessToken: result.accessToken,
     user: new AuthResponseDto(result.user),
+  });
+}
+
+export async function verifyCode(req, res) {
+  const result = await AuthService.verifyCode(req.body);
+  if (result.purpose === "email") {
+    const tokens = signTokens(result.user);
+    setSessionCookie(res, tokens.refreshToken);
+    setTrustCookie(res, result.trustToken);
+    return res.status(200).json({
+      message: "Email verified successfully.",
+      accessToken: tokens.accessToken,
+      user: new AuthResponseDto(result.user),
+    });
+  }
+
+  setSessionCookie(res, result.refreshToken);
+  setTrustCookie(res, result.trustToken);
+  return res.status(200).json({
+    accessToken: result.accessToken,
+    user: new AuthResponseDto(result.user),
+  });
+}
+
+export async function resendCode(req, res) {
+  const result = await AuthService.resendCode(req.body);
+  res.status(200).json({
+    message: "If the request is valid, a code has been sent.",
+    emailSent: result.emailSent,
+    challengeId: result.challengeId,
   });
 }
 

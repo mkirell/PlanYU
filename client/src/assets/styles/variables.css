@@ -19,13 +19,13 @@
   --font-heading: "Roboto", "Inter", Arial, sans-serif;
 
   --bg-login: url("../imgs/bg-login.jpg");
-  --board-width: min(1400px, calc(100% - 1rem));
+  --board-width: min(1500px, calc(100% - 2rem));
 
-  --bg: #f0f3f7;
-  --card: #fdfdfd;
+  --bg: #ffffff;
+  --card: #ffffff;
   --radius: 0.75rem;
-  --shadow-1: 0 0.5rem 2rem rgba(12, 20, 40, 0.06);
-  --shadow-2: 0 0.5rem 1.5rem rgba(12, 20, 40, 0.05);
+  --shadow-1: 0 0.75rem 2.5rem rgba(12, 20, 40, 0.08);
+  --shadow-2: 0 0.4rem 1.1rem rgba(12, 20, 40, 0.035);
 
   --status-owner-board: #2196f3;
   --status-member-board: #4caf50;
@@ -63,4 +63,10 @@
   --danger-bg: rgba(208, 69, 69, 0.06);
   --danger-bg-hover: rgba(208, 69, 69, 0.1);
   --danger-shadow: rgba(208, 69, 69, 0.25);
+}
+
+@media (min-width: 1400px) {
+  :root {
+    --board-width: min(1800px, calc(100% - 2.5rem));
+  }
 }

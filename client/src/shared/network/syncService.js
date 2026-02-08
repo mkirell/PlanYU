@@ -9,6 +9,7 @@ import {
 } from "../cache/idbService";
 import { LOCAL_ID_PREFIX } from "../cache/offlineStore";
 import { fetchProjects } from "../../features/projects/projectThunks";
+import { fetchColumns } from "../../features/columns/columnThunks";
 import { fetchTasks } from "../../features/tasks/taskThunks";
 import { fetchProfiles } from "../../features/profiles/profileThunks";
 import { fetchUsers } from "../../features/users/userThunks";
@@ -17,6 +18,7 @@ import { fetchUserTasks } from "../../features/userTasks/userTaskThunks";
 
 const ID_ENTITY_MAP = {
   project_id: "projects",
+  status_id: "columns",
   task_id: "tasks",
   profile_id: "profiles",
   user_id: "users",
@@ -48,7 +50,13 @@ const resolveIds = async (ids = {}) => {
 
 const resolveBodyIds = async (body) => {
   if (!body) return { ok: true, body };
-  const candidateFields = ["user_id", "project_id", "task_id", "profile_id"];
+  const candidateFields = [
+    "user_id",
+    "project_id",
+    "task_id",
+    "status_id",
+    "profile_id",
+  ];
   const resolved = { ...body };
   for (const field of candidateFields) {
     if (!(field in resolved)) continue;
@@ -75,6 +83,7 @@ const replaceUrlIds = (url, originalIds, resolvedIds) => {
 const getEntityKeyFromData = (entity, data) => {
   if (!data) return null;
   if (entity === "projects") return data.project_id;
+  if (entity === "columns") return data.status_id;
   if (entity === "tasks") return data.task_id;
   if (entity === "profiles") return data.profile_id;
   if (entity === "users") return data.user_id ?? data.id;
@@ -85,6 +94,7 @@ const getEntityKeyFromData = (entity, data) => {
 
 const getEntityKeyFromIds = (entity, ids) => {
   if (entity === "projects") return ids.project_id;
+  if (entity === "columns") return ids.status_id;
   if (entity === "tasks") return ids.task_id;
   if (entity === "profiles") return ids.profile_id;
   if (entity === "users") return ids.user_id;
@@ -97,6 +107,7 @@ const refreshAll = async (store) => {
   if (!store) return;
   await Promise.all([
     store.dispatch(fetchProjects()),
+    store.dispatch(fetchColumns()),
     store.dispatch(fetchTasks()),
     store.dispatch(fetchProfiles()),
     store.dispatch(fetchUsers()),
@@ -117,7 +128,6 @@ const isAuthenticated = (store) => {
   return Boolean(state?.auth?.data?.user?.user_id);
 };
 
-
 export const syncOfflineQueue = async (store) => {
   if (typeof navigator !== "undefined" && !navigator.onLine) return;
   if (!isAuthenticated(store)) return;
@@ -126,105 +136,111 @@ export const syncOfflineQueue = async (store) => {
   syncInProgress = true;
 
   try {
+    const queue = await getOfflineQueue();
+    if (!queue || queue.length === 0) return;
+    let pending = [...queue].sort((a, b) => a.id - b.id);
+    let progressed = true;
+    let didSync = false;
 
-  const queue = await getOfflineQueue();
-  if (!queue || queue.length === 0) return;
-  let pending = [...queue].sort((a, b) => a.id - b.id);
-  let progressed = true;
-  let didSync = false;
+    while (pending.length > 0 && progressed) {
+      progressed = false;
+      const nextPending = [];
 
-  while (pending.length > 0 && progressed) {
-    progressed = false;
-    const nextPending = [];
-
-    for (const item of pending) {
-      const idsResult = await resolveIds(item.ids || {});
-      if (!idsResult.ok) {
-        nextPending.push(item);
-        continue;
-      }
-
-      const bodyResult = await resolveBodyIds(item.body);
-      if (!bodyResult.ok) {
-        nextPending.push(item);
-        continue;
-      }
-
-      const resolvedIds = idsResult.ids || {};
-      const resolvedUrl = replaceUrlIds(item.url, item.ids || {}, resolvedIds);
-
-      try {
-        const resp = await axios({
-          method: item.method,
-          url: resolvedUrl,
-          data: bodyResult.body,
-        });
-
-        if (item.method === "POST") {
-          const data = resp?.data;
-          const realId = getEntityKeyFromData(item.entity, data);
-          if (item.tempId && realId) {
-            await setIdMapping(item.entity, item.tempId, realId);
-            await deleteEntity(item.entity, item.tempId);
-          }
-          if (realId) {
-            await upsertEntity(item.entity, realId, data);
-          }
-        }
-
-        if (item.method === "PATCH") {
-          const data = resp?.data;
-          const realId = getEntityKeyFromData(item.entity, data);
-          if (realId) {
-            await upsertEntity(item.entity, realId, data);
-            if (item.entityKey && item.entityKey !== realId) {
-              await deleteEntity(item.entity, item.entityKey);
-            }
-          }
-        }
-
-        if (item.method === "DELETE") {
-          const resolvedKey = getEntityKeyFromIds(item.entity, resolvedIds);
-          if (resolvedKey) {
-            await deleteEntity(item.entity, resolvedKey);
-          }
-          if (item.entityKey && item.entityKey !== resolvedKey) {
-            await deleteEntity(item.entity, item.entityKey);
-          }
-        }
-
-        await deleteOfflineQueueItem(item.id);
-        progressed = true;
-        didSync = true;
-      } catch (err) {
-        if (typeof navigator !== "undefined" && !navigator.onLine) {
+      for (const item of pending) {
+        const idsResult = await resolveIds(item.ids || {});
+        if (!idsResult.ok) {
           nextPending.push(item);
           continue;
         }
 
-        if ((isUnauthorized(err) || isForbidden(err)) && err?.config?.__isRetryRequest) {
-          await deleteOfflineQueueItem(item.id);
-          progressed = true;
+        const bodyResult = await resolveBodyIds(item.body);
+        if (!bodyResult.ok) {
+          nextPending.push(item);
           continue;
         }
 
-        if (
-          isConflict(err) &&
-          item.method === "POST" &&
-          (item.entity === "userProjects" || item.entity === "userTasks")
-        ) {
+        const resolvedIds = idsResult.ids || {};
+        const resolvedUrl = replaceUrlIds(
+          item.url,
+          item.ids || {},
+          resolvedIds,
+        );
+
+        try {
+          const resp = await axios({
+            method: item.method,
+            url: resolvedUrl,
+            data: bodyResult.body,
+          });
+
+          if (item.method === "POST") {
+            const data = resp?.data;
+            const realId = getEntityKeyFromData(item.entity, data);
+            if (item.tempId && realId) {
+              await setIdMapping(item.entity, item.tempId, realId);
+              await deleteEntity(item.entity, item.tempId);
+            }
+            if (realId) {
+              await upsertEntity(item.entity, realId, data);
+            }
+          }
+
+          if (item.method === "PATCH") {
+            const data = resp?.data;
+            const realId = getEntityKeyFromData(item.entity, data);
+            if (realId) {
+              await upsertEntity(item.entity, realId, data);
+              if (item.entityKey && item.entityKey !== realId) {
+                await deleteEntity(item.entity, item.entityKey);
+              }
+            }
+          }
+
+          if (item.method === "DELETE") {
+            const resolvedKey = getEntityKeyFromIds(item.entity, resolvedIds);
+            if (resolvedKey) {
+              await deleteEntity(item.entity, resolvedKey);
+            }
+            if (item.entityKey && item.entityKey !== resolvedKey) {
+              await deleteEntity(item.entity, item.entityKey);
+            }
+          }
+
           await deleteOfflineQueueItem(item.id);
           progressed = true;
           didSync = true;
-          continue;
+        } catch (err) {
+          if (typeof navigator !== "undefined" && !navigator.onLine) {
+            nextPending.push(item);
+            continue;
+          }
+
+          if (
+            (isUnauthorized(err) || isForbidden(err)) &&
+            err?.config?.__isRetryRequest
+          ) {
+            await deleteOfflineQueueItem(item.id);
+            progressed = true;
+            continue;
+          }
+
+          if (
+            isConflict(err) &&
+            item.method === "POST" &&
+            (item.entity === "userProjects" || item.entity === "userTasks")
+          ) {
+            await deleteOfflineQueueItem(item.id);
+            progressed = true;
+            didSync = true;
+            continue;
+          }
+
+          nextPending.push(item);
         }
-
-        nextPending.push(item);
       }
-    }
 
-    pending = nextPending;
-  }
+      pending = nextPending;
+    }
 
     if (didSync) {
       await refreshAll(store);

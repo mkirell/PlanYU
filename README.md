@@ -85,7 +85,7 @@ Both local and Docker approaches use the same codebase and dependencies.
 1. Start the application: make start
 2. Open your web browser and go to <http://localhost:3000>
 3. Check the server at <http://localhost:5000/health> or use Postman to call <http://localhost:5000/api/*>
-4. Connect to the database: mysql -h localhost -P 3306 -u <MYSQL_USER> -p -D <MYSQL_DATABASE>
+4. Connect to the database: mysql -h localhost -P 3306 -u <DATABASE_USER> -p -D <DATABASE_NAME>
 5. Stop the application: make stop
 
 > Notes:
@@ -99,7 +99,7 @@ Both local and Docker approaches use the same codebase and dependencies.
 2. Start the containers: docker-compose up
 3. Open your web browser and go to <http://localhost:3006>
 4. Check the server at <http://localhost:5006/health> or use Postman to call <http://localhost:5006/api/*>
-5. Connect to the database: mysql -h localhost -P 8006 -u <MYSQL_USER> -p -D <MYSQL_DATABASE>
+5. Connect to the database: mysql -h localhost -P 8006 -u <DATABASE_USER> -p -D <DATABASE_NAME>
 6. Stop the containers: docker-compose down
 
 > Notes:

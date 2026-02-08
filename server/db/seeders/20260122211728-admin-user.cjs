@@ -20,6 +20,7 @@ module.exports = {
           password_hash: passwordHash,
           role: "ADMIN",
           token_version: 0,
+          verified_at: now,
           created_at: now,
           updated_at: now,
         },

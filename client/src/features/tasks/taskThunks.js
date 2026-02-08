@@ -140,7 +140,7 @@ export const deleteTask = createAsyncThunk(
   "tasks/deleteTask",
   async (id, { rejectWithValue, getState }) => {
     const state = getState();
-    const userTasks = state?.usertasks?.list || [];
+    const userTasks = state?.userTasks?.list || [];
     const toRemove = userTasks.filter((ut) => ut.task_id === id);
 
     if (isOffline()) {

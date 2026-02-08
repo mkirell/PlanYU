@@ -16,6 +16,16 @@ export const refreshOnline = async () => {
   return res.data;
 };
 
+export const verifyCodeOnline = async (payload) => {
+  const res = await axios.post("/api/auth/verify-code", payload);
+  return res.data;
+};
+
+export const resendCodeOnline = async (payload) => {
+  const res = await axios.post("/api/auth/resend-code", payload);
+  return res.data;
+};
+
 export const logoutOnline = async () => {
   await axios.post("/api/auth/logout", null);
   return true;

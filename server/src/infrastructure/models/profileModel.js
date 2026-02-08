@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../../shared/config/dbService.js";
+import sequelize from "../../shared/common/dbService.js";
 
 const Profile = sequelize.define(
   "Profile",

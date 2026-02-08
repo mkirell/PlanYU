@@ -4,8 +4,9 @@ import usersReducer from "./users/userSlice";
 import profilesReducer from "./profiles/profileSlice";
 import projectsReducer from "./projects/projectSlice";
 import tasksReducer from "./tasks/taskSlice";
+import columnsReducer from "./columns/columnSlice";
 import userProjectsReducer from "./userProjects/userProjectSlice";
-import usertasksReducer  from "./userTasks/userTaskSlice"; 
+import userTasksReducer from "./userTasks/userTaskSlice";
 
 export const store = configureStore({
   reducer: {
@@ -13,8 +14,9 @@ export const store = configureStore({
     users: usersReducer,
     profiles: profilesReducer,
     projects: projectsReducer,
+    columns: columnsReducer,
     tasks: tasksReducer,
     userProjects: userProjectsReducer,
-    usertasks: usertasksReducer,
+    userTasks: userTasksReducer,
   },
 });

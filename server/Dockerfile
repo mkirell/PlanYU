@@ -1,8 +1,8 @@
-FROM node:20
+FROM node:20-alpine
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache curl netcat-openbsd
 
 COPY package*.json ./
 

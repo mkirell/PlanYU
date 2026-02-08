@@ -1,20 +1,29 @@
-.board-add {
+.board-add,
+.board-columns-add {
   margin: 0.75rem 0 1rem;
 }
-.board-add form {
+.board-add form,
+.board-columns-add form {
   display: flex;
   gap: 0.5rem;
   align-items: center;
   flex-wrap: wrap;
+  width: 100%;
 }
 .board-add input[type="text"],
 .board-add input[type="date"],
-.board-add select {
+.board-add select,
+.board-columns-add input[type="text"],
+.board-columns-add input[type="number"],
+.board-columns-add input[type="color"],
+.board-columns-add select {
   padding: 0.35rem 0.5rem;
   border: 0.05rem solid rgba(20, 30, 60, 0.06);
   border-radius: var(--radius);
   font-size: 0.95rem;
   height: 38px;
+  line-height: 1.2;
+  box-sizing: border-box;
   transition:
     box-shadow 0.12s,
     border-color 0.12s;
@@ -33,7 +42,33 @@
   width: 160px;
   height: 38px;
 }
-.board-add button[type="submit"] {
+
+.board-columns-add input[name="name"] {
+  flex: 1 1 200px;
+  height: 38px;
+}
+.board-columns-add input[name="description"] {
+  flex: 1 1 340px;
+  height: 38px;
+}
+.board-columns-add select[name="type"] {
+  flex: 0 0 170px;
+  height: 38px;
+}
+.board-columns-add input[name="icon"] {
+  flex: 0 0 50px;
+  height: 38px;
+}
+.board-columns-add input[name="color"] {
+  flex: 0 0 40px;
+  height: 38px;
+}
+.board-columns-add input[name="sort_order"] {
+  flex: 0 0 50px;
+  height: 38px;
+}
+.board-add button[type="submit"],
+.board-columns-add button[type="submit"] {
   padding: 0.5rem 0.75rem;
   border-radius: var(--radius);
   border: none;
@@ -150,7 +185,8 @@
 }
 
 @media (max-width: 575.98px) {
-  .board-add form {
+  .board-add form,
+  .board-columns-add form {
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -158,10 +194,25 @@
   .board-add input[name="title"],
   .board-add input[name="description"],
   .board-add select,
-  .board-add input[type="date"] {
+  .board-add input[type="date"],
+  .board-columns-add input[type="text"],
+  .board-columns-add input[type="number"],
+  .board-columns-add input[type="color"],
+  .board-columns-add select {
     width: 100%;
+    height: 38px;
+    min-height: 38px;
+    max-height: 38px;
+    padding: 0.35rem 0.5rem;
   }
-  .board-add button[type="submit"] {
+  .board-columns-add .column-active {
+    height: 38px;
+  }
+  .board-columns-add input[type="color"] {
+    padding: 0.2rem;
+  }
+  .board-add button[type="submit"],
+  .board-columns-add button[type="submit"] {
     width: 100%;
   }
 
@@ -250,8 +301,9 @@
   }
 }
 
-@media (max-width: 991.98px) {
-  .board-add form {
+@media (max-width: 1199.98px) {
+  .board-add form,
+  .board-columns-add form {
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -260,8 +312,22 @@
   .board-add input[name="title"],
   .board-add input[name="description"],
   .board-add select,
-  .board-add input[type="date"] {
+  .board-add input[type="date"],
+  .board-columns-add input[type="text"],
+  .board-columns-add input[type="number"],
+  .board-columns-add input[type="color"],
+  .board-columns-add select {
     width: 100%;
+  }
+
+  .board-columns-add input[type="text"],
+  .board-columns-add input[type="number"],
+  .board-columns-add input[type="color"],
+  .board-columns-add select {
+    height: 38px;
+    min-height: 38px;
+    max-height: 38px;
+    padding: 0.35rem 0.5rem;
   }
 
   .board-add input[name="title"],

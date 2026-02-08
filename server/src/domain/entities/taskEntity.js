@@ -4,7 +4,7 @@ export class TaskEntity {
     project_id,
     title,
     description,
-    status,
+    status_id,
     priority,
     due_date,
   } = {}) {
@@ -12,7 +12,7 @@ export class TaskEntity {
     this.project_id = project_id;
     this.title = title;
     this.description = description;
-    this.status = status;
+    this.status_id = status_id;
     this.priority = priority;
     this.due_date = due_date;
   }
@@ -22,7 +22,7 @@ export class TaskEntity {
     if (this.project_id !== undefined) out.project_id = this.project_id;
     if (this.title !== undefined) out.title = this.title;
     if (this.description !== undefined) out.description = this.description;
-    if (this.status !== undefined) out.status = this.status;
+    if (this.status_id !== undefined) out.status_id = this.status_id;
     if (this.priority !== undefined) out.priority = this.priority;
     if (this.due_date !== undefined) out.due_date = this.due_date;
     return out;
@@ -33,7 +33,7 @@ export class TaskEntity {
     if (this.project_id !== undefined) out.project_id = this.project_id;
     if (this.title !== undefined) out.title = this.title;
     if (this.description !== undefined) out.description = this.description;
-    if (this.status !== undefined) out.status = this.status;
+    if (this.status_id !== undefined) out.status_id = this.status_id;
     if (this.priority !== undefined) out.priority = this.priority;
     if (this.due_date !== undefined) out.due_date = this.due_date;
     return out;

@@ -34,7 +34,7 @@
   font-size: 1.8rem;
   font-weight: 700;
   color: var(--accent);
-  margin-bottom: 0.25rem;
+  margin: 0.25rem 0 0.15rem;
   text-align: center;
 }
 .login-subtitle {
@@ -49,7 +49,7 @@
   color: var(--warning);
   padding: 0.5rem 0.75rem;
   border-radius: var(--radius);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.15rem;
   text-align: center;
   font-weight: 500;
 }
@@ -59,7 +59,7 @@
   color: var(--danger);
   padding: 0.5rem 0.75rem;
   border-radius: var(--radius);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.15rem;
   text-align: center;
   font-weight: 500;
 }
@@ -74,6 +74,55 @@
   flex-direction: column;
   font-size: 0.9rem;
   color: var(--muted);
+}
+.login-checkbox {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.1;
+  cursor: pointer;
+}
+.login-checkbox input {
+  appearance: none;
+  margin: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 0.25rem;
+  border: 1.5px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  display: inline-grid;
+  place-content: center;
+  vertical-align: middle;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+  cursor: pointer;
+}
+.login-checkbox input::after {
+  content: "";
+  width: 0.45rem;
+  height: 0.25rem;
+  border: 2px solid currentColor;
+  border-top: 0;
+  border-right: 0;
+  transform: rotate(-45deg);
+}
+.login-checkbox input:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+.login-checkbox input:checked {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+.login-checkbox input:checked::after {
+  border-color: currentColor;
 }
 .login-form input {
   padding: 0.65rem 0.85rem;
@@ -93,10 +142,14 @@
   box-shadow: 0 0.25rem 0.75rem rgba(25, 103, 210, 0.08);
 }
 .auth-switch {
-  margin-top: 0.75rem;
+  margin-top: 0.15rem;
   font-size: 0.9rem;
   text-align: center;
   color: var(--muted);
+}
+.verify-actions {
+  margin-top: 0.35rem;
+  text-align: center;
 }
 .btn-link {
   background: none;

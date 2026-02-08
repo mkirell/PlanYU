@@ -10,10 +10,7 @@ export const createTaskSchema = z.object({
     (val) => (typeof val === "string" ? val.trim() : val),
     z.string().nullable().optional(),
   ),
-  status: z.preprocess(
-    (val) => (typeof val === "string" ? val.trim().toUpperCase() : val),
-    z.enum(["TODO", "DOING", "REVIEW", "DONE"]).optional(),
-  ),
+  status_id: z.number().int().positive().optional(),
   priority: z.preprocess(
     (val) => (typeof val === "string" ? val.trim().toUpperCase() : val),
     z.enum(["LOW", "MEDIUM", "HIGH"]).optional(),
@@ -37,10 +34,7 @@ export const updateTaskSchema = z
       (val) => (typeof val === "string" ? val.trim() : val),
       z.string().nullable().optional(),
     ),
-    status: z.preprocess(
-      (val) => (typeof val === "string" ? val.trim().toUpperCase() : val),
-      z.enum(["TODO", "DOING", "REVIEW", "DONE"]).optional(),
-    ),
+    status_id: z.number().int().positive().optional(),
     priority: z.preprocess(
       (val) => (typeof val === "string" ? val.trim().toUpperCase() : val),
       z.enum(["LOW", "MEDIUM", "HIGH"]).optional(),

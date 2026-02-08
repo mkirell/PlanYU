@@ -1,10 +1,11 @@
-const DB_NAME = "playu-offline-db";
-const DB_VERSION = 1;
+const DATABASE_NAME = "playu-offline-db";
+const DATABASE_VERSION = 2;
 const AUTH_STORE = "auth";
 const QUEUE_STORE = "offline-queue";
 const ID_MAP_STORE = "id-map";
 const ENTITY_STORES = [
   "projects",
+  "columns",
   "tasks",
   "profiles",
   "users",
@@ -14,7 +15,7 @@ const ENTITY_STORES = [
 
 function openDB() {
   return new Promise((resolve, reject) => {
-    const req = indexedDB.open(DB_NAME, DB_VERSION);
+    const req = indexedDB.open(DATABASE_NAME, DATABASE_VERSION);
     req.onupgradeneeded = (ev) => {
       const db = ev.target.result;
       if (!db.objectStoreNames.contains(AUTH_STORE)) {

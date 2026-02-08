@@ -17,6 +17,7 @@ export default function Card({
   projectMembers = [],
   profiles = [],
   userTasks = [],
+  columns = [],
 }) {
   const [expanded, setExpanded] = useState(false);
   const [draftTitle, setDraftTitle] = useState(task.title || "");
@@ -24,17 +25,19 @@ export default function Card({
     task.description || "",
   );
   const [draftPriority, setDraftPriority] = useState(task.priority || "MEDIUM");
-  const [draftStatus, setDraftStatus] = useState(task.status || "TODO");
+  const [draftStatusId, setDraftStatusId] = useState(task.status_id || null);
   const [draftDueDate, setDraftDueDate] = useState(
     task.due_date ? task.due_date.slice(0, 10) : "",
   );
   const priorities = ["LOW", "MEDIUM", "HIGH"];
-  const STATUS = [
-    { key: "TODO", label: "btn-todo", display: "Todo" },
-    { key: "DOING", label: "btn-doing", display: "WIP" },
-    { key: "REVIEW", label: "btn-review", display: "QA" },
-    { key: "DONE", label: "btn-done", display: "Done" },
-  ];
+
+  const getTypeClass = (type) =>
+    ({
+      TODO: "btn-todo",
+      DOING: "btn-doing",
+      REVIEW: "btn-review",
+      DONE: "btn-done",
+    })[type] || "";
 
   const prevTaskIdRef = useRef(task.task_id);
   const dispatch = useDispatch();
@@ -66,7 +69,7 @@ export default function Card({
       setDraftTitle(task.title || "");
       setDraftDescription(task.description || "");
       setDraftPriority(task.priority || "MEDIUM");
-      setDraftStatus(task.status || "TODO");
+      setDraftStatusId(task.status_id || null);
       setDraftDueDate(task.due_date ? task.due_date.slice(0, 10) : "");
       prevTaskIdRef.current = task.task_id;
     });
@@ -78,7 +81,7 @@ export default function Card({
     task.title,
     task.description,
     task.priority,
-    task.status,
+    task.status_id,
     task.due_date,
     expanded,
   ]);
@@ -111,6 +114,77 @@ export default function Card({
       new Date(now.getFullYear(), now.getMonth(), now.getDate())
       ? "due-future"
       : "due-past";
+  };
+
+  const handleSaveTask = () => {
+    const patch = {};
+    if (draftTitle !== task.title) patch.title = draftTitle;
+    if (draftDescription !== task.description)
+      patch.description = draftDescription;
+    if (draftPriority !== task.priority) patch.priority = draftPriority;
+    if (draftStatusId !== task.status_id) patch.status_id = draftStatusId;
+    const iso = draftDueDate ? new Date(draftDueDate).toISOString() : null;
+    const currentIso = task.due_date
+      ? new Date(task.due_date).toISOString()
+      : null;
+    if (iso !== currentIso) patch.due_date = iso;
+
+    const runStaged = () => {
+      const creates = [];
+      const removes = [];
+      pendingAddAssignees.forEach((uid) =>
+        creates.push(
+          dispatch(
+            createUserTask({
+              user_id: uid,
+              task_id: task.task_id,
+              role: "ASSIGNEE",
+            }),
+          ),
+        ),
+      );
+      pendingAddReviewers.forEach((uid) =>
+        creates.push(
+          dispatch(
+            createUserTask({
+              user_id: uid,
+              task_id: task.task_id,
+              role: "REVIEWER",
+            }),
+          ),
+        ),
+      );
+      pendingRemoveAssignees.forEach((uid) =>
+        removes.push(
+          dispatch(deleteUserTask({ user_id: uid, task_id: task.task_id })),
+        ),
+      );
+      pendingRemoveReviewers.forEach((uid) =>
+        removes.push(
+          dispatch(deleteUserTask({ user_id: uid, task_id: task.task_id })),
+        ),
+      );
+
+      return Promise.all([...creates, ...removes]).then(() => {
+        setPendingAddAssignees([]);
+        setPendingAddReviewers([]);
+        setPendingRemoveAssignees([]);
+        setPendingRemoveReviewers([]);
+      });
+    };
+
+    if (Object.keys(patch).length) {
+      const res = onUpdate(task.task_id, patch);
+      if (res && typeof res.then === "function") {
+        res.then(() => runStaged());
+      } else {
+        runStaged();
+      }
+    } else {
+      runStaged();
+    }
+
+    setExpanded(false);
   };
 
   return (
@@ -354,22 +428,34 @@ export default function Card({
       )}
 
       <div className="card-actions">
-        {STATUS.filter(
-          (status) => (expanded ? draftStatus : task.status) !== status.key,
-        ).map((status) => (
-          <button
-            key={status.key}
-            className={`btn tiny ${status.label}`}
-            onClick={() => {
-              if (!canChangeStatus) return;
-              setDraftStatus(status.key);
-              onUpdate(task.task_id, { status: status.key });
-            }}
-            disabled={!canChangeStatus}
-          >
-            {status.display}
-          </button>
-        ))}
+        {columns
+          .filter(
+            (col) =>
+              (expanded ? draftStatusId : task.status_id) !== col.status_id,
+          )
+          .map((col) => (
+            <button
+              key={col.status_id}
+              className={`btn tiny ${getTypeClass(col.type)}`}
+              onClick={async () => {
+                if (!canChangeStatus) return;
+                try {
+                  const res = await onUpdate(task.task_id, {
+                    status_id: col.status_id,
+                  });
+
+                  if (!res || !res.error) {
+                    setDraftStatusId(col.status_id);
+                  }
+                } catch {
+                  // Do nothing, keep old status
+                }
+              }}
+              disabled={!canChangeStatus}
+            >
+              {col.icon}
+            </button>
+          ))}
         <div className="spacer" />
         <div className="task-members">
           {(() => {
@@ -425,96 +511,34 @@ export default function Card({
         </div>
       </div>
 
-      <button
-        className="btn small"
-        onClick={() => {
-          if (readOnly) return setExpanded((s) => !s);
-          if (!expanded) return setExpanded(true);
-
-          const patch = {};
-          if (draftTitle !== task.title) patch.title = draftTitle;
-          if (draftDescription !== task.description)
-            patch.description = draftDescription;
-          if (draftPriority !== task.priority) patch.priority = draftPriority;
-          if (draftStatus !== task.status) patch.status = draftStatus;
-          const iso = draftDueDate
-            ? new Date(draftDueDate).toISOString()
-            : null;
-          const currentIso = task.due_date
-            ? new Date(task.due_date).toISOString()
-            : null;
-          if (iso !== currentIso) patch.due_date = iso;
-
-          const runStaged = () => {
-            const creates = [];
-            const removes = [];
-            pendingAddAssignees.forEach((uid) =>
-              creates.push(
-                dispatch(
-                  createUserTask({
-                    user_id: uid,
-                    task_id: task.task_id,
-                    role: "ASSIGNEE",
-                  }),
-                ),
-              ),
-            );
-            pendingAddReviewers.forEach((uid) =>
-              creates.push(
-                dispatch(
-                  createUserTask({
-                    user_id: uid,
-                    task_id: task.task_id,
-                    role: "REVIEWER",
-                  }),
-                ),
-              ),
-            );
-            pendingRemoveAssignees.forEach((uid) =>
-              removes.push(
-                dispatch(
-                  deleteUserTask({ user_id: uid, task_id: task.task_id }),
-                ),
-              ),
-            );
-            pendingRemoveReviewers.forEach((uid) =>
-              removes.push(
-                dispatch(
-                  deleteUserTask({ user_id: uid, task_id: task.task_id }),
-                ),
-              ),
-            );
-
-            return Promise.all([...creates, ...removes]).then(() => {
+      {readOnly ? (
+        <button className="btn small" onClick={() => setExpanded((s) => !s)}>
+          {expanded ? "Collapse" : "Details"}
+        </button>
+      ) : expanded ? (
+        <div className="card-actions-bottom">
+          <button type="button" className="btn small" onClick={handleSaveTask}>
+            Save
+          </button>
+          <button
+            type="button"
+            className="btn small"
+            onClick={() => {
               setPendingAddAssignees([]);
               setPendingAddReviewers([]);
               setPendingRemoveAssignees([]);
               setPendingRemoveReviewers([]);
-            });
-          };
-
-          if (Object.keys(patch).length) {
-            const res = onUpdate(task.task_id, patch);
-            if (res && typeof res.then === "function") {
-              res.then(() => runStaged());
-            } else {
-              runStaged();
-            }
-          } else {
-            runStaged();
-          }
-
-          setExpanded(false);
-        }}
-      >
-        {readOnly
-          ? expanded
-            ? "Collapse"
-            : "Details"
-          : expanded
-            ? "Save"
-            : "Edit"}
-      </button>
+              setExpanded(false);
+            }}
+          >
+            Cancel
+          </button>
+        </div>
+      ) : (
+        <button className="btn small" onClick={() => setExpanded(true)}>
+          Edit
+        </button>
+      )}
     </article>
   );
 }

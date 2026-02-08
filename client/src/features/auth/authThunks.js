@@ -1,13 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import {
-  isOffline,
-  isNetworkError,
-} from "../../shared/network/connectivity";
+import { isOffline, isNetworkError } from "../../shared/network/connectivity";
 import {
   registerOnline,
   loginOnline,
   refreshOnline,
   logoutOnline,
+  verifyCodeOnline,
+  resendCodeOnline,
 } from "../../shared/network/onlineApi";
 import {
   setAuthHeader,
@@ -23,7 +22,9 @@ export const registerUser = createAsyncThunk(
       return await registerOnline(user);
     } catch (err) {
       return rejectWithValue(
-        err.response?.data?.error?.message || "Registration failed",
+        err.response?.data?.message ||
+          err.response?.data?.error?.message ||
+          "Registration failed",
       );
     }
   },
@@ -34,12 +35,16 @@ export const loginUser = createAsyncThunk(
   async (user, { rejectWithValue }) => {
     try {
       const data = await loginOnline(user);
-      if (data?.accessToken) setAuthHeader(data.accessToken);
-      await saveAuthCache(data);
+      if (data?.accessToken) {
+        setAuthHeader(data.accessToken);
+        await saveAuthCache(data);
+      }
       return data;
     } catch (err) {
       return rejectWithValue(
-        err.response?.data?.error?.message || "Login failed",
+        err.response?.data?.message ||
+          err.response?.data?.error?.message ||
+          "Login failed",
       );
     }
   },
@@ -65,7 +70,44 @@ export const refreshUser = createAsyncThunk(
         if (offline) return offline;
       }
       return rejectWithValue(
-        err.response?.data?.error?.message || "Refresh failed",
+        err.response?.data?.message ||
+          err.response?.data?.error?.message ||
+          "Refresh failed",
+      );
+    }
+  },
+);
+
+export const verifyCode = createAsyncThunk(
+  "auth/verifyCode",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const data = await verifyCodeOnline(payload);
+      if (data?.accessToken) {
+        setAuthHeader(data.accessToken);
+        await saveAuthCache(data);
+      }
+      return data;
+    } catch (err) {
+      return rejectWithValue(
+        err.response?.data?.message ||
+          err.response?.data?.error?.message ||
+          "Verification failed",
+      );
+    }
+  },
+);
+
+export const resendCode = createAsyncThunk(
+  "auth/resendCode",
+  async (payload, { rejectWithValue }) => {
+    try {
+      return await resendCodeOnline(payload);
+    } catch (err) {
+      return rejectWithValue(
+        err.response?.data?.message ||
+          err.response?.data?.error?.message ||
+          "Resend failed",
       );
     }
   },

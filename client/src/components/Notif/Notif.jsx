@@ -32,7 +32,7 @@ export default function Notif() {
   const projects = useSelector((s) => s.projects);
   const tasks = useSelector((s) => s.tasks);
   const userProjects = useSelector((s) => s.userProjects);
-  const usertasks = useSelector((s) => s.usertasks);
+  const userTasks = useSelector((s) => s.userTasks);
 
   const prevMessages = useRef({
     auth: auth?.message,
@@ -41,7 +41,7 @@ export default function Notif() {
     projects: projects?.message,
     tasks: tasks?.message,
     userProjects: userProjects?.message,
-    usertasks: usertasks?.message,
+    userTasks: userTasks?.message,
   });
 
   useEffect(() => {
@@ -82,7 +82,7 @@ export default function Notif() {
     checkMessage("projects", projects);
     checkMessage("tasks", tasks);
     checkMessage("userProjects", userProjects);
-    checkMessage("usertasks", usertasks);
+    checkMessage("userTasks", userTasks);
 
     if (newNotifs.length) {
       setTimeout(
@@ -94,7 +94,7 @@ export default function Notif() {
         0,
       );
     }
-  }, [users, profiles, projects, tasks, userProjects, usertasks]);
+  }, [users, profiles, projects, tasks, userProjects, userTasks]);
   if (!items.length) return null;
 
   return (

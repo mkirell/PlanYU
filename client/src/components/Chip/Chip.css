@@ -29,8 +29,8 @@
   cursor: pointer;
   box-shadow: var(--shadow-2);
   transition:
-    transform 0.12s ease,
-    box-shadow 0.12s ease;
+    transform 0.12s,
+    box-shadow 0.12s;
 }
 .assignment-chip.pending {
   background: rgba(25, 103, 210, 0.06);
@@ -75,4 +75,3 @@
     height: 1.375rem;
   }
 }
-

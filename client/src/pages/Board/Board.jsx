@@ -1,6 +1,6 @@
-import { useState, useMemo, useEffect, useRef } from "react";
+import { useState, useMemo, useEffect, useRef, useLayoutEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Card from "../../components/Card/Card.jsx";
+import Column from "../../components/Column/Column.jsx";
 import Profile from "../../components/Profile/Profile.jsx";
 import Form from "../../components/Form/Form.jsx";
 import Modal from "../../components/Modal/Modal.jsx";
@@ -16,6 +16,12 @@ import {
   updateTask,
   deleteTask,
 } from "../../features/tasks/taskThunks";
+import {
+  fetchColumns,
+  createColumn,
+  updateColumn,
+  deleteColumn,
+} from "../../features/columns/columnThunks";
 import { fetchUserTasks } from "../../features/userTasks/userTaskThunks";
 import { fetchUsers } from "../../features/users/userThunks";
 import {
@@ -32,8 +38,9 @@ import "./Board.css";
 export default function Board({ currentUserId, onLogout }) {
   const dispatch = useDispatch();
   const projects = useSelector((state) => state.projects.list);
+  const columns = useSelector((state) => state.columns.list);
   const tasks = useSelector((state) => state.tasks.list);
-  const userTasks = useSelector((state) => state.usertasks.list);
+  const userTasks = useSelector((state) => state.userTasks.list);
   const users = useSelector((state) => state.users.list);
   const profiles = useSelector((state) => state.profiles.list);
   const userProjects = useSelector((state) => state.userProjects.list);
@@ -46,14 +53,20 @@ export default function Board({ currentUserId, onLogout }) {
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [confirmMessage, setConfirmMessage] = useState("");
   const [confirmAction, setConfirmAction] = useState(() => {});
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.innerWidth <= 575;
+  });
+  const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
+  const [showMoreDescription, setShowMoreDescription] = useState(false);
   const didLoadRef = useRef(false);
+  const descriptionRef = useRef(null);
 
-  const STATUS = [
-    { key: "TODO", label: "To Do", icon: "📝" },
-    { key: "DOING", label: "In Progress", icon: "⚙️" },
-    { key: "REVIEW", label: "Review", icon: "🔍" },
-    { key: "DONE", label: "Done", icon: "✅" },
-  ];
+  const normalizeStatusName = (value) => {
+    const cleaned = (value || "").trim().replace(/\s+/g, " ").toLowerCase();
+    if (!cleaned) return "";
+    return cleaned.replace(/(^|\s)\S/g, (c) => c.toUpperCase());
+  };
 
   const userProjectRoles = useMemo(
     () =>
@@ -88,6 +101,7 @@ export default function Board({ currentUserId, onLogout }) {
     didLoadRef.current = true;
     Promise.all([
       dispatch(fetchProjects()),
+      dispatch(fetchColumns()),
       dispatch(fetchTasks()),
       dispatch(fetchUserTasks()),
       dispatch(fetchUsers()),
@@ -95,6 +109,13 @@ export default function Board({ currentUserId, onLogout }) {
       dispatch(fetchUserProjects()),
     ]).finally(() => setLoading(false));
   }, [dispatch]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const handleResize = () => setIsMobile(window.innerWidth <= 575);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     if (!loading) {
@@ -108,6 +129,11 @@ export default function Board({ currentUserId, onLogout }) {
       }
     }
   }, [loading, visibleProjects, selectedProjectId]);
+
+  useEffect(() => {
+    if (!selectedProjectId) return;
+    dispatch(fetchColumns({ project_id: selectedProjectId }));
+  }, [dispatch, selectedProjectId]);
 
   const selectedProject = useMemo(
     () => visibleProjects.find((p) => p.project_id === selectedProjectId),
@@ -129,6 +155,17 @@ export default function Board({ currentUserId, onLogout }) {
         }),
     [tasks, selectedProjectId, memberFilterUserIds, userTasks],
   );
+
+  const projectColumns = useMemo(() => {
+    return columns
+      .filter((c) => c.project_id === selectedProjectId)
+      .sort((a, b) => {
+        const orderA = a.sort_order ?? 0;
+        const orderB = b.sort_order ?? 0;
+        if (orderA !== orderB) return orderA - orderB;
+        return (a.status_id ?? 0) - (b.status_id ?? 0);
+      });
+  }, [columns, selectedProjectId]);
 
   const projectMembers = useMemo(
     () =>
@@ -154,8 +191,58 @@ export default function Board({ currentUserId, onLogout }) {
   const projectRoleClass =
     isCreatingFirstProject || currentUserRole === "OWNER" ? "owner" : "member";
 
+  const projectDescription = selectedProject?.description || "No description";
+  useLayoutEffect(() => {
+    const el = descriptionRef.current;
+    if (!el) return undefined;
+
+    let rafId = 0;
+    const updateToggle = () => {
+      if (projectDescription === "No description") {
+        setShowMoreDescription(false);
+        if (isDescriptionExpanded) setIsDescriptionExpanded(false);
+        return;
+      }
+
+      const wasExpanded = el.classList.contains("expanded");
+      if (wasExpanded) el.classList.remove("expanded");
+      const needsToggle = el.scrollHeight > el.clientHeight + 1;
+      if (wasExpanded) el.classList.add("expanded");
+      setShowMoreDescription(needsToggle);
+      if (!needsToggle && isDescriptionExpanded)
+        setIsDescriptionExpanded(false);
+    };
+
+    const observer = new ResizeObserver(() => {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(updateToggle);
+    });
+
+    observer.observe(el);
+    rafId = requestAnimationFrame(updateToggle);
+
+    return () => {
+      observer.disconnect();
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, [projectDescription, isMobile, isDescriptionExpanded]);
+
+  const defaultColumn = useMemo(() => {
+    if (!projectColumns.length) return null;
+    return (
+      projectColumns.find((col) => col.type === "TODO") || projectColumns[0]
+    );
+  }, [projectColumns]);
+
   const handleUpdateTask = (task_id, patch) =>
     dispatch(updateTask({ id: task_id, data: patch }));
+
+  const handleUpdateColumn = async (status_id, patch) => {
+    const action = await dispatch(updateColumn({ id: status_id, data: patch }));
+    if (action.type.endsWith("fulfilled")) {
+      dispatch(fetchColumns({ project_id: selectedProjectId }));
+    }
+  };
 
   const handleDeleteTask = (task_id) => dispatch(deleteTask(task_id));
 
@@ -166,12 +253,13 @@ export default function Board({ currentUserId, onLogout }) {
     due_date = null,
   }) => {
     if (currentUserRole !== "OWNER" || !title) return;
+    if (!defaultColumn) return;
     dispatch(
       createTask({
         project_id: selectedProjectId,
         title,
         description,
-        status: "TODO",
+        status_id: defaultColumn.status_id,
         priority,
         due_date: due_date
           ? new Date(due_date).toISOString()
@@ -180,12 +268,13 @@ export default function Board({ currentUserId, onLogout }) {
     );
   };
 
-  const handleDrop = (e, status) => {
+  const handleDrop = (e, column) => {
     const raw = e.dataTransfer.getData("text/plain");
     if (!raw) return;
     const parsed = Number(raw);
     const id = Number.isNaN(parsed) ? raw : parsed;
-    handleUpdateTask(id, { status });
+    if (!column?.status_id) return;
+    handleUpdateTask(id, { status_id: column.status_id });
   };
 
   const handleDeleteProjectConfirm = () => {
@@ -206,6 +295,26 @@ export default function Board({ currentUserId, onLogout }) {
     setConfirmOpen(true);
   };
 
+  const handleDeleteColumnConfirm = (column) => {
+    setConfirmMessage(
+      `Are you sure you want to delete the column "${column.name}"?`,
+    );
+    setConfirmAction(() => () => {
+      dispatch(deleteColumn(column.status_id));
+      setConfirmOpen(false);
+    });
+    setConfirmOpen(true);
+  };
+
+  const handleLogoutConfirm = () => {
+    setConfirmMessage("Are you sure you want to log out?");
+    setConfirmAction(() => () => {
+      onLogout();
+      setConfirmOpen(false);
+    });
+    setConfirmOpen(true);
+  };
+
   const removeProject = () => {
     if (!selectedProject || currentUserRole !== "OWNER") return;
     const deletedProjectId = selectedProject.project_id;
@@ -213,6 +322,7 @@ export default function Board({ currentUserId, onLogout }) {
     const remainingProjects = visibleProjects.filter(
       (p) => p.project_id !== deletedProjectId,
     );
+    setIsDescriptionExpanded(false);
     setSelectedProjectId(remainingProjects[0]?.project_id || null);
     if (remainingProjects.length === 0) {
       setEditingProject(null);
@@ -223,6 +333,42 @@ export default function Board({ currentUserId, onLogout }) {
   const openEditProjectModal = (project) => {
     setEditingProject(project);
     setModalOpen(true);
+  };
+
+  const handleCreateColumn = ({
+    name,
+    description,
+    type,
+    icon,
+    color,
+    sort_order,
+  }) => {
+    if (currentUserRole !== "OWNER" || !name || !type) return;
+    const normalizedName = normalizeStatusName(name);
+    if (!normalizedName) return;
+    const parsedOrder =
+      sort_order === "" || sort_order === undefined || sort_order === null
+        ? null
+        : Number(sort_order);
+    const nextOrder =
+      parsedOrder === null ? projectColumns.length + 1 : parsedOrder;
+    dispatch(
+      createColumn({
+        project_id: selectedProjectId,
+        name: normalizedName,
+        description: description?.trim() || null,
+        type,
+        icon: icon || null,
+        color: color || null,
+        sort_order: Number.isNaN(nextOrder)
+          ? projectColumns.length + 1
+          : nextOrder,
+      }),
+    ).then((action) => {
+      if (action.type.endsWith("fulfilled")) {
+        dispatch(fetchColumns({ project_id: selectedProjectId }));
+      }
+    });
   };
 
   const handleProjectSubmit = ({ name, description, members }) => {
@@ -267,6 +413,7 @@ export default function Board({ currentUserId, onLogout }) {
           Promise.all([
             dispatch(fetchProjects()),
             dispatch(fetchUserProjects()),
+            dispatch(fetchColumns()),
             dispatch(fetchTasks()),
             dispatch(fetchUserTasks()),
           ]).then(() => {
@@ -292,6 +439,7 @@ export default function Board({ currentUserId, onLogout }) {
         await Promise.all([
           dispatch(fetchProjects()),
           dispatch(fetchUserProjects()),
+          dispatch(fetchColumns()),
           dispatch(fetchTasks()),
           dispatch(fetchUserTasks()),
         ]);
@@ -316,7 +464,7 @@ export default function Board({ currentUserId, onLogout }) {
         <Profile
           profile={profiles.find((p) => p.user_id === currentUserId)}
           onClick={() => {
-            onLogout();
+            handleLogoutConfirm();
           }}
           onUpdate={(profile_id, full_name) =>
             dispatch(updateProfile({ id: profile_id, data: { full_name } }))
@@ -332,6 +480,7 @@ export default function Board({ currentUserId, onLogout }) {
               setModalOpen(true);
             } else {
               const parsed = Number(e.target.value);
+              setIsDescriptionExpanded(false);
               setSelectedProjectId(
                 Number.isNaN(parsed) ? e.target.value : parsed,
               );
@@ -340,7 +489,7 @@ export default function Board({ currentUserId, onLogout }) {
         >
           {visibleProjects.map((p) => {
             const name = p.name || "";
-            const maxLen = 18;
+            const maxLen = isMobile ? 10 : 18;
             const truncated =
               name.length > maxLen ? `${name.slice(0, maxLen - 1)}…` : name;
             return (
@@ -373,7 +522,21 @@ export default function Board({ currentUserId, onLogout }) {
           <section className={`project-info ${projectRoleClass}`}>
             <div className="project-info-header">
               <div className="project-description">
-                <span>{selectedProject.description || "No description"}</span>
+                <span
+                  ref={descriptionRef}
+                  className={isDescriptionExpanded ? "expanded" : ""}
+                >
+                  {projectDescription}
+                </span>
+                {showMoreDescription && (
+                  <button
+                    type="button"
+                    className="show-more"
+                    onClick={() => setIsDescriptionExpanded((prev) => !prev)}
+                  >
+                    {isDescriptionExpanded ? "Show less" : "Show more"}
+                  </button>
+                )}
               </div>
               <div className="project-members">
                 {projectMembers.slice(0, 5).map((m) => (
@@ -431,6 +594,55 @@ export default function Board({ currentUserId, onLogout }) {
           </section>
 
           {currentUserRole === "OWNER" && (
+            <section className="board-columns-add">
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const fd = new FormData(e.target);
+                  handleCreateColumn({
+                    name: fd.get("name")?.toString() || "",
+                    description: fd.get("description")?.toString() || "",
+                    type: fd.get("type")?.toString() || "TODO",
+                    icon: fd.get("icon")?.toString() || "",
+                    color: fd.get("color")?.toString() || "",
+                    sort_order: fd.get("sort_order")?.toString() || "",
+                  });
+                  e.target.reset();
+                }}
+              >
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Column name"
+                  required
+                />
+                <input
+                  type="text"
+                  name="description"
+                  placeholder="Column description"
+                />
+                <select name="type" defaultValue="" required>
+                  <option value="" disabled>
+                    Status
+                  </option>
+                  <option value="TODO">To Do</option>
+                  <option value="DOING">In Progress</option>
+                  <option value="REVIEW">Review</option>
+                  <option value="DONE">Done</option>
+                </select>
+                <input type="text" name="icon" placeholder="Column icon" />
+                <input type="color" name="color" defaultValue="#4a4a4a" />
+                <input
+                  type="number"
+                  name="sort_order"
+                  placeholder="Column order"
+                />
+                <button type="submit">Add Column</button>
+              </form>
+            </section>
+          )}
+
+          {currentUserRole === "OWNER" && (
             <section className="board-add">
               <form
                 onSubmit={(e) => {
@@ -445,11 +657,16 @@ export default function Board({ currentUserId, onLogout }) {
                   e.target.reset();
                 }}
               >
-                <input type="text" name="title" placeholder="Title" required />
+                <input
+                  type="text"
+                  name="title"
+                  placeholder="Task title"
+                  required
+                />
                 <input
                   type="text"
                   name="description"
-                  placeholder="Description"
+                  placeholder="Task description"
                 />
                 <select name="priority" defaultValue="" required>
                   <option value="" disabled>
@@ -471,40 +688,31 @@ export default function Board({ currentUserId, onLogout }) {
 
           <main className="board-main">
             <div className="columns">
-              {STATUS.map((s) => (
-                <div
-                  key={s.key}
-                  className="column"
-                  onDragOver={(e) => e.preventDefault()}
-                  onDrop={(e) => handleDrop(e, s.key)}
-                >
-                  <h2 className="status-icon-flex">
-                    {s.label} <span className="status-icon">{s.icon}</span>
-                  </h2>
-                  <div className="list">
-                    {projectTasks
-                      .filter((t) => t.status === s.key)
-                      .map((task) => (
-                        <Card
-                          key={task.task_id}
-                          task={task}
-                          onUpdate={handleUpdateTask}
-                          onDelete={() => handleDeleteTaskConfirm(task.task_id)}
-                          onDragStart={(e, id) =>
-                            e.dataTransfer.setData("text/plain", id)
-                          }
-                          readOnly={currentUserRole !== "OWNER"}
-                          canChangeStatus={
-                            currentUserRole === "OWNER" ||
-                            currentUserRole === "MEMBER"
-                          }
-                          projectMembers={projectMembers}
-                          profiles={profiles}
-                          userTasks={userTasks}
-                        />
-                      ))}
-                  </div>
-                </div>
+              {projectColumns.map((column) => (
+                <Column
+                  key={column.status_id}
+                  column={column}
+                  columns={projectColumns}
+                  tasks={projectTasks.filter(
+                    (task) => task.status_id === column.status_id,
+                  )}
+                  onDrop={handleDrop}
+                  onUpdateTask={handleUpdateTask}
+                  onDeleteTask={handleDeleteTaskConfirm}
+                  onDragStart={(e, id) =>
+                    e.dataTransfer.setData("text/plain", id)
+                  }
+                  readOnly={currentUserRole !== "OWNER"}
+                  canChangeStatus={
+                    currentUserRole === "OWNER" || currentUserRole === "MEMBER"
+                  }
+                  projectMembers={projectMembers}
+                  profiles={profiles}
+                  userTasks={userTasks}
+                  canManage={currentUserRole === "OWNER"}
+                  onUpdateColumn={handleUpdateColumn}
+                  onDeleteColumn={handleDeleteColumnConfirm}
+                />
               ))}
             </div>
           </main>

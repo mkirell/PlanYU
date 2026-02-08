@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../../shared/config/dbService.js";
+import sequelize from "../../shared/common/dbService.js";
 
 const Task = sequelize.define(
   "Task",
@@ -15,9 +15,9 @@ const Task = sequelize.define(
     },
     title: { type: DataTypes.STRING, allowNull: false },
     description: { type: DataTypes.TEXT },
-    status: {
-      type: DataTypes.ENUM("TODO", "DOING", "REVIEW", "DONE"),
-      defaultValue: "TODO",
+    status_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
     priority: {
       type: DataTypes.ENUM("LOW", "MEDIUM", "HIGH"),

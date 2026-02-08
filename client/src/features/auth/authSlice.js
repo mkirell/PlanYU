@@ -1,5 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { registerUser, loginUser, refreshUser, logoutUser } from "./authThunks";
+import {
+  registerUser,
+  loginUser,
+  refreshUser,
+  logoutUser,
+  verifyCode,
+  resendCode,
+} from "./authThunks";
 
 const authSlice = createSlice({
   name: "auth",
@@ -15,9 +22,8 @@ const authSlice = createSlice({
         state.status = "loading";
         state.error = null;
       })
-      .addCase(registerUser.fulfilled, (state, action) => {
+      .addCase(registerUser.fulfilled, (state) => {
         state.status = "succeeded";
-        state.data = action.payload;
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.status = "failed";
@@ -29,7 +35,9 @@ const authSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.data = action.payload;
+        if (action.payload?.accessToken) {
+          state.data = action.payload;
+        }
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.status = "failed";
@@ -44,6 +52,31 @@ const authSlice = createSlice({
       .addCase(refreshUser.rejected, (state) => {
         state.status = "idle";
         state.error = null;
+      })
+      .addCase(verifyCode.pending, (state) => {
+        state.status = "loading";
+        state.error = null;
+      })
+      .addCase(verifyCode.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        if (action.payload?.accessToken) {
+          state.data = action.payload;
+        }
+      })
+      .addCase(verifyCode.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.payload;
+      })
+      .addCase(resendCode.pending, (state) => {
+        state.status = "loading";
+        state.error = null;
+      })
+      .addCase(resendCode.fulfilled, (state) => {
+        state.status = "succeeded";
+      })
+      .addCase(resendCode.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.payload;
       })
       .addCase(logoutUser.fulfilled, (state) => {
         state.data = null;

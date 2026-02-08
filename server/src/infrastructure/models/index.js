@@ -1,9 +1,11 @@
 import User from "./userModel.js";
 import Profile from "./profileModel.js";
 import Project from "./projectModel.js";
+import Status from "./statusModel.js";
 import Task from "./taskModel.js";
 import UserProject from "./userProjectModel.js";
 import UserTask from "./userTaskModel.js";
+import AuthToken from "./authTokenModel.js";
 
 // 1:1 → User ↔ Profile
 User.hasOne(Profile, {
@@ -20,6 +22,21 @@ Project.hasMany(Task, {
   hooks: true,
 });
 Task.belongsTo(Project, { foreignKey: "project_id", onDelete: "CASCADE" });
+
+// 1:N → Project ↔ Status
+Project.hasMany(Status, {
+  foreignKey: "project_id",
+  onDelete: "CASCADE",
+  hooks: true,
+});
+Status.belongsTo(Project, { foreignKey: "project_id", onDelete: "CASCADE" });
+
+// 1:N → Status ↔ Task
+Status.hasMany(Task, {
+  foreignKey: "status_id",
+  onDelete: "RESTRICT",
+});
+Task.belongsTo(Status, { foreignKey: "status_id", onDelete: "RESTRICT" });
 
 // N:N → User ↔ Project via UserProject
 User.belongsToMany(Project, {
@@ -53,4 +70,21 @@ Task.belongsToMany(User, {
   onDelete: "CASCADE",
 });
 
-export { User, Profile, Project, Task, UserProject, UserTask };
+// 1:N → User ↔ AuthToken
+User.hasMany(AuthToken, {
+  foreignKey: "user_id",
+  onDelete: "CASCADE",
+  hooks: true,
+});
+AuthToken.belongsTo(User, { foreignKey: "user_id", onDelete: "CASCADE" });
+
+export {
+  User,
+  Profile,
+  Project,
+  Status,
+  Task,
+  UserProject,
+  UserTask,
+  AuthToken,
+};

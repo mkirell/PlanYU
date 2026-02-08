@@ -2,6 +2,7 @@ import { UnauthorizedError } from "../../shared/utils/errorHandler.js";
 import UserProjectRepository from "../../infrastructure/repositories/userProjectRepository.js";
 import TaskRepository from "../../infrastructure/repositories/taskRepository.js";
 import ProfileRepository from "../../infrastructure/repositories/profileRepository.js";
+import StatusRepository from "../../infrastructure/repositories/statusRepository.js";
 
 export default function authorize(...allowedRoles) {
   return async function (req, res, next) {
@@ -50,13 +51,23 @@ export default function authorize(...allowedRoles) {
       const isProjectScoped =
         baseUrl.includes("/projects") || baseUrl.includes("/user-projects");
       const isTaskCreate = baseUrl.includes("/tasks") && req.method === "POST";
+      const isStatusScoped = baseUrl.includes("/statuses");
       const bodyHasProjectId = Boolean(req.body && req.body.project_id);
       const bodyHasTaskId = Boolean(req.body && req.body.task_id);
+      const shouldLookupProject =
+        !isProjectScoped &&
+        !isTaskCreate &&
+        !(bodyHasProjectId && !bodyHasTaskId);
 
-      if (!isProjectScoped && !isTaskCreate && !(bodyHasProjectId && !bodyHasTaskId)) {
+      if (shouldLookupProject) {
         try {
-          const task = await TaskRepository.findById(candidateId);
-          if (task && task.project_id) projectId = task.project_id;
+          if (isStatusScoped) {
+            const status = await StatusRepository.findById(candidateId);
+            if (status && status.project_id) projectId = status.project_id;
+          } else {
+            const task = await TaskRepository.findById(candidateId);
+            if (task && task.project_id) projectId = task.project_id;
+          }
         } catch (e) {}
       }
 

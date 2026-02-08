@@ -152,7 +152,7 @@ export const deleteUserProject = createAsyncThunk(
   async ({ user_id, project_id }, { rejectWithValue, getState }) => {
     const state = getState();
     const tasks = state?.tasks?.list || [];
-    const userTasks = state?.usertasks?.list || [];
+    const userTasks = state?.userTasks?.list || [];
     const projectTaskIds = tasks
       .filter((t) => Number(t.project_id) === Number(project_id))
       .map((t) => t.task_id);

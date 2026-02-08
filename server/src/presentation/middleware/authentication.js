@@ -9,14 +9,18 @@ export default async function authenticate(req, res, next) {
     if (parts.length !== 2 || parts[0] !== "Bearer")
       return next(new UnauthorizedError());
     const token = parts[1];
-    const payload = jwt.verify(token, process.env.JWT_SECRET);
+    const payload = jwt.verify(token, process.env.JWT_ACCESS_SECRET);
     const user = await UserRepository.findById(payload.sub);
     const tokenVersion = payload.tokenVersion ?? null;
     if (tokenVersion === null || tokenVersion !== (user.token_version ?? 0)) {
       res.clearCookie("session", { path: "/api/auth" });
       return next(new UnauthorizedError());
     }
-    req.user = { user_id: payload.sub, email: payload.email, role: payload.role };
+    req.user = {
+      user_id: payload.sub,
+      email: payload.email,
+      role: payload.role,
+    };
     return next();
   } catch (err) {
     if (err && err.name === "TokenExpiredError")
