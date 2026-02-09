@@ -19,10 +19,10 @@ const corsOptions = {
   allowedHeaders: ["Content-Type", "Authorization"],
 };
 
-// Auth rate limit: 50 requests every 15 minutes
+// Auth rate limit: 20 requests every 15 minutes
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 50,
+  max: 20,
   standardHeaders: true,
   legacyHeaders: false,
   message: { message: "Too many tries" },

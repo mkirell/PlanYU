@@ -10,8 +10,13 @@ services:
       MYSQL_DATABASE: ${DATABASE_NAME}
       MYSQL_USER: ${DATABASE_USER}
       MYSQL_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_DEFAULT_AUTHENTICATION_PLUGIN: caching_sha2_password
     healthcheck:
-      test: sh -c 'mysqladmin ping -h localhost -u"$${MYSQL_USER}" -p"$${MYSQL_PASSWORD}" || exit 1'
+      test:
+        [
+          "CMD-SHELL",
+          "mysqladmin ping -h localhost -u'$${MYSQL_USER}' -p'$${MYSQL_PASSWORD}' || exit 1",
+        ]
       interval: 10s
       timeout: 5s
       retries: 12
@@ -32,7 +37,7 @@ services:
       mysql:
         condition: service_healthy
     healthcheck:
-      test: sh -c 'curl -f http://localhost:5000/health || exit 1'
+      test: ["CMD-SHELL", "curl -f http://localhost:5000/health || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -56,6 +61,12 @@ services:
         condition: service_healthy
     volumes:
       - ./client/src:/app/src
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3000 || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
 
 volumes:
   mysql_data:
