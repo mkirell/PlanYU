@@ -19,21 +19,51 @@ const formatEntry = (level, msg, meta) => {
     meta,
     typeof msg === "string" ? msg : JSON.stringify(msg),
   );
-  const action =
-    `${meta?.method ?? meta?.reqMethod ?? ""} ${meta?.url ?? meta?.reqUrl ?? ""}`.trim();
+  const method = meta?.method ?? meta?.reqMethod;
+  const path = meta?.url ?? meta?.reqUrl;
+  const corr = meta?.correlation_id ?? meta?.correlationId;
+
+  if (method || path) {
+    const hasStatus = Number.isFinite(status) && status > 0;
+    const parts = [
+      `timestamp=${new Date().toISOString()}`,
+      `level=${level.toUpperCase()}`,
+      `status=${hasStatus ? String(status) : "-"}`,
+      `method=${method ?? "-"}`,
+      `path=${path ?? "-"}`,
+      `time=${hasStatus ? (meta?.duration ?? "-") : "-"}`,
+      `ip=${normalizeIp(meta?.ip ?? meta?.remoteAddress)}`,
+      `correlation_id=${corr ?? "-"}`,
+    ];
+
+    if (meta?.user_id ?? meta?.userId) {
+      parts.push(`user_id=${meta.user_id ?? meta.userId}`);
+    }
+
+    return parts.join(" │ ");
+  }
 
   const parts = [
-    new Date().toISOString(),
-    level.toUpperCase(),
-    status ? String(status) : "-",
-    action || (typeof msg === "string" ? msg : JSON.stringify(msg)),
-    meta?.duration ?? "-",
-    normalizeIp(meta?.ip ?? meta?.remoteAddress),
+    `timestamp=${new Date().toISOString()}`,
+    `level=${level.toUpperCase()}`,
+    `message=${typeof msg === "string" ? msg : JSON.stringify(msg)}`,
   ];
 
-  if (meta?.user_id ?? meta?.userId)
+  if (Number.isFinite(status) && status > 0) {
+    parts.push(`status=${status}`);
+  }
+  if (meta?.duration) {
+    parts.push(`time=${meta.duration}`);
+  }
+  if (meta?.ip ?? meta?.remoteAddress) {
+    parts.push(`ip=${normalizeIp(meta?.ip ?? meta?.remoteAddress)}`);
+  }
+  if (meta?.user_id ?? meta?.userId) {
     parts.push(`user_id=${meta.user_id ?? meta.userId}`);
-  if (meta?.req_id) parts.push(`req_id=${meta.req_id}`);
+  }
+  if (corr) {
+    parts.push(`correlation_id=${corr}`);
+  }
 
   const errMsg =
     meta?.err?.message ??

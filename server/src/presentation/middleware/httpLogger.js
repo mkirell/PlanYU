@@ -20,7 +20,7 @@ export default function httpLogger(req, res, next) {
     params: req.params,
     query: req.query,
     ip,
-    req_id: reqId,
+    correlation_id: reqId,
   });
 
   res.on("finish", () => {
@@ -35,7 +35,7 @@ export default function httpLogger(req, res, next) {
       status: res.statusCode,
       duration,
       ip,
-      req_id: reqId,
+      correlation_id: reqId,
     });
   });
 

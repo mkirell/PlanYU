@@ -3,6 +3,10 @@ services:
     image: mysql:8.0
     container_name: mysql
     restart: always
+    command:
+      - --default-authentication-plugin=caching_sha2_password
+      - --sha256-password-auto-generate-rsa-keys=OFF
+      - --log-error-suppression-list=MY-013360
     ports:
       - "8006:3306"
     environment:
@@ -10,7 +14,6 @@ services:
       MYSQL_DATABASE: ${DATABASE_NAME}
       MYSQL_USER: ${DATABASE_USER}
       MYSQL_PASSWORD: ${DATABASE_PASSWORD}
-      MYSQL_DEFAULT_AUTHENTICATION_PLUGIN: caching_sha2_password
     healthcheck:
       test:
         [
@@ -61,12 +64,6 @@ services:
         condition: service_healthy
     volumes:
       - ./client/src:/app/src
-    healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:3000 || exit 1"]
-      interval: 30s
-      timeout: 5s
-      retries: 3
-      start_period: 10s
 
 volumes:
   mysql_data:
