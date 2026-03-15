@@ -18,11 +18,11 @@ import {
   deleteOnline,
 } from "../../shared/network/onlineApi";
 
-const STORE = "columns";
-const ID_FIELD = "status_id";
+const STORE = "stages";
+const ID_FIELD = "stage_id";
 
-export const fetchColumns = createAsyncThunk(
-  "columns/fetchColumns",
+export const fetchStages = createAsyncThunk(
+  "stages/fetchStages",
   async ({ project_id } = {}, { rejectWithValue }) => {
     if (project_id === undefined || project_id === null) {
       return listFromCache(STORE);
@@ -30,7 +30,7 @@ export const fetchColumns = createAsyncThunk(
     const query = new URLSearchParams();
     if (project_id !== undefined && project_id !== null)
       query.set("project_id", String(project_id));
-    const path = query.toString() ? `/api/statuses?${query}` : "/api/statuses";
+    const path = query.toString() ? `/api/stages?${query}` : "/api/stages";
 
     if (isOffline()) {
       return listFromCache(STORE);
@@ -47,68 +47,68 @@ export const fetchColumns = createAsyncThunk(
         return listFromCache(STORE);
       }
       return rejectWithValue(
-        err.response?.data?.error?.message || "Failed to fetch columns",
+        err.response?.data?.error?.message || "Failed to fetch stages",
       );
     }
   },
 );
 
-export const fetchColumnById = createAsyncThunk(
-  "columns/fetchColumnById",
+export const fetchStageById = createAsyncThunk(
+  "stages/fetchStageById",
   async (id, { rejectWithValue }) => {
     if (isOffline()) {
       const cached = await getFromCache(STORE, id);
       if (cached) return cached;
-      return rejectWithValue("Offline and column not cached");
+      return rejectWithValue("Offline and stage not cached");
     }
     try {
-      const data = await getOnline(`/api/statuses/${id}`);
+      const data = await getOnline(`/api/stages/${id}`);
       return cacheOnlineItem({ store: STORE, id: data[ID_FIELD], item: data });
     } catch (err) {
       if (isNetworkError(err)) {
         const cached = await getFromCache(STORE, id);
         if (cached) return cached;
-        return rejectWithValue("Offline and column not cached");
+        return rejectWithValue("Offline and stage not cached");
       }
       return rejectWithValue(
-        err.response?.data?.error?.message || "Failed to fetch column",
+        err.response?.data?.error?.message || "Failed to fetch stage",
       );
     }
   },
 );
 
-export const createColumn = createAsyncThunk(
-  "columns/createColumn",
-  async (column, { rejectWithValue }) => {
+export const createStage = createAsyncThunk(
+  "stages/createStage",
+  async (stage, { rejectWithValue }) => {
     if (isOffline()) {
       return createOfflineEntity({
         store: STORE,
         idField: ID_FIELD,
-        body: column,
-        url: "/api/statuses",
+        body: stage,
+        url: "/api/stages",
       });
     }
     try {
-      const data = await createOnline("/api/statuses", column);
+      const data = await createOnline("/api/stages", stage);
       return cacheOnlineItem({ store: STORE, id: data[ID_FIELD], item: data });
     } catch (err) {
       if (isNetworkError(err)) {
         return createOfflineEntity({
           store: STORE,
           idField: ID_FIELD,
-          body: column,
-          url: "/api/statuses",
+          body: stage,
+          url: "/api/stages",
         });
       }
       return rejectWithValue(
-        err.response?.data?.error?.message || "Failed to create column",
+        err.response?.data?.error?.message || "Failed to create stage",
       );
     }
   },
 );
 
-export const updateColumn = createAsyncThunk(
-  "columns/updateColumn",
+export const updateStage = createAsyncThunk(
+  "stages/updateStage",
   async ({ id, data }, { rejectWithValue }) => {
     if (isOffline()) {
       return updateOfflineEntity({
@@ -116,11 +116,11 @@ export const updateColumn = createAsyncThunk(
         idField: ID_FIELD,
         id,
         patch: data,
-        url: `/api/statuses/${id}`,
+        url: `/api/stages/${id}`,
       });
     }
     try {
-      const result = await updateOnline(`/api/statuses/${id}`, data);
+      const result = await updateOnline(`/api/stages/${id}`, data);
       return cacheOnlineItem({
         store: STORE,
         id: result[ID_FIELD],
@@ -133,29 +133,29 @@ export const updateColumn = createAsyncThunk(
           idField: ID_FIELD,
           id,
           patch: data,
-          url: `/api/statuses/${id}`,
+          url: `/api/stages/${id}`,
         });
       }
       return rejectWithValue(
-        err.response?.data?.error?.message || "Failed to update column",
+        err.response?.data?.error?.message || "Failed to update stage",
       );
     }
   },
 );
 
-export const deleteColumn = createAsyncThunk(
-  "columns/deleteColumn",
+export const deleteStage = createAsyncThunk(
+  "stages/deleteStage",
   async (id, { rejectWithValue }) => {
     if (isOffline()) {
       return deleteOfflineEntity({
         store: STORE,
         id,
         idField: ID_FIELD,
-        url: `/api/statuses/${id}`,
+        url: `/api/stages/${id}`,
       });
     }
     try {
-      await deleteOnline(`/api/statuses/${id}`);
+      await deleteOnline(`/api/stages/${id}`);
       await deleteCachedItem({ store: STORE, id });
       return id;
     } catch (err) {
@@ -164,11 +164,11 @@ export const deleteColumn = createAsyncThunk(
           store: STORE,
           id,
           idField: ID_FIELD,
-          url: `/api/statuses/${id}`,
+          url: `/api/stages/${id}`,
         });
       }
       return rejectWithValue(
-        err.response?.data?.error?.message || "Failed to delete column",
+        err.response?.data?.error?.message || "Failed to delete stage",
       );
     }
   },

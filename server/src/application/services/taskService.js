@@ -2,8 +2,8 @@ import TaskRepository from "../../infrastructure/repositories/taskRepository.js"
 import UserTaskRepository from "../../infrastructure/repositories/userTaskRepository.js";
 import ProjectRepository from "../../infrastructure/repositories/projectRepository.js";
 import UserProjectRepository from "../../infrastructure/repositories/userProjectRepository.js";
-import StatusRepository from "../../infrastructure/repositories/statusRepository.js";
-import StatusService from "./statusService.js";
+import StageRepository from "../../infrastructure/repositories/stageRepository.js";
+import StageService from "./stageService.js";
 import TaskEntity from "../../domain/entities/taskEntity.js";
 import {
   createTaskSchema,
@@ -30,24 +30,22 @@ const TaskService = {
     const entity = new TaskEntity(parsed.data);
     await ProjectRepository.findById(entity.project_id);
 
-    if (!entity.status_id) {
-      let defaultStatus = await StatusRepository.findDefaultByProjectAndType(
+    if (!entity.stage_id) {
+      let defaultStage = await StageRepository.findFirstByProject(
         entity.project_id,
-        "TODO",
       );
-      if (!defaultStatus) {
-        await StatusService.createDefaultStatuses(entity.project_id);
-        defaultStatus = await StatusRepository.findDefaultByProjectAndType(
+      if (!defaultStage) {
+        await StageService.createDefaultStages(entity.project_id);
+        defaultStage = await StageRepository.findFirstByProject(
           entity.project_id,
-          "TODO",
         );
       }
-      if (!defaultStatus) throw new ValidationError("Default status not found");
-      entity.status_id = defaultStatus.status_id;
+      if (!defaultStage) throw new ValidationError("No stage available for task");
+      entity.stage_id = defaultStage.stage_id;
     } else {
-      const status = await StatusRepository.findById(entity.status_id);
-      if (status.project_id !== entity.project_id)
-        throw new ValidationError("Status does not match project");
+      const stage = await StageRepository.findById(entity.stage_id);
+      if (stage.project_id !== entity.project_id)
+        throw new ValidationError("Stage does not match project");
     }
 
     return TaskRepository.create(entity.toCreateObject());
@@ -78,40 +76,40 @@ const TaskService = {
       }
     }
 
-    if (entity.status_id !== undefined) {
+    if (entity.stage_id !== undefined) {
       if (!taskRecord) {
         taskRecord = await TaskRepository.findById(id).catch(() => null);
       }
-      const status = await StatusRepository.findById(entity.status_id);
-      if (!status) throw new ValidationError("Status not found");
-      const currentStatus = await StatusRepository.findById(
-        taskRecord?.status_id,
+      const stage = await StageRepository.findById(entity.stage_id);
+      if (!stage) throw new ValidationError("Stage not found");
+      const currentStatus = await StageRepository.findById(
+        taskRecord?.stage_id,
       );
       if (
-        taskRecord?.status_id === entity.status_id ||
-        currentStatus?.type === status.type
+        taskRecord?.stage_id === entity.stage_id ||
+        currentStatus?.status === stage.status
       ) {
         return TaskRepository.update(id, entity.toUpdateObject());
       }
       const targetProjectId = entity.project_id ?? taskRecord?.project_id;
-      if (targetProjectId && status.project_id !== targetProjectId) {
-        throw new ValidationError("Status does not match project");
+      if (targetProjectId && stage.project_id !== targetProjectId) {
+        throw new ValidationError("Stage does not match project");
       }
       if (effectiveRole) {
         if (effectiveRole === "ASSIGNEE") {
-          const nextByType = {
+          const nextByStatus = {
             TODO: "DOING",
             DOING: "REVIEW",
           };
-          const expectedNext = nextByType[currentStatus?.type];
-          if (!expectedNext || status.type !== expectedNext)
+          const expectedNext = nextByStatus[currentStatus?.status];
+          if (!expectedNext || stage.status !== expectedNext)
             throw new UnauthorizedError("Action not allowed");
         } else if (effectiveRole === "REVIEWER") {
-          const currentStatus = await StatusRepository.findById(
-            taskRecord?.status_id,
+          const currentStatus = await StageRepository.findById(
+            taskRecord?.stage_id,
           );
-          const isReviewStage = currentStatus?.type === "REVIEW";
-          const isAllowedTarget = ["DONE", "DOING"].includes(status.type);
+          const isReviewStage = currentStatus?.status === "REVIEW";
+          const isAllowedTarget = ["DONE", "DOING"].includes(stage.status);
           if (!isReviewStage || !isAllowedTarget)
             throw new UnauthorizedError("Action not allowed");
         } else if (!["REVIEWER", "OWNER"].includes(effectiveRole)) {

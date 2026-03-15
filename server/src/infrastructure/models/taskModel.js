@@ -15,7 +15,7 @@ const Task = sequelize.define(
     },
     title: { type: DataTypes.STRING, allowNull: false },
     description: { type: DataTypes.TEXT },
-    status_id: {
+    stage_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },

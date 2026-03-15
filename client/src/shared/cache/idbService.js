@@ -1,11 +1,11 @@
 const DATABASE_NAME = "playu-offline-db";
-const DATABASE_VERSION = 2;
+const DATABASE_VERSION = 3;
 const AUTH_STORE = "auth";
 const QUEUE_STORE = "offline-queue";
 const ID_MAP_STORE = "id-map";
 const ENTITY_STORES = [
   "projects",
-  "columns",
+  "stages",
   "tasks",
   "profiles",
   "users",

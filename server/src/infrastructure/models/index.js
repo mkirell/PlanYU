@@ -1,7 +1,7 @@
 import User from "./userModel.js";
 import Profile from "./profileModel.js";
 import Project from "./projectModel.js";
-import Status from "./statusModel.js";
+import Stage from "./stageModel.js";
 import Task from "./taskModel.js";
 import UserProject from "./userProjectModel.js";
 import UserTask from "./userTaskModel.js";
@@ -23,20 +23,20 @@ Project.hasMany(Task, {
 });
 Task.belongsTo(Project, { foreignKey: "project_id", onDelete: "CASCADE" });
 
-// 1:N → Project ↔ Status
-Project.hasMany(Status, {
+// 1:N → Project ↔ Stage
+Project.hasMany(Stage, {
   foreignKey: "project_id",
   onDelete: "CASCADE",
   hooks: true,
 });
-Status.belongsTo(Project, { foreignKey: "project_id", onDelete: "CASCADE" });
+Stage.belongsTo(Project, { foreignKey: "project_id", onDelete: "CASCADE" });
 
-// 1:N → Status ↔ Task
-Status.hasMany(Task, {
-  foreignKey: "status_id",
+// 1:N → Stage ↔ Task
+Stage.hasMany(Task, {
+  foreignKey: "stage_id",
   onDelete: "RESTRICT",
 });
-Task.belongsTo(Status, { foreignKey: "status_id", onDelete: "RESTRICT" });
+Task.belongsTo(Stage, { foreignKey: "stage_id", onDelete: "RESTRICT" });
 
 // N:N → User ↔ Project via UserProject
 User.belongsToMany(Project, {
@@ -82,7 +82,7 @@ export {
   User,
   Profile,
   Project,
-  Status,
+  Stage,
   Task,
   UserProject,
   UserTask,

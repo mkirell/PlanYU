@@ -22,7 +22,7 @@ A Collaborative Platform for Efficient Project Management
 
 ### Concept
 
-PlanYU is a collaborative project board for organizing projects, tasks, and team members in a single workspace. It delivers a focused Kanban-style interface with task statuses, priorities, and due dates, backed by secure authentication. Users can create projects, manage members, and track work across multiple projects with offline-ready support.
+PlanYU is a collaborative project board for organizing projects, tasks, and team members in a single workspace. It delivers a focused Kanban-style interface with project stages, task priorities, and due dates, backed by secure authentication. Users can create projects, manage members, and track work across multiple projects with offline-ready support.
 
 ### Challenges
 

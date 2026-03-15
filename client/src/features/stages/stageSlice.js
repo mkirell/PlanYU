@@ -1,104 +1,104 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-  fetchColumns,
-  fetchColumnById,
-  createColumn,
-  updateColumn,
-  deleteColumn,
-} from "./columnThunks";
+  fetchStages,
+  fetchStageById,
+  createStage,
+  updateStage,
+  deleteStage,
+} from "./stageThunks";
 
-const columnsSlice = createSlice({
-  name: "columns",
+const stagesSlice = createSlice({
+  name: "stages",
   initialState: { list: [], status: "idle", error: null, message: null },
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchColumns.pending, (state) => {
+      .addCase(fetchStages.pending, (state) => {
         state.status = "loading";
         state.error = null;
         state.message = null;
       })
-      .addCase(fetchColumns.fulfilled, (state, action) => {
+      .addCase(fetchStages.fulfilled, (state, action) => {
         state.status = "succeeded";
-        const map = new Map(state.list.map((c) => [c.status_id, c]));
+        const map = new Map(state.list.map((c) => [c.stage_id, c]));
         (action.payload || []).forEach((c) => {
-          map.set(c.status_id, c);
+          map.set(c.stage_id, c);
         });
         state.list = Array.from(map.values());
       })
-      .addCase(fetchColumns.rejected, (state, action) => {
+      .addCase(fetchStages.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
       })
-      .addCase(fetchColumnById.pending, (state) => {
+      .addCase(fetchStageById.pending, (state) => {
         state.status = "loading";
         state.error = null;
       })
-      .addCase(fetchColumnById.fulfilled, (state, action) => {
+      .addCase(fetchStageById.fulfilled, (state, action) => {
         state.status = "succeeded";
         const index = state.list.findIndex(
-          (c) => c.status_id === action.payload.status_id,
+          (c) => c.stage_id === action.payload.stage_id,
         );
         if (index === -1) state.list.push(action.payload);
         else state.list[index] = action.payload;
       })
-      .addCase(fetchColumnById.rejected, (state, action) => {
+      .addCase(fetchStageById.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
       })
-      .addCase(createColumn.pending, (state) => {
+      .addCase(createStage.pending, (state) => {
         state.status = "loading";
         state.error = null;
         state.message = null;
       })
-      .addCase(createColumn.fulfilled, (state, action) => {
+      .addCase(createStage.fulfilled, (state, action) => {
         state.status = "succeeded";
         const index = state.list.findIndex(
-          (c) => c.status_id === action.payload.status_id,
+          (c) => c.stage_id === action.payload.stage_id,
         );
         if (index === -1) state.list.push(action.payload);
         else state.list[index] = action.payload;
-        state.message = action.payload?.message || "Column created";
+        state.message = action.payload?.message || "Stage created";
       })
-      .addCase(createColumn.rejected, (state, action) => {
+      .addCase(createStage.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
-        state.message = action.payload || "Failed to create column";
+        state.message = action.payload || "Failed to create stage";
       })
-      .addCase(updateColumn.pending, (state) => {
+      .addCase(updateStage.pending, (state) => {
         state.status = "loading";
         state.error = null;
         state.message = null;
       })
-      .addCase(updateColumn.fulfilled, (state, action) => {
+      .addCase(updateStage.fulfilled, (state, action) => {
         state.status = "succeeded";
         const index = state.list.findIndex(
-          (c) => c.status_id === action.payload.status_id,
+          (c) => c.stage_id === action.payload.stage_id,
         );
         if (index !== -1) state.list[index] = action.payload;
-        state.message = action.payload?.message || "Column updated";
+        state.message = action.payload?.message || "Stage updated";
       })
-      .addCase(updateColumn.rejected, (state, action) => {
+      .addCase(updateStage.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
-        state.message = action.payload || "Failed to update column";
+        state.message = action.payload || "Failed to update stage";
       })
-      .addCase(deleteColumn.pending, (state) => {
+      .addCase(deleteStage.pending, (state) => {
         state.status = "loading";
         state.error = null;
         state.message = null;
       })
-      .addCase(deleteColumn.fulfilled, (state, action) => {
+      .addCase(deleteStage.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.list = state.list.filter((c) => c.status_id !== action.payload);
-        state.message = "Column deleted";
+        state.list = state.list.filter((c) => c.stage_id !== action.payload);
+        state.message = "Stage deleted";
       })
-      .addCase(deleteColumn.rejected, (state, action) => {
+      .addCase(deleteStage.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
-        state.message = action.payload || "Failed to delete column";
+        state.message = action.payload || "Failed to delete stage";
       });
   },
 });
 
-export default columnsSlice.reducer;
+export default stagesSlice.reducer;

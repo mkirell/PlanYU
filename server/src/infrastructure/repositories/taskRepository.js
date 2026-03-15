@@ -12,8 +12,8 @@ const TaskRepository = {
     return t;
   },
 
-  async findByStatusId(status_id) {
-    return Task.findAll({ where: { status_id } });
+  async findByStageId(stage_id) {
+    return Task.findAll({ where: { stage_id } });
   },
 
   async create(data) {

@@ -165,8 +165,8 @@ module.exports = {
       },
     });
 
-    await queryInterface.createTable("Task_Status", {
-      status_id: {
+    await queryInterface.createTable("Stage", {
+      stage_id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
@@ -187,7 +187,7 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: true,
       },
-      type: {
+      status: {
         type: Sequelize.ENUM("TODO", "DOING", "REVIEW", "DONE"),
         allowNull: false,
       },
@@ -216,14 +216,14 @@ module.exports = {
       },
     });
 
-    await queryInterface.addIndex("Task_Status", ["project_id"], {
-      name: "task_status_project_idx",
+    await queryInterface.addIndex("Stage", ["project_id"], {
+      name: "stage_project_idx",
     });
-    await queryInterface.addIndex("Task_Status", ["project_id", "type"], {
-      name: "task_status_project_type_idx",
+    await queryInterface.addIndex("Stage", ["project_id", "status"], {
+      name: "stage_project_status_idx",
     });
-    await queryInterface.addIndex("Task_Status", ["project_id", "sort_order"], {
-      name: "task_status_project_sort_idx",
+    await queryInterface.addIndex("Stage", ["project_id", "sort_order"], {
+      name: "stage_project_sort_idx",
     });
 
     await queryInterface.createTable("Task", {
@@ -247,10 +247,10 @@ module.exports = {
       description: {
         type: Sequelize.TEXT,
       },
-      status_id: {
+      stage_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: "Task_Status", key: "status_id" },
+        references: { model: "Stage", key: "stage_id" },
         onDelete: "RESTRICT",
         onUpdate: "CASCADE",
       },
@@ -346,7 +346,7 @@ module.exports = {
     await queryInterface.dropTable("User_Task");
     await queryInterface.dropTable("User_Project");
     await queryInterface.dropTable("Task");
-    await queryInterface.dropTable("Task_Status");
+    await queryInterface.dropTable("Stage");
     await queryInterface.dropTable("Project");
     await queryInterface.dropTable("Profile");
     await queryInterface.dropTable("Auth_Token");

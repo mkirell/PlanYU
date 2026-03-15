@@ -1,6 +1,6 @@
 import ProjectRepository from "../../infrastructure/repositories/projectRepository.js";
 import UserProjectRepository from "../../infrastructure/repositories/userProjectRepository.js";
-import StatusService from "./statusService.js";
+import StageService from "./stageService.js";
 import ProjectEntity from "../../domain/entities/projectEntity.js";
 import {
   createProjectSchema,
@@ -30,7 +30,7 @@ const ProjectService = {
       role: "OWNER",
     });
 
-    await StatusService.createDefaultStatuses(created.project_id);
+    await StageService.createDefaultStages(created.project_id);
 
     return created;
   },

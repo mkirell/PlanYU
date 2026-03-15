@@ -17,11 +17,11 @@ import {
   deleteTask,
 } from "../../features/tasks/taskThunks";
 import {
-  fetchColumns,
-  createColumn,
-  updateColumn,
-  deleteColumn,
-} from "../../features/columns/columnThunks";
+  fetchStages,
+  createStage,
+  updateStage,
+  deleteStage,
+} from "../../features/stages/stageThunks";
 import { fetchUserTasks } from "../../features/userTasks/userTaskThunks";
 import { fetchUsers } from "../../features/users/userThunks";
 import {
@@ -38,7 +38,7 @@ import "./Board.css";
 export default function Board({ currentUserId, onLogout }) {
   const dispatch = useDispatch();
   const projects = useSelector((state) => state.projects.list);
-  const columns = useSelector((state) => state.columns.list);
+  const stages = useSelector((state) => state.stages.list);
   const tasks = useSelector((state) => state.tasks.list);
   const userTasks = useSelector((state) => state.userTasks.list);
   const users = useSelector((state) => state.users.list);
@@ -101,7 +101,7 @@ export default function Board({ currentUserId, onLogout }) {
     didLoadRef.current = true;
     Promise.all([
       dispatch(fetchProjects()),
-      dispatch(fetchColumns()),
+      dispatch(fetchStages()),
       dispatch(fetchTasks()),
       dispatch(fetchUserTasks()),
       dispatch(fetchUsers()),
@@ -132,7 +132,7 @@ export default function Board({ currentUserId, onLogout }) {
 
   useEffect(() => {
     if (!selectedProjectId) return;
-    dispatch(fetchColumns({ project_id: selectedProjectId }));
+    dispatch(fetchStages({ project_id: selectedProjectId }));
   }, [dispatch, selectedProjectId]);
 
   const selectedProject = useMemo(
@@ -156,16 +156,16 @@ export default function Board({ currentUserId, onLogout }) {
     [tasks, selectedProjectId, memberFilterUserIds, userTasks],
   );
 
-  const projectColumns = useMemo(() => {
-    return columns
+  const projectStages = useMemo(() => {
+    return stages
       .filter((c) => c.project_id === selectedProjectId)
       .sort((a, b) => {
         const orderA = a.sort_order ?? 0;
         const orderB = b.sort_order ?? 0;
         if (orderA !== orderB) return orderA - orderB;
-        return (a.status_id ?? 0) - (b.status_id ?? 0);
+        return (a.stage_id ?? 0) - (b.stage_id ?? 0);
       });
-  }, [columns, selectedProjectId]);
+  }, [stages, selectedProjectId]);
 
   const projectMembers = useMemo(
     () =>
@@ -227,20 +227,21 @@ export default function Board({ currentUserId, onLogout }) {
     };
   }, [projectDescription, isMobile, isDescriptionExpanded]);
 
-  const defaultColumn = useMemo(() => {
-    if (!projectColumns.length) return null;
+  const defaultStage = useMemo(() => {
+    if (!projectStages.length) return null;
     return (
-      projectColumns.find((col) => col.type === "TODO") || projectColumns[0]
+      projectStages.find((stage) => stage.status === "TODO") ||
+      projectStages[0]
     );
-  }, [projectColumns]);
+  }, [projectStages]);
 
   const handleUpdateTask = (task_id, patch) =>
     dispatch(updateTask({ id: task_id, data: patch }));
 
-  const handleUpdateColumn = async (status_id, patch) => {
-    const action = await dispatch(updateColumn({ id: status_id, data: patch }));
+  const handleUpdateStage = async (stage_id, patch) => {
+    const action = await dispatch(updateStage({ id: stage_id, data: patch }));
     if (action.type.endsWith("fulfilled")) {
-      dispatch(fetchColumns({ project_id: selectedProjectId }));
+      dispatch(fetchStages({ project_id: selectedProjectId }));
     }
   };
 
@@ -253,13 +254,13 @@ export default function Board({ currentUserId, onLogout }) {
     due_date = null,
   }) => {
     if (currentUserRole !== "OWNER" || !title) return;
-    if (!defaultColumn) return;
+    if (!defaultStage) return;
     dispatch(
       createTask({
         project_id: selectedProjectId,
         title,
         description,
-        status_id: defaultColumn.status_id,
+        stage_id: defaultStage.stage_id,
         priority,
         due_date: due_date
           ? new Date(due_date).toISOString()
@@ -273,8 +274,8 @@ export default function Board({ currentUserId, onLogout }) {
     if (!raw) return;
     const parsed = Number(raw);
     const id = Number.isNaN(parsed) ? raw : parsed;
-    if (!column?.status_id) return;
-    handleUpdateTask(id, { status_id: column.status_id });
+    if (!column?.stage_id) return;
+    handleUpdateTask(id, { stage_id: column.stage_id });
   };
 
   const handleDeleteProjectConfirm = () => {
@@ -295,12 +296,12 @@ export default function Board({ currentUserId, onLogout }) {
     setConfirmOpen(true);
   };
 
-  const handleDeleteColumnConfirm = (column) => {
+  const handleDeleteStageConfirm = (column) => {
     setConfirmMessage(
-      `Are you sure you want to delete the column "${column.name}"?`,
+      `Are you sure you want to delete the stage "${column.name}"?`,
     );
     setConfirmAction(() => () => {
-      dispatch(deleteColumn(column.status_id));
+      dispatch(deleteStage(column.stage_id));
       setConfirmOpen(false);
     });
     setConfirmOpen(true);
@@ -335,15 +336,15 @@ export default function Board({ currentUserId, onLogout }) {
     setModalOpen(true);
   };
 
-  const handleCreateColumn = ({
+  const handleCreateStage = ({
     name,
     description,
-    type,
+    status,
     icon,
     color,
     sort_order,
   }) => {
-    if (currentUserRole !== "OWNER" || !name || !type) return;
+    if (currentUserRole !== "OWNER" || !name || !status) return;
     const normalizedName = normalizeStatusName(name);
     if (!normalizedName) return;
     const parsedOrder =
@@ -351,22 +352,22 @@ export default function Board({ currentUserId, onLogout }) {
         ? null
         : Number(sort_order);
     const nextOrder =
-      parsedOrder === null ? projectColumns.length + 1 : parsedOrder;
+      parsedOrder === null ? projectStages.length + 1 : parsedOrder;
     dispatch(
-      createColumn({
+      createStage({
         project_id: selectedProjectId,
         name: normalizedName,
         description: description?.trim() || null,
-        type,
+        status,
         icon: icon || null,
         color: color || null,
         sort_order: Number.isNaN(nextOrder)
-          ? projectColumns.length + 1
+          ? projectStages.length + 1
           : nextOrder,
       }),
     ).then((action) => {
       if (action.type.endsWith("fulfilled")) {
-        dispatch(fetchColumns({ project_id: selectedProjectId }));
+        dispatch(fetchStages({ project_id: selectedProjectId }));
       }
     });
   };
@@ -413,7 +414,7 @@ export default function Board({ currentUserId, onLogout }) {
           Promise.all([
             dispatch(fetchProjects()),
             dispatch(fetchUserProjects()),
-            dispatch(fetchColumns()),
+            dispatch(fetchStages()),
             dispatch(fetchTasks()),
             dispatch(fetchUserTasks()),
           ]).then(() => {
@@ -439,7 +440,7 @@ export default function Board({ currentUserId, onLogout }) {
         await Promise.all([
           dispatch(fetchProjects()),
           dispatch(fetchUserProjects()),
-          dispatch(fetchColumns()),
+          dispatch(fetchStages()),
           dispatch(fetchTasks()),
           dispatch(fetchUserTasks()),
         ]);
@@ -599,10 +600,10 @@ export default function Board({ currentUserId, onLogout }) {
                 onSubmit={(e) => {
                   e.preventDefault();
                   const fd = new FormData(e.target);
-                  handleCreateColumn({
+                  handleCreateStage({
                     name: fd.get("name")?.toString() || "",
                     description: fd.get("description")?.toString() || "",
-                    type: fd.get("type")?.toString() || "TODO",
+                    status: fd.get("status")?.toString() || "TODO",
                     icon: fd.get("icon")?.toString() || "",
                     color: fd.get("color")?.toString() || "",
                     sort_order: fd.get("sort_order")?.toString() || "",
@@ -613,15 +614,15 @@ export default function Board({ currentUserId, onLogout }) {
                 <input
                   type="text"
                   name="name"
-                  placeholder="Column name"
+                  placeholder="Stage name"
                   required
                 />
                 <input
                   type="text"
                   name="description"
-                  placeholder="Column description"
+                  placeholder="Stage description"
                 />
-                <select name="type" defaultValue="" required>
+                <select name="status" defaultValue="" required>
                   <option value="" disabled>
                     Status
                   </option>
@@ -630,14 +631,14 @@ export default function Board({ currentUserId, onLogout }) {
                   <option value="REVIEW">Review</option>
                   <option value="DONE">Done</option>
                 </select>
-                <input type="text" name="icon" placeholder="Column icon" />
+                <input type="text" name="icon" placeholder="Stage icon" />
                 <input type="color" name="color" defaultValue="#4a4a4a" />
                 <input
                   type="number"
                   name="sort_order"
-                  placeholder="Column order"
+                  placeholder="Stage order"
                 />
-                <button type="submit">Add Column</button>
+                <button type="submit">Add Stage</button>
               </form>
             </section>
           )}
@@ -688,13 +689,13 @@ export default function Board({ currentUserId, onLogout }) {
 
           <main className="board-main">
             <div className="columns">
-              {projectColumns.map((column) => (
+              {projectStages.map((column) => (
                 <Column
-                  key={column.status_id}
+                  key={column.stage_id}
                   column={column}
-                  columns={projectColumns}
+                  columns={projectStages}
                   tasks={projectTasks.filter(
-                    (task) => task.status_id === column.status_id,
+                    (task) => task.stage_id === column.stage_id,
                   )}
                   onDrop={handleDrop}
                   onUpdateTask={handleUpdateTask}
@@ -710,8 +711,8 @@ export default function Board({ currentUserId, onLogout }) {
                   profiles={profiles}
                   userTasks={userTasks}
                   canManage={currentUserRole === "OWNER"}
-                  onUpdateColumn={handleUpdateColumn}
-                  onDeleteColumn={handleDeleteColumnConfirm}
+                  onUpdateColumn={handleUpdateStage}
+                  onDeleteColumn={handleDeleteStageConfirm}
                 />
               ))}
             </div>

@@ -1,10 +1,10 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../../shared/common/dbService.js";
 
-const Status = sequelize.define(
-  "Status",
+const Stage = sequelize.define(
+  "Stage",
   {
-    status_id: {
+    stage_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
@@ -21,7 +21,7 @@ const Status = sequelize.define(
       type: DataTypes.TEXT,
       allowNull: true,
     },
-    type: {
+    status: {
       type: DataTypes.ENUM("TODO", "DOING", "REVIEW", "DONE"),
       allowNull: false,
     },
@@ -40,11 +40,11 @@ const Status = sequelize.define(
     },
   },
   {
-    tableName: "Task_Status",
+    tableName: "Stage",
     timestamps: true,
     createdAt: "created_at",
     updatedAt: "updated_at",
   },
 );
 
-export default Status;
+export default Stage;

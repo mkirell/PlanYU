@@ -7,7 +7,7 @@ const normalizeName = (val) => {
   return cleaned.replace(/(^|\s)\S/g, (c) => c.toUpperCase());
 };
 
-export const createStatusSchema = z.object({
+export const createStageSchema = z.object({
   project_id: z.number().int().positive(),
   name: z.preprocess(normalizeName, z.string().min(1)),
   description: z.preprocess((val) => {
@@ -15,7 +15,7 @@ export const createStatusSchema = z.object({
     const trimmed = val.trim();
     return trimmed === "" ? null : trimmed;
   }, z.string().nullable().optional()),
-  type: z.preprocess(
+  status: z.preprocess(
     (val) => (typeof val === "string" ? val.trim().toUpperCase() : val),
     z.enum(["TODO", "DOING", "REVIEW", "DONE"]),
   ),
@@ -38,7 +38,7 @@ export const createStatusSchema = z.object({
   sort_order: z.number().int().min(0).optional(),
 });
 
-export const updateStatusSchema = z
+export const updateStageSchema = z
   .object({
     name: z.preprocess(normalizeName, z.string().min(1)).optional(),
     description: z.preprocess((val) => {
@@ -46,7 +46,7 @@ export const updateStatusSchema = z
       const trimmed = val.trim();
       return trimmed === "" ? null : trimmed;
     }, z.string().nullable().optional()),
-    type: z
+    status: z
       .preprocess(
         (val) => (typeof val === "string" ? val.trim().toUpperCase() : val),
         z.enum(["TODO", "DOING", "REVIEW", "DONE"]),
@@ -72,4 +72,4 @@ export const updateStatusSchema = z
   })
   .refine((obj) => Object.keys(obj).length > 0);
 
-export default { createStatusSchema, updateStatusSchema };
+export default { createStageSchema, updateStageSchema };

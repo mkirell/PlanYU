@@ -2,7 +2,7 @@ import { useState } from "react";
 import Card from "../Card/Card.jsx";
 import "./Column.css";
 
-const TYPE_LABELS = {
+const STATUS_LABELS = {
   TODO: "To Do",
   DOING: "In Progress",
   REVIEW: "Review",
@@ -58,12 +58,12 @@ export default function Column({
   );
   const [draftIcon, setDraftIcon] = useState(column.icon || "");
   const [draftColor, setDraftColor] = useState(column.color || "#4a4a4a");
-  const [draftType, setDraftType] = useState(column.type || "TODO");
+  const [draftStatus, setDraftStatus] = useState(column.status || "TODO");
   const [draftOrder, setDraftOrder] = useState(column.sort_order || 0);
 
   return (
     <div
-      className={`column ${column.type ? column.type.toLowerCase() : ""}`}
+      className={`column ${column.status ? column.status.toLowerCase() : ""}`}
       style={{
         backgroundColor: "var(--card)",
         borderColor: toRgba(column.color, 0.25) || column.color || undefined,
@@ -87,7 +87,7 @@ export default function Column({
             value={
               editing
                 ? draftName
-                : column.name || TYPE_LABELS[column.type]
+                : column.name || STATUS_LABELS[column.status]
             }
             placeholder="Column name"
             disabled={!editing}
@@ -107,7 +107,7 @@ export default function Column({
                 setDraftDescription(column.description || "");
                 setDraftIcon(column.icon || "");
                 setDraftColor(column.color || "#4a4a4a");
-                setDraftType(column.type || "TODO");
+                setDraftStatus(column.status || "TODO");
                 setDraftOrder(column.sort_order || 0);
                 setEditing((prev) => !prev);
               }}
@@ -138,14 +138,14 @@ export default function Column({
             />
           </label>
           <label>
-            Type
+            Status
             <select
-              value={draftType}
-              onChange={(e) => setDraftType(e.target.value)}
+              value={draftStatus}
+              onChange={(e) => setDraftStatus(e.target.value)}
             >
-              {Object.keys(TYPE_LABELS).map((type) => (
-                <option key={type} value={type}>
-                  {TYPE_LABELS[type]}
+              {Object.keys(STATUS_LABELS).map((status) => (
+                <option key={status} value={status}>
+                  {STATUS_LABELS[status]}
                 </option>
               ))}
             </select>
@@ -182,12 +182,12 @@ export default function Column({
               type="button"
               className="btn small"
               onClick={() => {
-                onUpdateColumn(column.status_id, {
+                onUpdateColumn(column.stage_id, {
                   name: normalizeStatusName(draftName),
                   description: draftDescription.trim() || null,
                   icon: draftIcon || null,
                   color: draftColor || null,
-                  type: draftType,
+                  status: draftStatus,
                   sort_order: draftOrder,
                 });
                 setEditing(false);

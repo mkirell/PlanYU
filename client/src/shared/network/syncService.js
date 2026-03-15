@@ -9,7 +9,7 @@ import {
 } from "../cache/idbService";
 import { LOCAL_ID_PREFIX } from "../cache/offlineStore";
 import { fetchProjects } from "../../features/projects/projectThunks";
-import { fetchColumns } from "../../features/columns/columnThunks";
+import { fetchStages } from "../../features/stages/stageThunks";
 import { fetchTasks } from "../../features/tasks/taskThunks";
 import { fetchProfiles } from "../../features/profiles/profileThunks";
 import { fetchUsers } from "../../features/users/userThunks";
@@ -18,7 +18,7 @@ import { fetchUserTasks } from "../../features/userTasks/userTaskThunks";
 
 const ID_ENTITY_MAP = {
   project_id: "projects",
-  status_id: "columns",
+  stage_id: "stages",
   task_id: "tasks",
   profile_id: "profiles",
   user_id: "users",
@@ -54,7 +54,7 @@ const resolveBodyIds = async (body) => {
     "user_id",
     "project_id",
     "task_id",
-    "status_id",
+    "stage_id",
     "profile_id",
   ];
   const resolved = { ...body };
@@ -83,7 +83,7 @@ const replaceUrlIds = (url, originalIds, resolvedIds) => {
 const getEntityKeyFromData = (entity, data) => {
   if (!data) return null;
   if (entity === "projects") return data.project_id;
-  if (entity === "columns") return data.status_id;
+  if (entity === "stages") return data.stage_id;
   if (entity === "tasks") return data.task_id;
   if (entity === "profiles") return data.profile_id;
   if (entity === "users") return data.user_id ?? data.id;
@@ -94,7 +94,7 @@ const getEntityKeyFromData = (entity, data) => {
 
 const getEntityKeyFromIds = (entity, ids) => {
   if (entity === "projects") return ids.project_id;
-  if (entity === "columns") return ids.status_id;
+  if (entity === "stages") return ids.stage_id;
   if (entity === "tasks") return ids.task_id;
   if (entity === "profiles") return ids.profile_id;
   if (entity === "users") return ids.user_id;
@@ -107,7 +107,7 @@ const refreshAll = async (store) => {
   if (!store) return;
   await Promise.all([
     store.dispatch(fetchProjects()),
-    store.dispatch(fetchColumns()),
+    store.dispatch(fetchStages()),
     store.dispatch(fetchTasks()),
     store.dispatch(fetchProfiles()),
     store.dispatch(fetchUsers()),

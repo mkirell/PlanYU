@@ -30,6 +30,7 @@ export default function Notif() {
   const users = useSelector((s) => s.users);
   const profiles = useSelector((s) => s.profiles);
   const projects = useSelector((s) => s.projects);
+  const stages = useSelector((s) => s.stages);
   const tasks = useSelector((s) => s.tasks);
   const userProjects = useSelector((s) => s.userProjects);
   const userTasks = useSelector((s) => s.userTasks);
@@ -39,6 +40,7 @@ export default function Notif() {
     users: users?.message,
     profiles: profiles?.message,
     projects: projects?.message,
+    stages: stages?.message,
     tasks: tasks?.message,
     userProjects: userProjects?.message,
     userTasks: userTasks?.message,
@@ -80,6 +82,7 @@ export default function Notif() {
     checkMessage("users", users);
     checkMessage("profiles", profiles);
     checkMessage("projects", projects);
+    checkMessage("stages", stages);
     checkMessage("tasks", tasks);
     checkMessage("userProjects", userProjects);
     checkMessage("userTasks", userTasks);
@@ -94,7 +97,7 @@ export default function Notif() {
         0,
       );
     }
-  }, [users, profiles, projects, tasks, userProjects, userTasks]);
+  }, [users, profiles, projects, stages, tasks, userProjects, userTasks]);
   if (!items.length) return null;
 
   return (

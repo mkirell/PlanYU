@@ -25,19 +25,19 @@ export default function Card({
     task.description || "",
   );
   const [draftPriority, setDraftPriority] = useState(task.priority || "MEDIUM");
-  const [draftStatusId, setDraftStatusId] = useState(task.status_id || null);
+  const [draftStatusId, setDraftStatusId] = useState(task.stage_id || null);
   const [draftDueDate, setDraftDueDate] = useState(
     task.due_date ? task.due_date.slice(0, 10) : "",
   );
   const priorities = ["LOW", "MEDIUM", "HIGH"];
 
-  const getTypeClass = (type) =>
+  const getStatusClass = (status) =>
     ({
       TODO: "btn-todo",
       DOING: "btn-doing",
       REVIEW: "btn-review",
       DONE: "btn-done",
-    })[type] || "";
+    })[status] || "";
 
   const prevTaskIdRef = useRef(task.task_id);
   const dispatch = useDispatch();
@@ -69,7 +69,7 @@ export default function Card({
       setDraftTitle(task.title || "");
       setDraftDescription(task.description || "");
       setDraftPriority(task.priority || "MEDIUM");
-      setDraftStatusId(task.status_id || null);
+      setDraftStatusId(task.stage_id || null);
       setDraftDueDate(task.due_date ? task.due_date.slice(0, 10) : "");
       prevTaskIdRef.current = task.task_id;
     });
@@ -81,7 +81,7 @@ export default function Card({
     task.title,
     task.description,
     task.priority,
-    task.status_id,
+    task.stage_id,
     task.due_date,
     expanded,
   ]);
@@ -122,7 +122,7 @@ export default function Card({
     if (draftDescription !== task.description)
       patch.description = draftDescription;
     if (draftPriority !== task.priority) patch.priority = draftPriority;
-    if (draftStatusId !== task.status_id) patch.status_id = draftStatusId;
+    if (draftStatusId !== task.stage_id) patch.stage_id = draftStatusId;
     const iso = draftDueDate ? new Date(draftDueDate).toISOString() : null;
     const currentIso = task.due_date
       ? new Date(task.due_date).toISOString()
@@ -431,21 +431,21 @@ export default function Card({
         {columns
           .filter(
             (col) =>
-              (expanded ? draftStatusId : task.status_id) !== col.status_id,
+              (expanded ? draftStatusId : task.stage_id) !== col.stage_id,
           )
           .map((col) => (
             <button
-              key={col.status_id}
-              className={`btn tiny ${getTypeClass(col.type)}`}
+              key={col.stage_id}
+              className={`btn tiny ${getStatusClass(col.status)}`}
               onClick={async () => {
                 if (!canChangeStatus) return;
                 try {
                   const res = await onUpdate(task.task_id, {
-                    status_id: col.status_id,
+                    stage_id: col.stage_id,
                   });
 
                   if (!res || !res.error) {
-                    setDraftStatusId(col.status_id);
+                    setDraftStatusId(col.stage_id);
                   }
                 } catch {
                   // Do nothing, keep old status

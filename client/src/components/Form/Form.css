@@ -51,7 +51,7 @@
   flex: 1 1 340px;
   height: 38px;
 }
-.board-columns-add select[name="type"] {
+.board-columns-add select[name="status"] {
   flex: 0 0 170px;
   height: 38px;
 }
