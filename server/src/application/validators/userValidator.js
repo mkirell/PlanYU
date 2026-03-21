@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const createUserSchema = z.object({
+export const createUserValidator = z.object({
   email: z.preprocess(
     (val) => (typeof val === "string" ? val.trim() : val),
     z.string().email(),
@@ -9,7 +9,7 @@ export const createUserSchema = z.object({
   role: z.enum(["ADMIN", "GUEST"]).optional(),
 });
 
-export const updateUserSchema = z
+export const updateUserValidator = z
   .object({
     email: z
       .preprocess(
@@ -22,4 +22,4 @@ export const updateUserSchema = z
   })
   .refine((obj) => Object.keys(obj).length > 0);
 
-export default { createUserSchema, updateUserSchema };
+export default { createUserValidator, updateUserValidator };

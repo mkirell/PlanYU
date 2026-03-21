@@ -43,6 +43,27 @@ module.exports = {
       "profile_id",
     );
 
+    const adminRoleId = await queryInterface.rawSelect(
+      "Role",
+      { where: { name: "ADMIN" } },
+      "role_id",
+    );
+
+    if (adminRoleId) {
+      await queryInterface.bulkInsert(
+        "User_Role",
+        [
+          {
+            user_id: userId,
+            role_id: adminRoleId,
+            created_at: now,
+            updated_at: now,
+          },
+        ],
+        { ignoreDuplicates: true },
+      );
+    }
+
     if (profileId) return;
 
     await queryInterface.bulkInsert("Profile", [

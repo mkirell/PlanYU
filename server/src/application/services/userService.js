@@ -5,11 +5,12 @@ import UserEntity from "../../domain/entities/userEntity.js";
 import { EmailVO } from "../../domain/values/emailValue.js";
 import { PasswordVO } from "../../domain/values/passwordValue.js";
 import {
-  createUserSchema,
-  updateUserSchema,
+  createUserValidator,
+  updateUserValidator,
 } from "../validators/userValidator.js";
-import { ValidationError } from "../../shared/utils/errorHandler.js";
+import { ValidationError } from "../../shared/errors/appError.js";
 import ProjectRepository from "../../infrastructure/repositories/projectRepository.js";
+import UserRoleService from "./userRoleService.js";
 
 const UserService = {
   async list() {
@@ -21,7 +22,7 @@ const UserService = {
   },
 
   async create(payload) {
-    const parsed = createUserSchema.safeParse(payload);
+    const parsed = createUserValidator.safeParse(payload);
     if (!parsed.success)
       throw new ValidationError("Invalid user data", parsed.error.errors);
     const emailVO = new EmailVO(parsed.data.email);
@@ -34,11 +35,16 @@ const UserService = {
     if (passwordValue !== undefined) {
       entity.password_hash = await bcrypt.hash(passwordValue, 10);
     }
-    return UserRepository.create(entity.toCreateObject());
+    const created = await UserRepository.create(entity.toCreateObject());
+    await UserRoleService.ensureAtLeastOneRole(
+      created.user_id,
+      created.role || "GUEST",
+    );
+    return created;
   },
 
   async update(id, payload) {
-    const parsed = updateUserSchema.safeParse(payload);
+    const parsed = updateUserValidator.safeParse(payload);
     if (!parsed.success)
       throw new ValidationError("Invalid user data", parsed.error.errors);
     const emailVO = new EmailVO(parsed.data.email);

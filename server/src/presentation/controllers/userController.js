@@ -4,7 +4,7 @@ import {
   UpdateUserDto,
   UserResponseDto,
 } from "../dtos/userDto.js";
-import { ValidationError, NotFoundError } from "../../shared/utils/errorHandler.js";
+import { ValidationError, NotFoundError } from "../../shared/errors/appError.js";
 
 export async function getAllUsers(req, res) {
   const users = await UserService.list();

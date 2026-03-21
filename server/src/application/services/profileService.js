@@ -2,10 +2,10 @@ import ProfileRepository from "../../infrastructure/repositories/profileReposito
 import UserRepository from "../../infrastructure/repositories/userRepository.js";
 import ProfileEntity from "../../domain/entities/profileEntity.js";
 import {
-  createProfileSchema,
-  updateProfileSchema,
+  createProfileValidator,
+  updateProfileValidator,
 } from "../validators/profileValidator.js";
-import { ValidationError } from "../../shared/utils/errorHandler.js";
+import { ValidationError } from "../../shared/errors/appError.js";
 
 const ProfileService = {
   async list() {
@@ -17,7 +17,7 @@ const ProfileService = {
   },
 
   async create(payload) {
-    const parsed = createProfileSchema.safeParse(payload);
+    const parsed = createProfileValidator.safeParse(payload);
     if (!parsed.success)
       throw new ValidationError("Invalid profile data", parsed.error.errors);
     const entity = new ProfileEntity(parsed.data);
@@ -26,7 +26,7 @@ const ProfileService = {
   },
 
   async update(id, payload) {
-    const parsed = updateProfileSchema.safeParse(payload);
+    const parsed = updateProfileValidator.safeParse(payload);
     if (!parsed.success)
       throw new ValidationError("Invalid profile data", parsed.error.errors);
     const entity = new ProfileEntity(parsed.data);

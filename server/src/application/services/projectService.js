@@ -3,10 +3,10 @@ import UserProjectRepository from "../../infrastructure/repositories/userProject
 import StageService from "./stageService.js";
 import ProjectEntity from "../../domain/entities/projectEntity.js";
 import {
-  createProjectSchema,
-  updateProjectSchema,
+  createProjectValidator,
+  updateProjectValidator,
 } from "../validators/projectValidator.js";
-import { ValidationError } from "../../shared/utils/errorHandler.js";
+import { ValidationError } from "../../shared/errors/appError.js";
 
 const ProjectService = {
   async list() {
@@ -18,7 +18,7 @@ const ProjectService = {
   },
 
   async create(payload, user) {
-    const parsed = createProjectSchema.safeParse(payload);
+    const parsed = createProjectValidator.safeParse(payload);
     if (!parsed.success)
       throw new ValidationError("Invalid project data", parsed.error.errors);
     const entity = new ProjectEntity(parsed.data);
@@ -36,7 +36,7 @@ const ProjectService = {
   },
 
   async update(id, payload) {
-    const parsed = updateProjectSchema.safeParse(payload);
+    const parsed = updateProjectValidator.safeParse(payload);
     if (!parsed.success)
       throw new ValidationError("Invalid project data", parsed.error.errors);
     const entity = new ProjectEntity(parsed.data);

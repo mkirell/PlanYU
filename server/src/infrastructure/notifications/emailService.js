@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
-import logger from "../utils/loggerService.js";
-import { buildTemplate } from "../utils/emailTemplates.js";
+import logger from "../../shared/logging/logger.js";
+import { buildTemplate } from "../../shared/templates/emailTemplates.js";
 
 const buildTransport = () => {
   const host = process.env.SMTP_HOST;

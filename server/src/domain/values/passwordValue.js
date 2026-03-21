@@ -1,4 +1,4 @@
-import { ValidationError } from "../../shared/utils/errorHandler.js";
+import { ValidationError } from "../../shared/errors/appError.js";
 
 export class PasswordVO {
   constructor(password) {

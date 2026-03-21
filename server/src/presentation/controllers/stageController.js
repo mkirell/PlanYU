@@ -1,6 +1,6 @@
 import StageService from "../../application/services/stageService.js";
 import { CreateStageDto, UpdateStageDto } from "../dtos/stageDto.js";
-import { ValidationError, NotFoundError } from "../../shared/utils/errorHandler.js";
+import { ValidationError, NotFoundError } from "../../shared/errors/appError.js";
 
 export async function getAllStages(req, res) {
   const projectId = req.query?.project_id

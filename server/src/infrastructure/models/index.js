@@ -5,7 +5,11 @@ import Stage from "./stageModel.js";
 import Task from "./taskModel.js";
 import UserProject from "./userProjectModel.js";
 import UserTask from "./userTaskModel.js";
-import AuthToken from "./authTokenModel.js";
+import Auth from "./authModel.js";
+import Role from "./roleModel.js";
+import Permission from "./permissionModel.js";
+import UserRole from "./userRoleModel.js";
+import RolePermission from "./rolePermissionModel.js";
 
 // 1:1 → User ↔ Profile
 User.hasOne(Profile, {
@@ -70,13 +74,45 @@ Task.belongsToMany(User, {
   onDelete: "CASCADE",
 });
 
-// 1:N → User ↔ AuthToken
-User.hasMany(AuthToken, {
+// 1:N → User ↔ Auth
+User.hasMany(Auth, {
   foreignKey: "user_id",
   onDelete: "CASCADE",
   hooks: true,
 });
-AuthToken.belongsTo(User, { foreignKey: "user_id", onDelete: "CASCADE" });
+Auth.belongsTo(User, { foreignKey: "user_id", onDelete: "CASCADE" });
+
+// N:N → User ↔ Role via UserRole
+User.belongsToMany(Role, {
+  through: UserRole,
+  foreignKey: "user_id",
+  otherKey: "role_id",
+  constraints: true,
+  onDelete: "CASCADE",
+});
+Role.belongsToMany(User, {
+  through: UserRole,
+  foreignKey: "role_id",
+  otherKey: "user_id",
+  constraints: true,
+  onDelete: "CASCADE",
+});
+
+// N:N → Role ↔ Permission via RolePermission
+Role.belongsToMany(Permission, {
+  through: RolePermission,
+  foreignKey: "role_id",
+  otherKey: "permission_id",
+  constraints: true,
+  onDelete: "CASCADE",
+});
+Permission.belongsToMany(Role, {
+  through: RolePermission,
+  foreignKey: "permission_id",
+  otherKey: "role_id",
+  constraints: true,
+  onDelete: "CASCADE",
+});
 
 export {
   User,
@@ -86,5 +122,10 @@ export {
   Task,
   UserProject,
   UserTask,
-  AuthToken,
+  Auth,
+  Role,
+  Permission,
+  UserRole,
+  RolePermission,
 };
+

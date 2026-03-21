@@ -1,12 +1,11 @@
 import UserRepository from "../../infrastructure/repositories/userRepository.js";
-import AuthTokenRepository from "../../infrastructure/repositories/authTokenRepository.js";
+import AuthRepository from "../../infrastructure/repositories/authRepository.js";
 import {
   ValidationError,
   NotFoundError,
   UnauthorizedError,
-} from "../../shared/utils/errorHandler.js";
+} from "../../shared/errors/appError.js";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 import UserEntity from "../../domain/entities/userEntity.js";
 import { EmailVO } from "../../domain/values/emailValue.js";
 import { PasswordVO } from "../../domain/values/passwordValue.js";
@@ -14,23 +13,33 @@ import {
   sendEmailSafe,
   sendVerificationCodeEmail,
   sendLoginCodeEmail,
-} from "../../shared/common/emailService.js";
+} from "../../infrastructure/notifications/emailService.js";
 import {
   createOtpToken,
   createTrustToken,
+  createRefreshSession,
   hashToken,
-  signTokens,
-} from "../../shared/common/tokenService.js";
+  signAccessToken,
+  rotateRefreshSession,
+  revokeRefreshSession,
+} from "../security/tokenSecurityService.js";
 import {
-  registerSchema,
-  loginSchema,
-  verifyCodeSchema,
-  resendCodeSchema,
+  registerValidator,
+  loginValidator,
+  verifyCodeValidator,
+  resendCodeValidator,
 } from "../validators/authValidator.js";
+import UserRoleService from "./userRoleService.js";
+
+const issueSessionTokens = async (user, metadata = null) => {
+  const accessToken = signAccessToken(user);
+  const { refreshToken } = await createRefreshSession(user.user_id, metadata);
+  return { accessToken, refreshToken };
+};
 
 const AuthService = {
   async register(payload) {
-    const parsed = registerSchema.safeParse(payload);
+    const parsed = registerValidator.safeParse(payload);
     if (!parsed.success)
       throw new ValidationError(
         "Invalid registration data",
@@ -49,6 +58,7 @@ const AuthService = {
     if (passwordValue !== undefined)
       entity.password_hash = await bcrypt.hash(passwordValue, 10);
     const user = await UserRepository.create(entity.toCreateObject());
+    await UserRoleService.ensureAtLeastOneRole(user.user_id, user.role || "GUEST");
 
     const { code } = await createOtpToken(user.user_id, "EMAIL_VERIFY");
     const emailSent = await sendEmailSafe(
@@ -60,7 +70,7 @@ const AuthService = {
   },
 
   async login(payload, { trustToken, ip, userAgent } = {}) {
-    const parsed = loginSchema.safeParse(payload);
+    const parsed = loginValidator.safeParse(payload);
     if (!parsed.success)
       throw new ValidationError("Invalid login data", parsed.error.errors);
     const emailVO = new EmailVO(parsed.data.email);
@@ -75,14 +85,14 @@ const AuthService = {
 
     if (trustToken) {
       const trustHash = hashToken(trustToken);
-      const trusted = await AuthTokenRepository.findByTokenHash(
+      const trusted = await AuthRepository.findByTokenHash(
         trustHash,
         "TRUST_DEVICE",
       );
       if (trusted && !trusted.used_at) {
         const expiresAt = new Date(trusted.expires_at);
         if (trusted.user_id === user.user_id && expiresAt > new Date()) {
-          const tokens = signTokens(user);
+          const tokens = await issueSessionTokens(user, { ip, userAgent });
           return { ...tokens, user, trustedDevice: true };
         }
       }
@@ -98,47 +108,38 @@ const AuthService = {
     return { requiresTwoFactor: true, challengeId: token_id, emailSent };
   },
 
-  async refresh(token) {
-    let payload;
-    try {
-      payload = jwt.verify(token, process.env.JWT_REFRESH_SECRET);
-    } catch (err) {
+  async refresh(token, { ip, userAgent } = {}) {
+    const rotated = await rotateRefreshSession(token, { ip, userAgent });
+    if (!rotated) {
       throw new UnauthorizedError("Invalid refresh token");
     }
-    const user = await UserRepository.findById(payload.sub);
+
+    const user = await UserRepository.findById(rotated.user_id);
     if (!user) throw new NotFoundError("User not found");
     if (!user.verified_at) throw new UnauthorizedError("Email not verified");
-    const tokenVersion = payload.tokenVersion ?? null;
-    if (tokenVersion === null || tokenVersion !== (user.token_version ?? 0))
-      throw new UnauthorizedError("Refresh token revoked");
-    const tokens = signTokens(user);
-    return { ...tokens, user };
+
+    const accessToken = signAccessToken(user);
+    return { accessToken, refreshToken: rotated.refreshToken, user };
   },
 
   async revoke(token) {
-    const payload = jwt.decode(token) || {};
-    const userId = payload.sub;
-    if (!userId) return false;
-    const user = await UserRepository.findById(userId);
-    const newVersion = (user.token_version ?? 0) + 1;
-    await UserRepository.update(userId, { token_version: newVersion });
-    return true;
+    return revokeRefreshSession(token);
   },
 
   async verifyCode(payload) {
-    const parsed = verifyCodeSchema.safeParse(payload);
+    const parsed = verifyCodeValidator.safeParse(payload);
     if (!parsed.success)
       throw new ValidationError(
         "Invalid verification code",
         parsed.error.errors,
       );
 
-    if (parsed.data.purpose === "email") {
+    if (parsed.data.purpose === "register") {
       const user = await UserRepository.findByEmail(parsed.data.email);
       if (!user)
         throw new ValidationError("Invalid or expired verification code");
 
-      const token = await AuthTokenRepository.findLatestActiveByUserAndType(
+      const token = await AuthRepository.findLatestActiveByUserAndType(
         user.user_id,
         "EMAIL_VERIFY",
       );
@@ -153,7 +154,7 @@ const AuthService = {
       if (tokenHash !== token.token_hash)
         throw new ValidationError("Invalid or expired verification code");
 
-      await AuthTokenRepository.markUsed(token.auth_token_id);
+      await AuthRepository.markUsed(token.auth_id);
       if (!user.verified_at) {
         await UserRepository.update(user.user_id, {
           verified_at: new Date(),
@@ -165,10 +166,11 @@ const AuthService = {
         ? await createTrustToken(verifiedUser.user_id)
         : null;
 
-      return { purpose: "email", user: verifiedUser, trustToken };
+      const tokens = await issueSessionTokens(verifiedUser);
+      return { purpose: "register", ...tokens, user: verifiedUser, trustToken };
     }
 
-    const token = await AuthTokenRepository.findByTokenId(
+    const token = await AuthRepository.findByTokenId(
       parsed.data.challengeId,
     );
     if (!token || token.type !== "LOGIN_2FA" || token.used_at)
@@ -182,7 +184,7 @@ const AuthService = {
     if (tokenHash !== token.token_hash)
       throw new UnauthorizedError("Invalid or expired login code");
 
-    await AuthTokenRepository.markUsed(token.auth_token_id);
+    await AuthRepository.markUsed(token.auth_id);
 
     const user = await UserRepository.findById(token.user_id);
     if (!user.verified_at) throw new UnauthorizedError("Email not verified");
@@ -191,16 +193,16 @@ const AuthService = {
       ? await createTrustToken(user.user_id)
       : null;
 
-    const tokens = signTokens(user);
+    const tokens = await issueSessionTokens(user);
     return { purpose: "login", ...tokens, user, trustToken };
   },
 
   async resendCode(payload) {
-    const parsed = resendCodeSchema.safeParse(payload);
+    const parsed = resendCodeValidator.safeParse(payload);
     if (!parsed.success)
       throw new ValidationError("Invalid resend request", parsed.error.errors);
 
-    if (parsed.data.purpose === "email") {
+    if (parsed.data.purpose === "register") {
       const user = await UserRepository.findByEmail(parsed.data.email);
       if (!user || user.verified_at) return { emailSent: true };
 
@@ -214,13 +216,13 @@ const AuthService = {
       return { emailSent };
     }
 
-    const token = await AuthTokenRepository.findByTokenId(
+    const token = await AuthRepository.findByTokenId(
       parsed.data.challengeId,
     );
     if (!token || token.type !== "LOGIN_2FA" || token.used_at)
       throw new UnauthorizedError("Invalid login challenge");
 
-    await AuthTokenRepository.markUsed(token.auth_token_id);
+    await AuthRepository.markUsed(token.auth_id);
 
     const user = await UserRepository.findById(token.user_id);
     if (!user.verified_at) throw new UnauthorizedError("Email not verified");
@@ -234,7 +236,7 @@ const AuthService = {
   async revokeTrustedDevice(token) {
     if (!token) return false;
     const tokenHash = hashToken(token);
-    await AuthTokenRepository.revokeByTokenHash(tokenHash, "TRUST_DEVICE");
+    await AuthRepository.revokeByTokenHash(tokenHash, "TRUST_DEVICE");
     return true;
   },
 };

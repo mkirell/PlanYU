@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const createUserProjectSchema = z.object({
+export const createUserProjectValidator = z.object({
   user_id: z.number().int().positive(),
   project_id: z.number().int().positive(),
   role: z.preprocess(
@@ -9,7 +9,7 @@ export const createUserProjectSchema = z.object({
   ),
 });
 
-export const updateUserProjectSchema = z
+export const updateUserProjectValidator = z
   .object({
     role: z.preprocess(
       (val) => (typeof val === "string" ? val.trim().toUpperCase() : val),
@@ -18,4 +18,4 @@ export const updateUserProjectSchema = z
   })
   .refine((obj) => Object.keys(obj).length > 0);
 
-export default { createUserProjectSchema, updateUserProjectSchema };
+export default { createUserProjectValidator, updateUserProjectValidator };

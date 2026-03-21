@@ -1,4 +1,4 @@
-import { BaseError } from "../../shared/utils/errorHandler.js";
+import { BaseError } from "../../shared/errors/appError.js";
 
 export default function errorHandler(err, req, res, next) {
   if (err instanceof BaseError) {

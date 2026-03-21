@@ -3,11 +3,11 @@ import UserRepository from "../../infrastructure/repositories/userRepository.js"
 import ProjectRepository from "../../infrastructure/repositories/projectRepository.js";
 import TaskRepository from "../../infrastructure/repositories/taskRepository.js";
 import UserTaskRepository from "../../infrastructure/repositories/userTaskRepository.js";
-import { ValidationError } from "../../shared/utils/errorHandler.js";
+import { ValidationError } from "../../shared/errors/appError.js";
 import UserProjectEntity from "../../domain/entities/userProjectEntity.js";
 import {
-  createUserProjectSchema,
-  updateUserProjectSchema,
+  createUserProjectValidator,
+  updateUserProjectValidator,
 } from "../validators/userProjectValidator.js";
 
 const UserProjectService = {
@@ -20,7 +20,7 @@ const UserProjectService = {
   },
 
   async create(payload) {
-    const parsed = createUserProjectSchema.safeParse(payload);
+    const parsed = createUserProjectValidator.safeParse(payload);
     if (!parsed.success)
       throw new ValidationError(
         "Invalid user-project data",
@@ -33,7 +33,7 @@ const UserProjectService = {
   },
 
   async update(user_id, project_id, payload) {
-    const parsed = updateUserProjectSchema.safeParse(payload);
+    const parsed = updateUserProjectValidator.safeParse(payload);
     if (!parsed.success)
       throw new ValidationError(
         "Invalid user-project data",

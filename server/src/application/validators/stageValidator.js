@@ -7,7 +7,7 @@ const normalizeName = (val) => {
   return cleaned.replace(/(^|\s)\S/g, (c) => c.toUpperCase());
 };
 
-export const createStageSchema = z.object({
+export const createStageValidator = z.object({
   project_id: z.number().int().positive(),
   name: z.preprocess(normalizeName, z.string().min(1)),
   description: z.preprocess((val) => {
@@ -38,7 +38,7 @@ export const createStageSchema = z.object({
   sort_order: z.number().int().min(0).optional(),
 });
 
-export const updateStageSchema = z
+export const updateStageValidator = z
   .object({
     name: z.preprocess(normalizeName, z.string().min(1)).optional(),
     description: z.preprocess((val) => {
@@ -72,4 +72,4 @@ export const updateStageSchema = z
   })
   .refine((obj) => Object.keys(obj).length > 0);
 
-export default { createStageSchema, updateStageSchema };
+export default { createStageValidator, updateStageValidator };

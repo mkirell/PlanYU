@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../../shared/common/dbService.js";
+import sequelize from "../../infrastructure/database/sequelize.js";
 
 const Project = sequelize.define(
   "Project",

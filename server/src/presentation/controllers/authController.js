@@ -1,5 +1,4 @@
 import AuthService from "../../application/services/authService.js";
-import { signTokens } from "../../shared/common/tokenService.js";
 import { AuthRequestDto, AuthResponseDto } from "../dtos/authDto.js";
 
 const SESSION_COOKIE_OPTIONS = {
@@ -74,13 +73,12 @@ export async function refresh(req, res) {
 
 export async function verifyCode(req, res) {
   const result = await AuthService.verifyCode(req.body);
-  if (result.purpose === "email") {
-    const tokens = signTokens(result.user);
-    setSessionCookie(res, tokens.refreshToken);
+  if (result.purpose === "register") {
+    setSessionCookie(res, result.refreshToken);
     setTrustCookie(res, result.trustToken);
     return res.status(200).json({
       message: "Email verified successfully.",
-      accessToken: tokens.accessToken,
+      accessToken: result.accessToken,
       user: new AuthResponseDto(result.user),
     });
   }
@@ -105,6 +103,8 @@ export async function resendCode(req, res) {
 export async function logout(req, res) {
   const plain = req.cookies?.session;
   if (plain) await AuthService.revoke(plain);
+  await AuthService.revokeTrustedDevice(req.cookies?.trust);
   res.clearCookie("session", { path: "/api/auth" });
+  res.clearCookie("trust", { path: "/api/auth" });
   res.status(204).send();
 }

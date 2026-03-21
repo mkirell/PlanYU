@@ -1,6 +1,7 @@
 import { Router } from "express";
 import asyncHandler from "../../presentation/middleware/asyncHandler.js";
 import authorize from "../middleware/authorization.js";
+import PERMISSIONS from "../authorization/permissions.js";
 import {
   getAllProjects,
   getProjectById,
@@ -11,10 +12,30 @@ import {
 
 const router = Router();
 
-router.get("/", authorize(), asyncHandler(getAllProjects));
-router.get("/:id", authorize("OWNER", "MEMBER"), asyncHandler(getProjectById));
-router.post("/", authorize(), asyncHandler(createProject));
-router.patch("/:id", authorize("OWNER"), asyncHandler(updateProject));
-router.delete("/:id", authorize("OWNER"), asyncHandler(deleteProject));
+router.get(
+  "/",
+  authorize(PERMISSIONS.PROJECTS.READ),
+  asyncHandler(getAllProjects),
+);
+router.get(
+  "/:id",
+  authorize(PERMISSIONS.PROJECTS.READ),
+  asyncHandler(getProjectById),
+);
+router.post(
+  "/",
+  authorize(PERMISSIONS.PROJECTS.CREATE),
+  asyncHandler(createProject),
+);
+router.patch(
+  "/:id",
+  authorize(PERMISSIONS.PROJECTS.UPDATE),
+  asyncHandler(updateProject),
+);
+router.delete(
+  "/:id",
+  authorize(PERMISSIONS.PROJECTS.DELETE),
+  asyncHandler(deleteProject),
+);
 
 export default router;

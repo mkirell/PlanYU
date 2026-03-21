@@ -172,7 +172,7 @@ export default function Auth() {
     setAlert("");
     const action = await dispatch(
       verifyCode({
-        purpose: "email",
+        purpose: "register",
         email,
         code: verificationCode,
         rememberDevice,
@@ -215,7 +215,7 @@ export default function Auth() {
     }
 
     setAlert("");
-    const action = await dispatch(resendCode({ purpose: "email", email }));
+    const action = await dispatch(resendCode({ purpose: "register", email }));
     if (action.type.endsWith("fulfilled")) {
       setAlert("Verification code resent.");
     }

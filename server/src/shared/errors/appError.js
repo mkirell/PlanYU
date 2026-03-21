@@ -11,13 +11,13 @@ class BaseError extends Error {
 
 class NotFoundError extends BaseError {
   constructor(message = "Not found") {
-    super(message, "NOT_FOUND", 404);
+    super(message, "NOT_FOUND_ERROR", 404);
   }
 }
 
 class ConflictError extends BaseError {
   constructor(message = "Conflict") {
-    super(message, "CONFLICT", 409);
+    super(message, "CONFLICT_ERROR", 409);
   }
 }
 
@@ -29,13 +29,13 @@ class ValidationError extends BaseError {
 
 class ForbiddenError extends BaseError {
   constructor(message = "Forbidden") {
-    super(message, "FORBIDDEN", 403);
+    super(message, "FORBIDDEN_ERROR", 403);
   }
 }
 
 class UnauthorizedError extends BaseError {
   constructor(message = "Unauthorized") {
-    super(message, "UNAUTHORIZED", 401);
+    super(message, "UNAUTHORIZED_ERROR", 401);
   }
 }
 

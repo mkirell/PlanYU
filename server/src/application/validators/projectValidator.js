@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const createProjectSchema = z.object({
+export const createProjectValidator = z.object({
   name: z.preprocess((val) => {
     if (typeof val !== "string") return val;
     return val.trim().replace(/\b\w/g, (c) => c.toUpperCase());
@@ -11,7 +11,7 @@ export const createProjectSchema = z.object({
   ),
 });
 
-export const updateProjectSchema = z
+export const updateProjectValidator = z
   .object({
     name: z
       .preprocess((val) => {
@@ -26,4 +26,4 @@ export const updateProjectSchema = z
   })
   .refine((obj) => Object.keys(obj).length > 0);
 
-export default { createProjectSchema, updateProjectSchema };
+export default { createProjectValidator, updateProjectValidator };

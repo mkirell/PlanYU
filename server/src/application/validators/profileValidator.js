@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const createProfileSchema = z.object({
+export const createProfileValidator = z.object({
   user_id: z.number().int().positive(),
   full_name: z.preprocess((val) => {
     if (typeof val !== "string") return val;
@@ -12,7 +12,7 @@ export const createProfileSchema = z.object({
   ),
 });
 
-export const updateProfileSchema = z
+export const updateProfileValidator = z
   .object({
     full_name: z.preprocess((val) => {
       if (typeof val !== "string") return val;
@@ -25,4 +25,4 @@ export const updateProfileSchema = z
   })
   .refine((obj) => Object.keys(obj).length > 0);
 
-export default { createProfileSchema, updateProfileSchema };
+export default { createProfileValidator, updateProfileValidator };

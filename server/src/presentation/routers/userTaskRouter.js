@@ -1,6 +1,7 @@
 import { Router } from "express";
 import asyncHandler from "../../presentation/middleware/asyncHandler.js";
 import authorize from "../middleware/authorization.js";
+import PERMISSIONS from "../authorization/permissions.js";
 import {
   getAllUserTasks,
   getUserTaskByIds,
@@ -11,21 +12,21 @@ import {
 
 const router = Router();
 
-router.get("/", authorize(), asyncHandler(getAllUserTasks));
+router.get("/", authorize(PERMISSIONS.USER_TASKS.READ), asyncHandler(getAllUserTasks));
 router.get(
   "/:user_id/:task_id",
-  authorize("OWNER", "MEMBER"),
+  authorize(PERMISSIONS.USER_TASKS.READ),
   asyncHandler(getUserTaskByIds),
 );
-router.post("/", authorize("OWNER"), asyncHandler(createUserTask));
+router.post("/", authorize(PERMISSIONS.USER_TASKS.CREATE), asyncHandler(createUserTask));
 router.patch(
   "/:user_id/:task_id",
-  authorize("OWNER"),
+  authorize(PERMISSIONS.USER_TASKS.UPDATE),
   asyncHandler(updateUserTask),
 );
 router.delete(
   "/:user_id/:task_id",
-  authorize("OWNER"),
+  authorize(PERMISSIONS.USER_TASKS.DELETE),
   asyncHandler(deleteUserTask),
 );
 

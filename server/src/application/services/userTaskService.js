@@ -2,11 +2,11 @@ import UserTaskRepository from "../../infrastructure/repositories/userTaskReposi
 import UserRepository from "../../infrastructure/repositories/userRepository.js";
 import TaskRepository from "../../infrastructure/repositories/taskRepository.js";
 import UserProjectRepository from "../../infrastructure/repositories/userProjectRepository.js";
-import { ForbiddenError, ValidationError } from "../../shared/utils/errorHandler.js";
+import { ForbiddenError, ValidationError } from "../../shared/errors/appError.js";
 import UserTaskEntity from "../../domain/entities/userTaskEntity.js";
 import {
-  createUserTaskSchema,
-  updateUserTaskSchema,
+  createUserTaskValidator,
+  updateUserTaskValidator,
 } from "../validators/userTaskValidator.js";
 
 const UserTaskService = {
@@ -19,7 +19,7 @@ const UserTaskService = {
   },
 
   async create(payload) {
-    const parsed = createUserTaskSchema.safeParse(payload);
+    const parsed = createUserTaskValidator.safeParse(payload);
     if (!parsed.success)
       throw new ValidationError("Invalid user-task data", parsed.error.errors);
     const entity = new UserTaskEntity(parsed.data);
@@ -49,7 +49,7 @@ const UserTaskService = {
   },
 
   async update(user_id, task_id, payload) {
-    const parsed = updateUserTaskSchema.safeParse(payload);
+    const parsed = updateUserTaskValidator.safeParse(payload);
     if (!parsed.success)
       throw new ValidationError("Invalid user-task data", parsed.error.errors);
     const entity = new UserTaskEntity(parsed.data);

@@ -7,7 +7,7 @@ import cookieParser from "cookie-parser";
 import routes from "./presentation/routers/index.js";
 import authRoutes from "./presentation/routers/authRouter.js";
 import authenticate from "./presentation/middleware/authentication.js";
-import sequelize from "./shared/common/dbService.js";
+import sequelize from "./infrastructure/database/sequelize.js";
 import errorHandler from "./presentation/middleware/errorHandler.js";
 import httpLogger from "./presentation/middleware/httpLogger.js";
 

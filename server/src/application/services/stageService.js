@@ -3,10 +3,10 @@ import ProjectRepository from "../../infrastructure/repositories/projectReposito
 import TaskRepository from "../../infrastructure/repositories/taskRepository.js";
 import StageEntity from "../../domain/entities/stageEntity.js";
 import {
-  createStageSchema,
-  updateStageSchema,
+  createStageValidator,
+  updateStageValidator,
 } from "../validators/stageValidator.js";
-import { ValidationError } from "../../shared/utils/errorHandler.js";
+import { ValidationError } from "../../shared/errors/appError.js";
 
 const STATUS_RANK = {
   TODO: 1,
@@ -83,7 +83,7 @@ const StageService = {
   },
 
   async create(payload) {
-    const parsed = createStageSchema.safeParse(payload);
+    const parsed = createStageValidator.safeParse(payload);
     if (!parsed.success)
       throw new ValidationError("Invalid stage data", parsed.error.errors);
     const entity = new StageEntity(parsed.data);
@@ -153,7 +153,7 @@ const StageService = {
   },
 
   async update(id, payload) {
-    const parsed = updateStageSchema.safeParse(payload);
+    const parsed = updateStageValidator.safeParse(payload);
     if (!parsed.success)
       throw new ValidationError("Invalid stage data", parsed.error.errors);
     const existing = await StageRepository.findById(id);

@@ -1,5 +1,5 @@
 import { Project } from "../models/index.js";
-import { NotFoundError } from "../../shared/utils/errorHandler.js";
+import { NotFoundError } from "../../shared/errors/appError.js";
 
 const ProjectRepository = {
   async findAll() {

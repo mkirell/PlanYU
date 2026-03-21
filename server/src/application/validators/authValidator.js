@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const registerSchema = z.object({
+export const registerValidator = z.object({
   email: z.preprocess(
     (val) => (typeof val === "string" ? val.trim() : val),
     z.string().email(),
@@ -8,7 +8,7 @@ export const registerSchema = z.object({
   password: z.string().min(8),
 });
 
-export const loginSchema = z.object({
+export const loginValidator = z.object({
   email: z.preprocess(
     (val) => (typeof val === "string" ? val.trim() : val),
     z.string().email(),
@@ -16,9 +16,9 @@ export const loginSchema = z.object({
   password: z.string().min(8),
 });
 
-export const verifyCodeSchema = z
+export const verifyCodeValidator = z
   .object({
-    purpose: z.enum(["email", "login"]),
+    purpose: z.enum(["register", "login"]),
     email: z.preprocess(
       (val) => (typeof val === "string" ? val.trim() : val),
       z.string().email().optional(),
@@ -34,7 +34,7 @@ export const verifyCodeSchema = z
     rememberDevice: z.boolean().optional(),
   })
   .superRefine((value, ctx) => {
-    if (value.purpose === "email" && !value.email) {
+    if (value.purpose === "register" && !value.email) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         message: "Email required for email verification",
@@ -50,9 +50,9 @@ export const verifyCodeSchema = z
     }
   });
 
-export const resendCodeSchema = z
+export const resendCodeValidator = z
   .object({
-    purpose: z.enum(["email", "login"]),
+    purpose: z.enum(["register", "login"]),
     email: z.preprocess(
       (val) => (typeof val === "string" ? val.trim() : val),
       z.string().email().optional(),
@@ -63,7 +63,7 @@ export const resendCodeSchema = z
     ),
   })
   .superRefine((value, ctx) => {
-    if (value.purpose === "email" && !value.email) {
+    if (value.purpose === "register" && !value.email) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         message: "Email required to resend verification code",
@@ -80,8 +80,8 @@ export const resendCodeSchema = z
   });
 
 export default {
-  registerSchema,
-  loginSchema,
-  verifyCodeSchema,
-  resendCodeSchema,
+  registerValidator,
+  loginValidator,
+  verifyCodeValidator,
+  resendCodeValidator,
 };

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const createTaskSchema = z.object({
+export const createTaskValidator = z.object({
   project_id: z.number().int().positive(),
   title: z.preprocess((val) => {
     if (typeof val !== "string") return val;
@@ -21,7 +21,7 @@ export const createTaskSchema = z.object({
   ),
 });
 
-export const updateTaskSchema = z
+export const updateTaskValidator = z
   .object({
     project_id: z.number().int().positive().optional(),
     title: z
@@ -46,4 +46,4 @@ export const updateTaskSchema = z
   })
   .refine((obj) => Object.keys(obj).length > 0);
 
-export default { createTaskSchema, updateTaskSchema };
+export default { createTaskValidator, updateTaskValidator };

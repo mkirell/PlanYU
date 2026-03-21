@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const createUserTaskSchema = z.object({
+export const createUserTaskValidator = z.object({
   user_id: z.preprocess(
     (val) => (typeof val === "string" ? Number(val.trim()) : val),
     z.number().int().positive(),
@@ -15,7 +15,7 @@ export const createUserTaskSchema = z.object({
   ),
 });
 
-export const updateUserTaskSchema = z
+export const updateUserTaskValidator = z
   .object({
     role: z.preprocess(
       (val) => (typeof val === "string" ? val.trim().toUpperCase() : val),
@@ -24,4 +24,4 @@ export const updateUserTaskSchema = z
   })
   .refine((obj) => Object.keys(obj).length > 0);
 
-export default { createUserTaskSchema, updateUserTaskSchema };
+export default { createUserTaskValidator, updateUserTaskValidator };

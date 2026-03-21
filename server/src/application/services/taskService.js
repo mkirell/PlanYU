@@ -6,13 +6,13 @@ import StageRepository from "../../infrastructure/repositories/stageRepository.j
 import StageService from "./stageService.js";
 import TaskEntity from "../../domain/entities/taskEntity.js";
 import {
-  createTaskSchema,
-  updateTaskSchema,
+  createTaskValidator,
+  updateTaskValidator,
 } from "../validators/taskValidator.js";
 import {
   ValidationError,
   UnauthorizedError,
-} from "../../shared/utils/errorHandler.js";
+} from "../../shared/errors/appError.js";
 
 const TaskService = {
   async list() {
@@ -24,7 +24,7 @@ const TaskService = {
   },
 
   async create(payload) {
-    const parsed = createTaskSchema.safeParse(payload);
+    const parsed = createTaskValidator.safeParse(payload);
     if (!parsed.success)
       throw new ValidationError("Invalid task data", parsed.error.errors);
     const entity = new TaskEntity(parsed.data);
@@ -52,7 +52,7 @@ const TaskService = {
   },
 
   async update(id, payload, user) {
-    const parsed = updateTaskSchema.safeParse(payload);
+    const parsed = updateTaskValidator.safeParse(payload);
     if (!parsed.success)
       throw new ValidationError("Invalid task data", parsed.error.errors);
     const entity = new TaskEntity(parsed.data);

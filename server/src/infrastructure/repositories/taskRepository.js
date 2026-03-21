@@ -1,5 +1,5 @@
 import { Task } from "../models/index.js";
-import { NotFoundError } from "../../shared/utils/errorHandler.js";
+import { NotFoundError } from "../../shared/errors/appError.js";
 
 const TaskRepository = {
   async findAll() {
